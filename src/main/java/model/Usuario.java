@@ -1,25 +1,20 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 
-@Entity
 public class Usuario {
 	
 	
-	@Column(length=20, nullable=false, unique= true)
-	private String usuario;
-	
-	@Column(length=20, nullable=false)
+	private String login;
 	private String senha;
+	private Pessoa pessoa;
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setLogin(String usuario) {
+		this.login = usuario;
 	}
 
 
@@ -30,6 +25,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 
