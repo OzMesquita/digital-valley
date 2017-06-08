@@ -32,12 +32,11 @@ public class Pessoa {
 	@Column(length=60,nullable=false, unique=true)
 	private String email;
 	
-	@OneToOne
-	@JoinColumn(nullable=false)
-	private Usuario usuario;
+	//@OneToOne
+	//@JoinColumn(nullable=false)
+	///private Usuario usuario;
 	
 	@Column(nullable=false)
-	@Temporal(TemporalType.DATE)
 	private LocalDate dataNascimento;
 
 
@@ -80,7 +79,7 @@ public class Pessoa {
 		this.email = email;
 	}
 
-
+/*
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -89,7 +88,7 @@ public class Pessoa {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+*/
 
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
