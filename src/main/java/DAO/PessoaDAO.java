@@ -15,5 +15,6 @@ public interface PessoaDAO {
 	public Pessoa buscar(int id);
 	
 	public List<Pessoa> listar();
+	
 
 }
