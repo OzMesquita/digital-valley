@@ -17,7 +17,7 @@ public class JDBCPessoaDAOTest {
 	@Test
 	public void salvar() {
 		Pessoa pessoa = new Pessoa();
-		pessoa.setId(679);
+		pessoa.setId(680);
 		pessoa.setNome("Maria");
 		pessoa.setCpf("12345678909");
 		pessoa.setEmail("luan@gmail.com");
@@ -31,6 +31,21 @@ public class JDBCPessoaDAOTest {
 		pd.cadastrar(pessoa);
 
 	}
+	
+	
+	public void editar(Pessoa pessoa) {}
+	
+	
+	
+	public void remover(int id) {}
+	
+	
+	
+	public Pessoa buscar(int id) {
+		return null;
+	}
+	
+	
 	
 	//erro : " method listar() should be void"
 	@Ignore

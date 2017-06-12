@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,7 +104,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.setId(rs.findColumn("id"));
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setCpf(rs.getString("cpf"));
-			pessoa.setDataNascimento(Date.valueOf(rs.getString("data_nascimento")));
+			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 			pessoa.setEmail(rs.getString("email"));
 			pessoa.getUsuario().setLogin(rs.getString("login"));
 			
@@ -131,7 +132,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setEmail(rs.getString("email"));
-				p.setDataNascimento(rs.getDate("data_mascimento"));
+				p.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				p.getUsuario().setLogin(rs.getString("login"));
 				pessoas.add(p);
 			}

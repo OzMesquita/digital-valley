@@ -7,6 +7,7 @@ import model.Usuario;
 
 public class Pessoa {
 	
+	
 	private int id;
 	private String nome;
 	private String cpf;
