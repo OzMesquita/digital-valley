@@ -4,7 +4,9 @@ package model;
 public class Usuario {
 	
 	
+
 	private String login;
+
 	private String senha;
 	private Pessoa pessoa;
 
@@ -13,8 +15,10 @@ public class Usuario {
 	}
 
 
-	public void setLogin(String usuario) {
-		this.login = usuario;
+
+	public void setLogin(String login) {
+		this.login = login;
+
 	}
 
 
