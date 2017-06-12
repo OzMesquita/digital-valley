@@ -1,23 +1,24 @@
 package model;
 
-import javax.persistence.Column;
 
 public class Usuario {
 	
 	
-	@Column(length=20, nullable=false, unique= true)
+
 	private String login;
-	
-	@Column(length=20, nullable=false)
+
 	private String senha;
+	private Pessoa pessoa;
 
 	public String getLogin() {
 		return login;
 	}
 
 
+
 	public void setLogin(String login) {
 		this.login = login;
+
 	}
 
 
@@ -28,6 +29,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 
