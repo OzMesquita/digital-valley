@@ -7,6 +7,15 @@ public class Usuario {
 	private String senha;
 	private Pessoa pessoa;
 
+	public Usuario(String login, String senha, Pessoa pessoa) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.pessoa = pessoa;
+	}
+
+
+
 	public String getLogin() {
 		return login;
 	}

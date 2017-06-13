@@ -15,6 +15,20 @@ public class Pessoa {
 	private Usuario usuario;
 	private LocalDate dataNascimento;
 
+	public Pessoa(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.usuario = usuario;
+		this.dataNascimento = dataNascimento;
+	}
+
+
+	public Pessoa() {
+		
+	}
+
 
 	public int getId() {
 		return id;

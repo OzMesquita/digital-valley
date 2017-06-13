@@ -13,18 +13,16 @@ import util.DAOFactory;
 public class JDBCPessoaDAOTest {
 
 	//passou no teste
-	@Ignore
+	
 	@Test
 	public void salvar() {
 		Pessoa pessoa = new Pessoa();
-		pessoa.setId(680);
-		pessoa.setNome("Maria");
+		pessoa.setId(681);
+		pessoa.setNome("Mariaana");
 		pessoa.setCpf("12345678909");
 		pessoa.setEmail("luan@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
-		pessoa.setUsuario(new Usuario());
-		pessoa.getUsuario().setLogin("ldharlin");
-		pessoa.getUsuario().setSenha("luan123");
+		pessoa.setUsuario(new Usuario("ldharlin", "luan123", pessoa));
 
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 
@@ -46,7 +44,7 @@ public class JDBCPessoaDAOTest {
 	}
 	
 	
-	
+/*	
 	//erro : " method listar() should be void"
 	@Ignore
 	@Test
@@ -67,6 +65,6 @@ public class JDBCPessoaDAOTest {
 
 		return pessoas;
 	}
-
+*/
 	
 }

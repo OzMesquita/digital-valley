@@ -25,18 +25,16 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void cadastrar(Pessoa pessoa) {
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email, login, senha , data_nascimento,id) VALUES"
-					+ "(?,?,?,?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento,id) VALUES"
+					+ "(?,?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
-			ps.setString(4, pessoa.getUsuario().getLogin());
-			ps.setString(5, pessoa.getUsuario().getSenha());
-			ps.setDate(6, Date.valueOf(pessoa.getDataNascimento()));
-			ps.setInt(7, pessoa.getId());
+			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
+			ps.setInt(5, pessoa.getId());
 
 			ps.executeUpdate();
 
@@ -46,11 +44,12 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCpessoaDAO", e);
 		}
 
 	}
 
+	
 	@Override
 	public void editar(Pessoa pessoa) {
 		try {
@@ -107,7 +106,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 			pessoa.setEmail(rs.getString("email"));
 			pessoa.getUsuario().setLogin(rs.getString("login"));
-			
+			pessoa.getUsuario().setSenha(rs.getString("senha"));
+			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
 			
