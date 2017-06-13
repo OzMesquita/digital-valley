@@ -7,6 +7,9 @@ public class Usuario {
 	private String senha;
 	private Pessoa pessoa;
 
+	public Usuario(){
+		
+	}
 	public Usuario(String login, String senha, Pessoa pessoa) {
 		super();
 		this.login = login;
