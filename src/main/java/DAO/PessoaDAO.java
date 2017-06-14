@@ -1,7 +1,20 @@
 package DAO;
 
+import java.util.List;
+
 import model.Pessoa;
 
-public class PessoaDAO extends GenericDAO<Pessoa>{
+public interface PessoaDAO {
+	
+	public void cadastrar(Pessoa pessoa);
+	
+	public void editar(Pessoa pessoa);
+	
+	public void remover(int id);
+	
+	public Pessoa buscar(int id);
+	
+	public List<Pessoa> listar();
+	
 
 }

@@ -2,6 +2,11 @@ package DAO;
 
 import model.Usuario;
 
-public class UsuarioDAO extends GenericDAO<Usuario>{
+public interface UsuarioDAO {
+	
+	
+	public void cadastrar(Usuario usuario);
+	
+	public void editar(Usuario usuario);
 
 }
