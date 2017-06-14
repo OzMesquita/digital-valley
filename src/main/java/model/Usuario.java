@@ -8,6 +8,9 @@ public class Usuario {
 	private Pessoa pessoa;
 	private Enum<EnumNivel> nivel;
 
+	public Usuario(){
+		
+	}
 	public Usuario(String login, String senha, Pessoa pessoa) {
 		super();
 		this.login = login;
