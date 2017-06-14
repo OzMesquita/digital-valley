@@ -13,7 +13,7 @@ import util.DAOFactory;
 public class JDBCPessoaDAOTest {
 
 	//passou no teste
-	
+	@Ignore
 	@Test
 	public void salvar() {
 		Pessoa pessoa = new Pessoa();

@@ -21,7 +21,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	public void cadastrar(Usuario usuario) {
 
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (login, senha) WHERE id=? VALUES" + "(?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (login, senha) WHERE id=? VALUES" + "(?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
@@ -46,6 +46,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 				PreparedStatement ps = connection.prepareStatement(SQL);
 				ps.setString(1, "login");
 				ps.setString(2, "senha");
+				ps.setInt(3, usuario.getPessoa().getId());
 				ps.executeUpdate();
 				ps.close();
 			

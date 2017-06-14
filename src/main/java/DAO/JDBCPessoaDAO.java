@@ -53,14 +53,13 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void editar(Pessoa pessoa) {
 		try {
-		String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ?, login=? WHERE id = ?";
+		String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
-			ps.setString(5, pessoa.getUsuario().getLogin());
-			ps.setInt(6, pessoa.getId());
+			ps.setInt(5, pessoa.getId());
 		
 			ps.executeUpdate();
 			ps.close();
