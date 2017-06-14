@@ -1,5 +1,7 @@
 package util;
 
+import DAO.AlunoDAO;
+import DAO.JDBCAlunoDAO;
 import DAO.JDBCPessoaDAO;
 import DAO.JDBCUsuarioDAO;
 import DAO.PessoaDAO;
@@ -14,4 +16,7 @@ public class DAOFactory {
 		return new JDBCUsuarioDAO();
 	}
 	
+	public static AlunoDAO criarAlunoDAO(){
+		return new JDBCAlunoDAO();
+	}
 }
