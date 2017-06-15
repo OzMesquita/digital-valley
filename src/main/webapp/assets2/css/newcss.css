@@ -1,0 +1,72 @@
+@CHARSET "ISO-8859-1";
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24/05/2017, 16:40:12
+    Author     : N2S-PC03
+*/
+
+#btnsalvar{
+    width: 150px;
+    height: 35px;
+    background: steelblue;
+    color: white;
+    margin-top: -38px;
+    float: right;
+}
+#opcao1{
+        width: 400px;
+        height: 500px;
+        background: steelblue;
+        color: white;
+        display: block;
+        margin-left: 12%;
+        margin-top: 60px;
+        border-radius: 5%;
+        border-color: white;
+        font-size: 30px;
+        text-align:center;
+}
+#opcao1 button{
+        background: #f7f7f8;
+        color: steelblue;
+        border-radius: 0px 0px 10px 10px;
+        border: 0px;
+        height: 55px;
+}
+#opcao2 button{
+        background: #f7f7f8;
+        color: steelblue;
+        border-radius: 0px 0px 10px 10px;
+        border: 0px;
+        height: 55px;
+}
+
+  #opcao2{
+         width: 400px;
+        height: 500px;
+        background: steelblue;
+        color: white;
+        display: block;
+        margin-left: 800px;
+        border-radius: 5%;
+        margin-top: -500px;
+        border-color: green;
+        font-size: 30px;
+        text-align:center;
+  }
+  #photobox{
+    width: 25%;
+    margin-left: 50px;
+  }
+  #cadastro{
+      margin-left: -258px;
+  }
+#tamData{width: 250px;}
+#tamVisu{width: 250px;}
+#tamDisc{width: 400px;}
+#tamProf{width: 350px;}
+#tamDisci{width: 400px;}

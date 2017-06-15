@@ -2,42 +2,33 @@ package model;
 
 
 import java.time.LocalDate;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import model.Usuario;
 
 
-@Entity
 public class Pessoa {
 	
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE)
 	private int id;
-	
-	@Column(length = 60, nullable=false)
 	private String nome;
-	
-	@Column(length=11, nullable=false, unique=true)
 	private String cpf;
-	
-	@Column(length=60,nullable=false, unique=true)
 	private String email;
-	
-	//@OneToOne
-	//@JoinColumn(nullable=false)
-	///private Usuario usuario;
-	
-	@Column(nullable=false)
+	private Usuario usuario;
 	private LocalDate dataNascimento;
+
+	public Pessoa(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.usuario = usuario;
+		this.dataNascimento = dataNascimento;
+	}
+
+
+
+	public Pessoa() {
+		
+	}
 
 
 	public int getId() {
@@ -79,7 +70,7 @@ public class Pessoa {
 		this.email = email;
 	}
 
-/*
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -88,7 +79,7 @@ public class Pessoa {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-*/
+
 
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
