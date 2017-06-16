@@ -3,7 +3,6 @@ package model;
 public class Aluno {
 	
 	private int matricula;
-	private String nome;
 	private EnumCurso curso;
 	private String semestreIngresso;
 	private Pessoa pessoa;
@@ -39,16 +38,6 @@ public class Aluno {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	
 	
 
 }
