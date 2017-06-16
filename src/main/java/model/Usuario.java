@@ -12,6 +12,7 @@ public class Usuario implements Serializable {
 	private String login;
 	private String senha;
 	private Pessoa pessoa;
+	private EnumNivel nivel;
 
 	public Usuario(){
 		
@@ -20,12 +21,13 @@ public class Usuario implements Serializable {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.pessoa = pessoa;
+		this.nivel = EnumNivel.COMUN;
 	}
 	public Usuario(String login, String senha) {
 		super();
 		this.login = login;
 		this.senha = senha;
+		this.nivel = EnumNivel.COMUN;
 	}
 	
 	public int getId() {
@@ -67,14 +69,19 @@ public class Usuario implements Serializable {
 			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: "+id);
 		}
 	}
-	
+	public EnumNivel getNivel() {
+		return nivel;
+	}
+	public void setNivel(EnumNivel nivel) {
+		this.nivel = nivel;
+	}
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
-	
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
 	
 	
 }

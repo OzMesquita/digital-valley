@@ -14,16 +14,16 @@ import util.DAOFactory;
 public class PessoaDAOTest {
 	
 	private Pessoa pessoa = new Pessoa();
-	
+	@Ignore
 	@Test
 	public void salvar() {
 		
-		pessoa.setId(1);
+		pessoa.setId(2);
 		pessoa.setNome("Tágila Lima");
-		pessoa.setCpf("011.111.111-11");
+		pessoa.setCpf("01111111111");
 		pessoa.setEmail("tagila@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
-		pessoa.setUsuario(new Usuario("tagila", "tag123", pessoa));
+		pessoa.setUsuario(new Usuario("tagila", "tag123"));
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		
 		pd.cadastrar(pessoa);
@@ -35,7 +35,7 @@ public class PessoaDAOTest {
 	public void editar() {
 		pessoa.setId(681);
 		pessoa.setNome("Tágila Lima");
-		pessoa.setCpf("011.111.111-11");
+		pessoa.setCpf("01111111111");
 		pessoa.setEmail("tagila@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
