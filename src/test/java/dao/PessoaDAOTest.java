@@ -15,12 +15,13 @@ public class PessoaDAOTest {
 	
 	private Pessoa pessoa = new Pessoa();
 	
+	@Ignore
 	@Test
 	public void salvar() {
 		
 		pessoa.setId(1);
 		pessoa.setNome("Tágila Lima");
-		pessoa.setCpf("011.111.111-11");
+		pessoa.setCpf("01111111111");
 		pessoa.setEmail("tagila@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
 		pessoa.setUsuario(new Usuario("tagila", "tag123", pessoa));
@@ -30,20 +31,19 @@ public class PessoaDAOTest {
 
 	}
 	
-	
 	@Test
 	public void editar() {
 		pessoa.setId(681);
-		pessoa.setNome("Tágila Lima");
-		pessoa.setCpf("011.111.111-11");
-		pessoa.setEmail("tagila@gmail.com");
-		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
+		pessoa.setNome("Mariana");
+		pessoa.setCpf("12345678909");
+		pessoa.setEmail("luan@gmail.com");
+		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		
 		pdao.editar(pessoa);
 		
 	}
-	
+	@Ignore
 	@Test
 	public void remover() {
 				
