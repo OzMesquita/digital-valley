@@ -1,6 +1,7 @@
 package DAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -11,12 +12,10 @@ import model.Usuario;
 import util.DAOFactory;
 
 public class JDBCPessoaDAOTest {
+	Pessoa pessoa = new Pessoa();
 
-	//passou no teste
-	@Ignore
 	@Test
 	public void salvar() {
-		Pessoa pessoa = new Pessoa();
 		pessoa.setId(681);
 		pessoa.setNome("Mariaana");
 		pessoa.setCpf("12345678909");
@@ -25,15 +24,15 @@ public class JDBCPessoaDAOTest {
 		pessoa.setUsuario(new Usuario("ldharlin", "luan123", pessoa));
 
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
-
+		
 		pd.cadastrar(pessoa);
 
 	}
+	@Test
+	public void editar() throws Exception {
 	
-	
-	public void editar(Pessoa pessoa) {}
-	
-	
+	}
+		
 	
 	public void remover(int id) {}
 	
