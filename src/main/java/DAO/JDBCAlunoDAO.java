@@ -23,11 +23,11 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	public void cadastrar(Aluno aluno) {
 
 		try {
-			String SQL = "INSERT INTO pessoa_aluno (nome, matricula, curso, semestreIngresso) WHERE id=? VALUES" + "(?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_aluno ( matricula, curso, semestreIngresso) WHERE id=? VALUES" + "(?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
-			
-			ps.setString(1, aluno.getNome());
+
+			ps.setInt(1, aluno.getPessoa().getId());
 			ps.setInt(2, aluno.getMatricula());
             ps.setString(3, aluno.getCurso().toString());
 			ps.setString(4, aluno.getSemestreIngresso());
