@@ -1,0 +1,277 @@
+[33mcommit 9df6edc3fe60db201897f73c1c66fd0acf8e37d1[m
+Merge: e6445e3 d38bf2f
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 11:52:32 2017 -0300
+
+    Atualizando
+
+[33mcommit e6445e34c311ff354442de5aa23fe30a4f05b03c[m
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 11:49:28 2017 -0300
+
+    Test PessoaDAO
+
+[33mcommit d38bf2f80ebbdf6845231c18fbc4a35ba853900d[m
+Merge: d1eab08 76dfc7f
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 11:47:32 2017 -0300
+
+    Teste Pessoa
+
+[33mcommit d1eab084acfd5e62959211f5786cfab78349aa0d[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 11:45:51 2017 -0300
+
+    Teste Pessoa
+
+[33mcommit 76dfc7f2624711cee75bffd2268006987e30b1cb[m
+Merge: 3b16d16 1819dc7
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 09:55:31 2017 -0300
+
+    Atualizando
+
+[33mcommit 3b16d16daad3e288db033a7c737a1d4bdaa8571a[m
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 09:46:28 2017 -0300
+
+    Atualizando
+
+[33mcommit 1819dc7880caa6609ea89d3f20832b6121e97964[m
+Merge: 64cfb6a 172e295
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 09:42:57 2017 -0300
+
+    Merge branch 'master' of https://github.com/OzMesquita/digital-valley
+
+[33mcommit 64cfb6a587cc33d0d66df4affa4489efd1f3b578[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 09:42:37 2017 -0300
+
+    PessoaDAO Test
+
+[33mcommit 172e29530e24b29aa141a15c12e2a0cd793d1f3e[m
+Merge: 46213fc da175f9
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Fri Jun 16 09:20:46 2017 -0300
+
+    alteracao na Fachada, inclusão do método cadastrar aluno
+
+[33mcommit 46213fc9eb77c78323a2acd946e4b9891b886a8f[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Fri Jun 16 09:13:13 2017 -0300
+
+    alteracao na Fachada, inclusão do método cadastrar aluno
+
+[33mcommit 7572b4e4b7981645a26d0be22482311de20bc608[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Fri Jun 16 09:11:36 2017 -0300
+
+    alteracao na Fachada, inclusão do método cadastrar aluno
+
+[33mcommit da175f9d0ceb4d00772470731c9f0cfcb181de16[m
+Merge: 9360359 837755f
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 08:35:27 2017 -0300
+
+    atualizar
+
+[33mcommit 9360359900c34d2f7ec898acc531c221ac610d63[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Fri Jun 16 08:34:37 2017 -0300
+
+    atualizar
+
+[33mcommit 837755f4595006642d17dadb7365d33e2140cd7c[m
+Merge: 61c79fe f848a0d
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 08:19:59 2017 -0300
+
+    Atualizando
+
+[33mcommit 61c79fe110aa09c03dc749014bfa5f75650d132b[m
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Fri Jun 16 08:17:47 2017 -0300
+
+    Atualizando
+
+[33mcommit f848a0d3677453d6619d9b3bc9588cb666623256[m
+Author: Deyvison Nogueira <Deyvison Nogueira>
+Date:   Thu Jun 15 22:32:19 2017 -0300
+
+    Atualizações
+
+[33mcommit 2babdfeb5c28bebcc7c8554ce885040baadc59eb[m
+Author: Deyvison Nogueira <Deyvison Nogueira>
+Date:   Thu Jun 15 13:33:45 2017 -0300
+
+    Modelo Usuario e pessoa com testes Junit
+
+[33mcommit 939dac194d02f02cd5fdea0369db4bc80282cf00[m
+Merge: b423c45 f6828f6
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Thu Jun 15 09:30:22 2017 -0300
+
+    Atualizar o codigo
+
+[33mcommit b423c45d74512c1e3e275caa413ad769ff7ffb43[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Thu Jun 15 09:29:14 2017 -0300
+
+    Atualizar o codigo
+
+[33mcommit f6828f69e9a0ffbeb2b4365213db8d91958edab5[m
+Author: Tágila Lima <tagila.lima96@gmail.com>
+Date:   Wed Jun 14 17:13:42 2017 -0300
+
+    Início do DAO aluno
+
+[33mcommit 566128d3cf0d34067b72fec698677b3e48733123[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Wed Jun 14 12:06:23 2017 -0300
+
+    Alteracao no model Usuario e UsuarioDAO
+
+[33mcommit d419e61acc218399ed58227fa8fc7506b1ea4666[m
+Merge: ee745b7 2d2b1fa
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Wed Jun 14 10:16:49 2017 -0300
+
+    Alteracao na Autenticacao e Logout
+
+[33mcommit ee745b7321d5ec6964cfceeb1daf2b875172b676[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Wed Jun 14 10:15:52 2017 -0300
+
+    Alteracao na Autenticacao e Logout
+
+[33mcommit 2d2b1fa5c9f217c098a97400fbeac4e21da86c52[m
+Merge: 38ead5e 93342e0
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Wed Jun 14 10:15:16 2017 -0300
+
+    DAOs
+
+[33mcommit 38ead5ef94c6487efd7f75d4d243f072eb2aa7d1[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Wed Jun 14 10:03:13 2017 -0300
+
+    DAOs
+
+[33mcommit 93342e09408198cd35ed608b3f79ac505950abbd[m
+Author: beto22ufc <betinlimma@gmail.com>
+Date:   Tue Jun 13 17:04:08 2017 -0300
+
+    tela de login
+
+[33mcommit 214cb8241fde45066f3f83c3557859520514a149[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Tue Jun 13 13:41:29 2017 -0300
+
+    Implementação por padrão Fachada/Método cadastrar
+
+[33mcommit 5c8fdf7e836377c8fdd8a11794e39bfdf1661749[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Mon Jun 12 17:18:55 2017 -0300
+
+    remoção da dependência do Hibernate no pom.xml
+
+[33mcommit f7b6f67eeb073b754c259fee0d7c050280286c4f[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Mon Jun 12 16:53:30 2017 -0300
+
+    Remoção de classes desnecessárias
+
+[33mcommit a23d8322d5534bd0d11ea73554be96f60619421e[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Mon Jun 12 15:13:39 2017 -0300
+
+    PessoaDAO editar/listar/remover/buscar incompletos
+
+[33mcommit 997b993e8c805779a4500a19bb0f8f5af302937c[m
+Merge: f594c44 79f1f32
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Mon Jun 12 11:59:56 2017 -0300
+
+    PessoaDAO cadastrar
+
+[33mcommit f594c4463a80b63ff30cf8709aed18aee1630e3e[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Mon Jun 12 11:57:29 2017 -0300
+
+    PessoaDAO cadastrar
+
+[33mcommit 79f1f3280acb9ff1b96268f6419548baeca46e5d[m
+Merge: 32e7fc1 e1121c9
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Mon Jun 12 11:51:35 2017 -0300
+
+    Login, logout e Autenticacao
+
+[33mcommit 32e7fc1abb71abbc1afd5d26a23d1e0f5ecc1444[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Mon Jun 12 11:49:24 2017 -0300
+
+    Login, logout e Autenticacao
+
+[33mcommit e1121c9fdff3944072885b637cfc2ad82b49c4ae[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Thu Jun 8 17:31:00 2017 -0300
+
+    Inicio DAO
+
+[33mcommit 007551067a504781a92836413d7ffcd810479674[m
+Merge: c633afd 11bcd76
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Thu Jun 8 15:48:45 2017 -0300
+
+    ...
+
+[33mcommit c633afd0227a465776a0d4e2738e04be2cdb36c0[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Thu Jun 8 15:47:35 2017 -0300
+
+    ...
+
+[33mcommit 11bcd763dceb8c163085d139c5139dfabcf24d3a[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Thu Jun 8 15:40:24 2017 -0300
+
+    hibernate Util
+
+[33mcommit a2da0d21f268aab2f35aaa824b40d268f48e8dcd[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Thu Jun 8 14:59:03 2017 -0300
+
+    maven dependencies
+
+[33mcommit 4045a278c01fb722467a0780b00eb52440ec9018[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Thu Jun 8 10:30:07 2017 -0300
+
+    diretorio
+
+[33mcommit 1c2e7da5075f11567da02ad21fd06ed8cbb70fb9[m
+Merge: c0862bf 7c72da5
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Wed Jun 7 11:50:38 2017 -0300
+
+    model Pessoa e Usuario
+
+[33mcommit c0862bf69ae8caefb0d569e2d8da698a51152257[m
+Author: Luan Dharlin <luandharlinls@gmail.com>
+Date:   Wed Jun 7 11:47:25 2017 -0300
+
+    model Pessoa e Usuario
+
+[33mcommit 7c72da5c05c2833126c9e4c9494ed6f5d446c9cd[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Wed Jun 7 11:37:09 2017 -0300
+
+    inicio Login e pom.xml
+
+[33mcommit 00ce84d0ac71c5c4dabc918b0b437a4884cf6dd0[m
+Author: Deyvison Nogueira <deyvison_s@hotmail.com>
+Date:   Wed Jun 7 10:54:24 2017 -0300
+
+    First commit

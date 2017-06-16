@@ -2,6 +2,7 @@ package dao;
 
 import org.junit.Test;
 
+import dao.UsuarioDAO;
 import model.Usuario;
 import util.DAOFactory;
 
