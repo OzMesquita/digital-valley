@@ -2,6 +2,7 @@ package dao;
 
 import java.time.LocalDate;
 
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -9,6 +10,7 @@ import dao.PessoaDAO;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
+
 
 public class PessoaDAOTest {
 	
@@ -25,11 +27,13 @@ public class PessoaDAOTest {
 		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
 		pessoa.setUsuario(new Usuario("deyvison", "deyvison123", pessoa));
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
-
+		
 		pd.cadastrar(pessoa);
 
 	}
-	
+
+		
+
 	@Test
 	public void editar() {
 		pessoa.setId(3);
