@@ -50,7 +50,6 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
-			aluno.setNome(rs.getString("nome"));
 			aluno.setMatricula(rs.getInt("matricula"));
 			//aluno.setCurso(rs.getString("curso"));
 			aluno.setSemestreIngresso(rs.getString("semestreIngresso"));
@@ -76,7 +75,6 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Aluno a = new Aluno();
-				a.setNome(rs.getString("nome"));
 				a.setMatricula(rs.getInt("matricula"));
 				//a.setCurso(rs.getString("curso"));
 				a.setSemestreIngresso(rs.getString("semestreIngresso"));
