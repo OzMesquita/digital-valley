@@ -1,8 +1,8 @@
 package util;
 
-import DAO.AlunoDAO;
-import DAO.PessoaDAO;
-import DAO.UsuarioDAO;
+import dao.AlunoDAO;
+import dao.PessoaDAO;
+import dao.UsuarioDAO;
 import model.Aluno;
 import model.Pessoa;
 import model.Usuario;
