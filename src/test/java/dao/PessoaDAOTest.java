@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,32 +7,47 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import dao.PessoaDAO;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
 
-public class JDBCPessoaDAOTest {
-	Pessoa pessoa = new Pessoa();
 
+public class PessoaDAOTest {
+	
+	private Pessoa pessoa = new Pessoa();
+
+	@Ignore
 	@Test
 	public void salvar() {
-		pessoa.setId(681);
-		pessoa.setNome("Mariaana");
-		pessoa.setCpf("12345678909");
-		pessoa.setEmail("luan@gmail.com");
+		
+		pessoa.setId(2);
+		pessoa.setNome("Deyvison");
+		pessoa.setCpf("12345678910");
+		pessoa.setEmail("deyvison@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
-		pessoa.setUsuario(new Usuario("ldharlin", "luan123", pessoa));
-
+		pessoa.setUsuario(new Usuario("deyvison", "deyvison123", pessoa));
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		
 		pd.cadastrar(pessoa);
 
 	}
-	@Test
-	public void editar() throws Exception {
-	
-	}
+
 		
+
+	@Test
+	public void editar() {
+		pessoa.setId(3);
+		pessoa.setNome("Deyvison2");
+		pessoa.setCpf("12345678911");
+		pessoa.setEmail("deyvison@.com");
+		pessoa.setDataNascimento(LocalDate.of(1995, 8, 22));
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
+		pdao.editar(pessoa);
+		
+	}
+	
+	
 	
 	public void remover(int id) {}
 	
