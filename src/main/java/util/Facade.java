@@ -18,7 +18,7 @@ public class Facade {
 		
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.cadastrar(usuario);
-		
+
 	}
 	
 	
@@ -29,15 +29,18 @@ public class Facade {
 		
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
-			
+
 	}
 
-	public void editarPessoa(Pessoa pessoa, Usuario usuario, Aluno aluno){
+	public void editarPessoa(Pessoa pessoa, Usuario usuario){
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		pessoaDAO.editar(pessoa);
 		
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.editar(usuario);
+
+		
+		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 
 	}
 
