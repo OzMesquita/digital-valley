@@ -1,7 +1,9 @@
 package util;
 
+import DAO.AlunoDAO;
 import DAO.PessoaDAO;
 import DAO.UsuarioDAO;
+import model.Aluno;
 import model.Pessoa;
 import model.Usuario;
 
@@ -26,7 +28,7 @@ public class Facade {
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.editar(usuario);
 		
-		
+		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 	}
 	
 }

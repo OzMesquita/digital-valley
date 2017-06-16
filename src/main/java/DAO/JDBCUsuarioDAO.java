@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Usuario;
@@ -22,13 +23,10 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 
 		try {
 			String SQL = "INSERT INTO pessoa_usuario (login, senha) WHERE id=? VALUES" + "(?,?)";
-
 			PreparedStatement ps = connection.prepareStatement(SQL);
-			
 			ps.setInt(1, usuario.getPessoa().getId());
 			ps.setString(2, usuario.getLogin());
 			ps.setString(3, usuario.getSenha());
-
 			ps.executeUpdate();
 			ps.close();
 
@@ -56,6 +54,31 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 				throw new RuntimeException("Erro ao editar registro de usuario", e);
 			}
 
+	}
+
+	@Override
+	public boolean autenticar(String login, String senha) {
+		try {
+			String SQL = "SELECT * FROM pessoa_usuario as u WHERE u.login = ?";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			 
+			ps.setString(1, login);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()){
+				Usuario usuario = new Usuario(rs.getString("login"), rs.getString("senha"));
+				if(usuario.getSenha().equals(senha)) {
+					return true;
+				}
+			}
+			ps.close();
+			rs.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("Erro: login e senha inválidos");
+		}
+		return false;
 	}
 
 }

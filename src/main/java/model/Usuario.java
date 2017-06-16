@@ -22,7 +22,11 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.pessoa = pessoa;
 	}
-	
+	public Usuario(String login, String senha) {
+		super();
+		this.login = login;
+		this.senha = senha;
+	}
 	
 	public int getId() {
 		return id;
