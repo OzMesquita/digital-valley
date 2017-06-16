@@ -1,11 +1,13 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import model.Aluno;
 import util.ConnectionFactory;
@@ -51,7 +53,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			
 			rs.next();
 			aluno.setMatricula(rs.getInt("matricula"));
-			//aluno.setCurso(rs.getString("curso"));
+			//aluno.setCurso(rs.));
 			aluno.setSemestreIngresso(rs.getString("semestreIngresso"));
 			
 			ps.close();
