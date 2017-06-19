@@ -47,7 +47,7 @@
         %>
             <div class="image-container set-full-height" style="background: steelblue;">
 		<div class="container">
-                    <div class="row">
+          <div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
                  <div class="wizard-container">
                      <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:20px;">
@@ -94,7 +94,7 @@
                                              </div>
 
                                              <div class="pull-right">
-                                                 <input id="btnsalvar" type='submit' value='Entrar' onclick="validarLogin()"/>
+                                                 <input id="btnsalvar" type='submit' value='Entrar' onclick="return validarLogin()"/>
                                              </div>
                                          </div>
                                      </div>
@@ -105,12 +105,12 @@
                      </div>
                  </div> 
 			</div>
-                    </div>
+          </div>
 		</div> 
 		<div class="footer">
-             <div class="container">
-                 ₢ Todos os direitos reservados | N2S
-             </div>
+           <div class="container">
+               ₢ Todos os direitos reservados | N2S
+           </div>
 		</div>
 	</div>
         <%}}else{
@@ -143,7 +143,6 @@
                     alert("Campo Senha Inválido");
                     return false;
                 }
-                document.formLogin.submit();
             }
         </script>
  
