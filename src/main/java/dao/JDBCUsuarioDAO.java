@@ -43,8 +43,8 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		try {
 			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id = ?";
 				PreparedStatement ps = connection.prepareStatement(SQL);
-				ps.setString(1, "login");
-				ps.setString(2, "senha");
+				ps.setString(1, usuario.getLogin());
+				ps.setString(2, usuario.getSenha());
 				ps.setInt(3, usuario.getPessoa().getId());
 				ps.executeUpdate();
 				ps.close();
