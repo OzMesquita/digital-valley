@@ -1,7 +1,9 @@
 package util;
 
-import DAO.PessoaDAO;
-import DAO.UsuarioDAO;
+import dao.AlunoDAO;
+import dao.PessoaDAO;
+import dao.UsuarioDAO;
+import model.Aluno;
 import model.Pessoa;
 import model.Usuario;
 
@@ -16,7 +18,18 @@ public class Facade {
 		
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.cadastrar(usuario);
+
+	}
+	
+	
+	public static void cadastrarAluno( Pessoa pessoa, Usuario usuario, Aluno aluno){
+		Facade.cadastrarPessoa(pessoa, usuario);
 		
+		aluno.setPessoa(pessoa);
+		
+		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
+		alunoDAO.cadastrar(aluno);
+
 	}
 
 	public void editarPessoa(Pessoa pessoa, Usuario usuario){
@@ -25,8 +38,12 @@ public class Facade {
 		
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.editar(usuario);
+
 		
-		
+		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
+
 	}
+
+
 	
 }

@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Nome do Sistema</title>
 </head>
 <body>
 
 	<a href="logout" >Logout</a>
+	<a></a>
 
 
 </body>

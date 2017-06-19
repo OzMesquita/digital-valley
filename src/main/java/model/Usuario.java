@@ -1,12 +1,17 @@
 package model;
 
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String login;
 	private String senha;
 	private Pessoa pessoa;
-	private Enum<EnumNivel> nivel;
+	private EnumNivel nivel;
 
 	public Usuario(){
 		
@@ -15,11 +20,16 @@ public class Usuario {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.pessoa = pessoa;
+		this.nivel = EnumNivel.COMUN;
 	}
-
-
-
+	public Usuario(String login, String senha) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.nivel = EnumNivel.COMUN;
+	}
+	
+	
 	public String getLogin() {
 		return login;
 	}
@@ -27,34 +37,40 @@ public class Usuario {
 
 
 	public void setLogin(String login) {
-		this.login = login;
+		if(login != null &&login.length() >= 4){
+			this.login = login;
+		}else{
+			throw new IllegalArgumentException("Erro: O valor do login não pode ser nulo e deve possuir pelo menos 4 caracteres, valor informado: "+login);
+		}
+		
 
 	}
-
-
+	
 	public String getSenha() {
 		return senha;
 	}
 
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		if(senha != null && senha.length() >= 6){
+			this.senha = senha;
+		}else{
+			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: "+senha);
+		}
 	}
-	
+	public EnumNivel getNivel() {
+		return nivel;
+	}
+	public void setNivel(EnumNivel nivel) {
+		this.nivel = nivel;
+	}
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
-	
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
 	
-	public Enum<EnumNivel> getNivel() {
-		return nivel;
-	}
 	
-	public void setNivel(Enum<EnumNivel> nivel) {
-		this.nivel = nivel;
-	}
 	
 }

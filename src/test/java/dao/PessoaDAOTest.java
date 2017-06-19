@@ -1,41 +1,55 @@
-package DAO;
+package dao;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import dao.PessoaDAO;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
 
-public class JDBCPessoaDAOTest {
 
-	//passou no teste
-	@Ignore
+public class PessoaDAOTest {
+	
+	private Pessoa pessoa = new Pessoa();
+
+
 	@Test
 	public void salvar() {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setId(681);
-		pessoa.setNome("Mariaana");
-		pessoa.setCpf("12345678909");
-		pessoa.setEmail("luan@gmail.com");
-		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
-		pessoa.setUsuario(new Usuario("ldharlin", "luan123", pessoa));
-
+		
+		pessoa.setId(2);
+		pessoa.setNome("Tágila Lima");
+		pessoa.setCpf("01111111111");
+		pessoa.setEmail("tagila@gmail.com");
+		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
+		pessoa.setUsuario(new Usuario("tagila", "tag123"));
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
-
+		
 		pd.cadastrar(pessoa);
 
 	}
 	
-	
-	public void editar(Pessoa pessoa) {}
-	
-	
-	
-	public void remover(int id) {}
+	@Test
+	public void editar() {
+		pessoa.setId(681);
+		pessoa.setNome("Tágila Lima");
+		pessoa.setCpf("01111111111");
+		pessoa.setEmail("tagila@gmail.com");
+		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
+		
+		pdao.editar(pessoa);
+		
+	}
+	@Ignore
+	@Test
+	public void remover() {
+				
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();	
+		pdao.remover(pessoa.getId());
+	}
 	
 	
 	

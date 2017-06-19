@@ -1,13 +1,11 @@
 package model;
 
-
 import java.time.LocalDate;
+
 import model.Usuario;
 
-
 public class Pessoa {
-	
-	
+
 	private int id;
 	private String nome;
 	private String cpf;
@@ -24,70 +22,84 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 	}
 
-
-
 	public Pessoa() {
-		
-	}
 
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
-		this.id = id;
+		if (id > 0) {
+			this.id = id;
+		} else {
+			throw new IllegalArgumentException("Erro: O valor do id deve ser maior do que 0, valor informardo: " + id);
+		}
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
-		this.nome = nome;
-	}
+		if (nome != null && nome.length() >= 1) {
+			this.nome = nome;
+		} else {
+			throw new IllegalArgumentException(
+					"Erro: O Nome não poder ser nulo e deve possuir pelo meno 1 caracteres, valor informado: " + nome);
+		}
 
+	}
 
 	public String getCpf() {
 		return cpf;
 	}
 
-
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		if (cpf != null && cpf.length() == 11) {
+			this.cpf = cpf;
+		} else {
+			throw new IllegalArgumentException(
+					"Erro: O parâmetro CPF não pode ser nulo e deve ter um número de 11 caracteres, valor informado "
+							+ cpf);
+		}
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
-		this.email = email;
+		if (email != null && email.contains("@") && email.contains(".com")) {
+			this.email = email;
+		} else {
+			throw new IllegalArgumentException("Erro: O parâmetro e-mail inválido, valor informado " + email);
+		}
 	}
-
 
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public void setDataNascimento(String dataNascimento) {
+		String [] data = dataNascimento.split("/");
+		if(data.length == 3){
+			this.setDataNascimento(LocalDate.of(Integer.valueOf(data[2]),Integer.valueOf(data[1]), Integer.valueOf(data[0])));
+		}else {
+			throw new RuntimeException("Erro: A data de nascimento não está no formato correto, valor informado "+ dataNascimento);
+		}
+	}
 }
