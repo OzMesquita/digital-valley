@@ -14,11 +14,8 @@ import util.DAOFactory;
 public class PessoaDAOTest {
 	
 	private Pessoa pessoa = new Pessoa();
-<<<<<<< HEAD
-=======
-	
->>>>>>> 01804162889052d7e093c0a88d13cf32b0d3c47f
-	@Ignore
+
+
 	@Test
 	public void salvar() {
 		
@@ -37,17 +34,10 @@ public class PessoaDAOTest {
 	@Test
 	public void editar() {
 		pessoa.setId(681);
-<<<<<<< HEAD
 		pessoa.setNome("Tágila Lima");
 		pessoa.setCpf("01111111111");
 		pessoa.setEmail("tagila@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
-=======
-		pessoa.setNome("Mariana");
-		pessoa.setCpf("12345678909");
-		pessoa.setEmail("luan@gmail.com");
-		pessoa.setDataNascimento(LocalDate.of(1994, 8, 22));
->>>>>>> 01804162889052d7e093c0a88d13cf32b0d3c47f
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		
 		pdao.editar(pessoa);

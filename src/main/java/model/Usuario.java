@@ -8,7 +8,6 @@ public class Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
 	private String login;
 	private String senha;
 	private Pessoa pessoa;
@@ -30,16 +29,6 @@ public class Usuario implements Serializable {
 		this.nivel = EnumNivel.COMUN;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		if(id > 0){
-			this.id = id;
-		}else{
-			throw new IllegalArgumentException("Erro: O valor do id deve ser maior do que 0, valor informardo: "+id);	
-		}
-	}
 	
 	public String getLogin() {
 		return login;
@@ -66,7 +55,7 @@ public class Usuario implements Serializable {
 		if(senha != null && senha.length() >= 6){
 			this.senha = senha;
 		}else{
-			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: "+id);
+			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: "+senha);
 		}
 	}
 	public EnumNivel getNivel() {

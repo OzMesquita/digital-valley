@@ -22,11 +22,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	public void cadastrar(Usuario usuario) {
 
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (login, senha) WHERE id=? VALUES" + "(?,?)";
+			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id=?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
-			ps.setInt(1, usuario.getPessoa().getId());
-			ps.setString(2, usuario.getLogin());
-			ps.setString(3, usuario.getSenha());
+			
+			ps.setString(1, usuario.getLogin());
+			ps.setString(2, usuario.getSenha());
+			ps.setInt(3, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
 
