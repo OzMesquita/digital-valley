@@ -19,7 +19,6 @@ public class UsuarioDAOTest {
 		Pessoa p = new Pessoa();
 		p.setId(1);
 		usuario.setPessoa(p);
-		
 		UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 		uDAO.cadastrar(usuario);
 		
