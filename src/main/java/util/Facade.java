@@ -32,15 +32,13 @@ public class Facade {
 
 	}
 
-	public void editarPessoa(Pessoa pessoa, Usuario usuario){
+	public static void editarPessoa(Pessoa pessoa, Usuario usuario){
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		pessoaDAO.editar(pessoa);
 		
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.editar(usuario);
 
-		
-		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 
 	}
 
