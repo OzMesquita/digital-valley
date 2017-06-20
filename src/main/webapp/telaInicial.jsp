@@ -31,7 +31,7 @@
 
 </head>
 <body>
-	<% Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
+	<%// Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
 
 <div id="tudo" class="wrapper">
     
@@ -64,21 +64,22 @@
                             </div>
                             <div class="content all-icons">
                                 <div class="row">
-                                <%	Iterator<Modulo> it = modulos.iterator();
+                                <%	/*Iterator<Modulo> it = modulos.iterator();
 									
                                     while(it.hasNext()){ 
 	                                	Modulo m = it.next();
+	                                	*/
 	                             %>
                                 
                                 
                                   <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
                                     <div id="centro" class="font-icon-detail">
 										<img src="assets2/img/new_logo.png"/><br>
-										<a id="nModulo" href="<%= m.getUrl() %>"><%=m.getTitulo%>></a>
+										<!-- <a id="nModulo" href="%// m.getUrl() %">% //m.getTitulo%></a>  -->
                                     </div>
                                   </div>
                                   
-                                  <%} %>
+                                  
                                   
                                                                     
                                 </div>

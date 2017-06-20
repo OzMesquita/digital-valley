@@ -1,3 +1,5 @@
+<%@page import="model.Usuario"%>
+<%@page import="model.Pessoa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="pt">
@@ -60,10 +62,12 @@
 	
 </head>
 <body >
-	<% Usuario usuarioDaSessao = (Usuario)session.getAttribute("usuario");
-        Pessoa p = (Pessoa) session.getAttribute("pessoa");
-        if(p == null){
-        }else{ %>
+	<%
+		Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
+		Pessoa p = (Pessoa) session.getAttribute("pessoa");
+		if (p == null) {
+		} else {
+	%>
 
 
 <div id ="tudo" class="wrapper">
@@ -115,7 +119,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label >Sexo</label>
-                                                <input type="text" class="form-control" disabled value="<%= p.getSexo()%>">
+                                                <input type="text" class="form-control" disabled value="<%="sexo"%>">
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +143,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input type="text" class="form-control" disabled  value="<%= p.getEmail()%>">
+                                                <input type="text" class="form-control" disabled  value="<%=p.getEmail()%>">
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +165,7 @@
 											
 										</div>
 										<select class="form-control" name="nivel" required>
-											<option disabled="disable" selected="true" ><%= p.getUsuario().getNivel %></option>
+											<option disabled="disable" selected="true" > <%=p.getUsuario().getNivel() %></option>
 											<option value="comum">Usuário Comum</option>										
 											<option value="administrador">Administrador</option>
 										</select>
@@ -194,7 +198,7 @@
     </div>
 </div>
 
-
+<%} %>
 </body>
 
     <!--   Core JS Files   -->
