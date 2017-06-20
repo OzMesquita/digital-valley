@@ -43,7 +43,7 @@ public class Pessoa {
 	}
 
 	public void setNome(String nome) {
-		if (nome != null && nome.length() >= 1) {
+		if (nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
 			this.nome = nome;
 		} else {
 			throw new IllegalArgumentException(
@@ -57,7 +57,7 @@ public class Pessoa {
 	}
 
 	public void setCpf(String cpf) {
-		if (cpf != null && cpf.length() == 11) {
+		if (cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}([0-9]{2})$")) {
 			this.cpf = cpf;
 		} else {
 			throw new IllegalArgumentException(
@@ -71,7 +71,7 @@ public class Pessoa {
 	}
 
 	public void setEmail(String email) {
-		if (email != null && email.contains("@") && email.contains(".com")) {
+		if (email.matches("^[aA-zZ][aA-zZ0-9_]*@[aA-zZ]+.com(.br)?$")) {
 			this.email = email;
 		} else {
 			throw new IllegalArgumentException("Erro: O parâmetro e-mail inválido, valor informado " + email);
