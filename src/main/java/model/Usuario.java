@@ -21,13 +21,14 @@ public class Usuario implements Serializable {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.nivel = EnumNivel.COMUN;
+		this.nivel = EnumNivel.COMUM;
+		this.pessoa = pessoa;
 	}
 	public Usuario(String login, String senha) {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.nivel = EnumNivel.COMUN;
+		this.nivel = EnumNivel.COMUM;
 	}
 	
 	
