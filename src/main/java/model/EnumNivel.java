@@ -1,7 +1,7 @@
 package model;
 
 public enum EnumNivel {
-	BASICO(1), NORMAL(2), AVANÇADO(3);
+	ADMINISTRADOR(1), COMUN(2);
 
 	public int valorNivel;
 
