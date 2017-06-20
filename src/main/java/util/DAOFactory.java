@@ -1,9 +1,11 @@
 package util;
 
-import DAO.JDBCPessoaDAO;
-import DAO.JDBCUsuarioDAO;
-import DAO.PessoaDAO;
-import DAO.UsuarioDAO;
+import dao.AlunoDAO;
+import dao.JDBCAlunoDAO;
+import dao.JDBCPessoaDAO;
+import dao.JDBCUsuarioDAO;
+import dao.PessoaDAO;
+import dao.UsuarioDAO;
 
 public class DAOFactory {
 	public static PessoaDAO criarPessoaDAO(){
@@ -14,4 +16,7 @@ public class DAOFactory {
 		return new JDBCUsuarioDAO();
 	}
 	
+	public static AlunoDAO criarAlunoDAO(){
+		return new JDBCAlunoDAO();
+	}
 }

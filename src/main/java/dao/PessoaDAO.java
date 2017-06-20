@@ -1,7 +1,6 @@
-package DAO;
+package dao;
 
 import java.util.List;
-
 import model.Pessoa;
 
 public interface PessoaDAO {

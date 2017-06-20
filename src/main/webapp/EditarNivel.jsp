@@ -161,7 +161,7 @@
 											
 										</div>
 										<select class="form-control" name="nivel" required>
-											<option disabled="disable" selected="true" ><%=p.getUsuario.getNivel %></option>
+											<option disabled="disable" selected="true" ><%= p.getUsuario().getNivel %></option>
 											<option value="comum">Usuário Comum</option>										
 											<option value="administrador">Administrador</option>
 										</select>
@@ -171,8 +171,7 @@
                                 </div>
                                 
                                 <br>
-                                                    
-                                </p>
+                                                                  
                             </div>
                             <hr>
                         </div>
