@@ -21,6 +21,7 @@ public class Usuario implements Serializable {
 		this.login = login;
 		this.senha = senha;
 		this.nivel = EnumNivel.COMUM;
+		this.pessoa = pessoa;
 	}
 	public Usuario(String login, String senha) {
 		super();
