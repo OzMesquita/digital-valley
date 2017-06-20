@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
 			u.setLogin(login);
 			u.setSenha(senha);
 			session.setAttribute("usuario", u);
-			pagina = "view/telaInicial.jsp";	
+			pagina = "telaInicial.jsp";	
 			
 		}
 		response.sendRedirect(pagina);
