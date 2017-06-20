@@ -1,11 +1,21 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Servidor extends Pessoa{
 	
 	private String siape;	
 	private EnumCargo cargo;
 
+	public Servidor(){		
+	}	
 
+	public Servidor(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String siape, EnumCargo cargo){
+		super(nome, cpf,email,usuario,dataNascimento);
+		this.siape = siape;
+		this.cargo = cargo;
+	}
+	
 	public String getSiape() {
 		return siape;
 	}
