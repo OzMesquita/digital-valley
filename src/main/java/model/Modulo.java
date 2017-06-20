@@ -1,6 +1,11 @@
 package model;
 
-public class Modulo {
+import java.io.Serializable;
+
+public class Modulo implements Serializable{
+	
+
+	private static final long serialVersionUID = 1L;
 	private String titulo;
 	private String url;
 	private String imagem;

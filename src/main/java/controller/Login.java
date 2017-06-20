@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UsuarioDAO;
 import model.Pessoa;
 import model.Usuario;
+import util.DAOFactory;
+import util.Facade;
 
 /**
  * Servlet implementation class Login
@@ -38,17 +41,26 @@ public class Login extends HttpServlet {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String pagina = "login.jsp?erroLogin=1";
-		//Autenticar
-		if(senha.equals("123456") && login.equals("admin") ){
-			HttpSession session = request.getSession();
-			Usuario u = new Usuario();
-			u.setLogin(login);
-			u.setSenha(senha);
-			session.setAttribute("usuario", u);
-			pagina = "telaInicial.jsp";	
+		HttpSession session = request.getSession();
+		
+		try {
+			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
+			if(uDAO.autenticar(login, senha)){
+				
+				
+				
+				Usuario u = Facade.buscarPorLogin(login);
+				session.setAttribute("usuario", u);
+				// Listar Modulos de usuario
+				pagina = "telaInicial.jsp";	
+				
+			}
+		
 			
+		} catch (Exception e) {
+			session.setAttribute("excecao", e.getMessage());
 		}
-		response.sendRedirect(pagina);
+			response.sendRedirect(pagina);
 	}
 
 }

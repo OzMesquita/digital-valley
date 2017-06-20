@@ -13,6 +13,8 @@ public interface PessoaDAO {
 	
 	public Pessoa buscar(int id);
 	
+	public Pessoa buscar(String login);
+	
 	public List<Pessoa> listar();
 	
 

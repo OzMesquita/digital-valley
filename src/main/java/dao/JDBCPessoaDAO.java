@@ -92,19 +92,20 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	@Override
 	public Pessoa buscar(int id) {
+		Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+		
+		String SQL = "SELECT * FROM pessoa_usuario WHERE id = ?";
 		try {
-			Pessoa pessoa = new Pessoa();
-			Usuario usuario = new Usuario();
-			pessoa.setUsuario(usuario);
-			
-			String SQL = "SELECT * FROM pessoa_usuario WHERE id = ?";
+
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
-			pessoa.setId(rs.findColumn("id"));
+			pessoa.setId(rs.getInt("id"));
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setCpf(rs.getString("cpf"));
 			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
@@ -114,16 +115,53 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
+			return pessoa;
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
 		}
-
-		return null;
+		
 	}
 
+	@Override
+	public Pessoa buscar(String login) {
+		Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+		
+		String SQL = "SELECT * FROM pessoa_usuario WHERE login = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, login);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			rs.next();
+			pessoa.setId(rs.getInt("id"));
+			pessoa.setNome(rs.getString("nome"));
+			pessoa.setCpf(rs.getString("cpf"));
+			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+			pessoa.setEmail(rs.getString("email"));
+			pessoa.getUsuario().setLogin(rs.getString("login"));
+			pessoa.getUsuario().setSenha(rs.getString("senha"));
+			pessoa.getUsuario().setPessoa(pessoa);
+			ps.close();
+			rs.close();
+			return pessoa;
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+		}
+		
+	}
+
+	
+	
 	@Override
 	public List<Pessoa> listar() {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -135,6 +173,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				Pessoa p = new Pessoa();
 				Usuario u = new Usuario();
 				p.setUsuario(u);
+				p.setId(rs.getInt("id"));
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setEmail(rs.getString("email"));

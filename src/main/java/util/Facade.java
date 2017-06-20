@@ -41,6 +41,11 @@ public class Facade {
 
 
 	}
+	
+	public static Usuario buscarPorLogin(String login){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscar(login).getUsuario();
+	}
 
 
 	

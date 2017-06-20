@@ -55,43 +55,40 @@ public class PessoaDAOTest {
 
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
-	public void buscar() {//erro ao atribuir os dados do banco na pessoa criada aqui no teste.
+	public void buscar() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
-		pessoa.setId(2);
+		pessoa.setId(4);
 
-		Assert.assertTrue(pdao.buscar(pessoa.getId()) == null);
+		Assert.assertTrue(pdao.buscar(pessoa.getId()) != null);
 		
-		 Pessoa p = pdao.buscar(pessoa.getId());
-		
-		System.out.println("===========================================");
-		System.out.println("ID : " + p.getId());
-		System.out.println("Nome : " + p.getNome());
-		System.out.println("CPF : " + p.getCpf());
-		System.out.println("email : " + p.getEmail());
-		System.out.println("Data de Nascimento : " + p.getDataNascimento());
-		System.out.println("Login : " + p.getUsuario().getLogin());
-		System.out.println("===========================================");
 
 	}
 
+	@Test
+	public void buscarUsuario() {
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
+		pessoa.setUsuario(new Usuario());
+		pessoa.getUsuario().setLogin("deyvison");
+
+		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
+//		pessoa = pdao.buscar("deyvison");
+//		System.out.println("Pessoa ID: "+ pessoa.getId());
+//		System.out.println("Pessoa Nome: "+ pessoa.getNome());
+//		System.out.println("Pessoa CPF: "+ pessoa.getCpf());
+//		System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
+//		System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
+//		
+
+	}
+	
 	@Ignore
 	@Test
 	public void listar() {//erro ao buscar id, sempre imprime o valor 0
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
-		for (Pessoa pessoa : pessoas) {
-			System.out.println("===========================================");
-			System.out.println("ID : " + pessoa.getId());
-			System.out.println("Nome : " + pessoa.getNome());
-			System.out.println("CPF : " + pessoa.getCpf());
-			System.out.println("email : " + pessoa.getEmail());
-			System.out.println("Data de Nascimento : " + pessoa.getDataNascimento());
-			System.out.println("Login : " + pessoa.getUsuario().getLogin());
-			System.out.println("===========================================");
-
-		}
+		Assert.assertTrue(pessoas != null);
 	}
 
 }
