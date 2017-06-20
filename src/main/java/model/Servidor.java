@@ -12,8 +12,11 @@ public class Servidor extends Pessoa{
 
 
 	public void setSiape(String siape) {
-		if(siape!=null && siape.length()!=7){
+		if(siape!=null && siape.length()==7 && siape.matches("^[0-9]+$")){
 			this.siape = siape;			
+		}else {
+			throw new IllegalArgumentException(
+					"Erro: O parâmetro SIAPE não pode ser nulo e deve ter 7 dígitos, valor informado " + siape);
 		}
 
 	}
