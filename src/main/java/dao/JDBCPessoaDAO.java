@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Pessoa;
+import model.Usuario;
 import util.ConnectionFactory;
 
 public class JDBCPessoaDAO implements PessoaDAO {
@@ -25,8 +26,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void cadastrar(Pessoa pessoa) {
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento,id) VALUES"
-					+ "(?,?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento) VALUES"
+					+ "(?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -34,7 +35,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
-			ps.setInt(5, pessoa.getId());
 
 			ps.executeUpdate();
 
@@ -94,8 +94,13 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	public Pessoa buscar(int id) {
 		try {
 			Pessoa pessoa = new Pessoa();
+			Usuario usuario = new Usuario();
+			pessoa.setUsuario(usuario);
+			
 			String SQL = "SELECT * FROM pessoa_usuario WHERE id = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, id);
+			
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
@@ -128,6 +133,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Pessoa p = new Pessoa();
+				Usuario u = new Usuario();
+				p.setUsuario(u);
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setEmail(rs.getString("email"));
