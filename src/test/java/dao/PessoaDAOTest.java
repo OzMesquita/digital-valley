@@ -1,7 +1,9 @@
 package dao;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -10,15 +12,14 @@ import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
 
-
 public class PessoaDAOTest {
-	
+
 	private Pessoa pessoa = new Pessoa();
 
-
+	@Ignore
 	@Test
 	public void salvar() {
-		
+
 		pessoa.setId(2);
 		pessoa.setNome("Tágila Lima");
 		pessoa.setCpf("01111111111");
@@ -26,11 +27,12 @@ public class PessoaDAOTest {
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
 		pessoa.setUsuario(new Usuario("tagila", "tag123"));
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
-		
+
 		pd.cadastrar(pessoa);
 
 	}
-	
+
+	@Ignore
 	@Test
 	public void editar() {
 		pessoa.setId(681);
@@ -39,30 +41,32 @@ public class PessoaDAOTest {
 		pessoa.setEmail("tagila@gmail.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
-		
+
 		pdao.editar(pessoa);
-		
+
 	}
+
 	@Ignore
 	@Test
 	public void remover() {
-				
-		PessoaDAO pdao = DAOFactory.criarPessoaDAO();	
+
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
+		pessoa.setId(67);
 		pdao.remover(pessoa.getId());
+
 	}
-	
-	
-	
-	public Pessoa buscar(int id) {
-		return null;
-	}
-	
-	
-/*	
-	//erro : " method listar() should be void"
+
 	@Ignore
 	@Test
-	public List<Pessoa> listar() {
+	public void buscar() {
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
+		pessoa.setId(673);
+
+		Assert.assertTrue(pdao.buscar(pessoa.getId()) == null);
+	}
+
+	@Test
+	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
 		for (Pessoa pessoa : pessoas) {
@@ -76,9 +80,6 @@ public class PessoaDAOTest {
 			System.out.println("===========================================");
 
 		}
-
-		return pessoas;
 	}
-*/
-	
+
 }
