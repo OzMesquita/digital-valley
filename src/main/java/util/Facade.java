@@ -22,10 +22,8 @@ public class Facade {
 	}
 	
 	
-	public static void cadastrarAluno( Pessoa pessoa, Usuario usuario, Aluno aluno){
+	public static void cadastrarAluno(Pessoa pessoa, Usuario usuario, Aluno aluno){
 		Facade.cadastrarPessoa(pessoa, usuario);
-		
-		aluno.setPessoa(pessoa);
 		
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
@@ -40,6 +38,11 @@ public class Facade {
 		usuarioDAO.editar(usuario);
 
 
+	}
+	
+	public static Usuario buscarPorLogin(String login){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscar(login).getUsuario();
 	}
 
 

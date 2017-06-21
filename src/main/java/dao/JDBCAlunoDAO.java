@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import model.Aluno;
 import util.ConnectionFactory;
 
@@ -25,12 +24,12 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	public void cadastrar(Aluno aluno) {
 
 		try {
-			String SQL = "INSERT INTO pessoa_aluno ( matricula, curso, semestreIngresso) WHERE id=? VALUES" + "(?,?,?)";
+			String SQL = "INSERT INTO pessoa_aluno (matricula, curso, semestreIngresso) WHERE id=? VALUES" + "(?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			ps.setInt(1, aluno.getPessoa().getId());
-			ps.setInt(2, aluno.getMatricula());
+			ps.setInt(1, aluno.getId());
+			ps.setString(2, aluno.getMatricula());
             ps.setString(3, aluno.getCurso().toString());
 			ps.setString(4, aluno.getSemestreIngresso());
 			
@@ -52,8 +51,8 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
-			aluno.setMatricula(rs.getInt("matricula"));
-			//aluno.setCurso(rs.));
+			aluno.setMatricula(rs.getString("matricula"));
+			//aluno.setCurso(rs.getString(aluno.getCurso());
 			aluno.setSemestreIngresso(rs.getString("semestreIngresso"));
 			
 			ps.close();
@@ -77,7 +76,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Aluno a = new Aluno();
-				a.setMatricula(rs.getInt("matricula"));
+				a.setMatricula(rs.getString("matricula"));
 				//a.setCurso(rs.getString("curso"));
 				a.setSemestreIngresso(rs.getString("semestreIngresso"));
 				alunos.add(a);
@@ -92,6 +91,5 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
 
 		}
-
-}
+	}
 }
