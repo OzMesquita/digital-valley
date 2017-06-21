@@ -66,7 +66,7 @@ public class PessoaDAOTest {
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pessoa.setUsuario(new Usuario());
-		pessoa.getUsuario().setLogin("deyvison");
+		pessoa.getUsuario().setLogin("mariana");
 
 		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
 //		pessoa = pdao.buscar("deyvison");
@@ -79,7 +79,7 @@ public class PessoaDAOTest {
 
 	}
 	
-	@Ignore
+	
 	@Test
 	public void listar() {//erro ao buscar id, sempre imprime o valor 0
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
