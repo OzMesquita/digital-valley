@@ -40,6 +40,16 @@
 <body>
 
 	<%
+		String mensage;
+		if(session.getAttribute("msg") == null){
+			mensage = "Login";
+		}else{
+			mensage = (String)session.getAttribute("msg");
+			
+		}%>
+
+	<%
+	
 		if (session.getAttribute("usuario") == null) {
 			if (request.getParameter("login") != null) {
 	%>
@@ -72,7 +82,7 @@
 								</div>
 								<div class="wizard-navigation">
 									<ul>
-										<li><a href="#about" data-toggle="tab">Login</a></li>
+										<li><a href="#about" data-toggle="tab"><%=mensage %></a></li>
 									</ul>
 								</div>
 								<div class="tab-content">
