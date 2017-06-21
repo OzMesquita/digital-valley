@@ -53,7 +53,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void editar(Pessoa pessoa) {
 		try {
-		String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id = ?";
+		String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id_usuario = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
@@ -76,7 +76,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	public void remover(int id) {
 
 		try {
-			String SQL = "DELETE FROM pessoa_usuario WHERE id = ?";
+			String SQL = "DELETE FROM pessoa_usuario WHERE id_usuario = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
 			ps.executeUpdate();
@@ -96,7 +96,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
 		
-		String SQL = "SELECT * FROM pessoa_usuario WHERE id = ?";
+		String SQL = "SELECT * FROM pessoa_usuario WHERE id_usuario = ?";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
@@ -105,7 +105,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
-			pessoa.setId(rs.getInt("id"));
+			pessoa.setId(rs.getInt("id_usuario"));
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setCpf(rs.getString("cpf"));
 			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
@@ -140,7 +140,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
-			pessoa.setId(rs.getInt("id"));
+			pessoa.setId(rs.getInt("id_usuario"));
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setCpf(rs.getString("cpf"));
 			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
@@ -173,7 +173,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				Pessoa p = new Pessoa();
 				Usuario u = new Usuario();
 				p.setUsuario(u);
-				p.setId(rs.getInt("id"));
+				p.setId(rs.getInt("id_usuario"));
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setEmail(rs.getString("email"));
