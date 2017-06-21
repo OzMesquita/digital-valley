@@ -1,18 +1,21 @@
 package model;
 
-public class Aluno {
+public class Aluno extends Pessoa{
 	
-	private int matricula;
+	private String matricula;
 	private EnumCurso curso;
 	private String semestreIngresso;
-	private Pessoa pessoa;
 	
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 	
-	public void setMatricula(int matricula) {			
-		this.matricula = matricula;
+	public void setMatricula(String matricula) {
+		if(matricula != null && matricula.length() == 7 && matricula.matches("^[0-9]+$")){
+			this.matricula = matricula;
+		}else{
+			throw new IllegalArgumentException("Erro: O parâmetro MATRICULA não pode ser nulo e deve conter apenas dígitos, valor informado " + matricula);
+		}
 	}
 	
 	public EnumCurso getCurso() {
@@ -28,16 +31,11 @@ public class Aluno {
 	}
 	
 	public void setSemestreIngresso(String semestreIngresso) {
-		this.semestreIngresso = semestreIngresso;
+		if (semestreIngresso != null && semestreIngresso.matches("^[0-9]+.[1-2]$")){
+			this.semestreIngresso = semestreIngresso;
+		}else{
+			throw new IllegalArgumentException("Erro: O parâmetro SEMESTRE INGRESSO não pode ser nulo e deve conter apenas dígitos, Ex: 2017.1, valor informado " + semestreIngresso);
+		}
 	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	
 
 }
