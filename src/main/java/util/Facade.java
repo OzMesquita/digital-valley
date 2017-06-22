@@ -22,13 +22,13 @@ public class Facade {
 	}
 	
 	
-	public static void cadastrarAluno(Pessoa pessoa, Usuario usuario, Aluno aluno){
-		Facade.cadastrarPessoa(pessoa, usuario);
+//	public static void cadastrarAluno(Pessoa pessoa, Usuario usuario, Aluno aluno){
+//		Facade.cadastrarPessoa(pessoa, usuario);
 		
-		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
-		alunoDAO.cadastrar(aluno);
+//		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
+//		alunoDAO.cadastrar(aluno);
 
-	}
+//	}
 
 	public static void editarPessoa(Pessoa pessoa, Usuario usuario){
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
