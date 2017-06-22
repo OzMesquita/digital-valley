@@ -30,7 +30,7 @@ public class PessoaDAOTest {
 		pd.cadastrar(pessoa);
 
 	}
-	@Ignore
+
 	@Test
 	public void editar() {
 		pessoa.setId(3);
@@ -51,7 +51,6 @@ public class PessoaDAOTest {
 
 	}
 
-	@Ignore
 	@Test
 	public void buscar() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
@@ -61,12 +60,11 @@ public class PessoaDAOTest {
 		
 
 	}
-
 	@Test
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pessoa.setUsuario(new Usuario());
-		pessoa.getUsuario().setLogin("mariana");
+		pessoa.getUsuario().setLogin("deyvison");
 
 		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
 //		pessoa = pdao.buscar("deyvison");
@@ -79,9 +77,8 @@ public class PessoaDAOTest {
 
 	}
 	
-	
 	@Test
-	public void listar() {//erro ao buscar id, sempre imprime o valor 0
+	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
 		Assert.assertTrue(pessoas != null);
