@@ -18,8 +18,6 @@ public class PessoaDAOTest {
 	@Ignore
 	@Test
 	public void salvar() {
-		
-		pessoa.setId(6);
 		pessoa.setNome("Francisca Tagila");
 		pessoa.setCpf("11111111111");
 		pessoa.setEmail("tagila@c.com");
@@ -33,7 +31,6 @@ public class PessoaDAOTest {
 	@Ignore
 	@Test
 	public void editar() {
-		pessoa.setId(3);
 		pessoa.setNome("Lima");
 		pessoa.setCpf("12345678901");
 		pessoa.setEmail("tagila@gmail.com");
@@ -43,6 +40,7 @@ public class PessoaDAOTest {
 		pdao.editar(pessoa);
 
 	}
+	@Ignore
 	@Test
 	public void remover() {
 		pessoa.setId(6);
@@ -61,7 +59,7 @@ public class PessoaDAOTest {
 		
 
 	}
-
+	@Ignore
 	@Test
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
@@ -79,7 +77,7 @@ public class PessoaDAOTest {
 
 	}
 	
-	@Ignore
+	//Ignore
 	@Test
 	public void listar() {//erro ao buscar id, sempre imprime o valor 0
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();

@@ -6,6 +6,7 @@ public class Modulo implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
+	private int id;
 	private String titulo;
 	private String url;
 	private String imagem;
@@ -51,5 +52,11 @@ public class Modulo implements Serializable{
 		}else{
 			throw new IllegalArgumentException("Erro: A imagem não pode ser nula, valor informado: "+imagem);
 		}
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

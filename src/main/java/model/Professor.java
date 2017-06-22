@@ -1,23 +1,18 @@
 package model;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Professor extends Servidor{
 
-	private String titulo;
 	private boolean coordenador;
-	//private ArrayList<Turmas> turmas;
-	
+
 	public Professor(){
-		
+		super();
 	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	
+	public Professor(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String siape, EnumCargo cargo, boolean coordenador){
+		super(nome,cpf,email,usuario,dataNascimento,siape,cargo);
+		this.coordenador=coordenador;
 	}
 
 	public boolean isCoordenador() {
