@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 		
 			
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute("msg", "Usuário e/ou senha inválidos");
 		}
 			response.sendRedirect(pagina);
 	}

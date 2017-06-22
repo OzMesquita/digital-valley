@@ -15,6 +15,7 @@ import util.DAOFactory;
 public class PessoaDAOTest {
 
 	private Pessoa pessoa = new Pessoa();
+
 	@Ignore
 	@Test
 	public void salvar() {
@@ -28,7 +29,7 @@ public class PessoaDAOTest {
 		pd.cadastrar(pessoa);
 
 	}
-	@Ignore
+
 	@Test
 	public void editar() {
 		pessoa.setNome("Lima");
@@ -40,25 +41,25 @@ public class PessoaDAOTest {
 		pdao.editar(pessoa);
 
 	}
+
 	@Ignore
 	@Test
 	public void remover() {
 		pessoa.setId(6);
-		PessoaDAO pdao = DAOFactory.criarPessoaDAO();	
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pdao.remover(pessoa.getId());
 
 	}
 
-	@Ignore
 	@Test
 	public void buscar() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pessoa.setId(4);
 
 		Assert.assertTrue(pdao.buscar(pessoa.getId()) != null);
-		
 
 	}
+
 	@Ignore
 	@Test
 	public void buscarUsuario() {
@@ -67,19 +68,19 @@ public class PessoaDAOTest {
 		pessoa.getUsuario().setLogin("deyvison");
 
 		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
-//		pessoa = pdao.buscar("deyvison");
-//		System.out.println("Pessoa ID: "+ pessoa.getId());
-//		System.out.println("Pessoa Nome: "+ pessoa.getNome());
-//		System.out.println("Pessoa CPF: "+ pessoa.getCpf());
-//		System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
-//		System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
-//		
+		// pessoa = pdao.buscar("deyvison");
+		// System.out.println("Pessoa ID: "+ pessoa.getId());
+		// System.out.println("Pessoa Nome: "+ pessoa.getNome());
+		// System.out.println("Pessoa CPF: "+ pessoa.getCpf());
+		// System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
+		// System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
+		//
 
 	}
-	
-	//Ignore
+
+	@Ignore
 	@Test
-	public void listar() {//erro ao buscar id, sempre imprime o valor 0
+	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
 		Assert.assertTrue(pessoas != null);

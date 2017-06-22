@@ -47,7 +47,7 @@ public class Pessoa {
 			this.nome = nome;
 		} else {
 			throw new IllegalArgumentException(
-					"Erro: O Nome não poder ser nulo e deve possuir pelo meno 1 caracteres, valor informado: " + nome);
+					"Erro: O Nome não poder ser nulo e deve possuir pelo menos 1 caracteres, valor informado: " + nome);
 		}
 
 	}

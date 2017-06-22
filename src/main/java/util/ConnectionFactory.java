@@ -6,8 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	public static Connection getConnection(){
-		try {			
-			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/n2s", "postgres", "n2s");
+		try {
+			String []bd = Facade.lerArquivoBancoDeDados();
+			
+			return DriverManager.getConnection(bd[0],bd[1],bd[2]);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

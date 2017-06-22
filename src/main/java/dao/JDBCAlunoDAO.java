@@ -15,9 +15,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	Connection connection;
 
 	public JDBCAlunoDAO() {
-
 		connection = ConnectionFactory.getConnection();
-
 	}
 
 	@Override
@@ -81,7 +79,6 @@ public class JDBCAlunoDAO implements AlunoDAO{
 				a.setSemestreIngresso(rs.getString("semestreIngresso"));
 				alunos.add(a);
 			}
-
 			ps.close();
 			rs.close();
 			return alunos;
