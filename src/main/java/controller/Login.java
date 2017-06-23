@@ -52,13 +52,13 @@ public class Login extends HttpServlet {
 				Usuario u = Facade.buscarPorLogin(login);
 				session.setAttribute("usuario", u);
 				// Listar Modulos de usuario
-				pagina = "telaInicial.jsp";	
+				pagina = "view/telaInicial.jsp";	
 				
 			}
 		
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", "Usuário e/ou senha inválidos");
+			session.setAttribute("msg", e.getMessage());
 		}
 			response.sendRedirect(pagina);
 	}

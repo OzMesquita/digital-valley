@@ -128,10 +128,10 @@
 							<%
 								if (session.getAttribute("excecao") != null) {
 							%>
-							<p><%=session.getAttribute("excecao")%></p>
+							<p align="center" onfocus="true" ><%=session.getAttribute("excecao")%></p>
 							<%
-								session.removeAttribute("excecao");
-										}
+									session.removeAttribute("excecao");
+								}
 							%>
 						</div>
 					</div>

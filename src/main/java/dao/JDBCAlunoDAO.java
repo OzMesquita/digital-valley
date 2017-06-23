@@ -22,14 +22,14 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	public void cadastrar(Aluno aluno) {
 
 		try {
-			String SQL = "INSERT INTO pessoa_aluno (matricula, curso, semestreIngresso) WHERE id=? VALUES" + "(?,?,?)";
+			String SQL = "INSERT INTO pessoa_aluno (matricula, curso, semestre_ingresso, id_pessoa_al) VALUES" + "(?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			ps.setInt(1, aluno.getId());
-			ps.setString(2, aluno.getMatricula());
-            ps.setString(3, aluno.getCurso().toString());
-			ps.setString(4, aluno.getSemestreIngresso());
+			ps.setString(1, aluno.getMatricula());
+            ps.setString(2, aluno.getCurso().toString());
+			ps.setString(3, aluno.getSemestreIngresso());
+			ps.setInt(4, aluno.getId());
 			
 			ps.execute();
 			ps.close();
@@ -44,15 +44,14 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	public Aluno buscar(int id) {
 		try {
 			Aluno aluno = new Aluno();
-			String SQL = "SELECT * FROM pessoa_aluno WHERE id = ?";
+			String SQL = "SELECT * FROM pessoa_aluno WHERE id_pessoa_al = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
 			aluno.setMatricula(rs.getString("matricula"));
-			//aluno.setCurso(rs.getString(aluno.getCurso());
-			aluno.setSemestreIngresso(rs.getString("semestreIngresso"));
-			
+			aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+			aluno.setId(rs.getInt("id_pessoa_al"));
 			ps.close();
 			rs.close();
 			
@@ -75,8 +74,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			while (rs.next()) {
 				Aluno a = new Aluno();
 				a.setMatricula(rs.getString("matricula"));
-				//a.setCurso(rs.getString("curso"));
-				a.setSemestreIngresso(rs.getString("semestreIngresso"));
+				a.setSemestreIngresso(rs.getString("semestre_ingresso"));
 				alunos.add(a);
 			}
 			ps.close();
