@@ -18,13 +18,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/deyvi/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/deyvi/workspace/digital-valley/src/main/webapp/WEB-INF/lib/postgresql-42.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/ufc/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ufc/.m2/repository/org/postgresql/postgresql/9.4.1212/postgresql-9.4.1212.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
