@@ -84,7 +84,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 	public Modulo buscar(int id) {
 		Modulo modulo = new Modulo();
 
-		String SQL = "SELECT * FROM modulo WHERE id = ?";
+		String SQL = "SELECT * FROM modulo WHERE id_modulo = ?";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
@@ -114,7 +114,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 	public List<Modulo> buscar(Pessoa pessoa) {
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
-			String SQL = "SELECT * FROM modulo WHERE id_usuario = ?";
+			String SQL = "SELECT * FROM usuario_modulo WHERE id_usuario = ?";
 
 			PreparedStatement ps;
 			ps = connection.prepareStatement(SQL);
