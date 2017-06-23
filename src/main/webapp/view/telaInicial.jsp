@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.Iterator" %>
+<%@page import="model.Modulo" %>>
 
 <!doctype html>
 <html lang="pt">
@@ -31,7 +32,7 @@
 
 </head>
 <body>
-	<%// Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
+	<% Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
 
 <div id="tudo" class="wrapper">
     
@@ -89,6 +90,7 @@
 
                 </div>
             </div>
+            <a href="EditarNivel.jsp">editar Nivel dos usuários</a>
         </div>
 
         <footer class="footer">
