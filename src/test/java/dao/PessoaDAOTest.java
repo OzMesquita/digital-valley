@@ -15,11 +15,10 @@ import util.DAOFactory;
 public class PessoaDAOTest {
 
 	private Pessoa pessoa = new Pessoa();
+
 	@Ignore
 	@Test
 	public void salvar() {
-		
-		pessoa.setId(6);
 		pessoa.setNome("Francisca Tagila");
 		pessoa.setCpf("11111111111");
 		pessoa.setEmail("tagila@c.com");
@@ -33,7 +32,6 @@ public class PessoaDAOTest {
 
 	@Test
 	public void editar() {
-		pessoa.setId(3);
 		pessoa.setNome("Lima");
 		pessoa.setCpf("12345678901");
 		pessoa.setEmail("tagila@gmail.com");
@@ -43,10 +41,12 @@ public class PessoaDAOTest {
 		pdao.editar(pessoa);
 
 	}
+
+	@Ignore
 	@Test
 	public void remover() {
 		pessoa.setId(6);
-		PessoaDAO pdao = DAOFactory.criarPessoaDAO();	
+		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pdao.remover(pessoa.getId());
 
 	}
@@ -57,9 +57,10 @@ public class PessoaDAOTest {
 		pessoa.setId(4);
 
 		Assert.assertTrue(pdao.buscar(pessoa.getId()) != null);
-		
 
 	}
+
+	@Ignore
 	@Test
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
@@ -67,16 +68,17 @@ public class PessoaDAOTest {
 		pessoa.getUsuario().setLogin("deyvison");
 
 		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
-//		pessoa = pdao.buscar("deyvison");
-//		System.out.println("Pessoa ID: "+ pessoa.getId());
-//		System.out.println("Pessoa Nome: "+ pessoa.getNome());
-//		System.out.println("Pessoa CPF: "+ pessoa.getCpf());
-//		System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
-//		System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
-//		
+		// pessoa = pdao.buscar("deyvison");
+		// System.out.println("Pessoa ID: "+ pessoa.getId());
+		// System.out.println("Pessoa Nome: "+ pessoa.getNome());
+		// System.out.println("Pessoa CPF: "+ pessoa.getCpf());
+		// System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
+		// System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
+		//
 
 	}
-	
+
+	@Ignore
 	@Test
 	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();

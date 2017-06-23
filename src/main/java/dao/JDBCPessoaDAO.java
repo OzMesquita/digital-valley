@@ -37,7 +37,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
 
 			ps.executeUpdate();
-
 			ps.close();
 
 			connection.close();

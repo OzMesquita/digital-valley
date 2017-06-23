@@ -26,6 +26,7 @@ public class Facade {
 
 	}
 
+
 	public static void cadastrarAluno(Pessoa pessoa, Usuario usuario, Aluno aluno) {
 		Facade.cadastrarPessoa(pessoa, usuario);
 
