@@ -1,6 +1,7 @@
 package dao;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -16,10 +17,10 @@ public class PessoaDAOTest {
 
 	private Pessoa pessoa = new Pessoa();
 
-	@Ignore
+	
 	@Test
 	public void salvar() {
-		pessoa.setNome("Francisca Tagila");
+		pessoa.setNome("Francisca Tagila Lima da Silva");
 		pessoa.setCpf("11111111111");
 		pessoa.setEmail("tagila@c.com");
 		pessoa.setDataNascimento(LocalDate.of(1996, 10, 15));
@@ -29,7 +30,7 @@ public class PessoaDAOTest {
 		pd.cadastrar(pessoa);
 
 	}
-
+	@Ignore
 	@Test
 	public void editar() {
 		pessoa.setNome("Lima");
@@ -50,7 +51,7 @@ public class PessoaDAOTest {
 		pdao.remover(pessoa.getId());
 
 	}
-
+	@Ignore
 	@Test
 	public void buscar() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
