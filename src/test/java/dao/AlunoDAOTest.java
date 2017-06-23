@@ -31,7 +31,6 @@ public class AlunoDAOTest {
 		aluno.setId(2);
 
 		Assert.assertTrue(adao.buscar(aluno.getId()) != null);
-	
 
 	}
 }
