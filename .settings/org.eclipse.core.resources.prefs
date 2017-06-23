@@ -1,8 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+<<<<<<< HEAD
 encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/EditarNivel.jsp=UTF-8
+=======
+>>>>>>> c888c34f652a4fc89ea9671fe062ce1c7aac3410
 encoding//src/main/webapp/telaInicial.jsp=UTF-8
+encoding//src/main/webapp/view/EditarNivel.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8
