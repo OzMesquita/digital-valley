@@ -1,10 +1,21 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Aluno extends Pessoa{
 	
 	private String matricula;
 	private Curso curso;
 	private String semestreIngresso;
+	
+	public Aluno() {
+	}
+	public Aluno(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String matricula, Curso curso, String semestreIngresso){
+		super(nome, cpf,email,usuario,dataNascimento);
+		this.matricula = matricula;
+		this.curso = curso;
+		this.semestreIngresso = semestreIngresso;
+	}
 	
 	public String getMatricula() {
 		return matricula;
