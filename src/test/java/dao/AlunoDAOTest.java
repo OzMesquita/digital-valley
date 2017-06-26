@@ -24,7 +24,7 @@ public class AlunoDAOTest {
 	
 		adao.cadastrar(aluno);
 	}
-	@Ignore
+	//@Ignore
 	@Test
 	public void buscar() {
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();

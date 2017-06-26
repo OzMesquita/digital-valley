@@ -42,10 +42,13 @@ public class JDBCAlunoDAO implements AlunoDAO{
 	
 	@Override
 	public Aluno buscar(int id) {
+		Aluno aluno = new Aluno();
 		try {
-			Aluno aluno = new Aluno();
+			
 			String SQL = "SELECT * FROM pessoa_aluno WHERE id_pessoa_al = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, id);
+			
 			ResultSet rs = ps.executeQuery();
 			
 			rs.next();
@@ -61,7 +64,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}
 
-		return null;
+		return aluno;
 	}
 	
 	@Override
