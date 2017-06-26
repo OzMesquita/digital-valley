@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,8 +40,33 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 
 	@Override
-	public Servidor buscar(int id) {
-		// TODO Auto-generated method stub
+	public Servidor buscar(String siape) {
+		Servidor servidor = new Servidor();
+		
+		String SQL = "SELECT * FROM servidor WHERE siape = ?";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			
+			ps.setString(1, "siape");
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			servidor.setId(rs.getInt("id_pessoa_usuario"));
+			
+		
+		
+		
+		
+		
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		}
+		
 		return null;
 	}
 

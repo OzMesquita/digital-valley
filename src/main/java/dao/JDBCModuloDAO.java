@@ -105,7 +105,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Erro ao buscar registro de modulo", e);
 		}
 
 	}
