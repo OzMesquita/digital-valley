@@ -46,7 +46,7 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			
 			ResultSet rs = ps.executeQuery();
 			
-			if(rs.next()==true){
+			if(rs.next()){
 				Professor professor = new Professor();
 				professor.setId(rs.getInt("id_prof"));
 				
