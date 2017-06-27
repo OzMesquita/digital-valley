@@ -15,22 +15,23 @@ public class AlunoDAOTest {
 	@Ignore
 	@Test
 	public void salvar() {
-			
-		aluno.setMatricula("113456");
+	
+		aluno.setMatricula("383820");
 		aluno.setSemestreIngresso("2017.1");
-		aluno.setId(1);
+		aluno.setId(4);
 		
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();
 	
 		adao.cadastrar(aluno);
 	}
-	//@Ignore
+	
 	@Test
 	public void buscar() {
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();
-		aluno.setId(2);
-
+		aluno.setId(1);
 		Assert.assertTrue(adao.buscar(aluno.getId()) != null);
-
+		
+		System.out.println(aluno.getNome());
+		
 	}
 }

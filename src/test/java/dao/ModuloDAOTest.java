@@ -48,7 +48,7 @@ public class ModuloDAOTest {
 
 		Assert.assertTrue(md.buscar(modulo.getId()) != null);
 	}
-	@Ignore
+	
 	@Test
 	public void listarPorPessoa() {
 		Pessoa pessoa = new Pessoa();
@@ -56,7 +56,9 @@ public class ModuloDAOTest {
 		pessoa.setId(8);
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 		List<Modulo> modulos = md.buscar(pessoa);
-		
+		for(Modulo m: modulos){
+			System.out.println("id"+m.getId());
+		}
 		Assert.assertTrue(modulos != null);
 
 	}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Professor;
@@ -36,8 +37,7 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 
 	@Override
 	public Professor buscar(int id) {
-		Professor professor = new Professor();
-		
+
 		String SQL = "SELECT * FROM professor WHERE id_prof = ?";
 		try {
 
@@ -46,12 +46,16 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			
 			ResultSet rs = ps.executeQuery();
 			
-			rs.next();
-			
-			ps.close();
-			rs.close();
-			return professor;
-			
+			if(rs.next()==true){
+				Professor professor = new Professor();
+				professor.setId(rs.getInt("id_prof"));
+				
+				rs.close();
+				ps.close();
+				return professor;
+			}else{
+				return null;
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,8 +65,31 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 
 	@Override
 	public List<Professor> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Professor> professores = new ArrayList<Professor>();
+		try {
+			String SQL = "SELECT * FROM professor";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Professor p = new Professor();
+				p.setId(rs.getInt("id_prof"));
+				//Mais atributos
+				//...
+				
+				professores.add(p);
+				
+			}
+
+			ps.close();
+			rs.close();
+			return professores;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar professor em JDBCProfessorDAO", e);
+
+		}
+
 	}
 
 }
