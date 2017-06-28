@@ -48,7 +48,7 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			
 			ResultSet rs = ps.executeQuery();
 			
-			if(rs.next() == true){
+			if(rs.next()){
 				Aluno aluno = new Aluno();
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
