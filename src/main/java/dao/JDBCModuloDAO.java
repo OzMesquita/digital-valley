@@ -114,21 +114,21 @@ public class JDBCModuloDAO implements ModuloDAO {
 	public List<Modulo> buscar(Pessoa pessoa) {
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
-			String SQL = "SELECT * FROM usuario_modulo WHERE id_usuario = ?";
+			String SQL = "SELECT * FROM usuario_modulo AS u_m, modulo AS m WHERE u_m.id_usuario = ? and m.id_modulo = u_m.id_modulo";
 
 			PreparedStatement ps;
 			ps = connection.prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-
+			
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
-				modulo.setImagem(rs.getString("imagens"));
+				modulo.setImagem(rs.getString("imagem"));
+				
 				modulos.add(modulo);
 			}
 

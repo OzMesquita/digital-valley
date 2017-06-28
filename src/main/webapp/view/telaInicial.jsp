@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator" %>
 <%@page import="model.Modulo" %>>
 
@@ -32,7 +32,7 @@
 
 </head>
 <body>
-	<% Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
+	<% List<Modulo> modulos = (List<Modulo>) session.getAttribute("modulos");	%>
 
 <div id="tudo" class="wrapper">
     
@@ -65,25 +65,25 @@
                             </div>
                             <div class="content all-icons">
                                 <div class="row">
-                                <%	/*Iterator<Modulo> it = modulos.iterator();
-									
-                                    while(it.hasNext()){ 
-	                                	Modulo m = it.next();
-	                                	*/
+                                <%	
+                                for(Modulo m: modulos){
+	                                	
 	                             %>
                                 
                                 
                                   <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
                                     <div id="centro" class="font-icon-detail">
-										<img src="assets2/img/new_logo.png"/><br>
-										<!-- <a id="nModulo" href="%// m.getUrl() %">% //m.getTitulo%></a>  -->
+										<img src="<%=m.getImagem()%>"/><br>
+										 <a id="nModulo" href="<%= m.getUrl() %>" > <%=m.getTitulo() %> </a>  
                                     </div>
+                                     <%} %>
                                   </div>
                                   
                                   
                                   
                                                                     
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
