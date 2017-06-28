@@ -69,19 +69,15 @@
                                 for(Modulo m: modulos){
 	                                	
 	                             %>
-                                
-                                
-                                  <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
                                     <div id="centro" class="font-icon-detail">
 										<img src="<%=m.getImagem()%>"/><br>
 										 <a id="nModulo" href="<%= m.getUrl() %>" > <%=m.getTitulo() %> </a>  
                                     </div>
-                                     <%} %>
+                                     
                                   </div>
-                                  
-                                  
-                                  
-                                                                    
+                                  <%} %>
+                              
                                 </div>
                                
                             </div>
