@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UsuarioDAO;
-import model.Pessoa;
+import model.Modulo;
 import model.Usuario;
 import util.DAOFactory;
 import util.Facade;
@@ -47,18 +49,19 @@ public class Login extends HttpServlet {
 			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 			if(uDAO.autenticar(login, senha)){
 				
-				
-				
-				Usuario u = Facade.buscarPorLogin(login);
-				session.setAttribute("usuario", u);
-				// Listar Modulos de usuario
+				Usuario usuario = Facade.buscarPorLogin(login);
+				List<Modulo> modulos = Facade.buscarModulosPorPessas(usuario.getPessoa());
+				session.setAttribute("usuario", usuario);
+				session.setAttribute("modulos", modulos);
 				pagina = "view/telaInicial.jsp";	
 				
 			}
 		
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute("msg","Usuários e senha inválidos");
+			session.setAttribute("excecao",e.getMessage());
+			
 		}
 			response.sendRedirect(pagina);
 	}
