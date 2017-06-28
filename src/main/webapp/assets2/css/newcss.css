@@ -119,4 +119,16 @@ and open the template in the editor.
 #centro{text-align: center;}
 #nModulo{font-size:20px;}
 
+#img_m{
+	width: 60px;
+	height: 60px;
+	
+}
+#label_m{
+	margin-right: 100%;
+}
+#label_m1{
+	margin-left: 8%;
+	margin-top: -30px;
 
+}
