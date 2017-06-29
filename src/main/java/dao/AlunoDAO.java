@@ -11,5 +11,7 @@ public interface AlunoDAO{
 	public Aluno buscar(int id);
 	
 	public List<Aluno> listar();
+	
+	public void editar(Aluno aluno);
 
 }

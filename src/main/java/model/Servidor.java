@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Servidor extends Pessoa{
 	
 	private String siape;	
-	private EnumCargo cargo;
+	protected EnumCargo cargo;
 
 	public Servidor(){		
 	}	
@@ -15,6 +15,13 @@ public class Servidor extends Pessoa{
 		this.siape = siape;
 		this.cargo = cargo;
 	}
+
+	public Servidor(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String siape){
+		super(nome, cpf,email,usuario,dataNascimento);
+		this.siape = siape;
+
+	}
+	
 	
 	public String getSiape() {
 		return siape;

@@ -4,9 +4,11 @@ import dao.AlunoDAO;
 import dao.JDBCAlunoDAO;
 import dao.JDBCModuloDAO;
 import dao.JDBCPessoaDAO;
+import dao.JDBCServidorDAO;
 import dao.JDBCUsuarioDAO;
 import dao.ModuloDAO;
 import dao.PessoaDAO;
+import dao.ServidorDAO;
 import dao.UsuarioDAO;
 
 public class DAOFactory {
@@ -25,4 +27,9 @@ public class DAOFactory {
 	public static ModuloDAO criarModuloDAO(){
 		return new JDBCModuloDAO();
 	}
+	
+	public static ServidorDAO criarServidorDAO(){
+		return new JDBCServidorDAO();
+	}
+	
 }
