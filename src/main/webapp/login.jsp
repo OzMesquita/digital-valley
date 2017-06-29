@@ -57,8 +57,8 @@
 	<jsp:setProperty name="usuario" property="login" param="login" />
 	<jsp:setProperty name="usuario" property="senha" param="senha" />
 	<%
-		RequestDispatcher rd = request.getRequestDispatcher("login");
-				rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher("login");
+		//		rd.forward(request, response);
 	%>
 
 	<%

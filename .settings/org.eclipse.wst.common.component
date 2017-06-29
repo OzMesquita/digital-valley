@@ -5,7 +5,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+<<<<<<< HEAD
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+=======
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
         <property name="java-output-path" value="/digital-valley/target/classes"/>
         <property name="context-root" value="Controle_de_Acesso"/>
     </wb-module>

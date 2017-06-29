@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import dao.AlunoDAO;
+import dao.ModuloDAO;
 import dao.PessoaDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
 import model.Pessoa;
 import model.Usuario;
+import model.Modulo;
 
 public class Facade {
 
@@ -72,6 +75,10 @@ public class Facade {
 		}
 		return bd;
 
+	}
+	public static List<Modulo> buscarModulosPorPessas(Pessoa pessoa){
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		return mDAO.buscar(pessoa);
 	}
 
 }

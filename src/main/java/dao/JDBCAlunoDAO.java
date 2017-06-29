@@ -20,18 +20,28 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 	@Override
 	public void cadastrar(Aluno aluno) {
-
+		
+		String SQL = "INSERT INTO aluno (matricula, semestre_ingresso, id_pessoa_aluno) VALUES" + "(?,?,?)";
+		
 		try {
+<<<<<<< HEAD
 			String SQL = "INSERT INTO aluno (matricula, id_curso, semestre_ingresso, id_pessoa_usuario) VALUES"
 					+ "(?,?,?,?)";
 
+=======
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			PreparedStatement ps = connection.prepareStatement(SQL);
-
 			ps.setString(1, aluno.getMatricula());
+<<<<<<< HEAD
 			ps.setInt(2, aluno.getCurso().getId());
 			ps.setString(3, aluno.getSemestreIngresso());
 			ps.setInt(4, aluno.getId());
 
+=======
+			ps.setString(2, aluno.getSemestreIngresso());
+			ps.setInt(3, aluno.getId());
+			
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			ps.execute();
 			ps.close();
 
@@ -43,14 +53,19 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 	@Override
 	public Aluno buscar(int id) {
-		Aluno aluno = new Aluno();
+		String SQL = "SELECT * FROM aluno WHERE id_pessoa_aluno = ?";
+		
 		try {
+<<<<<<< HEAD
 
 			String SQL = "SELECT * FROM aluno WHERE id_pessoa_usuario = ?";
+=======
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
+<<<<<<< HEAD
 			rs.next();
 
 			aluno.setMatricula(rs.getString("matricula"));
@@ -58,30 +73,50 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			aluno.setId(rs.getInt("id_pessoa_usuario"));
 			ps.close();
 			rs.close();
+=======
+			
+			if(rs.next()){
+				Aluno aluno = new Aluno();
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.setId(rs.getInt("id_pessoa_aluno"));
+
+				rs.close();
+				ps.close();
+				return aluno;
+				
+			}else{
+				return null;
+			}
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}
-
-		return aluno;
 	}
 
 	@Override
 	public List<Aluno> listar() {
-		List<Aluno> alunos = new ArrayList<Aluno>();
+		String SQL = "SELECT * FROM aluno";
 		try {
+<<<<<<< HEAD
 			String SQL = "SELECT * FROM aluno";
+=======
+			List<Aluno> alunos = new ArrayList<Aluno>();
+>>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
+			
 			while (rs.next()) {
 				Aluno a = new Aluno();
 				a.setMatricula(rs.getString("matricula"));
 				a.setSemestreIngresso(rs.getString("semestre_ingresso"));
 				alunos.add(a);
 			}
-			ps.close();
+			
 			rs.close();
+			ps.close();
 			return alunos;
 
 		} catch (SQLException e) {
