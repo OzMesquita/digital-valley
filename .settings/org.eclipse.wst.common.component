@@ -2,16 +2,6 @@
     <wb-module deploy-name="Controle de Acesso">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-<<<<<<< HEAD
-=======
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-<<<<<<< HEAD
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
-=======
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
->>>>>>> 0e6ff2c4e720c389a278d9fa4d6b5b53fb62e485
         <property name="java-output-path" value="/digital-valley/target/classes"/>
         <property name="context-root" value="Controle_de_Acesso"/>
     </wb-module>

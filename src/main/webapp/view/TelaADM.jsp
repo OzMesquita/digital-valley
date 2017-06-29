@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"   %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>lista de usuários</title>
@@ -70,6 +68,7 @@
 		}
                 #users,#acesso, #sem_acesso{width: 25%;
                     border-style: solid;
+                    border-width: 2px;
                     height: auto;
                 }
                 #acesso{
@@ -107,14 +106,20 @@
                 #btn_salva{margin-top: 3%;}
                 th{text-align: center;}
                 #btn_s{margin-left: 90%;}
-                
+                #rdio_per{
+                    font-weight: bold;
+                    font-size: 15px;
+                    width: 10%;
+                    position: absolute;
+                }
+                #corpo{margin-top: 6%}
 	</style>
 </head>
 	
 	
 <body>
 
-	<%// Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("usuarios"); %>
+	
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -122,13 +127,12 @@
 	        <nav class="navbar navbar-default navbar-fixed">
 	            <div id ="topo" class="container-fluid">
 	                <div class="navbar-header">
-	                    
 	                    <a id="textB" class="navbar-brand" >Lista de Usuários</a>
 	                </div>
 	                <div class="collapse navbar-collapse">
 	                    <ul class="nav navbar-nav navbar-right">
 	                         <li>
-	                            <a id="textB" href="login.jsp">
+	                            <a id="textB" href="logout">
 	                                Sair
 	                            </a>
 	                        </li>
@@ -137,12 +141,12 @@
 	            </div>
 	        </nav>
 	
-                    <div class="content">
+			<div class="content">
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <div>
+                                <div id="rdio_per">
                                     <input type="radio" name="webmaster" value="usuarios"/> USUÁRIOS<br />
                                     <input type="radio" name="webmaster" value="perfil"/> PERFIL<br />
                                 </div>
@@ -151,69 +155,70 @@
                                   <!--  <img src="search3.png" id="btnBusca" alt="Buscar"/> -->
                                   <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/>
                               </div>
-                              <br>
-                              <h4 class="title">Usuários</h4>
+                              
                             </div>
-                        <div id="corpo">
-                            <div >
-                                <div id="users">
-                                  <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Usuários</th>
-                                    </thead>
-                                        <tbody>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                        </tbody>
-                                  </table>
-                                </div>
-                                <div id="sem_acesso">
-                                      <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Sem acesso</th>
-                                    </thead>
-                                      <tbody>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                      </tbody>
-                                  </table>
-                                </div>
-                                <div id="acesso">
-                                      <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Com acesso</th>
-                                    </thead>
-                                        <tbody>
-                                          <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>
-                                            <tr><td>testando</td></tr>                       
-                                      </tbody>
-                                  </table>
-                                </div>
-                                <div id="botoes">
-                                    <div id="btn_inclui">
-                                        <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo"/>
-                                    </div>
-                                    <div id="btn_retira">
-                                        <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo"/>
-                                    </div>
-                                </div>
-                              </div>
-                            
-                        </div>
-                            <div id="btn_salva">
-                                <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
-                            </div>
-                          </div>
+							<div id="corpo">
+								<div >
+									<div id="users">
+									  <table class="table table-hover table-striped">
+										<thead>
+											<th>Usuários</th>
+										</thead>
+											<tbody>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+											</tbody>
+									  </table>
+									</div>
+									<div id="sem_acesso">
+										  <table class="table table-hover table-striped">
+										<thead>
+											<th>Módulos Disponiveis</th>
+										</thead>
+										  <tbody>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+										  </tbody>
+									  </table>
+									</div>
+									<div id="acesso">
+										
+										<table class="table table-hover table-striped">
+										<thead>
+											<th>Módulos Cadastrados</th>
+										</thead>
+											<tbody>
+											  <tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>
+												<tr><td>testando</td></tr>                       
+												<tr><td>testando</td></tr>                       
+										  </tbody>
+									  </table>
+									</div>
+									<div id="botoes">
+										<div id="btn_inclui">
+											<input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo"/>
+										</div>
+										<div id="btn_retira">
+											<input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo"/>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						
+						</div>
                       </div>
                 </div>
-	      </div>
-            
+			</div>
+            <div id="btn_salva">
+				<input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
+			</div>
              <div>
 	       <footer class="footer">
 	            <div id="rodap" class="container-fluid">
@@ -237,4 +242,5 @@
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="../assets2/js/jquery.validate.min.js"></script>
+   
 </html>

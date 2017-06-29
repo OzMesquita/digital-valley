@@ -82,7 +82,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                          <li>
-                            <a id="textB" href="login.jsp">
+                            <a id="textB" href="logout">
                                 Sair
                             </a>
                         </li>
