@@ -10,9 +10,10 @@ public class Professor extends Servidor{
 		super();
 	}
 	
-	public Professor(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String siape, EnumCargo cargo, boolean coordenador){
-		super(nome,cpf,email,usuario,dataNascimento,siape,cargo);
+	public Professor(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String siape, boolean coordenador){
+		super(nome,cpf,email,usuario,dataNascimento,siape);
 		this.coordenador=coordenador;
+		this.cargo = EnumCargo.PROFESSOR;
 	}
 
 	public boolean isCoordenador() {

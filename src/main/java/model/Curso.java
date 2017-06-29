@@ -4,33 +4,26 @@ import java.util.ArrayList;
 
 public class Curso {
 	
-	private String codigo;
-	private String descricao;
+	private int id;
+	private String nome;
 	private ArrayList<Disciplina> disciplinas;
 	
 	public Curso(String codigo, String descricao) {
-		this.codigo = codigo;
-		this.descricao = descricao;
+		this.nome = descricao;
 		this.disciplinas = new ArrayList<Disciplina>();
 	}
 	
 	public Curso() {
 	}
 
-	public String getCodigo() {
-		return codigo;
+
+
+	public String getNome() {
+		return nome;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public ArrayList<Disciplina> getDisciplinas() {
@@ -39,6 +32,14 @@ public class Curso {
 
 	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

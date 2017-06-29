@@ -18,10 +18,9 @@ public class UsuarioDAOTest {
 	@Ignore
 	@Test
 	public void salvar(){
-		usuario.setLogin("deyvison");
+		usuario.setLogin("deyvert");
 		usuario.setSenha("deyvison123");
 		Pessoa p = new Pessoa();
-		p.setId(681);
 		usuario.setPessoa(p);
 		UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 		uDAO.cadastrar(usuario);
@@ -36,7 +35,6 @@ public class UsuarioDAOTest {
 		usuario.setLogin("Joao");
 		usuario.setSenha("987123");
 		Pessoa p = new Pessoa();
-		p.setId(800);
 		
 		usuario.setPessoa(p);
 		
