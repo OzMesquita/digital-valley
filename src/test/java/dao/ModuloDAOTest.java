@@ -17,18 +17,17 @@ public class ModuloDAOTest {
 	public void salvar() {
 		modulo.setTitulo("Solicitação de Recorreção de prova");
 		modulo.setUrl("Controle_de_Acesso/view/telaInicial.jsp");
-		modulo.setImagem("assets2/img/new_logo.png");
+		modulo.setImagem("../assets2/img/new_logo.png");
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 
 		md.cadastrar(modulo);
 	}
-	@Ignore
 	@Test
 	public void editar() {
-		modulo.setId(5);
+		modulo.setId(4);
 		modulo.setTitulo("Solicitação de Recorreção de prova");
 		modulo.setUrl("Controle_de_Acesso/view/telaInicial.jsp");
-		modulo.setImagem("assets2/img/new_logo.png");
+		modulo.setImagem("../assets2/img/Revisao-de-Prova.jpg");
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 
 		md.editar(modulo);
@@ -48,7 +47,7 @@ public class ModuloDAOTest {
 
 		Assert.assertTrue(md.buscar(modulo.getId()) != null);
 	}
-	
+	@Ignore
 	@Test
 	public void listarPorPessoa() {
 		Pessoa pessoa = new Pessoa();
