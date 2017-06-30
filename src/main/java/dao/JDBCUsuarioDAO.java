@@ -27,13 +27,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			
 			ps.setString(1, usuario.getLogin());
 			ps.setString(2, usuario.getSenha());
-			ps.setInt(3, usuario.getNivel().valorNivel);
+			ps.setInt(3, usuario.getNivel().getValorNivel());
 			ps.setInt(4, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
 
 			
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,7 +53,6 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 				ps.executeUpdate();
 				ps.close();
 			
-				connection.close();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -80,7 +78,6 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			}
 			ps.close();
 			rs.close();
-			connection.close();
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro: login e senha inválidos");
@@ -98,8 +95,6 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			ps.setInt(2, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
-			
-			connection.close();
 			
 			
 		} catch (SQLException e) {

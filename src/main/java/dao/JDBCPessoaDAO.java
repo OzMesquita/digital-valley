@@ -38,7 +38,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.executeUpdate();
 			ps.close();
 
-			connection.close();
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +62,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.close();
 
 		
-			connection.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,7 +81,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			ps.close();
 
-			connection.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +90,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	}
 
 	@Override
-	public Pessoa buscar(int id) {
+	public Pessoa buscarPorId(int id) {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -116,7 +114,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
-			connection.close();
 			
 			return pessoa;
 
@@ -128,7 +125,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	}
 
 	@Override
-	public Pessoa buscar(String login) {
+	public Pessoa buscarPorLogin(String login) {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -152,10 +149,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.getUsuario().setPessoa(pessoa);
 				ps.close();
 				rs.close();
-				connection.close();
 				return pessoa;
 			} else {
-				connection.close();
 				return null;
 			}
 
@@ -167,6 +162,44 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 
+	@Override
+	public Pessoa buscarPorCpf(String cpf) {
+		Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+
+		String SQL = "SELECT * FROM pessoa_usuario WHERE cpf = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, cpf);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				ps.close();
+				rs.close();
+				return pessoa;
+			} else {
+				return null;
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+		}
+
+	}
+	
 	@Override
 	public List<Pessoa> listar() {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -192,7 +225,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.close();
 			rs.close();
 			
-			connection.close();
 			return pessoas;
 
 		} catch (SQLException e) {
