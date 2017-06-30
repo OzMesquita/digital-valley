@@ -20,11 +20,12 @@ public class Facade {
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
 
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
-		pessoaDAO.cadastrar(pessoa);
-
-		usuario.setPessoa(pessoa);
-
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
+		System.out.println("Login: " +usuario.getLogin());
+		System.out.println("Pessoa Login: " +pessoa.getUsuario().getLogin());
+		pessoaDAO.cadastrar(pessoa);
+		Pessoa p1 = pessoaDAO.buscar(usuario.getLogin());
+		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
 
 	}

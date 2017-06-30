@@ -22,19 +22,24 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	public void cadastrar(Usuario usuario) {
 
 		try {
-			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_pessoa_usuario=?";
+			String SQL = "UPDATE pessoa_usuario SET login=?, senha=?, nivel=? WHERE id_pessoa_usuario=?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
 			ps.setString(1, usuario.getLogin());
 			ps.setString(2, usuario.getSenha());
-			ps.setInt(3, usuario.getPessoa().getId());
+			ps.setInt(3, usuario.getNivel().valorNivel);
+			ps.setInt(4, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
+
+			
+			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar usuarios em JDBCUsuaruioDAO", e);
-		}
+		} 
+		
 	}
 
 	@Override
@@ -49,7 +54,8 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 				ps.executeUpdate();
 				ps.close();
 			
-			
+				connection.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("Erro ao editar registro de usuario", e);
@@ -80,6 +86,27 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			throw new RuntimeException("Erro: login e senha inválidos");
 		}
 		return false;
+	}
+
+	
+	public void editarNivel(Usuario usuario) {
+		try {
+		String SQL = "UPDATE pessoa_usuario SET nivel =? WHERE id_pessoa_usuario =?";
+		
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, usuario.getNivel().getValorNivel());
+			ps.setInt(2, usuario.getPessoa().getId());
+			ps.executeUpdate();
+			ps.close();
+			
+			connection.close();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erroao editar nível de usuario");
+		}
+		
 	}
 
 }
