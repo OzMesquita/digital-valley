@@ -40,14 +40,19 @@ public class AlunoDAOTest {
 		System.out.println(aluno.getNome());
 
 	}
-
 	@Ignore
 	@Test
 	public void listar() {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		List<Aluno> alunos = aDAO.listar();
+		
+		System.out.println("Listar alunos: "+alunos.size());
+		for(Aluno a: alunos){
+			System.out.println("curso "+a.getCurso().getNome());
+			System.out.println("Matricula "+a.getMatricula());
+			System.out.println("Nome "+a.getNome());
+		}
 		Assert.assertTrue(alunos != null);
-
 	}
 	@Ignore
 	@Test

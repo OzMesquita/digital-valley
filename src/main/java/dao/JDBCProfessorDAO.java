@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 	@Override
 	public Professor buscar(int id) {
 
-		String SQL = "SELECT * FROM professor WHERE id_pessoa_prof";
+		String SQL = "SELECT * FROM professor AS p, pessoa_usuario AS u, servidor AS s WHERE p.id_pessoa_prof=? AND u.id_pessoa_usuario = p.id_pessoa_prof AND p.id_pessoa_prof = s.id_pessoa_usuario";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
@@ -69,11 +70,14 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 				Professor professor = new Professor();
 				professor.setCoordenador(rs.getBoolean("coordenador"));
 				professor.setId(rs.getInt("id_pessoa_prof"));
-				
+				professor.setNome(rs.getString("nome"));
+				professor.setCpf(rs.getString("cpf"));
+				professor.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				professor.setEmail(rs.getString("email"));
+				professor.setSiape(rs.getString("siape"));
 				rs.close();
 				ps.close();
 				
-				connection.close();
 				return professor;
 			}else{
 				return null;
@@ -89,13 +93,19 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 	public List<Professor> listar() {
 		List<Professor> professores = new ArrayList<Professor>();
 		try {
-			String SQL = "SELECT * FROM professor";
+			String SQL = "SELECT * FROM professor AS p, pessoa_usuario AS u, servidor AS s WHERE u.id_pessoa_usuario = p.id_pessoa_prof AND u.id_pessoa_usuario = s.id_pessoa_usuario";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
+			
 			while (rs.next()) {
 				Professor professor = new Professor();
 				professor.setCoordenador(rs.getBoolean("coordenador"));
 				professor.setId(rs.getInt("id_pessoa_prof"));
+				professor.setNome(rs.getString("nome"));
+				professor.setCpf(rs.getString("cpf"));
+				professor.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				professor.setEmail(rs.getString("email"));
+				professor.setSiape(rs.getString("siape"));
 				
 				professores.add(professor);
 				

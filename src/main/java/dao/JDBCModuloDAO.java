@@ -167,10 +167,8 @@ public class JDBCModuloDAO implements ModuloDAO {
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
-
 				ps.close();
 				rs.close();
-
 				return modulos;
 			}
 

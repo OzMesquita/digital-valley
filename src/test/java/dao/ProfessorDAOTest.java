@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,27 +18,44 @@ public class ProfessorDAOTest {
 	@Test
 	public void salvar() {
 		
-		professor.setCoordenador(true);
-		professor.setId(1);
+		professor.setCoordenador(false);
+		professor.setId(6);
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
 
 		pdao.cadastrar(professor);
 	}
-
+	@Ignore
 	@Test
 	public void buscar() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
-		professor.setId(1);
+		professor.setId(6);
 		Assert.assertTrue(pdao.buscar(professor.getId()) != null);
 		
-		System.out.println(professor.getNome());
+		professor = pdao.buscar(6);
+		System.out.println("Nome: " + professor.getNome());
+		System.out.println("CPF: " + professor.getCpf());
+		System.out.println("Siape: " + professor.getSiape());
+		if(professor.isCoordenador()){
+			System.out.println("Coordenador");
+		}
+		
+
 	}
 
-	@Ignore
 	@Test
 	public void listar() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
 		List<Professor> professores = pdao.listar();
+		
+		System.out.println("Listar professores: "+ professores.size());
+		for(Professor p: professores){
+			System.out.println("Nome: "+ p.getNome());
+			System.out.println("CPF "+ p.getCpf());
+			System.out.println("Siape "+ p.getSiape());
+			if(p.isCoordenador()){
+				System.out.println("Coordenador\n" );
+			}
+		}	
 		Assert.assertTrue(professores != null);
 		
 	}
@@ -45,7 +63,7 @@ public class ProfessorDAOTest {
 	@Test
 	public void editar() {
 		professor.setCoordenador(false);
-		professor.setId(1);
+		professor.setId(6);
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
 
 		pdao.editar(professor);
