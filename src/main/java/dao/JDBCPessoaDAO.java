@@ -63,7 +63,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.executeUpdate();
 			ps.close();
 		
-		
+			connection.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar registro de pessoa", e);
@@ -82,6 +83,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			ps.close();
 
+			connection.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
@@ -114,6 +117,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
+			connection.close();
+			
 			return pessoa;
 			
 			
@@ -149,6 +154,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
+			
+			connection.close();
 			return pessoa;
 			
 			
@@ -185,6 +192,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			ps.close();
 			rs.close();
+			
+			connection.close();
 			return pessoas;
 
 		} catch (SQLException e) {

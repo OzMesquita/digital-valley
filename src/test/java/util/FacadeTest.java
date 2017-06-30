@@ -3,6 +3,7 @@ package util;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
 
@@ -10,16 +11,16 @@ public class FacadeTest {
 	
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
-	@Ignore
+	//@Ignore
 	@Test
 	public void cadatrarPessoaTest(){
 		pessoa.setNome("Fachada Test");
 		pessoa.setCpf("12345678998");
 		pessoa.setEmail("fachada@email.com");
 		pessoa.setDataNascimento("01/02/1990");
-		pessoa.setId(3);
 		usuario.setLogin("Login");
 		usuario.setSenha("Senha123");
+		usuario.setNivel(EnumNivel.ADMINISTRADOR);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
 	
@@ -27,7 +28,7 @@ public class FacadeTest {
 		
 		
 	}
-	
+	@Ignore
 	@Test
 	public void editar(){
 		pessoa.setNome("Fachada Test 2");

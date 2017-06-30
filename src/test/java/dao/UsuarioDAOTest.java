@@ -5,6 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import dao.UsuarioDAO;
+import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
@@ -15,11 +16,12 @@ public class UsuarioDAOTest {
 	private Usuario usuario = new Usuario();
 	
 	//Passou no teste
-	@Ignore
+	//@Ignore
 	@Test
 	public void salvar(){
 		usuario.setLogin("deyvert");
 		usuario.setSenha("deyvison123");
+		usuario.setNivel(EnumNivel.ADMINISTRADOR);
 		Pessoa p = new Pessoa();
 		usuario.setPessoa(p);
 		UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();

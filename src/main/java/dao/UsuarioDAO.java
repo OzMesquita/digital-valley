@@ -10,5 +10,7 @@ public interface UsuarioDAO {
 	public void editar(Usuario usuario);
 	
 	public boolean autenticar(String login, String senha);
+	
+	public void editarNivel(Usuario usuario);
 
 }

@@ -50,6 +50,7 @@ public class AlunoDAOTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void editar() {
 		Curso curso = new Curso();
