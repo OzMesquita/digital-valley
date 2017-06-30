@@ -89,8 +89,22 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 
 	@Override
 	public void editarNivel(Usuario usuario) {
+		try {
+		String SQL = "UPDATE pessoa_usuario SET nivel =? WHERE id_pessoa_usuario =?";
 		
-		String SQL = "UPDATE pessoa_usuario SET NIVEL =? WHERE";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, usuario.getNivel().getValorNivel());
+			ps.setInt(2, usuario.getPessoa().getId());
+			ps.executeUpdate();
+			ps.close();
+			
+			connection.close();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erroao editar nível de usuario");
+		}
 		
 	}
 

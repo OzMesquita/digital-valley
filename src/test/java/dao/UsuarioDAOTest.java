@@ -54,5 +54,6 @@ public class UsuarioDAOTest {
 		Assert.assertTrue(uDAO.autenticar("ldharlin", "luan123"));		
 		
 	}
+
 	
 }
