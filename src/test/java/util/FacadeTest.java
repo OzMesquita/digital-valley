@@ -11,14 +11,14 @@ public class FacadeTest {
 	
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
-	//@Ignore
+
 	@Test
 	public void cadatrarPessoaTest(){
 		pessoa.setNome("Fachada Test");
-		pessoa.setCpf("12345678998");
-		pessoa.setEmail("fachada@email.com");
+		pessoa.setCpf("12345378145");
+		pessoa.setEmail("fachada31@email.com");
 		pessoa.setDataNascimento("01/02/1990");
-		usuario.setLogin("Login");
+		usuario.setLogin("Login1s");
 		usuario.setSenha("Senha123");
 		usuario.setNivel(EnumNivel.ADMINISTRADOR);
 		pessoa.setUsuario(usuario);

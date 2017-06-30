@@ -26,8 +26,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void cadastrar(Pessoa pessoa) {
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento) VALUES"
-					+ "(?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento) VALUES" + "(?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -48,20 +47,20 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 
-	
 	@Override
 	public void editar(Pessoa pessoa) {
 		try {
-		String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id_pessoa_usuario = ?";
+			String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id_pessoa_usuario = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
 			ps.setInt(5, pessoa.getId());
-		
+
 			ps.executeUpdate();
 			ps.close();
+
 		
 			connection.close();
 			
@@ -97,15 +96,15 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
-		
+
 		String SQL = "SELECT * FROM pessoa_usuario WHERE id_pessoa_usuario = ?";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
-			
+
 			ResultSet rs = ps.executeQuery();
-			
+
 			rs.next();
 			pessoa.setId(rs.getInt("id_pessoa_usuario"));
 			pessoa.setNome(rs.getString("nome"));
@@ -120,13 +119,12 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			connection.close();
 			
 			return pessoa;
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
 		}
-		
+
 	}
 
 	@Override
@@ -134,40 +132,41 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
-		
+
 		String SQL = "SELECT * FROM pessoa_usuario WHERE login = ?";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, login);
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			rs.next();
-			pessoa.setId(rs.getInt("id_pessoa_usuario"));
-			pessoa.setNome(rs.getString("nome"));
-			pessoa.setCpf(rs.getString("cpf"));
-			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-			pessoa.setEmail(rs.getString("email"));
-			pessoa.getUsuario().setLogin(rs.getString("login"));
-			pessoa.getUsuario().setSenha(rs.getString("senha"));
-			pessoa.getUsuario().setPessoa(pessoa);
-			ps.close();
-			rs.close();
-			
-			connection.close();
-			return pessoa;
-			
-			
+
+			if (rs.next()) {
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				ps.close();
+				rs.close();
+				connection.close();
+				return pessoa;
+			} else {
+				connection.close();
+				return null;
+			}
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
 		}
-		
+
 	}
 
-	
-	
 	@Override
 	public List<Pessoa> listar() {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -180,14 +179,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				Usuario u = new Usuario();
 				p.setUsuario(u);
 				p.setId(rs.getInt("id_pessoa_usuario"));
-				System.out.println("ID : "+p.getId());
+				System.out.println("ID : " + p.getId());
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setEmail(rs.getString("email"));
 				p.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				p.getUsuario().setLogin(rs.getString("login"));
 				pessoas.add(p);
-				
+
 			}
 
 			ps.close();

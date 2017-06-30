@@ -31,6 +31,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			ps.setInt(4, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
+
 			
 			connection.close();
 
@@ -87,7 +88,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		return false;
 	}
 
-	@Override
+	
 	public void editarNivel(Usuario usuario) {
 		try {
 		String SQL = "UPDATE pessoa_usuario SET nivel =? WHERE id_pessoa_usuario =?";
