@@ -30,13 +30,13 @@ public class AlunoDAOTest {
 		adao.cadastrar(aluno);
 	}
 
-	@Ignore
+	
 	@Test
 	public void buscar() {
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();
 		aluno.setId(4);
 		Assert.assertTrue(adao.buscar(aluno.getId()) != null);
-
+		aluno = adao.buscar(4);
 		System.out.println(aluno.getNome());
 
 	}
@@ -49,7 +49,7 @@ public class AlunoDAOTest {
 		Assert.assertTrue(alunos != null);
 
 	}
-
+	@Ignore
 	@Test
 	public void editar() {
 		Curso curso = new Curso();

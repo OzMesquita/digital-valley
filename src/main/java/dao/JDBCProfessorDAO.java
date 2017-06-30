@@ -21,10 +21,11 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 	@Override
 	public void cadastrar(Professor professor) {
 		try {
-			String SQL = "INSERT INTO professor (siape) VALUES " + " (?)";
+			String SQL = "INSERT INTO professor (coordenador, id_pessoa_prof) VALUES " + " (?,?)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
-			ps.setString(1, professor.getSiape());
+			ps.setBoolean(1, professor.isCoordenador());
+			ps.setInt(2, professor.getId());
 			ps.executeUpdate();
 			ps.close();
 
@@ -34,11 +35,27 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 		}
 		
 	}
+	@Override
+	public void editar(Professor professor) {
+		try {
+		String SQL = "UPDATE professor SET coordenador=? WHERE id_pessoa_prof=?";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setBoolean(1, professor.isCoordenador());
+			ps.setInt(2,  professor.getId());
+			ps.executeUpdate();
+			ps.close();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao editar registro de professor", e);
+		}
+
+	}
 
 	@Override
 	public Professor buscar(int id) {
 
-		String SQL = "SELECT * FROM professor WHERE id_prof = ?";
+		String SQL = "SELECT * FROM professor WHERE id_pessoa_prof";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
@@ -48,7 +65,8 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			
 			if(rs.next()){
 				Professor professor = new Professor();
-				professor.setId(rs.getInt("id_prof"));
+				professor.setCoordenador(rs.getBoolean("coordenador"));
+				professor.setId(rs.getInt("id_pessoa_prof"));
 				
 				rs.close();
 				ps.close();
@@ -71,12 +89,11 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Professor p = new Professor();
-				p.setId(rs.getInt("id_prof"));
-				//Mais atributos
-				//...
+				Professor professor = new Professor();
+				professor.setCoordenador(rs.getBoolean("coordenador"));
+				professor.setId(rs.getInt("id_pessoa_prof"));
 				
-				professores.add(p);
+				professores.add(professor);
 				
 			}
 

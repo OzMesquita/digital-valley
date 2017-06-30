@@ -2,13 +2,16 @@ package dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Aluno;
+import model.Curso;
 import util.ConnectionFactory;
 
 public class JDBCAlunoDAO implements AlunoDAO {
@@ -44,7 +47,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
 	public Aluno buscar(int id) {
 		
 		try {
-			String SQL = "SELECT * FROM aluno WHERE id_pessoa_usuario = ?";
+			String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u WHERE u_a.id_pessoa_usuario=? AND u_a.id_pessoa_usuario = u.id_pessoa_usuario";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
@@ -53,10 +56,18 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 			if(rs.next()){
 				Aluno aluno = new Aluno();
+				Curso curso = new Curso();
+				curso.setId(rs.getInt("id_curso"));
+				curso.setNome(rs.getString("nome"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
-				aluno.setId(rs.getInt("id_pessoa_aluno"));
-
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				//aluno.setCurso(rs.getInt(curso.getId()));
+				aluno.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				aluno.setEmail(rs.getString("email"));
+				
 				rs.close();
 				ps.close();
 				return aluno;

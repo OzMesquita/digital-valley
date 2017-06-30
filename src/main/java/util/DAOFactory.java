@@ -4,10 +4,12 @@ import dao.AlunoDAO;
 import dao.JDBCAlunoDAO;
 import dao.JDBCModuloDAO;
 import dao.JDBCPessoaDAO;
+import dao.JDBCProfessorDAO;
 import dao.JDBCServidorDAO;
 import dao.JDBCUsuarioDAO;
 import dao.ModuloDAO;
 import dao.PessoaDAO;
+import dao.ProfessorDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 
@@ -32,4 +34,7 @@ public class DAOFactory {
 		return new JDBCServidorDAO();
 	}
 	
+	public static ProfessorDAO criarProfessorDAO(){
+		return new JDBCProfessorDAO();
+	}
 }
