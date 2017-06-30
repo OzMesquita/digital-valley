@@ -31,6 +31,8 @@ public class JDBCServidorDAO implements ServidorDAO {
 			ps.setInt(2, servidor.getId());
 			ps.executeUpdate();
 			ps.close();
+			
+			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,10 +56,16 @@ public class JDBCServidorDAO implements ServidorDAO {
 			if (rs.next()) {
 
 				servidor.setSiape(rs.getString("siape"));
-
+				
+				ps.close();
+				rs.close();
+				connection.close();
 				return servidor;
 
 			}
+			ps.close();
+			rs.close();
+			connection.close();
 			return null;
 
 		} catch (SQLException e) {
@@ -82,6 +90,8 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 				ps.close();
 				rs.close();
+				
+				connection.close();
 
 				return servidores;
 			}

@@ -2,13 +2,16 @@ package dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Aluno;
+import model.Curso;
 import util.ConnectionFactory;
 
 public class JDBCAlunoDAO implements AlunoDAO {
@@ -20,31 +23,22 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 	@Override
 	public void cadastrar(Aluno aluno) {
-		
-		String SQL = "INSERT INTO aluno (matricula, semestre_ingresso, id_pessoa_aluno) VALUES" + "(?,?,?)";
-		
 		try {
-<<<<<<< HEAD
+
 			String SQL = "INSERT INTO aluno (matricula, id_curso, semestre_ingresso, id_pessoa_usuario) VALUES"
 					+ "(?,?,?,?)";
 
-=======
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, aluno.getMatricula());
-<<<<<<< HEAD
 			ps.setInt(2, aluno.getCurso().getId());
 			ps.setString(3, aluno.getSemestreIngresso());
 			ps.setInt(4, aluno.getId());
 
-=======
-			ps.setString(2, aluno.getSemestreIngresso());
-			ps.setInt(3, aluno.getId());
-			
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			ps.execute();
 			ps.close();
 
+			connection.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar um aluno em JDBCAlunoDAO", e);
@@ -53,42 +47,39 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 	@Override
 	public Aluno buscar(int id) {
-		String SQL = "SELECT * FROM aluno WHERE id_pessoa_aluno = ?";
 		
 		try {
-<<<<<<< HEAD
+			String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u WHERE u_a.id_pessoa_usuario=? AND u_a.id_pessoa_usuario = u.id_pessoa_usuario";
 
-			String SQL = "SELECT * FROM aluno WHERE id_pessoa_usuario = ?";
-=======
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
-<<<<<<< HEAD
-			rs.next();
 
-			aluno.setMatricula(rs.getString("matricula"));
-			aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
-			aluno.setId(rs.getInt("id_pessoa_usuario"));
-			ps.close();
-			rs.close();
-=======
-			
 			if(rs.next()){
 				Aluno aluno = new Aluno();
+				Curso curso = new Curso();
+				curso.setId(rs.getInt("id_curso"));
+				curso.setNome(rs.getString("nome"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
-				aluno.setId(rs.getInt("id_pessoa_aluno"));
-
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				//aluno.setCurso(rs.getInt(curso.getId()));
+				aluno.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				aluno.setEmail(rs.getString("email"));
+				
 				rs.close();
 				ps.close();
+				
+				connection.close();
 				return aluno;
 				
 			}else{
 				return null;
 			}
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,13 +89,11 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 	@Override
 	public List<Aluno> listar() {
-		String SQL = "SELECT * FROM aluno";
+
 		try {
-<<<<<<< HEAD
 			String SQL = "SELECT * FROM aluno";
-=======
 			List<Aluno> alunos = new ArrayList<Aluno>();
->>>>>>> f78a0c097a6823c3a54ad1c7b35fa8decbdb4add
+
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			
@@ -117,6 +106,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			
 			rs.close();
 			ps.close();
+			connection.close();
 			return alunos;
 
 		} catch (SQLException e) {
@@ -139,6 +129,8 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			
 			ps.executeUpdate();
 			ps.close();
+			
+			connection.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -11,4 +11,6 @@ public interface ProfessorDAO {
 	public Professor buscar(int id);
 	
 	public List<Professor> listar();
+
+	void editar(Professor professor);
 }
