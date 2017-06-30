@@ -4,8 +4,9 @@
     Author     : Usuario
 --%>
 
+<%@page import="model.Modulo"%>
 <%@page import="java.util.Vector"%>
-<%@page import="Modelos.Usuario"%>
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

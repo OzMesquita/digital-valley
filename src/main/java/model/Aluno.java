@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 public class Aluno extends Pessoa{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String matricula;
 	private Curso curso;
 	private String semestreIngresso;
