@@ -27,6 +27,8 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			ps.setString(1, professor.getSiape());
 			ps.executeUpdate();
 			ps.close();
+			
+			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,6 +54,8 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 				
 				rs.close();
 				ps.close();
+				
+				connection.close();
 				return professor;
 			}else{
 				return null;
@@ -82,6 +86,8 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 
 			ps.close();
 			rs.close();
+			
+			connection.close();
 			return professores;
 
 		} catch (SQLException e) {

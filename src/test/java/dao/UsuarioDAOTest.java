@@ -5,6 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import dao.UsuarioDAO;
+import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
@@ -19,6 +20,7 @@ public class UsuarioDAOTest {
 	public void salvar(){
 		usuario.setLogin("deyvert");
 		usuario.setSenha("deyvison123");
+		usuario.setNivel(EnumNivel.ADMINISTRADOR);
 		Pessoa p = new Pessoa();
 		p.setId(14);
 		usuario.setPessoa(p);

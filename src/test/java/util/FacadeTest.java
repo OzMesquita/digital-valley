@@ -11,7 +11,7 @@ public class FacadeTest {
 	
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
-	
+
 	@Test
 	public void cadatrarPessoaTest(){
 		pessoa.setNome("Fachada Test");
