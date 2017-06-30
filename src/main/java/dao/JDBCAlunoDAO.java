@@ -37,8 +37,6 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			ps.execute();
 			ps.close();
 
-			connection.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar um aluno em JDBCAlunoDAO", e);
@@ -73,7 +71,6 @@ public class JDBCAlunoDAO implements AlunoDAO {
 				rs.close();
 				ps.close();
 				
-				connection.close();
 				return aluno;
 				
 			}else{
@@ -106,7 +103,6 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			
 			rs.close();
 			ps.close();
-			connection.close();
 			return alunos;
 
 		} catch (SQLException e) {
@@ -129,8 +125,6 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			
 			ps.executeUpdate();
 			ps.close();
-			
-			connection.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

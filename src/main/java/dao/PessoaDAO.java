@@ -11,9 +11,11 @@ public interface PessoaDAO {
 	
 	public void remover(int id);
 	
-	public Pessoa buscar(int id);
+	public Pessoa buscarPorId(int id);
 	
-	public Pessoa buscar(String login);
+	public Pessoa buscarPorLogin(String login);
+	
+	public Pessoa buscarPorCpf(String cpf);
 	
 	public List<Pessoa> listar();
 	
