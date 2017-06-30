@@ -1,3 +1,13 @@
+<%-- 
+    Document   : newjspADM
+    Created on : 29/06/2017, 20:23:55
+    Author     : Usuario
+--%>
+
+<%@page import="java.util.Vector"%>
+<%@page import="Modelos.Usuario"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -52,37 +62,40 @@
 			background: steelblue;
 			border-color: steelblue;
 		}
-		#txt_busca{width: 25%;
+		#txt_busca{width: 45%;
 			border-radius: 10px;
 			height: 35px;
 		}
 		.btn_pad{background: steelblue;
 			color: white;
 			border-radius: 8%;
-			width: 06%;
+			width: 10%;
 			height: 35px;
 		}
 		#busca{position: absolute;
-			left: 40%;
-			width: 90%;
+			left: 30%;
+			width: 70%;
 		}
                 #users,#acesso, #sem_acesso{width: 25%;
                     border-style: solid;
                     border-width: 2px;
+                    border-radius: 10px;
                     height: auto;
                 }
                 #acesso{
-                    position: absolute;
+                    position: relative;
                     margin-left: 70%;
-                    margin-top: -15.1%;}
+                     /*margin-top: -41%;*/
+                    margin-top: -29.5%;
+                }
                 #sem_acesso{
-                    position: absolute;
+                    position: relative;
                     margin-left: 30%;
-                    margin-top: -15.1%;}
+                    margin-top: -29.5%;}
                 #botoes{width: 10%;
                     position: absolute;
                     margin-left: 60%;
-                    margin-top: -10%;
+                    margin-top: -23%;
 }
                 #btn_inclui{height: 50px;
                     width: 60px;
@@ -113,12 +126,36 @@
                     position: absolute;
                 }
                 #corpo{margin-top: 6%}
+                #centro{}
+                .ativo{
+                    background: steelblue;
+                    color: white;
+                }
+                #linhas tr:hover{background: steelblue;
+                    color: white;}
+                #linhas:visited{background: blueviolet;}
 	</style>
+        
+        
+       
 </head>
 	
 	
 <body>
+    <% if(session.getAttribute("mostra") == null){
+            String user = "Usuários";
+            session.setAttribute("mostra", user); 
+        }
+   
+    
+       Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("usuarios");
+       
+       if(session.getAttribute("usuario_selecionado")!= null){
+           Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos_usuario");
+       }
 
+
+    %>
 	
 	
 	<div id ="tudo" class="wrapper">
@@ -132,7 +169,7 @@
 	                <div class="collapse navbar-collapse">
 	                    <ul class="nav navbar-nav navbar-right">
 	                         <li>
-	                            <a id="textB" href="logout">
+	                            <a id="textB" href="login.jsp">
 	                                Sair
 	                            </a>
 	                        </li>
@@ -141,85 +178,88 @@
 	            </div>
 	        </nav>
 	
-			<div class="content">
+                <div class="content">
                 <div class="container-fluid">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <div id="rdio_per">
-                                    <input type="radio" name="webmaster" value="usuarios"/> USUÁRIOS<br />
-                                    <input type="radio" name="webmaster" value="perfil"/> PERFIL<br />
+                                    <form name="btn_buttons">
+                                        <input type="radio" name="usuarios" value="sim"  onclick="getMostra()"/> USUÁRIOS<br />
+                                        <input type="radio" name="usuarios" value="nao" onclick="getMostra()"/> PERFIL <br />
+                                    </form>
                                 </div>
-                              <div id="busca">
-                                  <input id="txt_Busca" type="text"  placeholder="Buscar..."/>
-                                  <!--  <img src="search3.png" id="btnBusca" alt="Buscar"/> -->
-                                  <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/>
-                              </div>
-                              
+                                <div id="busca">
+                                    <input id="txt_busca" type="text"  placeholder="Buscar..."/>
+                                    <!--  <img src="search3.png" id="btnBusca" alt="Buscar"/> -->
+                                    <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/>
+                                </div>
                             </div>
-							<div id="corpo">
-								<div >
-									<div id="users">
-									  <table class="table table-hover table-striped">
-										<thead>
-											<th>Usuários</th>
-										</thead>
-											<tbody>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-											</tbody>
-									  </table>
-									</div>
-									<div id="sem_acesso">
-										  <table class="table table-hover table-striped">
-										<thead>
-											<th>Módulos Disponiveis</th>
-										</thead>
-										  <tbody>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-										  </tbody>
-									  </table>
-									</div>
-									<div id="acesso">
-										
-										<table class="table table-hover table-striped">
-										<thead>
-											<th>Módulos Cadastrados</th>
-										</thead>
-											<tbody>
-											  <tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>
-												<tr><td>testando</td></tr>                       
-												<tr><td>testando</td></tr>                       
-										  </tbody>
-									  </table>
-									</div>
-									<div id="botoes">
-										<div id="btn_inclui">
-											<input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo"/>
-										</div>
-										<div id="btn_retira">
-											<input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo"/>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						
-						</div>
-                      </div>
+                            <div id="corpo">
+                                    <div id="centro">
+                                            <div id="users">
+                                                <jsp:include page="partsTabelaUsuario.jsp"/>
+                                            </div>
+                                            <div id="sem_acesso">
+                                                <table class="table table-hover table-striped">
+                                                    <thead>
+                                                        <th>Módulos Disponiveis</th>
+                                                    </thead>
+                                                    <tbody id="linhas">
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                    </tbody>
+                                              </table>
+                                            </div>
+                                            <div id="acesso">
+
+                                                <table class="table table-hover table-striped">
+                                                    <thead>
+                                                        <th>Módulos Cadastrados</th>
+                                                    </thead>
+                                                    <tbody id="linhas">
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                        <tr><td>testando</td></tr>                       
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                            <div id="botoes">
+                                                <div id="btn_inclui">
+                                                    <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo"/>
+                                                </div>
+                                                <div id="btn_retira">
+                                                    <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo"/>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-			</div>
+            </div>
             <div id="btn_salva">
-				<input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
-			</div>
-             <div>
+                    <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
+            </div>
+                                                    </div>
+            <div>
 	       <footer class="footer">
 	            <div id="rodap" class="container-fluid">
 	                <p id="rodape" class="copyright pull-right">
@@ -228,8 +268,8 @@
 	                </p>
 	            </div>
 	        </footer>
-	       </div>
-             </div>
+            </div>
+          </div>
 	</div>
 </body>
 <!--   Core JS Files   -->
@@ -241,6 +281,27 @@
 	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets2/js/jquery.validate.min.js"></script>
+	<script src="assets2/js/jquery.validate.min.js"></script>
+        
+        <script type="text/javascript">
+            $(#mytable > tbody > tr > td).on('click','tr' ,function (e)){
+                $(this).siblings().removeClass('ativo');
+                $(this).toggleClass('ativo');
+            }
+        </script>
+        
+        <script>
+            function getMostra(){
+                var mostra = document.getElementsByName('usuarios');
+                
+                for (var i = 0; i < mostra.length; i++) {
+                    if (mostra[i].checked) {
+                        var b = mostra[i].value;
+                        sessionStorage.setItem("mostra",b);
+                        document.location.reload();
+                    }
+                }
+            }
+        </script>
    
 </html>
