@@ -30,7 +30,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			ps.setInt(3, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();
-
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar usuarios em JDBCUsuaruioDAO", e);
