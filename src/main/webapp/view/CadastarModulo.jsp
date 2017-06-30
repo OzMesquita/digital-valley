@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator" %>
-<%@page import="model.Modulo" %>>
+<%@page import="model.Modulo" %>
 
 <!doctype html>
 <html lang="pt">

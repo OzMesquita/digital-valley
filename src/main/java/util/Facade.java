@@ -36,6 +36,11 @@ public class Facade {
 		alunoDAO.cadastrar(aluno);
 
 	}
+	
+	public static void cadastrarModulo(Modulo modulo){
+		ModuloDAO moduloDAO = DAOFactory.criarModuloDAO();
+		moduloDAO.cadastrar(modulo);
+	}
 
 	public static void editarPessoa(Pessoa pessoa, Usuario usuario) {
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
@@ -75,7 +80,7 @@ public class Facade {
 		return bd;
 
 	}
-	public static List<Modulo> buscarModulosPorPessas(Pessoa pessoa){
+	public static List<Modulo> buscarModulosPorPessoas(Pessoa pessoa){
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		return mDAO.buscar(pessoa);
 	}
