@@ -5,7 +5,8 @@
 --%>
 
 <%@page import="java.util.Vector"%>
-<%@page import="Modelos.Usuario"%>
+<%@page import="model.Usuario"%>
+<%@page import="model.Modulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -287,7 +288,7 @@
             $(#mytable > tbody > tr > td).on('click','tr' ,function (e)){
                 $(this).siblings().removeClass('ativo');
                 $(this).toggleClass('ativo');
-            }
+            };
         </script>
         
         <script>

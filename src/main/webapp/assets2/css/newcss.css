@@ -132,3 +132,12 @@ and open the template in the editor.
 	margin-top: -30px;
 
 }
+#btncadastrar{
+	margin-right: -499%;
+	width: 150px;
+    height: 35px;
+    background: steelblue;
+    color: white;
+    margin-top: -38px;
+    float: right;
+}
