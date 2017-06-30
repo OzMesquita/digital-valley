@@ -5,8 +5,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import model.Aluno;
 import model.Servidor;
 import util.DAOFactory;
 

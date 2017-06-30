@@ -21,10 +21,8 @@ public class Facade {
 
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
-		System.out.println("Login: " +usuario.getLogin());
-		System.out.println("Pessoa Login: " +pessoa.getUsuario().getLogin());
 		pessoaDAO.cadastrar(pessoa);
-		Pessoa p1 = pessoaDAO.buscar(usuario.getLogin());
+		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
 
@@ -50,7 +48,7 @@ public class Facade {
 
 	public static Usuario buscarPorLogin(String login) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		return pDAO.buscar(login).getUsuario();
+		return pDAO.buscarPorLogin(login).getUsuario();
 	}
 
 	public static String[] lerArquivoBancoDeDados() {

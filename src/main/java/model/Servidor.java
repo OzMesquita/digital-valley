@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 public class Servidor extends Pessoa{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String siape;	
 	protected EnumCargo cargo;
 

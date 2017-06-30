@@ -36,7 +36,6 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.executeUpdate();
 			ps.close();
 			
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,7 +56,6 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.executeUpdate();
 			ps.close();
 			
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,7 +75,6 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			ps.close();
 			
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,8 +104,6 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.close();
 			rs.close();
 
-			
-			connection.close();
 			return modulo;
 
 		} catch (SQLException e) {

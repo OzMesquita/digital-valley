@@ -17,7 +17,7 @@ public class PessoaDAOTest {
 
 	private Pessoa pessoa = new Pessoa();
 
-	
+	@Ignore
 	@Test
 	public void salvar() {
 		pessoa.setNome("Francisca Tagila Lima da Silva");
@@ -57,22 +57,22 @@ public class PessoaDAOTest {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pessoa.setId(4);
 
-		Assert.assertTrue(pdao.buscar(pessoa.getId()) != null);
+		Assert.assertTrue(pdao.buscarPorId(pessoa.getId()) != null);
 
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
 		pessoa.setUsuario(new Usuario());
 		pessoa.getUsuario().setLogin("deyvison");
+		pessoa = pdao.buscarPorLogin("deyvison");
 
-		Assert.assertTrue(pdao.buscar(pessoa.getUsuario().getLogin()) != null);
-		// pessoa = pdao.buscar("deyvison");
-		// System.out.println("Pessoa ID: "+ pessoa.getId());
-		// System.out.println("Pessoa Nome: "+ pessoa.getNome());
-		// System.out.println("Pessoa CPF: "+ pessoa.getCpf());
+		Assert.assertTrue(pessoa != null);
+		 System.out.println("Pessoa ID: "+ pessoa.getId());
+		 System.out.println("Pessoa Nome: "+ pessoa.getNome());
+		 System.out.println("Pessoa CPF: "+ pessoa.getCpf());
 		// System.out.println("Pessoa Login: "+ pessoa.getUsuario().getLogin());
 		// System.out.println("Pessoa Senha: "+ pessoa.getUsuario().getSenha());
 		//

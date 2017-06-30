@@ -10,6 +10,8 @@
 	<!-- Codificação dos caracteres -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+
 	</properties>
 
 	<!-- Parâmetros de execução -->
@@ -27,6 +29,8 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+
 				</configuration>
 			</plugin>
 		</plugins>
