@@ -32,7 +32,6 @@
 
 </head>
 <body>
-	
 <div id="tudo" class="wrapper">
     
     <div class="main-panel">
@@ -66,7 +65,7 @@
                                     <div id="centro" class="font-icon-detail">
 										<div class="col-sm-6">
 												<div class="form-group">
-													<label id="label_m">Título </label> <input name="titulo" type="text"
+													<label id="label_m">Título </label><input name="titulo" type="text"
 														class="form-control" id="label_m1">
 												</div>
 												<div class="form-group">
