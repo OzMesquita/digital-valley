@@ -104,8 +104,6 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.close();
 			rs.close();
 
-			
-			connection.close();
 			return modulo;
 
 		} catch (SQLException e) {
