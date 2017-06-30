@@ -51,17 +51,9 @@
 	<%
 	
 		if (session.getAttribute("usuario") == null) {
-			if (request.getParameter("login") != null) {
-	%>
-	<jsp:useBean id="usuario" class="beans.UsuarioBean" scope="session" />
-	<jsp:setProperty name="usuario" property="login" param="login" />
-	<jsp:setProperty name="usuario" property="senha" param="senha" />
-	<%
-		//RequestDispatcher rd = request.getRequestDispatcher("login");
-		//		rd.forward(request, response);
-	%>
-
-	<%
+			if (request.getParameter("login") != null && request.getParameter("senha")!=null) {
+				RequestDispatcher rd = request.getRequestDispatcher("login");
+						rd.forward(request, response);
 		} else {
 	%>
 	<div class="image-container set-full-height"
@@ -124,15 +116,6 @@
 									</div>
 								</div>
 							</form>
-							<!-- Falta imprimir na tela Corretamente-->
-							<%
-								if (session.getAttribute("excecao") != null) {
-							%>
-							<p align="center" onfocus="true" ><%=session.getAttribute("excecao")%></p>
-							<%
-									session.removeAttribute("excecao");
-								}
-							%>
 						</div>
 					</div>
 				</div>

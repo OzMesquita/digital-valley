@@ -11,7 +11,7 @@ import java.util.List;
 import model.Aluno;
 import util.ConnectionFactory;
 
-public class JDBCAlunoDAO implements AlunoDAO{
+public class JDBCAlunoDAO implements AlunoDAO {
 	Connection connection;
 
 	public JDBCAlunoDAO() {
@@ -20,15 +20,17 @@ public class JDBCAlunoDAO implements AlunoDAO{
 
 	@Override
 	public void cadastrar(Aluno aluno) {
-		
-		String SQL = "INSERT INTO aluno (matricula, semestre_ingresso, id_pessoa_aluno) VALUES" + "(?,?,?)";
-		
 		try {
+
+			String SQL = "INSERT INTO aluno (matricula, id_curso, semestre_ingresso, id_pessoa_usuario) VALUES"
+					+ "(?,?,?,?)";
+
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, aluno.getMatricula());
-			ps.setString(2, aluno.getSemestreIngresso());
-			ps.setInt(3, aluno.getId());
-			
+			ps.setInt(2, aluno.getCurso().getId());
+			ps.setString(3, aluno.getSemestreIngresso());
+			ps.setInt(4, aluno.getId());
+
 			ps.execute();
 			ps.close();
 
@@ -37,17 +39,18 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			throw new RuntimeException("Falha ao cadastrar um aluno em JDBCAlunoDAO", e);
 		}
 	}
-	
+
 	@Override
 	public Aluno buscar(int id) {
-		String SQL = "SELECT * FROM aluno WHERE id_pessoa_aluno = ?";
 		
 		try {
+			String SQL = "SELECT * FROM aluno WHERE id_pessoa_usuario = ?";
+
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
-			
+
 			ResultSet rs = ps.executeQuery();
-			
+
 			if(rs.next()){
 				Aluno aluno = new Aluno();
 				aluno.setMatricula(rs.getString("matricula"));
@@ -62,17 +65,20 @@ public class JDBCAlunoDAO implements AlunoDAO{
 				return null;
 			}
 
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}
 	}
-	
+
 	@Override
 	public List<Aluno> listar() {
-		String SQL = "SELECT * FROM aluno";
+
 		try {
+			String SQL = "SELECT * FROM aluno";
 			List<Aluno> alunos = new ArrayList<Aluno>();
+
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			
@@ -92,5 +98,26 @@ public class JDBCAlunoDAO implements AlunoDAO{
 			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
 
 		}
+	}
+
+	@Override
+	public void editar(Aluno aluno) {
+		try {
+			String SQL = "UPDATE aluno SET semestre_ingresso=?,matricula=?, id_curso=? WHERE id_pessoa_usuario = ?";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, aluno.getSemestreIngresso());
+			ps.setString(2, aluno.getMatricula());
+			ps.setInt(3, aluno.getCurso().getId());
+			ps.setInt(4, aluno.getId());
+			
+			ps.executeUpdate();
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao editar registro de aluno", e);
+		}
+
 	}
 }
