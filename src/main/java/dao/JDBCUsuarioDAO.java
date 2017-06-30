@@ -22,7 +22,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	public void cadastrar(Usuario usuario) {
 
 		try {
-			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_usuario=?";
+			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_pessoa_usuario=?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
 			ps.setString(1, usuario.getLogin());
@@ -41,7 +41,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	public void editar(Usuario usuario) {
 		
 		try {
-			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_usuario = ?";
+			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_pessoa_usuario = ?";
 				PreparedStatement ps = connection.prepareStatement(SQL);
 				ps.setString(1, usuario.getLogin());
 				ps.setString(2, usuario.getSenha());
