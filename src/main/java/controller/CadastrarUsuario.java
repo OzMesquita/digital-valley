@@ -1,8 +1,12 @@
 package controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Pessoa;
 import model.Usuario;
@@ -12,7 +16,7 @@ public class CadastrarUsuario extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
@@ -20,8 +24,9 @@ public class CadastrarUsuario extends HttpServlet {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
+		HttpSession session = request.getSession();
 
-		String pagina = "cadastraUsuario.jsp";
+		String pagina = "cadastraUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
 				Pessoa pessoa = new Pessoa();
@@ -40,11 +45,11 @@ public class CadastrarUsuario extends HttpServlet {
 				pagina = "login.jsp";
 			}
 
-			response.sendRedirect(pagina);
-		} catch (Exception e) {
 			
+		} catch (Exception e) {
+			session.setAttribute("exececao", e.getMessage());
 		}
-
+		response.sendRedirect(pagina);
 	}
 
 }

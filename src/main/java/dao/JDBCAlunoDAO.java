@@ -83,6 +83,41 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}
 	}
+	@Override
+	public Aluno buscarPorMatricula(String matricula) {
+		
+		try {
+			String SQL = "SELECT * FROM aluno AS a, pessoa_usuario AS p_u, curso AS c WHERE a.matricula= ? AND a.id_pessoa_usuario = p_u.id_pessoa_usuario AND a.id_curso = c.id_curso";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				Aluno aluno = new Aluno();
+				Curso curso = new Curso();
+				curso.setId(rs.getInt("id_curso"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setCurso(curso);
+				aluno.setNome(rs.getString("nome"));
+				rs.close();
+				ps.close();
+				
+				return aluno;
+				
+			}else{
+				return null;
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}
+	}
 
 	@Override
 	public List<Aluno> listar() {

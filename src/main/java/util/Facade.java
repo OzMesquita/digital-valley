@@ -84,5 +84,17 @@ public class Facade {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		return mDAO.buscar(pessoa);
 	}
+	
+	public static boolean verificacao(String matricula, String nome){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		Aluno aluno = aDAO.buscarPorMatricula(matricula);
+		if(aluno != null){
+			if(aluno.getNome().toUpperCase().equals(nome.toUpperCase())){
+				return true;
+			}
+		}
+		return false;
+		
+	}
 
 }

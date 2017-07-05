@@ -10,6 +10,8 @@ public interface AlunoDAO{
 		
 	public Aluno buscar(int id);
 	
+	public Aluno buscarPorMatricula(String matricula);
+	
 	public List<Aluno> listar();
 	
 	public void editar(Aluno aluno);
