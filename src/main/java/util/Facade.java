@@ -9,11 +9,14 @@ import java.util.List;
 import dao.AlunoDAO;
 import dao.ModuloDAO;
 import dao.PessoaDAO;
+import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
 import model.Pessoa;
+import model.Servidor;
 import model.Usuario;
 import model.Modulo;
+import util.DAOFactory;
 
 public class Facade {
 
@@ -35,6 +38,13 @@ public class Facade {
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
 
+	}
+	
+	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor){
+		Facade.cadastrarPessoa(pessoa, usuario);
+		
+		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
+		servidorDAO.cadastrar(servidor);		
 	}
 
 	public static void editarPessoa(Pessoa pessoa, Usuario usuario) {
