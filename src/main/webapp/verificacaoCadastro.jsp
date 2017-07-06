@@ -10,6 +10,8 @@
 	<a href="verificacaoCadastro.jsp?tipoUsuario=1">Aluno</a>
 	<a href="verificacaoCadastro.jsp?tipoUsuario=2">Servidor</a>
 
+<%if(request.getParameter("tipoUsuario") != null) {%>
+
 <% if(request.getParameter("tipoUsuario").equals("1")){%>
 	<form method="post" action="verificacao" >
 		<label for="matricula" >Matricula</label><input type="text" name="matricula" ><br>
@@ -24,6 +26,8 @@
 		<label for="nome" >Nome Completo</label><input type="text" name="nome" ><br>
 		<input type="submit" value="Confirmar" >
 	</form>
-<% } %>	
+<% } 
+}
+%>	
 </body>
 </html>
