@@ -1,8 +1,11 @@
 package util;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import model.Aluno;
+import model.Curso;
 import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
@@ -11,7 +14,7 @@ public class FacadeTest {
 	
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
-
+	@Ignore
 	@Test
 	public void cadatrarPessoaTest(){
 		pessoa.setNome("Fachada Test");
@@ -42,6 +45,36 @@ public class FacadeTest {
 		usuario.setPessoa(pessoa);
 		
 		util.Facade.editarPessoa(pessoa, usuario);
+		
+	}
+	@Ignore
+	@Test
+	public void testVerificacao(){
+		Assert.assertTrue(util.Facade.verificacao("123457", "beto"));
+	}
+	@Ignore
+	@Test
+	public void cadastrarAlunoTest(){
+				
+		pessoa.setNome("testando aluno");
+		pessoa.setCpf("99941179949");
+		pessoa.setEmail("alun5555555o@teste.com");
+		pessoa.setDataNascimento("22/08/1998");
+		usuario.setLogin("reprovamei");
+		usuario.setSenha("hbbbbbbbbbbbb");
+		usuario.setNivel(EnumNivel.COMUM);
+		pessoa.setUsuario(usuario);
+		usuario.setPessoa(pessoa);
+		
+		Aluno aluno = new Aluno();
+		aluno.setMatricula("333321");
+		aluno.setSemestreIngresso("2016.1");
+		
+		Curso curso = new Curso();
+		curso.setId(1);
+		aluno.setCurso(curso);
+
+		util.Facade.cadastrarAluno(pessoa, aluno);
 		
 	}
 

@@ -37,4 +37,5 @@ public class DAOFactory {
 	public static ProfessorDAO criarProfessorDAO(){
 		return new JDBCProfessorDAO();
 	}
+
 }

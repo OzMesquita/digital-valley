@@ -7,12 +7,11 @@
 <title>Cadastrar Usuario</title>
 </head>
 <body>
-	<form action="cadastrarUsuario">
-		
-	
-	
-	
-	
+	<form action="cadastrarUsuario" method="post" action="verificacao" >
+		<label for="matricula" >Matricula</label><input type="text" name="matricula" ><br>
+		<label for="nome" >Nome Completo</label><input type="text" name="nome" ><br>
+		<input type="submit" value="Confirmar" >
+
 	
 	</form>
 
