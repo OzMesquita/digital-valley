@@ -1,5 +1,6 @@
 package util;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class FacadeTest {
 	
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
-
+	@Ignore
 	@Test
 	public void cadatrarPessoaTest(){
 		pessoa.setNome("Fachada Test");
@@ -43,6 +44,10 @@ public class FacadeTest {
 		
 		util.Facade.editarPessoa(pessoa, usuario);
 		
+	}
+	@Test
+	public void testVerificacao(){
+		Assert.assertTrue(util.Facade.verificacao("123457", "beto"));
 	}
 
 }

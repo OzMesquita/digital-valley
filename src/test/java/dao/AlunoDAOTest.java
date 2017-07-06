@@ -30,7 +30,7 @@ public class AlunoDAOTest {
 		adao.cadastrar(aluno);
 	}
 
-	
+	@Ignore
 	@Test
 	public void buscar() {
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();
@@ -40,6 +40,17 @@ public class AlunoDAOTest {
 		System.out.println(aluno.getNome());
 
 	}
+	
+	@Ignore
+	@Test
+	public void testBuscarPorMatricula(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		aluno = aDAO.buscarPorMatricula("123457");
+		Assert.assertTrue(aluno != null);
+		System.out.println("Nome: "+aluno.getNome());
+		System.out.println("Matricula: "+aluno.getMatricula());
+	}
+	
 	@Ignore
 	@Test
 	public void listar() {

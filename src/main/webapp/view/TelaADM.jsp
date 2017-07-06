@@ -288,7 +288,7 @@
             $(#mytable > tbody > tr > td).on('click','tr' ,function (e)){
                 $(this).siblings().removeClass('ativo');
                 $(this).toggleClass('ativo');
-            }
+            };
         </script>
         
         <script>

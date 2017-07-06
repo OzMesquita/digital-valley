@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator" %>
-<%@page import="model.Modulo" %>>
+<%@page import="model.Modulo" %>
 
 <!doctype html>
 <html lang="pt">
@@ -34,7 +34,6 @@
 <body>
 <div id="tudo" class="wrapper">
     
-
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div id="topo" class="container-fluid">
@@ -66,24 +65,24 @@
                                     <div id="centro" class="font-icon-detail">
 										<div class="col-sm-6">
 												<div class="form-group">
-													<label id="label_m">Título </label> <input name="titulo" type="text"
+													<label id="label_m">Título </label><input name="titulo" type="text"
 														class="form-control" id="label_m1">
 												</div>
 												<div class="form-group">
-													<label id="label_m">Url do módulo </label> <input name="url" type="text"
+													<label id="label_m">Url do módulo </label><input name="url" type="text"
 														class="form-control" id="label_m1">
 												</div>
 												<div class="form-group">
-													<form action="envia_foto.php" method="post" enctype="multipart/form-data">
-														<label id="label_m">Imagem </label> <input name="imagem" type="file" class="form-control" id="label_m1">
-													</form>
-												</div>
-
+													<form action="" method="post" enctype="multipart/form-data">
+														<label id="label_m">Imagem </label><input name="imagem" type="file" class="form-control" id="label_m1">
+													</form>	
+												
+												</div>							
 												<div class="pull-right">
-													<input id="btnsalvar" type='submit' value='Cadastrar'
+													<input id="btncadastrar" type='submit' value='Cadastrar'
 														onclick="return validarLogin()" />
 												</div>
-											</div>
+										</div>
                                     </div>
                                 </div>
                                
