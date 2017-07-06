@@ -20,6 +20,12 @@
 		<servlet-name>Logout</servlet-name>
 		<servlet-class>controller.Logout</servlet-class>
 	</servlet>
+	
+	<!-- 3 -->
+	<servlet>
+		<servlet-name>Verificação</servlet-name>
+		<servlet-class>controller.VerificarCadastro</servlet-class>
+	</servlet>
 
 
 	<!-- Mapaeamento Servlets  -->
@@ -32,6 +38,11 @@
 	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/view/logout</url-pattern>
+	</servlet-mapping>
+	<!-- 3 -->
+	<servlet-mapping>
+		<servlet-name>Verificação</servlet-name>
+		<url-pattern>/verificacao</url-pattern>
 	</servlet-mapping>
 
 

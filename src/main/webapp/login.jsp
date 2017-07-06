@@ -104,7 +104,7 @@
 													</h3>
 												</div>
 												<div id="cadastro">
-													Ainda não tem cadastro? <a href="CadastroUsuario.jsp">Cadastre-se</a>
+													Ainda não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se</a>
 												</div>
 
 												<div class="pull-right">
