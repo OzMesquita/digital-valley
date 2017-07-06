@@ -31,17 +31,21 @@ public class Facade {
 
 	}
 
-	public static void cadastrarAluno(Pessoa pessoa, Usuario usuario, Aluno aluno) {
-		Facade.cadastrarPessoa(pessoa, usuario);
+	public static void cadastrarAluno(Pessoa pessoa, Aluno aluno) {
+		Facade.cadastrarPessoa(pessoa, pessoa.getUsuario());
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p1 = pDAO.buscarPorCpf(pessoa.getCpf());
+
+		aluno.setId(p1.getId());
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
 
 	}
 
-	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor){
+	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor) {
 		Facade.cadastrarPessoa(pessoa, usuario);
-		
+
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
 	}
