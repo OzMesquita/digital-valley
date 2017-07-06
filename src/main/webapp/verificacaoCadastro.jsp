@@ -7,10 +7,8 @@
 <title>Cadastre-se</title>
 </head>
 <body>
-
 	<a href="verificacaoCadastro.jsp?tipoUsuario=1">Aluno</a>
 	<a href="verificacaoCadastro.jsp?tipoUsuario=2">Servidor</a>
-	
 
 <% if(request.getParameter("tipoUsuario").equals("1")){%>
 	<form method="post" action="verificacao" >
