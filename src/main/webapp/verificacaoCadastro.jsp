@@ -4,15 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Cadastre-se</title>
 </head>
 <body>
-	<form action="cadastrarUsuario" method="post" action="verificacao" >
+
+	<a href="verificacaoCadastro.jsp?tipoUsuario=1">Aluno</a>
+	<a href="verificacaoCadastro.jsp?tipoUsuario=2">Servidor</a>
+	
+
+<% if(request.getParameter("tipoUsuario").equals("1")){%>
+	<form method="post" action="verificacao" >
 		<label for="matricula" >Matricula</label><input type="text" name="matricula" ><br>
 		<label for="nome" >Nome Completo</label><input type="text" name="nome" ><br>
 		<input type="submit" value="Confirmar" >
-
-	
 	</form>
+<% } %>	
+	
+<% if(request.getParameter("tipoUsuario").equals("2")){%>
+	<form method="post" action="verificacao" >
+		<label for="siape" >SIAPE</label><input type="text" name="siape" ><br>
+		<label for="nome" >Nome Completo</label><input type="text" name="nome" ><br>
+		<input type="submit" value="Confirmar" >
+	</form>
+<% } %>	
 </body>
 </html>

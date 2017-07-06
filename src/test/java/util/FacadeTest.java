@@ -52,7 +52,6 @@ public class FacadeTest {
 	public void testVerificacao(){
 		Assert.assertTrue(util.Facade.verificacao("123457", "beto"));
 	}
-
 	@Ignore
 	@Test
 	public void cadastrarAlunoTest(){
@@ -78,5 +77,5 @@ public class FacadeTest {
 		util.Facade.cadastrarAluno(pessoa, aluno);
 		
 	}
-	
+
 }
