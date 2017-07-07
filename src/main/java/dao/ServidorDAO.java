@@ -10,6 +10,5 @@ public interface ServidorDAO {
 	
 	public Servidor buscar(String siape);
 	
-	public List<Servidor> listar();
-	
+	public List<Servidor> listar();	
 }

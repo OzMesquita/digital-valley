@@ -18,6 +18,4 @@ public interface PessoaDAO {
 	public Pessoa buscarPorCpf(String cpf);
 	
 	public List<Pessoa> listar();
-	
-
 }
