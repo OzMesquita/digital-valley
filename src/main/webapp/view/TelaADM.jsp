@@ -4,11 +4,15 @@
     Author     : Usuario
 --%>
 
-<%@page import="model.Modulo"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
 <head>
 <meta charset="utf-8" />
@@ -28,11 +32,11 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
 	<!-- CSS Files -->
-    <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="../assets2/css/demo.css" rel="stylesheet" />
+	<link href="../assets/css/demo.css" rel="stylesheet" />
 	
 	<style>
 		#topo{background: steelblue; }
@@ -119,7 +123,14 @@
                 }
                 #btn_salva{margin-top: 3%;}
                 th{text-align: center;}
-                #btn_s{margin-left: 90%;}
+                #btn_s{margin-left: 85%;}
+                #btnBusca{
+                    width: 3%;
+                    height: 3%;
+                }
+                #btnBusca:hover{
+                    opacity: 0.5;
+                }
                 #rdio_per{
                     font-weight: bold;
                     font-size: 15px;
@@ -131,10 +142,25 @@
                 .ativo{
                     background: steelblue;
                     color: white;
-                }
+                }				
                 #linhas tr:hover{background: steelblue;
                     color: white;}
                 #linhas:visited{background: blueviolet;}
+                .selected{background:black;}
+                #check{float: right;
+                        position: relative;
+                        margin-top: 4%;}
+                #img-mod{width:40px; height:40px}
+                #user1{
+                        margin-left: -33.5%;
+                        margin-top: 3%;
+                }
+                #tbl_titu{margin-left: 27%;
+                text-align: left;}
+                #tbls{margin-left: 27%}
+                .form-group label{font-size: 19px;
+                }
+                .footer{margin-top: 1%;}
 	</style>
         
         
@@ -143,22 +169,9 @@
 	
 	
 <body>
-    <% if(session.getAttribute("mostra") == null){
-            String user = "Usuários";
-            session.setAttribute("mostra", user); 
-        }
-   
     
-       Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("usuarios");
-       
-       if(session.getAttribute("usuario_selecionado")!= null){
-           Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos_usuario");
-       }
+			
 
-
-    %>
-	
-	
 	<div id ="tudo" class="wrapper">
 	    
 	    <div class="main-panel">
@@ -191,76 +204,90 @@
                                     </form>
                                 </div>
                                 <div id="busca">
-                                    <input id="txt_busca" type="text"  placeholder="Buscar..."/>
-                                    <!--  <img src="search3.png" id="btnBusca" alt="Buscar"/> -->
-                                    <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/>
+                                    <input id="txt_busca" type="search"  placeholder="Buscar..."/>
+                                    <a href="#"><img src="assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/></a> 
+                                   <!-- <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/> -->
                                 </div>
                             </div>
-                            <div id="corpo">
-                                    <div id="centro">
-                                            <div id="users">
-                                                <jsp:include page="partsTabelaUsuario.jsp"/>
-                                            </div>
-                                            <div id="sem_acesso">
-                                                <table class="table table-hover table-striped">
-                                                    <thead>
-                                                        <th>Módulos Disponiveis</th>
-                                                    </thead>
-                                                    <tbody id="linhas">
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                    </tbody>
-                                              </table>
-                                            </div>
-                                            <div id="acesso">
-
-                                                <table class="table table-hover table-striped">
-                                                    <thead>
-                                                        <th>Módulos Cadastrados</th>
-                                                    </thead>
-                                                    <tbody id="linhas">
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                        <tr><td>testando</td></tr>                       
-                                                  </tbody>
-                                                </table>
-                                            </div>
-                                            <div id="botoes">
-                                                <div id="btn_inclui">
-                                                    <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo"/>
-                                                </div>
-                                                <div id="btn_retira">
-                                                    <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo"/>
-                                                </div>
-                                            </div>
-                                    </div>
-
-                            </div>
-
+                        
+                        
+                        
                         </div>
-                    </div>
+                        
+                        
+                            <div id="corpo">
+                                <div id="centro">
+                                    <div id="user1">
+                                        <div class="form-group">
+                                            <label id="tbl_titu" class="col-md-3" for="selectmultiple"><script> if(document.write(sessionStorage.getItem('mostra')) === null){ sessionStorage.setItem('mostra',"Perfil")}</script></label>
+                                            <label class="col-md-3" for="selectmultiple">Módulos Disponiveis</label>
+                                            <label class="col-md-2" for="selectmultiple">Módulos Cadastrados</label>
+                                            <div id="tbls" class="col-md-3">
+                                                <select id="selectmultiple" name="selectmultiplePerfil" class="form-control" multiple="multiple" size="15">
+                                                    <option value="1" onclick="mostra()">Dayvson</option>
+                                                    <option value="2" onclick="mostra()">Dharlin</option>
+                                                    <option value="3" onclick="mostra()">Francisco Gilberto Lima Paiva</option>
+                                                    <option value="4" onclick="mostra()">Tágila </option>
+                                                    <option value="5" onclick="mostra()">Option two</option>
+                                                    <option value="6" onclick="mostra()">Option two</option>
+                                                    <option value="7" onclick="mostra()">Option two</option>
+                                                    <option value="8" onclick="mostra()">Option two</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div id="">
+                                                <!--  <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label>-->
+                                            <div class="col-md-3">
+                                                  <select id="selectmultipleDisp" name="selectmultipleDisponivel" class="form-control" multiple="multiple" size="15">
+                                                    <option value="1" >Option one</option>
+                                                    <option value="2" >Option ten</option>
+                                                    <option value="3" >Option twenty</option>
+                                                    <option value="4" >Option fifty</option>
+                                                    <option value="5" >Option sixty</option>
+                                                  </select>
+                                            </div>
+                                                <!--</div> -->
+                                        </div>
+                                        <div class="form-group">
+                                         <!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
+                                          <div class="col-md-1">
+                                                <div id="">
+                                                    <div id="btn_inclui">
+                                                        <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo" onclick="inclui()"/>
+                                                    </div>
+                                                    <div id="btn_retira">
+                                                        <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo" onclick="remove()" />
+                                                    </div>
+                                                </div>
+                                          </div>
+                                        </div>
+
+                                        <div id="">
+                                            <div class="form-group">
+                                             <!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
+                                              <div class="col-md-3">
+                                                    <select id="selectmultipleCad" name="selectmultipleCadastrado" class="form-control" multiple="multiple" size="15">
+                                                      <option value="1" >Option one</option>
+                                                      <option value="2" >Option two</option>
+                                                      <option value="3" >Option three</option>
+                                                      <option value="4" >Option four</option>
+                                                      <option value="5" >Option five</option>
+                                                    </select>
+                                              </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div id="btn_salva">
+                        <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
                 </div>
             </div>
-            <div id="btn_salva">
-                    <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
-            </div>
-                                                    </div>
             <div>
+			
 	       <footer class="footer">
 	            <div id="rodap" class="container-fluid">
 	                <p id="rodape" class="copyright pull-right">
@@ -271,24 +298,73 @@
 	        </footer>
             </div>
           </div>
-	</div>
+	
 </body>
 <!--   Core JS Files   -->
-	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../assets/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="assets2/js/jquery.validate.min.js"></script>
+	<script src="../assets/js/jquery.validate.min.js"></script>
         
-        <script type="text/javascript">
-            $(#mytable > tbody > tr > td).on('click','tr' ,function (e)){
-                $(this).siblings().removeClass('ativo');
-                $(this).toggleClass('ativo');
-            };
+        <script>
+            function busca(){
+                var texto = document.getElementById('txt_busca');
+                var busca = texto.value;
+                alert(busca);
+                
+                var url = 'pesquisa';
+                var parametro = 'idBusca = '+busca;
+                var meuAjax = new Ajax.request(url,{
+                    method: 'post'
+                    parameters: parametro;
+                    onComplete: mostraResposta;
+                });
+                
+                
+            }
+            function mostraResposta(resposta){
+                $('selectmultiple').value.resposta.responseText;
+                
+            }
+        </script>
+        
+        <script>
+            function inclui(){
+                var novoElemento = document.createElement('option');
+                var remove = document.getElementById('selectmultipleDisp');
+                var itemSelecionado = remove.options[remove.selectedIndex].text;
+                novoElemento.textContent = itemSelecionado;
+                var lista = document.getElementById('selectmultipleCad');
+                lista.appendChild(novoElemento);
+                remove.removeChild(remove.options[remove.selectedIndex]);
+            }
+        </script>
+        
+        <script>
+            function remove(){
+                var novoElemento = document.createElement('option');
+                var remove = document.getElementById('selectmultipleCad');
+                var itemSelecionado = remove.options[remove.selectedIndex].text;
+                novoElemento.textContent = itemSelecionado;
+                remove.removeChild(remove.options[remove.selectedIndex]);
+                var lista = document.getElementById('selectmultipleDisp');
+                lista.appendChild(novoElemento);
+            }
+        </script>
+        
+        
+       <script>
+                function mostra(){
+                    var x = document.getElementById('selectmultiple');
+                    var itemSelecionado = x.options[x.selectedIndex].text;
+                    sessionStorage.setItem("usu_selecionado",itemSelecionado);
+                    alert(itemSelecionado);
+                }
         </script>
         
         <script>
@@ -298,11 +374,13 @@
                 for (var i = 0; i < mostra.length; i++) {
                     if (mostra[i].checked) {
                         var b = mostra[i].value;
+                            if(b === 'sim')
+                                    b = "Usuários";
+                            else b = "Perfil";
                         sessionStorage.setItem("mostra",b);
                         document.location.reload();
                     }
                 }
             }
-        </script>
-   
+        </script>   
 </html>
