@@ -3,10 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private String login;
@@ -31,12 +28,9 @@ public class Usuario implements Serializable {
 		this.nivel = EnumNivel.COMUM;
 	}
 	
-	
 	public String getLogin() {
 		return login;
 	}
-
-
 
 	public void setLogin(String login) {
 		if(login != null &&login.length() >= 4){
@@ -44,14 +38,11 @@ public class Usuario implements Serializable {
 		}else{
 			throw new IllegalArgumentException("Erro: O valor do login não pode ser nulo e deve possuir pelo menos 4 caracteres, valor informado: "+login);
 		}
-		
-
 	}
 	
 	public String getSenha() {
 		return senha;
 	}
-
 
 	public void setSenha(String senha) {
 		if(senha != null && senha.length() >= 6){
@@ -72,7 +63,5 @@ public class Usuario implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
-	
-	
+		
 }

@@ -28,7 +28,6 @@ public class Facade {
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
-
 	}
 
 	public static void cadastrarAluno(Pessoa pessoa, Aluno aluno) {
@@ -40,7 +39,6 @@ public class Facade {
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
-
 	}
 
 	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor) {
@@ -61,7 +59,6 @@ public class Facade {
 
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		usuarioDAO.editar(usuario);
-
 	}
 
 	public static Usuario buscarPorLogin(String login) {
@@ -91,7 +88,6 @@ public class Facade {
 			e.printStackTrace();
 		}
 		return bd;
-
 	}
 
 	public static List<Modulo> buscarModulosPorPessoas(Pessoa pessoa) {
@@ -108,7 +104,6 @@ public class Facade {
 			}
 		}
 		return false;
-
 	}
 
 }

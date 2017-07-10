@@ -8,15 +8,13 @@ public class Curso {
 	private String nome;
 	private ArrayList<Disciplina> disciplinas;
 	
-	public Curso(String codigo, String descricao) {
+	public Curso(String descricao) {
 		this.nome = descricao;
 		this.disciplinas = new ArrayList<Disciplina>();
 	}
 	
 	public Curso() {
 	}
-
-
 
 	public String getNome() {
 		return nome;

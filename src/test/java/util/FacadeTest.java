@@ -7,6 +7,7 @@ import org.junit.Test;
 import model.Aluno;
 import model.Curso;
 import model.EnumNivel;
+import model.Modulo;
 import model.Pessoa;
 import model.Usuario;
 
@@ -33,7 +34,7 @@ public class FacadeTest {
 	}
 	@Ignore
 	@Test
-	public void editar(){
+	public void editarPessoaTest(){
 		pessoa.setNome("Fachada Test 2");
 		pessoa.setCpf("12345678999");
 		pessoa.setEmail("fachada2@email.com");
@@ -77,5 +78,15 @@ public class FacadeTest {
 		util.Facade.cadastrarAluno(pessoa, aluno);
 		
 	}
-
+	@Ignore
+	@Test
+	public void cadastrarModuloTest(){
+		Modulo modulo = new Modulo();
+		modulo.setTitulo("Modulo Teste");
+		modulo.setImagem("aaaaaa/bbbbbbb/vvvv");
+		modulo.setUrl("/testando");
+		
+		util.Facade.cadastrarModulo(modulo);
+	}
+	
 }

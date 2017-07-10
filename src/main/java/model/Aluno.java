@@ -3,10 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Aluno extends Pessoa{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String matricula;
 	private Curso curso;
@@ -14,6 +11,7 @@ public class Aluno extends Pessoa{
 	
 	public Aluno() {
 	}
+	
 	public Aluno(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,String matricula, Curso curso, String semestreIngresso){
 		super(nome, cpf,email,usuario,dataNascimento);
 		this.matricula = matricula;

@@ -3,10 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Servidor extends Pessoa{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String siape;	
 	protected EnumCargo cargo;
@@ -25,12 +22,10 @@ public class Servidor extends Pessoa{
 		this.siape = siape;
 
 	}
-	
-	
+		
 	public String getSiape() {
 		return siape;
 	}
-
 
 	public void setSiape(String siape) {
 		if(siape!=null && siape.length()==7 && siape.matches("^[0-9]+$")){
@@ -42,11 +37,9 @@ public class Servidor extends Pessoa{
 
 	}
 
-
 	public EnumCargo getCargo() {
 		return cargo;
 	}
-
 
 	public void setCargo(EnumCargo cargo) {
 		this.cargo = cargo;

@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 public class Professor extends Servidor{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private boolean coordenador;
 
