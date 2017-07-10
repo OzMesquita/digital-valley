@@ -18,10 +18,9 @@ public class VerificarCadastro extends HttpServlet {
 		String matricula = request.getParameter("matricula");
 		String nome = request.getParameter("nome");
 		String pagina = "verificacaoCadastro.jsp?erroVerificacao=1";
-		
 		try {
 			if(Facade.verificacao(matricula, nome)){
-				pagina = "";
+				pagina = "/Controle_de_Acesso/cadastro/cadastraUsuario.jsp";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -16,7 +16,7 @@ and open the template in the editor.
 <html>
 <head>
 <meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="../assets2/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>lista de usuários</title>
@@ -32,11 +32,11 @@ and open the template in the editor.
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
 	<!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="../assets/css/demo.css" rel="stylesheet" />
+	<link href="../assets2/css/demo.css" rel="stylesheet" />
 	
 	<style>
 		#topo{background: steelblue; }
@@ -205,7 +205,7 @@ and open the template in the editor.
                                 </div>
                                 <div id="busca">
                                     <input id="txt_busca" type="search"  placeholder="Buscar..."/>
-                                    <a href="#"><img src="assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/></a> 
+                                    <a href="#"><img src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/></a> 
                                    <!-- <input class ="btn_pad" type="button" value="Buscar" title="Buscar Usuários"/> -->
                                 </div>
                             </div>
@@ -301,15 +301,15 @@ and open the template in the editor.
 	
 </body>
 <!--   Core JS Files   -->
-	<script src="../assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets/js/jquery.validate.min.js"></script>
+	<script src="../assets2/js/jquery.validate.min.js"></script>
         
         <script>
             function busca(){
@@ -320,7 +320,7 @@ and open the template in the editor.
                 var url = 'pesquisa';
                 var parametro = 'idBusca = '+busca;
                 var meuAjax = new Ajax.request(url,{
-                    method: 'post'
+                    method: 'post';
                     parameters: parametro;
                     onComplete: mostraResposta;
                 });
