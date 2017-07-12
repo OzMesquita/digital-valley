@@ -8,15 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Pessoa;
+import model.Servidor;
 import model.Usuario;
 import util.Facade;
 
-public class CadastrarUsuario extends HttpServlet {
+public class CadastrarServidor extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
@@ -26,26 +27,25 @@ public class CadastrarUsuario extends HttpServlet {
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 
-		String pagina = "cadastraUsuario.jsp?erroCadastro=1";
+		String pagina = "cadastraServidor.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
-				Pessoa pessoa = new Pessoa();
+				Servidor servidor = new Servidor();
 				Usuario usuario = new Usuario();
-				pessoa.setNome(nome);
-				pessoa.setCpf(cpf);
-				pessoa.setEmail(email);
-				pessoa.setDataNascimento(dataNasci);
+				servidor.setNome(nome);
+				servidor.setCpf(cpf);
+				servidor.setEmail(email);
+				servidor.setDataNascimento(dataNasci);
 				usuario.setLogin(login);
 				usuario.setSenha(senha);
-				pessoa.setUsuario(usuario);
-				usuario.setPessoa(pessoa);
+				servidor.setUsuario(usuario);
+				usuario.setPessoa(servidor);
 
-				Facade.cadastrarPessoa(pessoa, usuario);
+				Facade.cadastrarPessoa(servidor, usuario);
 
 				pagina = "login.jsp";
 			}
 
-			
 		} catch (Exception e) {
 			session.setAttribute("exececao", e.getMessage());
 		}
