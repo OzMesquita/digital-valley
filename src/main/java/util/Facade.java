@@ -102,9 +102,7 @@ public class Facade {
 			System.out.println("Nome: "+aluno.getNome());
 			if (aluno.getNome().toUpperCase().equals(nome.toUpperCase())) {
 				System.out.println("Login: "+aluno.getUsuario().getLogin());
-				if(aluno.getUsuario().getLogin() != null){
-					return false;
-				}
+				
 				return true;
 			}
 		}

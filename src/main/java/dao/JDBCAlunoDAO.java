@@ -12,6 +12,7 @@ import java.util.List;
 
 import model.Aluno;
 import model.Curso;
+import model.Usuario;
 import util.ConnectionFactory;
 
 public class JDBCAlunoDAO implements AlunoDAO {
@@ -97,12 +98,18 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			if(rs.next()){
 				Aluno aluno = new Aluno();
 				Curso curso = new Curso();
+				Usuario usuario = new Usuario();
 				curso.setId(rs.getInt("id_curso"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
 				aluno.setId(rs.getInt("id_pessoa_usuario"));
 				aluno.setCurso(curso);
 				aluno.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				aluno.setUsuario(usuario);
+				
+				
 				rs.close();
 				ps.close();
 				
