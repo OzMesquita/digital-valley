@@ -50,19 +50,7 @@
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:20px;">
-                            <%if(request.getParameter("tipoUsuario") == null){
-                                session.setAttribute("status1", "selecionado");
-                                response.sendRedirect("verificacaoCadastro.jsp?tipoUsuario=1");
-                            }else{%>
-                            
-                            <%if(request.getParameter("tipoUsuario").equals("1")){
-                                session.setAttribute("status1", "selecionado");
-                                session.setAttribute("status2", "");
-                            }
-                            else{
-                                session.setAttribute("status2", "selecionado");
-                                session.setAttribute("status1", "");
-                            }%>
+                           
                                 <div class="wizard-header">
                                     <h3>
                                         <b>Escolha seu tipo de usuário</b>
@@ -72,8 +60,19 @@
                                     <li><a href="verificacaoCadastro.jsp?tipoUsuario=1" id="<%=session.getAttribute("status1")%>">Aluno</a></li>
                                     <li><a href="verificacaoCadastro.jsp?tipoUsuario=2" id="<%=session.getAttribute("status2")%>">Servidor</a></li> 
                                 </ul>
+                                <div>
                                 
-                                
+                               	<%
+                                		if(session.getAttribute("excecao") != null){
+                                			%>
+                                			<label><%=session.getAttribute("excecao") %></label>
+                                			
+                                			<%
+                                			session.removeAttribute("excecao");
+                                		}
+                                	%>
+                                </div>  
+                                <%if(request.getParameter("tipoUsuario") != null){ %>                              
                                 <div class="tab-content">
                                     <%if(request.getParameter("tipoUsuario").equals("1")){%>
                                         <div class="row">
@@ -102,7 +101,7 @@
                                         </div>
                                     <% } %>	
                                 </div>
-                            <%}%>
+                      <%} %>
                         </div>
                     </div>
                 </div>
