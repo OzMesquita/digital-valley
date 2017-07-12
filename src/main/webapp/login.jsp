@@ -84,7 +84,7 @@
 												<div class="picture-container">
 													<div class="picture">
 														<img src="assets2/img/ufc_logo.png" class="picture-src"
-															id="wizardPicturePreview" title="" />
+															id="wizardPicturePreview" title="UFC - Campus Russas"  />
 													</div>
 												</div>
 											</div>

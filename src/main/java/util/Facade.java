@@ -99,7 +99,10 @@ public class Facade {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		Aluno aluno = aDAO.buscarPorMatricula(matricula);
 		if (aluno != null) {
+			System.out.println("Nome: "+aluno.getNome());
 			if (aluno.getNome().toUpperCase().equals(nome.toUpperCase())) {
+				System.out.println("Login: "+aluno.getUsuario().getLogin());
+				
 				return true;
 			}
 		}
