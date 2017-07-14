@@ -40,5 +40,12 @@ public class ServidorDAOTest {
 		Assert.assertTrue(servidores != null);
 
 	}
+	
+	@Test
+	public void testBuscarPorSiape(){
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		Assert.assertTrue(sDAO.buscarPorSiape("1231231") != null);
+		
+	}
 
 }

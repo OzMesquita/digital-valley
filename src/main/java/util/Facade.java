@@ -95,20 +95,17 @@ public class Facade {
 		return mDAO.buscar(pessoa);
 	}
 
-	public static boolean verificacao(String matricula, String nome) {
+	public static Aluno verificacaoAluno(String matricula) {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		Aluno aluno = aDAO.buscarPorMatricula(matricula);
-		if (aluno != null) {
-			System.out.println("Nome: "+aluno.getNome());
-			if (aluno.getNome().toUpperCase().equals(nome.toUpperCase())) {
-				System.out.println("Login: "+aluno.getUsuario().getLogin());
-				if(aluno.getUsuario().getLogin() != null){
-					return false;
-				}
-				return true;
-			}
-		}
-		return false;
+		return aDAO.buscarPorMatricula(matricula);
 	}
-
+	
+	public static Servidor verificacaoServidor(String siape){
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		return sDAO.buscarPorSiape(siape);
+	}
+	
+	public static boolean compararNomes(String nome1, String nome2){
+		return nome1.toUpperCase().equals(nome2.toUpperCase());
+	}
 }

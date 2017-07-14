@@ -51,7 +51,7 @@ public class FacadeTest {
 	@Ignore
 	@Test
 	public void testVerificacao(){
-		Assert.assertTrue(util.Facade.verificacao("123457", "beto"));
+		Assert.assertTrue(util.Facade.verificacaoAluno("123457")!=null);
 	}
 	@Ignore
 	@Test
@@ -88,5 +88,8 @@ public class FacadeTest {
 		
 		util.Facade.cadastrarModulo(modulo);
 	}
+	
+	
+	
 	
 }

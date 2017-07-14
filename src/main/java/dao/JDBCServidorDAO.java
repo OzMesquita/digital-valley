@@ -70,6 +70,40 @@ public class JDBCServidorDAO implements ServidorDAO {
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
 		}
 	}
+	
+	public Servidor buscarPorSiape(String siape){
+		Servidor servidor = new Servidor();
+
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE siape = '?' and s.id_pessoa_usuario = p.id_pessoa_usuario;";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(SQL);
+
+			ps.setString(1, siape);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				servidor.setSiape(rs.getString("siape"));
+				servidor.setNome(rs.getString("nome"));
+				
+				ps.close();
+				rs.close();
+				return servidor;
+
+			}
+			ps.close();
+			rs.close();
+			return null;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		}
+	}
+	
+	
 
 	@Override
 	public List<Servidor> listar() {
