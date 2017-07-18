@@ -10,5 +10,9 @@ public interface ServidorDAO {
 	
 	public Servidor buscar(String siape);
 	
+	public Servidor buscarPorSiape(String siape);
+	
 	public List<Servidor> listar();	
+	
+	
 }

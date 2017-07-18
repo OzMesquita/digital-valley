@@ -75,6 +75,18 @@
                                 
                                 <div class="row">
                                     <div class="col-sm-6" style="margin-left: 25%;">
+                                    
+                                   
+                                    
+                                    <div id="alerta" style="color: red; text-align: center;" >
+                                    	<%if(session.getAttribute("excecao")!= null){
+                                    	%>
+                                    	<small><%=session.getAttribute("excecao") %></small>
+                                    	
+                                    	<%
+                                    	session.removeAttribute("excecao");
+                                    	} %>
+                                    </div>
                                         <div class="form-group">
                                             <div class="tab-content">
                                                 <form method="post" action="verificacao" name="formVerifica" >
@@ -85,7 +97,7 @@
                                                         <label for="siape" >Siape</label><input type="text" name="siape" class="form-control"><br>
                                                     <% } %>
                                                     <label for="nome" >Nome Completo</label><input type="text" name="nome" class="form-control"><br>
-                                                    <a href="login">Voltar para tela de login</a>
+                                                    <a href="login.jsp">Voltar para tela de login</a>
                                                     <input id="btn_confirma" type="submit" value="Confirmar" onclick="validarCampos()">
                                                 </form>
                                             </div>
