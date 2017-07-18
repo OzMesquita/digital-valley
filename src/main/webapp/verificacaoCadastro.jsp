@@ -70,15 +70,15 @@
                                                 <div class="tab-pane" id="aluno">
                                                     <div class="row">
                                                         <label for="matricula" >Matricula</label><input type="text" name="matricula" maxlength="6" class="form-control"><br>
-                                                        <label for="nome" >Nome Completo</label><input type="text" name="nome" class="form-control"><br>
-                                                        <a href="login">Voltar para tela de login</a>
+                                                        <label for="nome" >Nome Completo</label><input type="text" name="nomeA" class="form-control"><br>
+                                                        <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos1()">
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="servidor">
                                                     <div class="row">
                                                         <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control"><br>
-                                                        <label for="nome" >Nome Completo</label><input type="text" name="nome" class="form-control"><br>
+                                                        <label for="nome" >Nome Completo</label><input type="text" name="nomeS" class="form-control"><br>
                                                         <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos2()">
                                                     </div>
@@ -114,29 +114,33 @@
         
         <script type="text/javascript">
             function validarCampos1(){
-                if(document.formVerifica.matricula.value === "" && document.formVerifica.nome.value === ""){
+                if(document.formVerifica.matricula.value === "" && document.formVerifica.nomeA.value === ""){
                     alert("Matricula e Nome Inválidos");
                     return false;
                 }else if(document.formVerifica.matricula.value === "" ){
                     alert("Campo Matricula Inválido");
                     return false;
-                }else if(document.formVerifica.nome.value === ""){
+                }else if(document.formVerifica.nomeA.value === ""){
                     alert("Campo Nome Inválido");
                     return false;
                 }
+                formVerifica.siape.value = '';
+                formVerifica.nomeS.value = '';
                 return true;
             }
             function validarCampos2(){
-                if(document.formVerifica.siape.value === "" && document.formVerifica.nome.value === ""){
+                if(document.formVerifica.siape.value === "" && document.formVerifica.nomeS.value === ""){
                     alert("Siape e Nome Inválidos");
                     return false;
                 }else if(document.formVerifica.siape.value === "" ){
                     alert("Campo Siape Inválido");
                     return false;
-                }else if(document.formVerifica.nome.value === ""){
+                }else if(document.formVerifica.nomeS.value === ""){
                     alert("Campo Nome Inválido");
                     return false;
                 }
+                formVerifica.matricula.value = '';
+                formVerifica.nomeA.value = '';
                 return true;
             }
         </script>

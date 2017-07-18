@@ -20,7 +20,8 @@ public class VerificarCadastro extends HttpServlet {
 			throws ServletException, IOException {
 		String matricula = request.getParameter("matricula");
 		String siape = request.getParameter("siape");
-		String nome = request.getParameter("nome");
+		String nomeA = request.getParameter("nomeA");
+		String nomeS = request.getParameter("nomeS");
 		String pagina = "verificacaoCadastro.jsp?erroVerificacao=1";
 		HttpSession session = request.getSession();
 		System.out.println("servlet");
@@ -32,7 +33,7 @@ public class VerificarCadastro extends HttpServlet {
 				if (aluno != null) {
 
 					System.out.println("Nome: " + aluno.getNome());
-					if (Facade.compararNomes(aluno.getNome(), nome)) {
+					if (Facade.compararNomes(aluno.getNome(), nomeA)) {
 						System.out.println("Login: " + aluno.getUsuario().getLogin());
 						if (aluno.getUsuario().getLogin() != null) {
 							throw new Exception("Erro, Aluno(a) " + aluno.getNome() + " já possui cadastro");
@@ -48,7 +49,7 @@ public class VerificarCadastro extends HttpServlet {
 			}else if(siape != null){
 				Servidor servidor = Facade.verificacaoServidor(siape);
 				if(servidor != null){
-					if(Facade.compararNomes(servidor.getNome(), nome)){
+					if(Facade.compararNomes(servidor.getNome(), nomeS)){
 						if (servidor.getUsuario().getLogin() != null) {
 							throw new Exception("Erro, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 						}
