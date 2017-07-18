@@ -21,12 +21,12 @@
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
             <!-- CSS Files -->
-        <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+        <link href="assets2/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
-        <link href="../assets2/css/demo.css" rel="stylesheet" />
+        <link href="assets2/css/demo.css" rel="stylesheet" />
         <!--meu css -->
-        <link rel="stylesheet" href="../assets2/css/newcss.css" type="text/css" />
+        <link rel="stylesheet" href="assets2/css/newcss.css" type="text/css" />
         
         <style>
             #btn_confirma{
@@ -72,7 +72,7 @@
                                         <div class="tab-content">
                                             <form method="post" action="recuperacao" name="formVerifica" >
                                                 <label for="email" >E-mail</label><input type="text" title="Preencha este campo" name="email" class="form-control"><br>
-                                                <a href="login">Voltar para tela de login</a>
+                                                <a href="login.jsp">Voltar para tela de login</a>
                                                 <input id="btn_confirma" type="submit" value="Confirmar">
                                             </form>
                                         </div>
@@ -92,13 +92,13 @@
     </div>
 </body>
 <!--   Core JS Files   -->
-	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets2/js/jquery.validate.min.js"></script>
+	<script src="assets2/js/jquery.validate.min.js"></script>
 </html>

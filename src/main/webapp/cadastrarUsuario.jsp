@@ -96,7 +96,7 @@
                                                     </div>
                                                     <div id="c_russas"  >
                                                         <h3 style=" margin-left: 50%;">
-                                                            <small><a href="login" >Voltar para tela de login</a></small>
+                                                            <small><a href="login.jsp" >Voltar para tela de login</a></small>
                                                         </h3>
                                                     </div>
                                                     <div class="pull-right">

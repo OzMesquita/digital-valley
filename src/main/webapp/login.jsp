@@ -104,7 +104,8 @@
 													</h3>
 												</div>
 												<div id="cadastro">
-													Ainda não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se</a>
+													Ainda não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se</a><br>
+													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu a senha?</a>
 												</div>
 
 												<div class="pull-right">
