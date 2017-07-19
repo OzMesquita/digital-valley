@@ -28,7 +28,7 @@
         <!--meu css -->
         <link rel="stylesheet" href="newcss.css" type="text/css" />
         
-        <style>
+         <style>
             #btn_confirma{
                 width: 150px;
                 height: 35px;
@@ -47,43 +47,96 @@
             #texto_faixa{
                 margin-top: 1.2%;
             }
-        
+            
+            #topo{background: steelblue; }
+            #nivelUsuario{margin-top: 70px;}
+            #textB{color: white;}
+            #rodap{
+                    background: steelblue;
+                    border-radius: 0px 0px 10px 10px;
+            }		
+            #save{
+                    margin-right: 100px;
+                    margin-top: 15px;
+                    width: 110px;
+                    height: 30px;
+                    color: white;
+                    margin-left: 30%;	
+            }
+            #tudo{
+                    width: 80%;
+                    margin-left: 10%;
+                    border-radius: 10px;
+                    border: solid 1px;
+            }
+            #rodape{
+                    margin-right: 40%;
+                    color: white;
+            }
+            #save{
+                    background: steelblue;
+                    border-color: steelblue;
+            }
+            #txt_busca{width: 45%;
+                    border-radius: 10px;
+                    height: 35px;
+            }
+            .btn_pad{background: steelblue;
+                    color: white;
+                    border-radius: 8%;
+                    width: 10%;
+                    height: 35px;
+            }
+
         </style>
     </head>
     <body>
-        <div class="image-container set-full-height" style="background: steelblue;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <div class="wizard-container">
-                        <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:auto;">
-                            <div class="wizard-header">
-                                <h3>
-                                    <b>Cadastro de Módulo</b><br>
-                                    <small>Preencha as informações</small>
-                                </h3>
-                            </div>
-                            <ul id="faixa_topo">
-                                <li id="texto_faixa">Cadastro</li>
-                            </ul>
-                            <div class="row">
-                                <div class="col-sm-8" style="margin-left: 15%;">
-                                    <div class="form-group">
-                                        <div class="tab-content">
-                                            <form method="post" action="verificacao" name="formCadastro" >
-                                                <label for="titulo" >Título</label><input type="text" title="Preencha este campo" name="titulo" required class="form-control"><br>
-                                                <label for="url" >URL</label><input type="text" title="Preencha este campo" name="url" required class="form-control"><br>
-                                                <label for="perfil" >Perfil de Acesso</label><br>
-                                                <select name="perfil" class="form-control"  title="selecione o perfil de acesso para este módulo" style="font-family: inherit">
-                                                    <option disabled="" selected="select" >Selecione</option>
-                                                    <option value="2" >Option two</option>
-                                                    <option value="3" >Option three</option>
-                                                </select><br>
-                                                <label for="imagem" >Imagem</label><input type="file" title="Preencha este campo" name="imagem" ><br>
-                                                <div style="margin-top: 0% !important">
-                                                    <input id="btn_confirma" type="submit" value="Confirmar">
-                                                </div>
-                                            </form>
+        <div id ="tudo" class="wrapper">
+	    <div class="main-panel">
+	        <nav class="navbar navbar-default navbar-fixed">
+	            <div id ="topo" class="container-fluid">
+	                <div class="navbar-header">
+	                    <a id="textB" class="navbar-brand" >Sistema Controle de Acesso</a>
+	                </div>
+	                <div class="collapse navbar-collapse">
+	                    <ul class="nav navbar-nav navbar-right">
+	                         <li>
+	                               <a id="textB" title="fazer logout" href="login.jsp">
+	                                Sair
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </nav>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 " style="margin-left: 25%;">
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title" style="text-align: center;">Cadastro de Módulo</h4>
+                                    </div>
+                                    <div class="content">
+                                        <div id="corpo">
+                                            <div id="centro">
+                                                <form method="post" action="verificacao" name="formCadastro" >
+                                                    <label for="titulo" >Título</label><input type="text" title="Preencha este campo" name="titulo" required class="form-control"><br>
+                                                    <label for="url" >URL</label><input type="text" title="Preencha este campo" name="url" required class="form-control"><br>
+                                                    <label for="imagem" >Imagem</label><input type="file" title="Preencha este campo" name="imagem" ><br>
+                                                    <label for="perfil" >Perfil de Acesso</label><br>
+                                                    <div style="margin-left: 3%">
+                                                        <input type="checkbox" class="marcar" name="todos" value="" onclick="marcardesmarcar()"> Todos<br>
+                                                        <input  type="checkbox" class="marcar" name="aluno" value="1"> Aluno<br>
+                                                        <input type="checkbox" class="marcar" name="Professor" value="2"> Professor<br>
+                                                        <input type="checkbox" class="marcar" name="secretário" value="2"> Secretário<br>
+                                                        <input type="checkbox" class="marcar" name="funcionário" value="4"> Funcionário<br>
+                                                    </div>
+                                                    <div style="margin-top: 0% !important">
+                                                        <input id="btn_confirma" type="submit" value="Salvar" title="Salvar módulo">
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,15 +145,25 @@
                     </div>
                 </div>
             </div>
-            <div class="footer" style="margin-top: 5% !important">
-                <div class="container">
-                    ₢ Todos os direitos reservados | N2S
+            <footer class="footer">
+                <div id="rodap" class="container-fluid">
+                    <p id="rodape" class="copyright pull-right">
+                    <br>
+                        ₢ Todos os direitos reservados | N2S
+                    </p>
                 </div>
-            </div>
+            </footer>
         </div>
-    </div>
-</body>
-
+    </body>
+    
+         <script>
+            function marcardesmarcar() {
+                $('.marcar').each(function () {
+                    if (this.checked) this.checked = false;
+                    else this.checked = true;
+                });
+            }
+        </script>
     <!--   Core JS Files   -->
 	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
