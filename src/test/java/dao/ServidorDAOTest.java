@@ -47,5 +47,11 @@ public class ServidorDAOTest {
 		Assert.assertTrue(sDAO.buscarPorSiape("1231231") != null);
 		
 	}
+	
+	@Test
+	public void testPreCadastro(){
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		Assert.assertTrue(sDAO.buscarPreCadastro("1234567", "Ayslan"));
+	}
 
 }

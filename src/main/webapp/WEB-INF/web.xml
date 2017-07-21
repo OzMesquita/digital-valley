@@ -45,16 +45,26 @@
 		<url-pattern>/verificacao</url-pattern>
 	</servlet-mapping>
 
-
+<!-- Filtros -->
+	<!-- 1 -->
 	<filter>
 		<filter-name>Autentica</filter-name>
 		<filter-class>controller.AutenticacaoFiltro</filter-class>
 	</filter>
 	
+	<!-- 2 -->
+	<filter>
+		<filter-name>Cadastro</filter-name>
+		<filter-class>controller.CadastroFiltro</filter-class>
+	</filter>
+	
+	<!-- Mapaeamento Servlets  -->
+	<!-- 1 -->
 	<filter-mapping>
-		<filter-name>Autentica</filter-name>
-		<url-pattern>/view/*</url-pattern>
+		<filter-name>Cadastro</filter-name>
+		<url-pattern>/cadastro/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 2 -->
 
 </web-app>

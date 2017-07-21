@@ -74,7 +74,7 @@ public class JDBCServidorDAO implements ServidorDAO {
 	public Servidor buscarPorSiape(String siape){
 		Servidor servidor = new Servidor();
 
-		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE siape = '?' and s.id_pessoa_usuario = p.id_pessoa_usuario;";
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE siape = ? and s.id_pessoa_usuario = p.id_pessoa_usuario;";
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(SQL);

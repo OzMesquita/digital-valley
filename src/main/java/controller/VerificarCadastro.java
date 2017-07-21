@@ -29,8 +29,8 @@ public class VerificarCadastro extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.println("servlet");
 		try {
-			if (matricula != null) {
-				if(util.Facade.verificacaoAluno(matricula, nomeA)){
+			if (!matricula.equals("")) {
+				if(Facade.verificacaoAluno(matricula, nomeA)){
 					pagina = "cadastro/cadastrarUsuario.jsp";
 					session.setAttribute("preCadastro", "ok");
 					System.out.println("entrou");
@@ -42,13 +42,14 @@ public class VerificarCadastro extends HttpServlet {
 						throw new Exception("Erro, Aluno(a) " + aluno.getNome() + " já possui cadastro");
 					}else{
 						System.out.println("nada");
-						throw new Exception("Erro, Pre cadastro não identificado");
+						throw new Exception("Erro, Pre cadastro de aluno não identificado");
 					}
 				}
 				
 				
-			}else if(siape != null){
-				if(util.Facade.verificacaoServidor(siape, nomeS)){
+			}else if(!siape.equals("")){
+				System.out.println("nome: "+nomeS+" Siape: "+siape);
+				if(Facade.verificacaoServidor(siape, nomeS)){
 					pagina = "cadastro/cadastrarUsuario.jsp";
 					session.setAttribute("preCadastro", "ok");
 					System.out.println("entrou");
