@@ -15,5 +15,7 @@ public interface AlunoDAO{
 	public List<Aluno> listar();
 	
 	public void editar(Aluno aluno);
+	
+	public boolean buscarPreCadastro(String matricula, String nome);
 
 }

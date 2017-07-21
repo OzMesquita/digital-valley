@@ -133,4 +133,36 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 		return null;
 	}
+	
+	@Override
+	public boolean buscarPreCadastro(String siape, String nome){
+		try {
+			String SQL = "SELECT * FROM pre_cadastro_servidor WHERE siape = ? AND UPPER(nome) LIKE UPPER(?)";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, siape);
+			ps.setString(2, "%"+nome+"%");
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				
+				rs.close();
+				ps.close();
+				
+				return true;
+				
+			}else{
+				rs.close();
+				ps.close();
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro do servidor", e);
+		}
+	}
+	
 }

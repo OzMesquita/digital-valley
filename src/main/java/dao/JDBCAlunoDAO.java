@@ -183,4 +183,34 @@ public class JDBCAlunoDAO implements AlunoDAO {
 		}
 
 	}
+	@Override
+	public boolean buscarPreCadastro(String matricula, String nome){
+		try {
+			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2, "%"+nome+"%");
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				
+				rs.close();
+				ps.close();
+				
+				return true;
+				
+			}else{
+				rs.close();
+				ps.close();
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}
+	}
 }

@@ -48,10 +48,10 @@ public class FacadeTest {
 		util.Facade.editarPessoa(pessoa, usuario);
 		
 	}
-	@Ignore
+	
 	@Test
 	public void testVerificacao(){
-		Assert.assertTrue(util.Facade.verificacaoAluno("123457")!=null);
+		Assert.assertTrue(util.Facade.verificacaoAluno("370178", "Deyvison Nogueira"));
 	}
 	@Ignore
 	@Test

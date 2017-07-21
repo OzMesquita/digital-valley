@@ -80,5 +80,11 @@ public class AlunoDAOTest {
 		aDAO.editar(aluno);
 
 	}
+	
+	@Test
+	public void testPreCadastro(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		Assert.assertTrue(aDAO.buscarPreCadastro("370178", "DEYVISON nogueira"));
+	}
 
 }

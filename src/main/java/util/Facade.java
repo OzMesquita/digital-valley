@@ -95,14 +95,14 @@ public class Facade {
 		return mDAO.buscar(pessoa);
 	}
 
-	public static Aluno verificacaoAluno(String matricula) {
+	public static boolean verificacaoAluno(String matricula, String nome) {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		return aDAO.buscarPorMatricula(matricula);
+		return aDAO.buscarPreCadastro(matricula, nome);
 	}
 	
-	public static Servidor verificacaoServidor(String siape){
+	public static boolean verificacaoServidor(String siape, String nome){
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-		return sDAO.buscarPorSiape(siape);
+		return sDAO.buscarPreCadastro(siape, nome);
 	}
 	
 	public static boolean compararNomes(String nome1, String nome2){

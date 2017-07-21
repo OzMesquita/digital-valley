@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AlunoDAO;
+import dao.ServidorDAO;
 import model.Aluno;
 import model.Servidor;
+import util.DAOFactory;
 import util.Facade;
 
 public class VerificarCadastro extends HttpServlet {
@@ -27,39 +30,38 @@ public class VerificarCadastro extends HttpServlet {
 		System.out.println("servlet");
 		try {
 			if (matricula != null) {
-
-				Aluno aluno = Facade.verificacaoAluno(matricula);
-				System.out.println("Entrou IF");
-				if (aluno != null) {
-
-					System.out.println("Nome: " + aluno.getNome());
-					if (Facade.compararNomes(aluno.getNome(), nomeA)) {
-						System.out.println("Login: " + aluno.getUsuario().getLogin());
-						if (aluno.getUsuario().getLogin() != null) {
-							throw new Exception("Erro, Aluno(a) " + aluno.getNome() + " já possui cadastro");
-						}
-						pagina = "/Controle_de_Acesso/cadastro/cadastraAluno.jsp";
-						session.setAttribute("cadastro", "ok");
-						System.out.println("sucesso");
+				if(util.Facade.verificacaoAluno(matricula, nomeA)){
+					pagina = "cadastro/cadastrarUsuario.jsp";
+					session.setAttribute("preCadastro", "ok");
+					System.out.println("entrou");
+				}else{
+					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+					Aluno aluno = aDAO.buscarPorMatricula(matricula);
+					if(aluno != null){
+						System.out.println("cadastrado");
+						throw new Exception("Erro, Aluno(a) " + aluno.getNome() + " já possui cadastro");
 					}else{
-						throw new Exception("Matricula e/ou nome inválidos");
+						System.out.println("nada");
+						throw new Exception("Erro, Pre cadastro não identificado");
 					}
-
 				}
+				
+				
 			}else if(siape != null){
-				Servidor servidor = Facade.verificacaoServidor(siape);
-				if(servidor != null){
-					if(Facade.compararNomes(servidor.getNome(), nomeS)){
-						if (servidor.getUsuario().getLogin() != null) {
-							throw new Exception("Erro, Servidor(a) " + servidor.getNome() + " já possui cadastro");
-						}
-						pagina = "/Controle_de_Acesso/cadastro/cadastraAluno.jsp";
-						session.setAttribute("cadastro", "ok");
-						
+				if(util.Facade.verificacaoServidor(siape, nomeS)){
+					pagina = "cadastro/cadastrarUsuario.jsp";
+					session.setAttribute("preCadastro", "ok");
+					System.out.println("entrou");
+				}else{
+					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+					Servidor servidor = sDAO.buscar(siape);
+					if(servidor != null){
+						System.out.println("cadastrado");
+						throw new Exception("Erro, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 					}else{
-						throw new Exception("SIAPE e/ou nome inválidos");
+						System.out.println("nada");
+						throw new Exception("Erro, Pre cadastro não identificado");
 					}
-					
 				}
 				
 			}

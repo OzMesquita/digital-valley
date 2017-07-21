@@ -16,6 +16,7 @@ public class UsuarioDAOTest {
 	private Usuario usuario = new Usuario();
 	
 	//Passou no teste
+	@Ignore
 	@Test
 	public void salvar(){
 		usuario.setLogin("deyvert");
@@ -47,11 +48,11 @@ public class UsuarioDAOTest {
 	}	
 
 	//Passou no teste
-	@Ignore
+	
 	@Test
 	public void autenticar(){
 		UsuarioDAO uDAO= DAOFactory.criarUsuarioDAO();
-		Assert.assertTrue(uDAO.autenticar("ldharlin", "luan123"));		
+		Assert.assertTrue(uDAO.autenticar("deyvison", "deyvison123"));		
 		
 	}
 
