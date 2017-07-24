@@ -26,6 +26,12 @@
 		<servlet-name>Verificação</servlet-name>
 		<servlet-class>controller.VerificarCadastro</servlet-class>
 	</servlet>
+	
+	<!-- 4 -->
+	<servlet>
+		<servlet-name>Importacao</servlet-name>
+		<servlet-class>controller.ImportacaoController</servlet-class>
+	</servlet>
 
 
 	<!-- Mapaeamento Servlets  -->
@@ -44,6 +50,14 @@
 		<servlet-name>Verificação</servlet-name>
 		<url-pattern>/verificacao</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 3 -->
+	<servlet-mapping>
+		<servlet-name>Importacao</servlet-name>
+		<url-pattern>/view/adm/importar</url-pattern>
+	</servlet-mapping>
+	
+	
 
 <!-- Filtros -->
 	<!-- 1 -->
@@ -66,5 +80,11 @@
 	</filter-mapping>
 	
 	<!-- 2 -->
+	
+		<filter-mapping>
+		<filter-name>Autentica</filter-name>
+		<url-pattern>/view/*</url-pattern>
+	</filter-mapping>
+	
 
 </web-app>
