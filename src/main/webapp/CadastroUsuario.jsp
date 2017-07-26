@@ -41,7 +41,11 @@
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="wizard-container">
                             <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:auto;">
-                                <form action="cadastrarUsuario" method="post" name="formCadastro">
+                                <% if(usuario.instanceOf(Aluno)){ %>
+									<form action="CadastrarAluno" method="post" name="formCadastro">
+								<%}else{%>
+									<form action="CadastrarServidor" method="post" name="formCadastro">
+								<%}%>
                                     <div class="wizard-header">
                                         <h3>
                                            <b>Sistema Controle de Acesso</b> <br>
@@ -78,7 +82,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Data de Nascimento </label>
-                                                        <input name="nascimento" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="8"  placeholder="12/34/5679" onkeypress="return SomenteNumero(event)">
+                                                        <input name="nascimento" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="8"  placeholder="01021995" onkeypress="return SomenteNumero(event)">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>E-mail </label>
