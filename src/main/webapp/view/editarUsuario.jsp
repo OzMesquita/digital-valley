@@ -106,15 +106,6 @@
                                                                                     <input type="text" id="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuario.getCpf() %>">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
-                                                                                    <div class="form-group">
-                                                                                            <label for="sexo">Sexo</label>
-                                                                                            <select name="sexo" class="form-control">
-                                                                                                    <option value="F"> Feminino</option>
-                                                                                                    <option value="M"> Masculino</option>
-                                                                                            </select>
-                                                                                    </div>
-                                                                            </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-8">
