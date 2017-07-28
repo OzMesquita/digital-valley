@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,15 +31,14 @@ public class ImportacaoController extends HttpServlet {
 		Part arquivo = request.getPart("arquivo") ;
 		String curso = request.getParameter("curso");
 		System.out.println(curso);
-		String caminho = "C:\\n2s\\";
-		
-		InputStream de = arquivo.getInputStream();
-		System.out.println("DE: "+de.toString());
-		System.out.println("Read "+de.read());
+		String caminho = request.getServletContext().getRealPath("");
+		File fileSaveDir = new File(caminho);
+		if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
+		System.out.println(caminho);
 		arquivo.write(caminho);
 		caminho += arquivo.getSubmittedFileName(); 
-		System.out.println(caminho);
-		
 		
 		FileReader file = new FileReader(caminho);
 		BufferedReader reader = new BufferedReader(file);
@@ -52,6 +52,8 @@ public class ImportacaoController extends HttpServlet {
 			ler = reader.readLine();
 			
 			System.out.println(matricula+" "+nome);
+			util.Facade.preCadastrarAluno(nome, matricula, Integer.valueOf(curso));
+			
 		}
 		reader.close();
 	}
