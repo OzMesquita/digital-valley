@@ -32,6 +32,12 @@
 		<servlet-name>Importacao</servlet-name>
 		<servlet-class>controller.ImportacaoController</servlet-class>
 	</servlet>
+	
+	<!-- 5 -->
+	<servlet>
+		<servlet-name>EditarUsuario</servlet-name>
+		<servlet-class>controller.EditarUsuarioController</servlet-class>
+	</servlet>
 
 
 	<!-- Mapaeamento Servlets  -->
@@ -51,12 +57,17 @@
 		<url-pattern>/verificacao</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 3 -->
+	<!-- 4 -->
 	<servlet-mapping>
 		<servlet-name>Importacao</servlet-name>
 		<url-pattern>/view/adm/importar</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 5 -->
+	<servlet-mapping>
+		<servlet-name>EditarUsuario</servlet-name>
+		<url-pattern>/view/editarUsuario</url-pattern>
+	</servlet-mapping>
 	
 
 <!-- Filtros -->

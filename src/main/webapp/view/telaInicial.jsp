@@ -86,7 +86,9 @@
 
                 </div>
             </div>
-            <a href="EditarNivel.jsp">editar Nivel dos usuários</a>
+            <a href="EditarNivel.jsp">editar Nivel dos usuários</a><br>
+            <a href="editarUsuario.jsp">editar perfil</a><br>
+            <a href="adm/importacao.jsp">Importar</a>
         </div>
 
         <footer class="footer">

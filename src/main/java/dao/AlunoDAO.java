@@ -7,6 +7,8 @@ import model.Aluno;
 public interface AlunoDAO{
 
 	public void cadastrar(Aluno aluno);
+	
+	public void preCadastrar(String nome, String matricula, int curso);
 		
 	public Aluno buscar(int id);
 	

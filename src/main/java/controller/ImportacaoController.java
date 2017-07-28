@@ -30,9 +30,9 @@ public class ImportacaoController extends HttpServlet {
 		Part arquivo = request.getPart("arquivo") ;
 		String curso = request.getParameter("curso");
 		System.out.println(curso);
-		String caminho = request.getServletContext().getRealPath("");
+		String caminho = "C:\\n2s\\";
 		
-		InputStream de =	arquivo.getInputStream();
+		InputStream de = arquivo.getInputStream();
 		System.out.println("DE: "+de.toString());
 		System.out.println("Read "+de.read());
 		arquivo.write(caminho);

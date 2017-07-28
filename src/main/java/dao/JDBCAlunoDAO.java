@@ -43,6 +43,27 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			throw new RuntimeException("Falha ao cadastrar um aluno em JDBCAlunoDAO", e);
 		}
 	}
+	
+	@Override
+	public void preCadastrar(String nome, String matricula, int curso) {
+		try {
+
+			String SQL = "INSERT INTO pre_cadastro_aluno( matricula, nome, id_curso)"
+							+"VALUES (?, ?, ?);";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2, nome);
+			ps.setInt(3, curso);
+
+			ps.execute();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao pre cadastrar um aluno em JDBCAlunoDAO", e);
+		}
+	}
 
 	@Override
 	public Aluno buscar(int id) {
