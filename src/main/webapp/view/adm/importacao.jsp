@@ -7,17 +7,20 @@
 <title>Importação de Dados</title>
 </head>
 <body>
-	<form method="post" action="importar" >
+	<form method="post" action="importar" enctype="multipart/form-data" >
 	<label>Curso</label>
 		<select name="curso">
 			<option value="1">Ciencia da Computação</option>
 			<option value="3">Engenharia de Software</option>
 			<option value="3">Engenharia Civil</option>
-		</select>
+		</select><br>
+		
+		<label>Arquivo</label>	
+		<input type="file" name="arquivo" ><br>
+		<input type="submit" value="enviar" >
 	</form><br>
-	<label>Arquivo</label>
-	<input type="file" name="arquivo" >
-	<input type="submit" value="enviar" >
+	
+	
 
 
 </body>
