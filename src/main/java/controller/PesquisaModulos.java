@@ -19,7 +19,7 @@ import util.Facade;
  *
  * @author Usuario
  */
-public class pesquisaModulos extends HttpServlet {
+public class PesquisaModulos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

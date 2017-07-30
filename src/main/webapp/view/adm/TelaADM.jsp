@@ -287,7 +287,7 @@
                                     </form>
                                 </div>
                                 <div id="busca">
-                                    <form action="NewServlet" method="get">
+                                    <form action="PesquisaUsuario.java" method="get">
                                         <input id="txt_busca" type="search" name="busca" <% if(mostra.equals("Usuarios")){%> autofocus="true" <%}else{%>disabled <%}%> placeholder="Buscar por usuários..."/>
                                         <img style="margin-left: -5%;" src="assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
                                         <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários" <% if(!mostra.equals("Usuarios")){%>disabled<%}%>/>
@@ -448,7 +448,7 @@
                     var x = document.getElementById('selectmultiple');
                     var itemSelecionado = x.options[x.selectedIndex].text;
                     document.getElementById('selecionado').value = itemSelecionado;
-                    document.location.href = 'pesquisa?busca='+document.getElementById('selecionado').value+'';
+                    document.location.href = 'PesquisaModulos?busca='+document.getElementById('selecionado').value+'';
                 }
         </script>
         

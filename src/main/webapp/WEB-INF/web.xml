@@ -42,11 +42,11 @@
     <!-- 1 -->
     <servlet>
         <servlet-name>pesquisaModulos</servlet-name>
-        <servlet-class>controller.pesquisaModulos</servlet-class>
+        <servlet-class>controller.PesquisaModulos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>pesquisaUsuario</servlet-name>
-        <servlet-class>controller.pesquisaUsuario</servlet-class>
+        <servlet-class>controller.PesquisaUsuario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

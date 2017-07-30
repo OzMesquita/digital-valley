@@ -18,7 +18,7 @@ import model.Usuario;
  *
  * @author Usuario
  */
-public class pesquisaUsuario extends HttpServlet {
+public class PesquisaUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
