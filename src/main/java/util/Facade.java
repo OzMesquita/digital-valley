@@ -94,6 +94,11 @@ public class Facade {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		return mDAO.buscar(pessoa);
 	}
+	
+	public static List<Modulo> buscarTodosModulos() {
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		return mDAO.listar();
+	}
 
 	public static boolean verificacaoAluno(String matricula, String nome) {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
