@@ -16,6 +16,8 @@ public interface PessoaDAO {
 	public Pessoa buscarPorLogin(String login);
 	
 	public Pessoa buscarPorCpf(String cpf);
+        
+        public List<Pessoa> buscarPorNome(String nome);
 	
 	public List<Pessoa> listar();
 }

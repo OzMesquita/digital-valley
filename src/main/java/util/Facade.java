@@ -145,6 +145,11 @@ public class Facade {
 		return pDAO.buscarPorId(id);
 	}
         
+	public static List<Pessoa> buscarPessoaPorNome(String nome){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscarPorNome(nome);
+	}
+        
 
         
 	

@@ -232,5 +232,42 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
+        
+        @Override
+        public List<Pessoa> buscarPorNome(String nome) {
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+
+		String SQL = "SELECT * FROM pessoa_usuario WHERE nome LIKE '%?%'";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, nome);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Pessoa p = new Pessoa();
+				Usuario u = new Usuario();
+				p.setUsuario(u);
+				p.setId(rs.getInt("id_pessoa_usuario"));
+				System.out.println("ID : " + p.getId());
+				p.setNome(rs.getString("nome"));
+				p.setCpf(rs.getString("cpf"));
+				p.setEmail(rs.getString("email"));
+				p.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				p.getUsuario().setLogin(rs.getString("login"));
+				pessoas.add(p);
+
+			}
+                        ps.close();
+			rs.close();
+			
+			return pessoas;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+		}
+
+	}
 
 }
