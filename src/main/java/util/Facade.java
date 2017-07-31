@@ -139,5 +139,13 @@ public class Facade {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		return aDAO.buscarPorNome(nome);
 	}
+        
+	public static Pessoa buscarPessoaPorId(int id){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscarPorId(id);
+	}
+        
+
+        
 	
 }
