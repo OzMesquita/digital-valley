@@ -219,10 +219,12 @@
         if(mostra.equals("perfil")){
             usuarios = new Vector();
             usuarios.add("Aluno");
+            usuarios.add("Administrador");
             usuarios.add("Coordenador");
             usuarios.add("Professor");
             usuarios.add("Secretário");
-            usuarios.add("Serviços Gerais");
+            usuarios.add("Servidor");
+            
         }else{
             if(session.getAttribute("usuarios")== null){
                 usuarios = null;
@@ -305,7 +307,6 @@
                                                     <input type="hidden" id="selecionado" name="usuarioSelecionado" value=""/>
                                                     <select id="selectmultiple" name="selectmultiplePerfil" required class="form-control" multiple="multiple" size="15">
                                                         <%if(usuarios != null){
-                                                            
                                                             if(mostra.equals("perfil")){ 
                                                                 for(int i=0;i<usuarios.size();i++){%>
                                                                 <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
