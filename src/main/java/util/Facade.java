@@ -140,4 +140,11 @@ public class Facade {
 		return aDAO.buscarPorNome(nome);
 	}
 	
+	public static List<Pessoa> buscarPessoaPorNome(String nome){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscarPorNome(nome);
+	}
+	
+	
+	
 }

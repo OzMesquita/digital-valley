@@ -57,6 +57,21 @@ public class Usuario implements Serializable {
 	public void setNivel(EnumNivel nivel) {
 		this.nivel = nivel;
 	}
+	
+	public void setNivel(int nivel){
+		switch (nivel) {
+		case 1:
+			this.nivel = EnumNivel.ADMINISTRADOR; 
+			break;
+		case 2:
+			this.nivel = EnumNivel.COMUM;
+			break;
+		default:
+			throw new IllegalArgumentException("Erro: O valor do nivel não pode ser nulo ou invalido, valor informado: "+nivel);
+			
+		}
+	}
+	
 	public Pessoa getPessoa() {
 		return pessoa;
 	}

@@ -9,6 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import dao.PessoaDAO;
+import model.Aluno;
 import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
@@ -61,7 +62,7 @@ public class PessoaDAOTest {
 
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void buscarUsuario() {
 		PessoaDAO pdao = DAOFactory.criarPessoaDAO();
@@ -84,6 +85,18 @@ public class PessoaDAOTest {
 	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
+		Assert.assertTrue(pessoas != null);
+	}
+	
+	@Test
+	public void testBuscarPorNome(){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		List<Pessoa> pessoas = pDAO.buscarPorNome("tagila");
+		System.out.println("Listar alunos: "+pessoas.size());
+		for(Pessoa p: pessoas){
+			System.out.println("Nome "+p.getNome());
+			System.out.println("Login "+p.getUsuario().getLogin());
+		}
 		Assert.assertTrue(pessoas != null);
 	}
 

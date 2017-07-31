@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Aluno;
+import model.Curso;
+import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
 import util.ConnectionFactory;
@@ -231,6 +234,42 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		}
 
+	}
+	@Override
+	public List<Pessoa> buscarPorNome(String nome){
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+
+		try {
+			String SQL = "SELECT * FROM pessoa_usuario AS u WHERE  UPPER(u.nome) like UPPER(?)";
+			
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, '%'+nome+'%');
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Pessoa pessoa = new Pessoa();
+				Usuario usuario = new Usuario();
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				pessoa.setUsuario(usuario);
+				
+				pessoas.add(pessoa);
+			}
+			rs.close();
+			ps.close();
+			return pessoas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
+
+		}
 	}
 
 }
