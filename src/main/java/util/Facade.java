@@ -116,8 +116,17 @@ public class Facade {
 		
 	}
 	
-	
 	public static boolean compararNomes(String nome1, String nome2){
 		return nome1.toUpperCase().equals(nome2.toUpperCase());
+	}
+	
+	public static List<Aluno> buscarAlunos(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		return aDAO.listar();
+	}
+	
+	public static List<Servidor> buscarServidor(){
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		return sDAO.listar();
 	}
 }

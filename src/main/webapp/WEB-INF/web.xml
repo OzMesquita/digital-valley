@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>digital-valley</display-name>
-    <servlet-mapping>
-        <servlet-name>pesquisaModulos</servlet-name>
-        <url-pattern>/pesquisaModulos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>pesquisaUsuario</servlet-name>
-        <url-pattern>/pesquisaUsuario</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
@@ -38,16 +30,14 @@
         <servlet-name>EditarUsuario</servlet-name>
         <servlet-class>controller.EditarUsuarioController</servlet-class>
     </servlet>
+    <!-- 6 -->
+    <servlet>
+        <servlet-name>PesquisaModulos</servlet-name>
+        <servlet-class>controller.PesquisaModuloController</servlet-class>
+    </servlet>
+    
     <!-- Mapaeamento Servlets  -->
     <!-- 1 -->
-    <servlet>
-        <servlet-name>pesquisaModulos</servlet-name>
-        <servlet-class>controller.PesquisaModulos</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>pesquisaUsuario</servlet-name>
-        <servlet-class>controller.PesquisaUsuario</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -72,6 +62,12 @@
         <servlet-name>EditarUsuario</servlet-name>
         <url-pattern>/view/editarUsuario</url-pattern>
     </servlet-mapping>
+    <!-- 6 -->
+    <servlet-mapping>
+        <servlet-name>PesquisaModulos</servlet-name>
+        <url-pattern>/view/adm/PesquisaModulos</url-pattern>
+    </servlet-mapping>
+    
     <!-- Filtros -->
     <!-- 1 -->
     <filter>
@@ -83,7 +79,7 @@
         <filter-name>Cadastro</filter-name>
         <filter-class>controller.CadastroFiltro</filter-class>
     </filter>
-    <!-- Mapaeamento Servlets  -->
+    <!-- Mapaeamento Filtros  -->
     <!-- 1 -->
     <filter-mapping>
         <filter-name>Cadastro</filter-name>
