@@ -21,7 +21,6 @@ public interface PessoaDAO {
         
         public List<Pessoa> buscarPorNome(String nome);
 	
-	public List<Pessoa> buscarPorNome(String nome);
 	
 	public List<Pessoa> listar();
 }

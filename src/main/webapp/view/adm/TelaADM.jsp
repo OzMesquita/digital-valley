@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
 <%@page import="javafx.scene.control.Alert"%>
@@ -215,15 +216,16 @@
         }
         
         //usuarios
-        Vector usuarios;
+        Vector<Pessoa> usuarios = new Vector();
+        Vector perfis = new Vector();
+        
         if(mostra.equals("perfil")){
-            usuarios = new Vector();
-            usuarios.add("Aluno");
-            usuarios.add("Administrador");
-            usuarios.add("Coordenador");
-            usuarios.add("Professor");
-            usuarios.add("Secretário");
-            usuarios.add("Servidor");
+            perfis.add("Aluno");
+            perfis.add("Administrador");
+            perfis.add("Coordenador");
+            perfis.add("Professor");
+            perfis.add("Secretário");
+            perfis.add("Servidor");
             
         }else{
             if(session.getAttribute("usuarios")== null){
@@ -308,11 +310,11 @@
                                                     <select id="selectmultiple" name="selectmultiplePerfil" required class="form-control" multiple="multiple" size="15">
                                                         <%if(usuarios != null){
                                                             if(mostra.equals("perfil")){ 
-                                                                for(int i=0;i<usuarios.size();i++){%>
-                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
+                                                                for(int i=0;i<perfis.size();i++){%>
+                                                                    <option value="<%= perfis.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(perfis.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= perfis.get(i) %> </option> 
                                                             <%}}else{
                                                                 for(int i=0;i<usuarios.size();i++){%>
-                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option>
+                                                                    <option value="<%= usuarios.get(i).getId() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i).getNome() %> </option>
                                                             <%}}
                                                         }else{%>
                                                             <option disabled="disable">(Faça uma busca por usuário)</option>
@@ -322,54 +324,54 @@
                                             </div>
                                         </div> 
                                     </form>
-                                        <div >
-                                                <!--  <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label>-->
-                                            <div class="col-md-3">
-                                                  <select id="selectmultipleDisp" name="selectmultipleDisponivel" class="form-control" multiple="multiple" size="15">
-                                                    <%if(selecionado!= null){
-                                                         for(int i=0;i<modulosDisponiveis.size();i++){%>
-                                                            <option value="<%= modulosDisponiveis.get(i).getId() %>"><%= modulosDisponiveis.get(i).getTitulo() %> </option>  
-                                                        <%}}else{%>
-                                                        <option disabled="disable">(Selecione algum usuário)</option>
-                                                    <%}%>
-                                                        
+                                    <div >
+                                            <!--  <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label>-->
+                                        <div class="col-md-3">
+                                              <select id="selectmultipleDisp" name="selectmultipleDisponivel" class="form-control" multiple="multiple" size="15">
+                                                <%if(selecionado!= null){
+                                                     for(int i=0;i<modulosDisponiveis.size();i++){%>
+                                                        <option value="<%= modulosDisponiveis.get(i).getId() %>"><%= modulosDisponiveis.get(i).getTitulo() %> </option>  
+                                                    <%}}else{%>
+                                                    <option disabled="disable">(Selecione algum usuário)</option>
+                                                <%}%>
 
-                                                  </select>
-                                            </div>
+
+                                              </select>
                                         </div>
-                                        <div class="form-group">
-                                          <div class="col-md-1">
-                                                <div >
-                                                    <div id="btn_inclui">
-                                                        <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo" onclick="inclui()"/>
-                                                    </div>
-                                                    <div id="btn_retira">
-                                                        <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo" onclick="remove()" />
-                                                    </div>
-                                                </div>
-                                          </div>
-                                        </div>
-                                        
-                                        <form action="adm" method="post" name="modulos">
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="col-md-1">
                                             <div >
-                                                <div class="form-group">
-                                                    <div class="col-md-3">
-                                                        <select id="selectmultipleCad" name="selectmultipleCadastrado" class="form-control" multiple="multiple" size="15">
-                                                            <%if(selecionado!= null){
-                                                                for(int i=0;i<modulosCadastrados.size();i++){%>
-                                                                    <option value="<%= modulosCadastrados.get(i).getId() %>" ><%= modulosCadastrados.get(i).getTitulo() %></option>
-                                                            <%}}else{%>
-                                                                <option disabled="disable">(Selecione algum usuário)</option>
-                                                            <%}%>
-                                                        </select>
-                                                    </div>
+                                                <div id="btn_inclui">
+                                                    <input id="btn_r" type="button" name="incluir" value=">>" title="Incluir Módulo" onclick="inclui()"/>
+                                                </div>
+                                                <div id="btn_retira">
+                                                    <input id="btn_i" type="button" name="retirar" value="<<" title="Remover Módulo" onclick="remove()" />
                                                 </div>
                                             </div>
-                                            <div id="btn_salva">
-                                                <input type="hidden" id="lista" name="lista">
-                                                <input class="btn_pad" id="btn_s" style=" margin-top: 1%; " type="submit" value="Salvar" title="Salvar Alterações" onclick="selecionaTudo()"/>
+                                      </div>
+                                    </div>
+
+                                    <form action="adm" method="post" name="modulos">
+                                        <div >
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <select id="selectmultipleCad" name="selectmultipleCadastrado" class="form-control" multiple="multiple" size="15">
+                                                        <%if(selecionado!= null){
+                                                            for(int i=0;i<modulosCadastrados.size();i++){%>
+                                                                <option value="<%= modulosCadastrados.get(i).getId() %>" ><%= modulosCadastrados.get(i).getTitulo() %></option>
+                                                        <%}}else{%>
+                                                            <option disabled="disable">(Selecione algum usuário)</option>
+                                                        <%}%>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                        <div id="btn_salva">
+                                            <input type="hidden" id="lista" name="lista">
+                                            <input class="btn_pad" id="btn_s" style=" margin-top: 1%; " type="submit" value="Salvar" title="Salvar Alterações" onclick="selecionaTudo()"/>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             
