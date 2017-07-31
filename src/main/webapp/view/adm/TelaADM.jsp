@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
 <%@page import="javafx.scene.control.Alert"%>
 <%@page import="java.util.Vector"%>
@@ -201,13 +202,13 @@
         //seleciona o que mostra
         if((String)request.getParameter("mostra") != null){
             mostra = (String) request.getParameter("mostra");
-            session.setAttribute("mostra", mostra);
+            session.setAttribute("mostra", mostra.toLowerCase());
             session.setAttribute("usuarioSelecionado", selecionado);
         }else{
             mostra = (String) session.getAttribute("mostra");
              if(mostra==null){
                 mostra = "Usuarios";
-                session.setAttribute("mostra", mostra);
+                session.setAttribute("mostra", mostra.toLowerCase());
                 selecionado = null;
                 session.setAttribute("usuarioSelecionado", selecionado);
             }
@@ -215,7 +216,7 @@
         
         //usuarios
         Vector usuarios;
-        if(mostra.equals("Perfil")){
+        if(mostra.equals("perfil")){
             usuarios = new Vector();
             usuarios.add("Aluno");
             usuarios.add("Coordenador");
@@ -225,10 +226,9 @@
         }else{
             if(session.getAttribute("usuarios")== null){
                 usuarios = null;
-                //usuarios.add("Faça uma busca por usuários");
             }
             else{
-                usuarios = (Vector) session.getAttribute("usuarios");
+                usuarios = (Vector<Pessoa>) session.getAttribute("usuarios");
             }
         }
         //modulos disponiveis
@@ -237,17 +237,13 @@
         if(selecionado != null){
             if(session.getAttribute("modulosDisponiveis")== null){
                 modulosDisponiveis = new Vector();
-
-                //modulosDisponiveis.add("Não existem modulos");
             }
             else{
                 modulosDisponiveis = (Vector) session.getAttribute("modulosDisponiveis");
             }
         //modulos cadastrados
-            
             if(session.getAttribute("modulosCadastrados")== null){
                 modulosCadastrados = new Vector();
-                //modulosCadastrados.add("Não existem modulos");
             }
             else{
                 modulosCadastrados = (Vector) session.getAttribute("modulosCadastrados");
@@ -309,9 +305,15 @@
                                                     <input type="hidden" id="selecionado" name="usuarioSelecionado" value=""/>
                                                     <select id="selectmultiple" name="selectmultiplePerfil" required class="form-control" multiple="multiple" size="15">
                                                         <%if(usuarios != null){
-                                                            for(int i=0;i<usuarios.size();i++){%>
-                                                            <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
-                                                        <%}}else{%>
+                                                            
+                                                            if(mostra.equals("perfil")){ 
+                                                                for(int i=0;i<usuarios.size();i++){%>
+                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
+                                                            <%}}else{
+                                                                for(int i=0;i<usuarios.size();i++){%>
+                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option>
+                                                            <%}}
+                                                        }else{%>
                                                             <option disabled="disable">(Faça uma busca por usuário)</option>
                                                         <%}%>
                                                     </select>
