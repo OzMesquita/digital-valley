@@ -4,7 +4,8 @@
     Author     : N2S-PC03
 --%>
 
-<%@page import="Modelos.Pessoa"%>
+<%@page import="model.Aluno"%>
+<%@page import="model.Pessoa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="wizard-container">
                             <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:auto;">
-                                <% if(usuario.instanceOf(Aluno)){ %>
+                                <% if(usuario instanceof Aluno){ %>
 									<form action="CadastrarAluno" method="post" name="formCadastro">
 								<%}else{%>
 									<form action="CadastrarServidor" method="post" name="formCadastro">

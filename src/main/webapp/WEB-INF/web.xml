@@ -70,12 +70,12 @@
     <!-- 6 -->
     <servlet-mapping>
         <servlet-name>pesquisaModulos</servlet-name>
-        <url-pattern>/pesquisaModulos</url-pattern>
+        <url-pattern>/view/adm/pesquisaModulos</url-pattern>
     </servlet-mapping>
     <!-- 7 -->
     <servlet-mapping>
         <servlet-name>pesquisaUsuario</servlet-name>
-        <url-pattern>/pesquisaUsuario</url-pattern>
+        <url-pattern>/view/adm/pesquisaUsuario</url-pattern>
     </servlet-mapping>
     
     <!-- Filtros -->

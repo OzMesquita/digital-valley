@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
 <%@page import="javafx.scene.control.Alert"%>
@@ -215,22 +216,17 @@
         }
         
         //usuarios
-        Vector usuarios;
+        List<Pessoa> usuarios;
         if(mostra.equals("perfil")){
             usuarios = new Vector();
-            usuarios.add("Aluno");
-            usuarios.add("Administrador");
-            usuarios.add("Coordenador");
-            usuarios.add("Professor");
-            usuarios.add("Secretário");
-            usuarios.add("Servidor");
+            
             
         }else{
             if(session.getAttribute("usuarios")== null){
                 usuarios = null;
             }
             else{
-                usuarios = (Vector<Pessoa>) session.getAttribute("usuarios");
+                usuarios = (List<Pessoa>) session.getAttribute("usuarios");
             }
         }
         //modulos disponiveis
@@ -286,7 +282,7 @@
                                     </form>
                                 </div>
                                 <div id="busca">
-                                    <form action="PesquisaUsuario.java" method="get">
+                                    <form action="pesquisaUsuario" method="get">
                                         <input id="txt_busca" type="search" name="busca" <% if(mostra.equals("Usuarios")){%> autofocus="true" <%}else{%>disabled <%}%> placeholder="Buscar por usuários..."/>
                                         <img style="margin-left: -5%;" src="assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
                                         <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários" <% if(!mostra.equals("Usuarios")){%>disabled<%}%>/>
@@ -309,10 +305,10 @@
                                                         <%if(usuarios != null){
                                                             if(mostra.equals("perfil")){ 
                                                                 for(int i=0;i<usuarios.size();i++){%>
-                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
+                                                                <option value="<%= usuarios.get(i).getNome() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option> 
                                                             <%}}else{
                                                                 for(int i=0;i<usuarios.size();i++){%>
-                                                                <option value="<%= usuarios.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option>
+                                                                <option value="<%= usuarios.get(i).getNome() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i) %> </option>
                                                             <%}}
                                                         }else{%>
                                                             <option disabled="disable">(Faça uma busca por usuário)</option>
