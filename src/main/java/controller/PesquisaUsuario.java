@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Pessoa;
 import model.Usuario;
+import util.Facade;
 
 /**
  *
@@ -34,13 +36,9 @@ public class PesquisaUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
             
             HttpSession session = request.getSession();
-            Vector usuarios = new Vector();
             String nome = request.getParameter("busca");
             
-            Usuario selecionado = new Usuario(); //recupere os usuarios buscados pelo nome deles
-            //adicione ele no vector
-            usuarios.add(selecionado);
-            
+            Vector<Pessoa> usuarios = (Vector) Facade.buscarPessoaPorNome(nome);
             
             session.setAttribute("usuarios", usuarios);
             response.sendRedirect("TelaADM.jsp");

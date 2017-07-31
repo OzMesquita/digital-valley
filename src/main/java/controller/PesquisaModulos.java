@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Pessoa;
 import model.Usuario;
 import util.Facade;
 
@@ -37,13 +38,15 @@ public class PesquisaModulos extends HttpServlet {
         
         int id = Integer.parseInt(request.getParameter("busca"));
         
-        Usuario selecionado = new Usuario(); //recupere o usuario selecionado pelo id dele
+        Pessoa selecionado = Facade.buscarPessoaPorId(id);
         
-        Vector modulosDisponiveis = new Vector();
-        Vector modulosCadastrados = new Vector();
+        Vector modulosDisponiveis; 
+        Vector modulosCadastrados;
         
-        modulosCadastrados = (Vector) Facade.buscarModulosPorPessoas(selecionado.getPessoa());
+        modulosCadastrados = (Vector) Facade.buscarModulosPorPessoas(selecionado);
         modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+        
+        modulosDisponiveis.removeAll(modulosCadastrados);
         
         session.setAttribute("modulosDisponiveis", modulosDisponiveis);
         session.setAttribute("modulosCadastrados", modulosCadastrados);

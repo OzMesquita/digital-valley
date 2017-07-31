@@ -235,6 +235,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
+
 	@Override
 	public List<Pessoa> buscarPorNome(String nome){
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -270,6 +271,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
 
 		}
+
 	}
 
 }

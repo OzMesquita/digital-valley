@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="model.Modulo"%>
 <%@page import="javafx.scene.control.Alert"%>
 <%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -231,8 +232,8 @@
             }
         }
         //modulos disponiveis
-        Vector modulosDisponiveis = new Vector();
-        Vector modulosCadastrados = new Vector();
+        Vector<Modulo> modulosDisponiveis = new Vector();
+        Vector<Modulo> modulosCadastrados = new Vector();
         if(selecionado != null){
             if(session.getAttribute("modulosDisponiveis")== null){
                 modulosDisponiveis = new Vector();
@@ -324,7 +325,7 @@
                                                   <select id="selectmultipleDisp" name="selectmultipleDisponivel" class="form-control" multiple="multiple" size="15">
                                                     <%if(selecionado!= null){
                                                          for(int i=0;i<modulosDisponiveis.size();i++){%>
-                                                            <option value="<%= modulosDisponiveis.get(i) %>"><%= modulosDisponiveis.get(i) %> </option>  
+                                                            <option value="<%= modulosDisponiveis.get(i).getId() %>"><%= modulosDisponiveis.get(i).getTitulo() %> </option>  
                                                         <%}}else{%>
                                                         <option disabled="disable">(Selecione algum usuário)</option>
                                                     <%}%>
@@ -353,7 +354,7 @@
                                                         <select id="selectmultipleCad" name="selectmultipleCadastrado" class="form-control" multiple="multiple" size="15">
                                                             <%if(selecionado!= null){
                                                                 for(int i=0;i<modulosCadastrados.size();i++){%>
-                                                                    <option value="<%= modulosCadastrados.get(i) %>" ><%= modulosCadastrados.get(i) %></option>
+                                                                    <option value="<%= modulosCadastrados.get(i).getId() %>" ><%= modulosCadastrados.get(i).getTitulo() %></option>
                                                             <%}}else{%>
                                                                 <option disabled="disable">(Selecione algum usuário)</option>
                                                             <%}%>
