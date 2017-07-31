@@ -14,10 +14,14 @@ public interface AlunoDAO{
 	
 	public Aluno buscarPorMatricula(String matricula);
 	
+	public List<Aluno> buscarPorNome(String nome);
+	
 	public List<Aluno> listar();
 	
 	public void editar(Aluno aluno);
 	
 	public boolean buscarPreCadastro(String matricula, String nome);
+	
+	
 
 }

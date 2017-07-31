@@ -86,5 +86,19 @@ public class AlunoDAOTest {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		Assert.assertTrue(aDAO.buscarPreCadastro("370178", "DEYVISON nogueira"));
 	}
+	
+	@Test
+	public void testBuscarNome(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		List<Aluno> alunos = aDAO.buscarPorNome("tagila");
+		
+		System.out.println("Listar alunos: "+alunos.size());
+		for(Aluno a: alunos){
+			System.out.println("curso "+a.getCurso().getNome());
+			System.out.println("Matricula "+a.getMatricula());
+			System.out.println("Nome "+a.getNome());
+		}
+		Assert.assertTrue(alunos != null);
+	}
 
 }

@@ -32,8 +32,13 @@
     </servlet>
     <!-- 6 -->
     <servlet>
-        <servlet-name>PesquisaModulos</servlet-name>
-        <servlet-class>controller.PesquisaModuloController</servlet-class>
+        <servlet-name>pesquisaModulos</servlet-name>
+        <servlet-class>controller.PesquisaModulos</servlet-class>
+    </servlet>
+    <!-- 7 -->
+    <servlet>
+        <servlet-name>pesquisaUsuario</servlet-name>
+        <servlet-class>controller.PesquisaUsuario</servlet-class>
     </servlet>
     
     <!-- Mapaeamento Servlets  -->
@@ -64,8 +69,13 @@
     </servlet-mapping>
     <!-- 6 -->
     <servlet-mapping>
-        <servlet-name>PesquisaModulos</servlet-name>
-        <url-pattern>/view/adm/PesquisaModulos</url-pattern>
+        <servlet-name>pesquisaModulos</servlet-name>
+        <url-pattern>/pesquisaModulos</url-pattern>
+    </servlet-mapping>
+    <!-- 7 -->
+    <servlet-mapping>
+        <servlet-name>pesquisaUsuario</servlet-name>
+        <url-pattern>/pesquisaUsuario</url-pattern>
     </servlet-mapping>
     
     <!-- Filtros -->

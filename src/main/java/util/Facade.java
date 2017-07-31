@@ -129,4 +129,15 @@ public class Facade {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		return sDAO.listar();
 	}
+	
+	public static Aluno buscarAlunoPorID(int id){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		return aDAO.buscar(id);
+	}
+	
+	public static List<Aluno> buscarAlunoPorNome(String nome){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		return aDAO.buscarPorNome(nome);
+	}
+	
 }
