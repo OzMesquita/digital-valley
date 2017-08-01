@@ -99,6 +99,11 @@ public class Facade {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		return mDAO.listar();
 	}
+        
+	public static Modulo buscarModulosPorId(int id) {
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		return mDAO.buscar(id);
+	}
 
 	public static boolean verificacaoAluno(String matricula, String nome) {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
