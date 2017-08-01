@@ -48,6 +48,7 @@ public class PesquisaModulos extends HttpServlet {
         
         modulosDisponiveis.removeAll(modulosCadastrados);
         
+        session.setAttribute("usuarioSelecionado", selecionado);
         session.setAttribute("modulosDisponiveis", modulosDisponiveis);
         session.setAttribute("modulosCadastrados", modulosCadastrados);
         response.sendRedirect("TelaADM.jsp");

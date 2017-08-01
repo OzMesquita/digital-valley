@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Modulo;
-
-import model.Usuario;
+import model.Pessoa;
 import util.Facade;
+
 
 public class AlterarNivel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,11 +21,18 @@ public class AlterarNivel extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		Usuario usuarioSelecionado = (Usuario)session.getAttribute("usuarioSelecionado");
+		Pessoa usuarioSelecionado = (Pessoa)session.getAttribute("usuarioSelecionado");
 		String[] modulosAdicionados = request.getParameterValues("modulosCadadastrados");
 		
+                
+                
 		Vector<Modulo> modulosCadadastrados = new Vector();
 		
+                for(int i=0;i<modulosAdicionados.length;i++){
+                    modulosCadadastrados.add(Facade.buscarModulosPorId(Integer.parseInt(modulosAdicionados[i])));
+                }
+                
+                
 		
 	}
 

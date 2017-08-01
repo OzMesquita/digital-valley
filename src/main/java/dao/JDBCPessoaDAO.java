@@ -232,7 +232,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 
-	@Override
 	public List<Pessoa> buscarPorNome(String nome){
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 

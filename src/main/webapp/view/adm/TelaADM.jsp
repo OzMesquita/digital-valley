@@ -191,35 +191,49 @@
 	
 <body>
     <%  
-        String selecionado = null;
+        Pessoa selecionado = null;
+        Perfil perfilSelecionado = null;
         String mostra = null;
         
-        //usuario selecionado
-        if(request.getParameter("usuarioSelecionado")!= null){
-            selecionado = (String) request.getParameter("usuarioSelecionado");
-        }else{selecionado = (String) session.getAttribute("usuarioSelecionado");}
-        //fazer pesquisa no banco
-        
+         
         //seleciona o que mostra
         if((String)request.getParameter("mostra") != null){
             mostra = (String) request.getParameter("mostra");
-            session.setAttribute("mostra", mostra.toLowerCase());
+            session.setAttribute("mostra", mostra);
             session.setAttribute("usuarioSelecionado", selecionado);
         }else{
             mostra = (String) session.getAttribute("mostra");
-             if(mostra==null){
+            if(mostra==null){
                 mostra = "Usuarios";
-                session.setAttribute("mostra", mostra.toLowerCase());
+                session.setAttribute("mostra", mostra);
                 selecionado = null;
                 session.setAttribute("usuarioSelecionado", selecionado);
             }
         }
         
+        //usuario selecionado
+        if(mostra.equals("Usuarios")){
+            if(session.getAttribute("usuarioSelecionado")!= null){
+                selecionado = (Pessoa) session.getAttribute("usuarioSelecionado");
+            }else{
+                selecionado = new Pessoa();
+            }
+        }
+        else{
+            if(session.getAttribute("perfilSelecionado")!= null){
+                perfilSelecionado = (Perfil) session.getAttribute("perfilSelecionado");
+            }else{
+                perfilSelecionado = new Perfil();
+            }
+        }
+        //fazer pesquisa no banco
+       
+        
         //usuarios
         Vector<Pessoa> usuarios = new Vector();
         Vector perfis = new Vector();
         
-        if(mostra.equals("perfil")){
+        if(mostra.equals("Perfil")){
             perfis.add("Aluno");
             perfis.add("Administrador");
             perfis.add("Coordenador");
@@ -309,12 +323,12 @@
                                                     <input type="hidden" id="selecionado" name="usuarioSelecionado" value=""/>
                                                     <select id="selectmultiple" name="selectmultiplePerfil" required class="form-control" multiple="multiple" size="15">
                                                         <%if(usuarios != null){
-                                                            if(mostra.equals("perfil")){ 
+                                                            if(mostra.equals("Perfil")){ 
                                                                 for(int i=0;i<perfis.size();i++){%>
-                                                                    <option value="<%= perfis.get(i) %>" onclick="mostra()" <%if(selecionado!= null){if(perfis.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= perfis.get(i) %> </option> 
+                                                                    <option value="<%= perfis.get(i) %>" onclick="mostra()" <%if(perfilSelecionado!= null){if(perfis.get(i).getId() == perfilSelecionado.getId()){%>selected="true"<%}}%>><%= perfis.get(i).getNome() %> </option> 
                                                             <%}}else{
                                                                 for(int i=0;i<usuarios.size();i++){%>
-                                                                    <option value="<%= usuarios.get(i).getId() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).toString().toLowerCase().equals(selecionado.toLowerCase())){%>selected="true"<%}}%>><%= usuarios.get(i).getNome() %> </option>
+                                                                    <option value="<%= usuarios.get(i).getId() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).getId() == selecionado.getId()){%>selected="true"<%}}%>><%= usuarios.get(i).getNome() %> </option>
                                                             <%}}
                                                         }else{%>
                                                             <option disabled="disable">(Faça uma busca por usuário)</option>
