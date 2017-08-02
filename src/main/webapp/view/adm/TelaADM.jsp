@@ -238,16 +238,20 @@
         Vector<Perfil> perfis = new Vector();
         
         if(mostra.equals("Perfil")){
-            perfis.add(new Perfil("Aluno"));
-            perfis.add(new Perfil("Administrador"));
-            perfis.add(new Perfil("Professor"));
-            perfis.add(new Perfil("Secretário"));
-            perfis.add(new Perfil("Servidor"));
-
-            
+            if(session.getAttribute("perfis")!= null){
+                perfis = (Vector<Perfil>) session.getAttribute("perfis");
+            }
+            else{ 
+                perfis = new Vector();
+            }
+            //perfis.add(new Perfil("Aluno"));
+            //perfis.add(new Perfil("Administrador"));
+            //perfis.add(new Perfil("Professor"));
+            //perfis.add(new Perfil("Secretário"));
+            //perfis.add(new Perfil("Servidor"));
         }else{
             if(session.getAttribute("usuarios")== null){
-                usuarios = null;
+                usuarios = new Vector();
             }
             else{
                 usuarios = (List<Pessoa>) session.getAttribute("usuarios");
@@ -326,7 +330,7 @@
                                                 <div id="tbls" class="col-md-3">
                                                     <input type="hidden" id="selecionado" name="usuarioSelecionado" value=""/>
                                                     <select id="selectmultiple" name="selectmultiplePerfil" required class="form-control" multiple="multiple" size="15">
-                                                        <%if(usuarios != null){
+                                                        <%if(usuarios != null || perfis!= null){
                                                             if(mostra.equals("Perfil")){ 
                                                                 for(int i=0;i<perfis.size();i++){%>
                                                                     <option value="<%= perfis.get(i) %>" onclick="mostra()" <%if(perfilSelecionado!= null){if(perfis.get(i).getId() == perfilSelecionado.getId()){%>selected="true"<%}}%>><%= perfis.get(i).getNome() %> </option> 

@@ -16,7 +16,7 @@ import model.Pessoa;
 import model.Servidor;
 import model.Usuario;
 import model.Modulo;
-import util.DAOFactory;
+import model.Perfil;
 
 public class Facade {
 
@@ -94,6 +94,11 @@ public class Facade {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		return mDAO.buscar(pessoa);
 	}
+        
+	public static List<Modulo> buscarModulosPorPerfil(Perfil perfil) {
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		return mDAO.buscar(perfil);
+	}
 	
 	public static List<Modulo> buscarTodosModulos() {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
@@ -157,6 +162,11 @@ public class Facade {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		return pDAO.buscarPorNome(nome);
 	}
+        
+        public static Perfil buscaPerfilPorId(int id){
+            PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+            return pDAO.buscarPorId(id);
+        }
 	
 	
 	

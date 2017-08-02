@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Perfil;
 import model.Pessoa;
 import model.Usuario;
 import util.Facade;
@@ -36,19 +37,24 @@ public class PesquisaModulos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         
-        int id = Integer.parseInt(request.getParameter("busca"));
-        
-        Pessoa selecionado = Facade.buscarPessoaPorId(id);
-        
         Vector modulosDisponiveis; 
         Vector modulosCadastrados;
+        int id = Integer.parseInt(request.getParameter("busca"));
         
-        modulosCadastrados = (Vector) Facade.buscarModulosPorPessoas(selecionado);
-        modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+        if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
+            Pessoa selecionado = Facade.buscarPessoaPorId(id);
+            modulosCadastrados = (Vector) Facade.buscarModulosPorPessoas(selecionado);
+            modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+            modulosDisponiveis.removeAll(modulosCadastrados);
+            session.setAttribute("usuarioSelecionado", selecionado);
+        }else{
+            Perfil perfilSelecionado = Facade.buscaPerfilPorId(id);
+            modulosCadastrados = (Vector) Facade.buscarModulosPorPerfil(perfilSelecionado);
+            modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+            modulosDisponiveis.removeAll(modulosCadastrados);
+            session.setAttribute("perfilSelecionado", perfilSelecionado);
         
-        modulosDisponiveis.removeAll(modulosCadastrados);
-        
-        session.setAttribute("usuarioSelecionado", selecionado);
+        }
         session.setAttribute("modulosDisponiveis", modulosDisponiveis);
         session.setAttribute("modulosCadastrados", modulosCadastrados);
         response.sendRedirect("TelaADM.jsp");
