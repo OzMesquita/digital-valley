@@ -98,18 +98,18 @@
                                                                 <h4 class="title">Importação de Matriculas</h4>
                                                             </div>
                                                             <div class="content">
-                                                                <form action="atualizacao" method="post" enctype="multipart/form-data" style="margin-left: 20%;">
+                                                                <form action="importar" method="post" style="margin-left: 20%;">
                                                                     <div class="row">
                                                                         <div class="col-md-8">
                                                                             <div class="form-group">
                                                                                 <label>Curso</label>
-                                                                                <select class="form-control">
-                                                                                    <option disabled="disable" selected="">Selecione</option>
-                                                                                    <option value="ciencia da computacao"> Ciência da Computação</option>
-                                                                                    <option value="engenharia civil"> Engenharia Civil</option>
-                                                                                    <option value="engenharia mecânica"> Engenharia Mecânica</option>
-                                                                                    <option value="engenharia de produção"> Engenharia de Produção</option>
-                                                                                    <option value="engenharia de software"> Engenharia de Software</option>
+                                                                                <select class="form-control"  name="curso">
+                                                                                    <option disabled="disable" selected="">Selecione um curso</option>
+                                                                                    <option value="1"> Ciência da Computação</option>
+                                                                                    <option value="2"> Engenharia Civil</option>
+                                                                                    <option value="3"> Engenharia de Produção</option>
+                                                                                    <option value="4"> Engenharia de Software</option>
+                                                                                    <option value="5"> Engenharia Mecânica</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -117,8 +117,8 @@
                                                                     <div class="row">
                                                                         <div class="col-md-8">
                                                                             <div class="form-group">
-                                                                                <label>Arquivo</label><small style="color: gray;"> (.txt)</small>
-                                                                                <input type="file" accept="" value="">
+                                                                                <label>Matriculas</label><small style="color: gray;"> </small><br>
+                                                                                <textarea name="matriculas" rows="10" cols="50"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>

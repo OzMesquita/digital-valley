@@ -21,40 +21,25 @@ public class ImportacaoController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*Part part = request.getPart("owlFile");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(part.getInputStream()));
-		String line;
-		StringBuffer sb = new StringBuffer();
-		while ((line = reader.readLine()) != null) {
+		int curso = Integer.valueOf(request.getParameter("curso"));
+		String dados = request.getParameter("matriculas");
+		//dados.trim();
+		String nome, matricula;
+		String aux;
+
+		while(dados.length() >=6){
 			
-		}*/
-		Part arquivo = request.getPart("arquivo") ;
-		String curso = request.getParameter("curso");
-		System.out.println(curso);
-		String caminho = request.getServletContext().getRealPath("");
-		File fileSaveDir = new File(caminho);
-		if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-		System.out.println(caminho);
-		arquivo.write(caminho);
-		caminho += arquivo.getSubmittedFileName(); 
-		
-		FileReader file = new FileReader(caminho);
-		BufferedReader reader = new BufferedReader(file);
-		String ler = reader.readLine();
-		String matricula;
-		String nome;
-		while(ler != null ){
-			
-			matricula = ler.substring(0, 6);
-			nome = ler.substring(7);
-			ler = reader.readLine();
-			
+			matricula = dados.substring(0,6);
+			nome = dados.substring(6,dados.indexOf("\n"));
 			System.out.println(matricula+" "+nome);
-			util.Facade.preCadastrarAluno(nome, matricula, Integer.valueOf(curso));
+			util.Facade.preCadastrarAluno(nome, matricula, curso);
+			aux = dados.replace(matricula, "");
+			dados = aux;
+			aux = dados.replace(nome+"\n", "");
+			dados = aux;
+			System.out.println("inicioAUx"+aux);
 			
 		}
-		reader.close();
+		response.sendRedirect("importarMatriculas.jsp?sucesso=1");
 	}
 }
