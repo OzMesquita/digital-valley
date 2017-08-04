@@ -36,6 +36,12 @@ public class JDBCServidorDAO implements ServidorDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar servidor em JDBCServidorDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -56,19 +62,23 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 				servidor.setSiape(rs.getString("siape"));
 				
-				ps.close();
-				rs.close();
-				return servidor;
 
 			}
 			ps.close();
 			rs.close();
-			return null;
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		return servidor;
 	}
 	
 	public Servidor buscarPorSiape(String siape){
@@ -100,6 +110,12 @@ public class JDBCServidorDAO implements ServidorDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -129,9 +145,15 @@ public class JDBCServidorDAO implements ServidorDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
-		return null;
+		return servidores;
 	}
 	
 	@Override
@@ -162,6 +184,12 @@ public class JDBCServidorDAO implements ServidorDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro do servidor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -71,6 +71,13 @@
         
 </head>
 <body>
+	<%if(session.getAttribute("excecao")!= null){ %>
+		<p><%=session.getAttribute("excecao") %></p>
+	<% 
+		session.removeAttribute("exececao");
+	}%>
+
+
 	<div id ="tudo" class="wrapper">   
 		<div class="main-panel" style=" border: 1px solid; border-radius:10px;">
 			<nav class="navbar navbar-default navbar-fixed">
@@ -104,7 +111,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Curso</label>
                                                                                 <select class="form-control"  name="curso">
-                                                                                    <option disabled="disable" selected="">Selecione um curso</option>
+                                                                                    <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
                                                                                     <option value="1"> Ciência da Computação</option>
                                                                                     <option value="2"> Engenharia Civil</option>
                                                                                     <option value="3"> Engenharia de Produção</option>

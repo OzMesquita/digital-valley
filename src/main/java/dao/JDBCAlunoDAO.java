@@ -40,7 +40,13 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar um aluno em JDBCAlunoDAO", e);
+			throw new RuntimeException("Falha ao cadastrar um aluno:"+ e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -61,7 +67,13 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao pre cadastrar um aluno em JDBCAlunoDAO", e);
+			throw new RuntimeException("Falha ao cadastrar um aluno:"+ e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -103,6 +115,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override
@@ -144,6 +162,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override
@@ -181,6 +205,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
 
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -219,6 +249,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
 
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -239,6 +275,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -270,6 +312,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

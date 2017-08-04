@@ -40,6 +40,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar módulo em JDBCModuloDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -60,6 +66,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar módulo em JDBCModuloDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -79,6 +91,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -109,6 +127,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de modulo", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -143,6 +167,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -170,6 +200,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return null;

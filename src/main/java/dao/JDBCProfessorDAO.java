@@ -34,6 +34,12 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar professor em JDBCProfessorDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -50,6 +56,12 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar registro de professor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -85,6 +97,12 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de professor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -119,6 +137,12 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar professor em JDBCProfessorDAO", e);
 
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

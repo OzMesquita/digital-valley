@@ -37,7 +37,13 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar usuarios em JDBCUsuaruioDAO", e);
-		} 
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
@@ -57,6 +63,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("Erro ao editar registro de usuario", e);
+			}finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 
 	}
@@ -81,6 +93,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro: login e senha inválidos");
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}
@@ -100,6 +118,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erroao editar nível de usuario");
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
