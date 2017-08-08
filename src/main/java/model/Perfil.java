@@ -9,7 +9,12 @@ public class Perfil {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		if(this.nome != null){
+			this.nome = nome;
+		}else{
+			throw new IllegalArgumentException("Erro: O parâmetro nome não pode ser nulo ou vazio, valor informado " + nome);
+		}
+		
 	}
 
 	public int getId() {
@@ -17,7 +22,11 @@ public class Perfil {
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		if(id >0){
+			this.id = id;
+		}else{
+			throw new IllegalArgumentException("Erro: O parâmetro nome não pode ser nulo ou menor que 1, valor informado " + id);
+		}
 	}
 
 	public Perfil() {
@@ -30,6 +39,5 @@ public class Perfil {
 		this.nome = nome;
 	}
 	
-	//CLASSE INICIAD PELO GILBERTO LIMA
 	
 }

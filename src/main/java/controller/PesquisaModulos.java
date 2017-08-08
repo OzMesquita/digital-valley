@@ -6,12 +6,15 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.Modulo;
 import model.Perfil;
 import model.Pessoa;
 import model.Usuario;
@@ -36,21 +39,23 @@ public class PesquisaModulos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
-        Vector modulosDisponiveis; 
-        Vector modulosCadastrados;
+        System.out.println("entrou servlet modulo");
+        List<Modulo> modulosDisponiveis; 
+        List<Modulo> modulosCadastrados;
         int id = Integer.parseInt(request.getParameter("busca"));
         
         if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
+        	System.out.println("entrou if");
             Pessoa selecionado = Facade.buscarPessoaPorId(id);
-            modulosCadastrados = (Vector) Facade.buscarModulosPorPessoas(selecionado);
-            modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+            modulosCadastrados = (List<Modulo>) Facade.buscarModulosPorPessoas(selecionado);
+            modulosDisponiveis = (List<Modulo>) Facade.buscarTodosModulos();
             modulosDisponiveis.removeAll(modulosCadastrados);
             session.setAttribute("usuarioSelecionado", selecionado);
         }else{
+        	System.out.println("else");
             Perfil perfilSelecionado = Facade.buscaPerfilPorId(id);
-            modulosCadastrados = (Vector) Facade.buscarModulosPorPerfil(perfilSelecionado);
-            modulosDisponiveis = (Vector) Facade.buscarTodosModulos();
+            modulosCadastrados = (List<Modulo>) Facade.buscarModulosPorPerfil(perfilSelecionado);
+            modulosDisponiveis = (List<Modulo>) Facade.buscarTodosModulos();
             modulosDisponiveis.removeAll(modulosCadastrados);
             session.setAttribute("perfilSelecionado", perfilSelecionado);
         

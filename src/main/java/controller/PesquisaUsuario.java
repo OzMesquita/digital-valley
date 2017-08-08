@@ -30,7 +30,7 @@ public class PesquisaUsuario extends HttpServlet {
             HttpSession session = request.getSession();
             String nome = request.getParameter("busca");
             
-            List<Pessoa> usuarios = (List) Facade.buscarPessoaPorNome(nome);
+            List<Pessoa> usuarios = (List<Pessoa>) Facade.buscarPessoaPorNome(nome);
             
             session.setAttribute("usuarios", usuarios);
             response.sendRedirect("TelaADM.jsp");

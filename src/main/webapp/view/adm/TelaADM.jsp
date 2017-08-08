@@ -476,7 +476,7 @@
                     var x = document.getElementById('selectmultiple');
                     var itemSelecionado = x.options[x.selectedIndex].text;
                     document.getElementById('selecionado').value = itemSelecionado;
-                    document.location.href = 'PesquisaModulos?busca='+document.getElementById('selecionado').value+'';
+                    document.location.href = 'pesquisaModulos?busca='+document.getElementById('selecionado').value+'';
                 }
         </script>
         

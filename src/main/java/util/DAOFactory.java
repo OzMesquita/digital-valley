@@ -8,6 +8,7 @@ import dao.JDBCProfessorDAO;
 import dao.JDBCServidorDAO;
 import dao.JDBCUsuarioDAO;
 import dao.ModuloDAO;
+import dao.PerfilDAO;
 import dao.PessoaDAO;
 import dao.ProfessorDAO;
 import dao.ServidorDAO;
@@ -36,5 +37,9 @@ public class DAOFactory {
 	
 	public static ProfessorDAO criarProfessorDAO(){
 		return new JDBCProfessorDAO();
+	}
+	
+	public static PerfilDAO criarPerfilDAO(){
+		return null;
 	}
 }

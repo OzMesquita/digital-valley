@@ -14,13 +14,15 @@ import util.ConnectionFactory;
 
 public class JDBCPessoaDAO implements PessoaDAO {
 
-	Connection connection;
+	private Connection connection;
 
 	public JDBCPessoaDAO() {
 
-		connection = ConnectionFactory.getConnection();
+		this.connection = ConnectionFactory.getConnection();
 
 	}
+	
+	
 
 	@Override
 	public void cadastrar(Pessoa pessoa) {

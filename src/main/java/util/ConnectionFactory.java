@@ -14,7 +14,5 @@ public class ConnectionFactory {
 		}
 	}
 	
-	public static void close(){
-		
-	}
+	
 }
