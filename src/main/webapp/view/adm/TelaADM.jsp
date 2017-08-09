@@ -5,13 +5,13 @@
 --%>
 
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.Perfil"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
 <%@page import="javafx.scene.control.Alert"%>
-<%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
@@ -235,14 +235,14 @@
         //usuarios
 
         List<Pessoa> usuarios = (List<Pessoa>) session.getAttribute("usuarios");
-        Vector<Perfil> perfis = new Vector();
+        List<Perfil> perfis = new ArrayList<>();
         
         if(mostra.equals("Perfil")){
             if(session.getAttribute("perfis")!= null){
-                perfis = (Vector<Perfil>) session.getAttribute("perfis");
+                perfis = (List<Perfil>) session.getAttribute("perfis");
             }
             else{ 
-                perfis = new Vector();
+                perfis = new ArrayList<>();
             }
             //perfis.add(new Perfil("Aluno"));
             //perfis.add(new Perfil("Administrador"));
@@ -251,28 +251,28 @@
             //perfis.add(new Perfil("Servidor"));
         }else{
             if(session.getAttribute("usuarios")== null){
-                usuarios = new Vector();
+                usuarios = new ArrayList<>();
             }
             else{
                 usuarios = (List<Pessoa>) session.getAttribute("usuarios");
             }
         }
         //modulos disponiveis
-        Vector<Modulo> modulosDisponiveis = new Vector();
-        Vector<Modulo> modulosCadastrados = new Vector();
+        List<Modulo> modulosDisponiveis = new ArrayList<>() ;
+        List<Modulo> modulosCadastrados = new ArrayList<>();
         if(selecionado != null){
             if(session.getAttribute("modulosDisponiveis")== null){
-                modulosDisponiveis = new Vector();
+                modulosDisponiveis = new ArrayList<>();
             }
             else{
-                modulosDisponiveis = (Vector) session.getAttribute("modulosDisponiveis");
+                modulosDisponiveis = (List<Modulo>) session.getAttribute("modulosDisponiveis");
             }
         //modulos cadastrados
             if(session.getAttribute("modulosCadastrados")== null){
-                modulosCadastrados = new Vector();
+                modulosCadastrados = new ArrayList<>();
             }
             else{
-                modulosCadastrados = (Vector) session.getAttribute("modulosCadastrados");
+                modulosCadastrados = (List<Modulo>) session.getAttribute("modulosCadastrados");
             }
         }
     %>
@@ -474,7 +474,7 @@
        <script>
                 function mostra(){
                     var x = document.getElementById('selectmultiple');
-                    var itemSelecionado = x.options[x.selectedIndex].text;
+                    var itemSelecionado = x.options[x.selectedIndex].value;
                     document.getElementById('selecionado').value = itemSelecionado;
                     document.location.href = 'pesquisaModulos?busca='+document.getElementById('selecionado').value+'';
                 }
