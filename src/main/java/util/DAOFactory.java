@@ -3,6 +3,7 @@ package util;
 import dao.AlunoDAO;
 import dao.JDBCAlunoDAO;
 import dao.JDBCModuloDAO;
+import dao.JDBCPerfilDAO;
 import dao.JDBCPessoaDAO;
 import dao.JDBCProfessorDAO;
 import dao.JDBCServidorDAO;
@@ -40,6 +41,6 @@ public class DAOFactory {
 	}
 	
 	public static PerfilDAO criarPerfilDAO(){
-		return null;
+		return new JDBCPerfilDAO();
 	}
 }

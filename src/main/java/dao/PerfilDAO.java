@@ -10,7 +10,7 @@ public interface PerfilDAO {
 	
 	public void editar(Perfil perfil);
 	
-	public void excluir(Perfil perfil);
+	public void excluir(int id);
 	
 	public Perfil buscarPorId(int id);
 	

@@ -31,7 +31,7 @@ public class Perfil {
 
 	public Perfil() {
 		super();
-		this.nome = "PADRÃO";
+		this.nome = "";
 	}
 	
 	public Perfil(String nome) {
