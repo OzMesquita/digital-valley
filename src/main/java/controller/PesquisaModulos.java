@@ -45,14 +45,12 @@ public class PesquisaModulos extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("busca"));
         
         if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
-        	System.out.println("entrou if");
             Pessoa selecionado = Facade.buscarPessoaPorId(id);
             modulosCadastrados = (List<Modulo>) Facade.buscarModulosPorPessoas(selecionado);
             modulosDisponiveis = (List<Modulo>) Facade.buscarTodosModulos();
             modulosDisponiveis.removeAll(modulosCadastrados);
             session.setAttribute("usuarioSelecionado", selecionado);
         }else{
-        	System.out.println("else");
             Perfil perfilSelecionado = Facade.buscaPerfilPorId(id);
             modulosCadastrados = (List<Modulo>) Facade.buscarModulosPorPerfil(perfilSelecionado);
             modulosDisponiveis = (List<Modulo>) Facade.buscarTodosModulos();
