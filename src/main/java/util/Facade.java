@@ -169,6 +169,15 @@ public class Facade {
          //   return pDAO.buscarPorId(id);
         	return null;
         }
+
+    public static void AdicionarModulosParaUsuario(int id, Modulo modulosCadadastrado) {
+
+
+    }
+
+    public static void AdicionarModulosParaPerfil(int id, Modulo modulosCadadastrado) {
+
+    }
 	
 	
 	
