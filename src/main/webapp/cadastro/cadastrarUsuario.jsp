@@ -30,6 +30,13 @@
         <link rel="stylesheet" href="../assets2/css/newcss.css" type="text/css" />
     </head>
     <body>
+    
+    <%if(session.getAttribute("excecao")!= null){ %>
+		<p><%=session.getAttribute("excecao") %></p>
+	<% 
+		session.removeAttribute("excecao");
+	}%>
+    
         <% if( session.getAttribute("msg")== null){
             session.setAttribute("msg", " ");
         } %>
@@ -39,7 +46,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="wizard-container">
                             <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:auto;">
-                                <form action="CadastroUsuario.jsp" method="post" name="formCadastro">
+                                <form action="<%= session.getAttribute("nomeA") != null ? "cadastroAluno" : "cadastroServidor" %>" method="post" name="formCadastro">
                                     <div class="wizard-header">
                                         <h3>
                                            <b>Sistema Controle de Acesso</b> <br>
@@ -60,27 +67,35 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Nome Completo </label>
-                                                        <input name="nome" type="text" class="form-control">
+                                                        <input name="nome" type="text" class="form-control"  value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("nomeA") : session.getAttribute("nomeS") %>" readonly="true" >
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Código Interno </label>
-                                                        <input name="codigo" type="text" class="form-control">
+                                                        <input name="codigo" type="text" class="form-control" value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("matricula") : session.getAttribute("siape") %>" readonly="true">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Curso </label>
-                                                        <input name="curso" type="text" class="form-control">
-                                                    </div>
+                                                    <%if(session.getAttribute("nomeA")!=null){
+                                                    	%>
+                                                    	<label>Curso</label>
+                                                            <select class="form-control"  name="curso">
+                                                                <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
+                                                                <option value="1"> Ciência da Computação</option>
+                                                                <option value="2"> Engenharia Civil</option>
+                                                                <option value="3"> Engenharia de Produção</option>
+                                                                <option value="4"> Engenharia de Software</option>
+                                                                <option value="5"> Engenharia Mecânica</option>
+                                                            </select>
+                                                   <%} %>
                                                     <div class="form-group">
                                                         <label>CPF </label>
                                                         <input name="cpf" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="14" placeholder="012.345.678-90" OnKeyPress=" this.value = FormataCpf()">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Data de Nascimento </label>
-                                                        <input name="nascimento" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="10"  placeholder="12-34-5679" pattern="^\d{2}-\d{2}-\d{4}$" onkeypress="formatar('##/##/####',this)">
+                                                        <input name="nascimento" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="10"  placeholder="12/34/5679" pattern="^\d{2}-\d{2}-\d{4}$" onkeypress="formatar('##/##/####',this)">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>E-mail </label>
-                                                        <input name="e_mail" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Examplo@gmail.com">
+                                                        <input name="email" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Examplo@gmail.com">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Login </label>
@@ -92,7 +107,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Confirmar Senha </label>
-                                                        <input name="confirmaSenha" title="Preencha este campo corretamente" type="password" class="form-control"  required  placeholder="Digite a senha novamente" onchange="validaSenha()">
+                                                        <input name="senha2" title="Preencha este campo corretamente" type="password" class="form-control"  required  placeholder="Digite a senha novamente" onchange="validaSenha()">
                                                     </div>
                                                     <div id="c_russas"  >
                                                         <h3 style=" margin-left: 50%;">

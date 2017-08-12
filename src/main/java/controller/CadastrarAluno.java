@@ -20,13 +20,13 @@ public class CadastrarAluno extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
-		String dataNasci = request.getParameter("dataNasci");
+		String dataNasci = request.getParameter("nascimento");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 
-		String pagina = "cadastraAluno.jsp?erroCadastro=1";
+		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
 				Aluno aluno = new Aluno();
@@ -44,12 +44,15 @@ public class CadastrarAluno extends HttpServlet {
 
 				Facade.cadastrarPessoa(aluno, usuario);
 
-				pagina = "login.jsp";
+				pagina = "../login.jsp";
+			}else{
+				pagina="cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 			
 		} catch (Exception e) {
-			session.setAttribute("exececao", e.getMessage());
+			System.out.println(e.getMessage());
+			session.setAttribute("excecao", e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

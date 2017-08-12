@@ -27,7 +27,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			
 			ps.setString(1, usuario.getLogin());
 			ps.setString(2, usuario.getSenha());
-			ps.setInt(3, usuario.getNivel().getValorNivel());
+			ps.setInt(3, usuario.getNivel() != null ? usuario.getNivel().getValorNivel() : 2);
 			ps.setInt(4, usuario.getPessoa().getId());
 			ps.executeUpdate();
 			ps.close();

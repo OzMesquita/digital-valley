@@ -27,13 +27,14 @@ public class VerificarCadastro extends HttpServlet {
 		String nomeS = request.getParameter("nomeS");
 		String pagina = "verificacaoCadastro.jsp?erroVerificacao=1";
 		HttpSession session = request.getSession();
-		System.out.println("servlet");
+
 		try {
 			if (!matricula.equals("")) {
 				if(Facade.verificacaoAluno(matricula, nomeA)){
 					pagina = "cadastro/cadastrarUsuario.jsp";
 					session.setAttribute("preCadastro", "ok");
-					System.out.println("entrou");
+					session.setAttribute("nomeA", nomeA);
+					session.setAttribute("matricula", matricula);
 				}else{
 					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);
@@ -48,11 +49,13 @@ public class VerificarCadastro extends HttpServlet {
 				
 				
 			}else if(!siape.equals("")){
-				System.out.println("nome: "+nomeS+" Siape: "+siape);
+				
 				if(Facade.verificacaoServidor(siape, nomeS)){
 					pagina = "cadastro/cadastrarUsuario.jsp";
 					session.setAttribute("preCadastro", "ok");
-					System.out.println("entrou");
+					session.setAttribute("nomeS", nomeS);
+					session.setAttribute("siape", siape);
+					
 				}else{
 					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 					Servidor servidor = sDAO.buscar(siape);

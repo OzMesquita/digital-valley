@@ -54,6 +54,9 @@ public class Usuario implements Serializable {
 	public EnumNivel getNivel() {
 		return nivel;
 	}
+	
+	
+	
 	public void setNivel(EnumNivel nivel) {
 		this.nivel = nivel;
 	}

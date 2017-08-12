@@ -74,7 +74,7 @@
 	<%if(session.getAttribute("excecao")!= null){ %>
 		<p><%=session.getAttribute("excecao") %></p>
 	<% 
-		session.removeAttribute("exececao");
+		session.removeAttribute("excecao");
 	}%>
 
 

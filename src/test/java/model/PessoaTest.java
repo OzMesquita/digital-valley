@@ -8,7 +8,7 @@ public class PessoaTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void cpfInvalido(){
 		Pessoa p = new Pessoa();
-		p.setCpf("1234567891011");
+		p.setCpf("123.456.789-110");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -32,7 +32,7 @@ public class PessoaTest {
 		Pessoa p = new Pessoa();
 		p.setNome("Deyvison");
 		p.setCpf("12345678910");
-		p.setEmail("email@.com");
+		p.setEmail("ramo@gmail.com");
 		p.setDataNascimento("01/12/2000");
 	}
 	

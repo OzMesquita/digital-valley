@@ -59,7 +59,7 @@ public class Pessoa implements Serializable{
 	}
 
 	public void setCpf(String cpf) {
-		if (cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}([0-9]{2})$")) {
+		if (cpf.matches("^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?([0-9]{2})$")) {
 			this.cpf = cpf;
 		} else {
 			throw new IllegalArgumentException(

@@ -41,6 +41,12 @@
         <servlet-class>controller.PesquisaUsuario</servlet-class>
     </servlet>
     
+    <!-- 8 -->
+    <servlet>
+        <servlet-name>CadastraUsuario</servlet-name>
+        <servlet-class>controller.CadastrarAluno</servlet-class>
+    </servlet>
+    
     <!-- Mapaeamento Servlets  -->
     <!-- 1 -->
     <servlet-mapping>
@@ -76,6 +82,12 @@
     <servlet-mapping>
         <servlet-name>pesquisaUsuario</servlet-name>
         <url-pattern>/view/adm/pesquisaUsuario</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 8 -->
+    <servlet-mapping>
+        <servlet-name>CadastraUsuario</servlet-name>
+        <url-pattern>/cadastro/cadastroAluno</url-pattern>
     </servlet-mapping>
     
     <!-- Filtros -->

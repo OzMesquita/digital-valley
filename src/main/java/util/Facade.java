@@ -21,10 +21,11 @@ import model.Perfil;
 public class Facade {
 
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
-
+		System.out.println("entrou fachada");
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		pessoaDAO.cadastrar(pessoa);
+		pessoaDAO = util.DAOFactory.criarPessoaDAO();
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
