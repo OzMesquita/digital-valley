@@ -35,6 +35,7 @@ public class VerificarCadastro extends HttpServlet {
 					session.setAttribute("preCadastro", "ok");
 					session.setAttribute("nomeA", nomeA);
 					session.setAttribute("matricula", matricula);
+					session.setAttribute("curso", util.Facade.buscarCursoPreCadastrado(matricula, nomeA));
 				}else{
 					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);

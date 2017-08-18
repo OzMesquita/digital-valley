@@ -4,6 +4,7 @@
     Author     : N2S-PC03
 --%>
 
+<%@page import="model.EnumCurso"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -74,16 +75,12 @@
                                                         <input name="codigo" type="text" class="form-control" value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("matricula") : session.getAttribute("siape") %>" readonly="true">
                                                     </div>
                                                     <%if(session.getAttribute("nomeA")!=null){
+                                                    	
                                                     	%>
-                                                    	<label>Curso</label>
-                                                            <select class="form-control"  name="curso">
-                                                                <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
-                                                                <option value="1"> Ciência da Computação</option>
-                                                                <option value="2"> Engenharia Civil</option>
-                                                                <option value="3"> Engenharia de Produção</option>
-                                                                <option value="4"> Engenharia de Software</option>
-                                                                <option value="5"> Engenharia Mecânica</option>
-                                                            </select>
+                                                    	<div class="form-group">
+                                                        <label>Curso</label>
+                                                        <input name="curso" type="text" class="form-control" value="<%=EnumCurso.value((Integer) session.getAttribute("curso")) %>" readonly="true">
+                                                    </div>
                                                    <%} %>
                                                     <div class="form-group">
                                                         <label>CPF </label>

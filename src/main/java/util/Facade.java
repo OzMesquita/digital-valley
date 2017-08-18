@@ -128,6 +128,11 @@ public class Facade {
 		
 	}
 	
+	public static int buscarCursoPreCadastrado(String matricula, String nome){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		return aDAO.buscarCursoPreCadastrado(matricula, nome);
+	}
+	
 	public static boolean compararNomes(String nome1, String nome2){
 		return nome1.toUpperCase().equals(nome2.toUpperCase());
 	}
