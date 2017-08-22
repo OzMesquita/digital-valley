@@ -76,7 +76,7 @@
 	
 <body>
 
-	<% Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("usuarios"); %>
+	<% Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("listaDeUsuarios"); %>
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -87,15 +87,7 @@
 	                    
 	                    <a id="textB" class="navbar-brand" >Lista de Usuários</a>
 	                </div>
-	                <div class="collapse navbar-collapse">
-	                    <ul class="nav navbar-nav navbar-right">
-	                         <li>
-	                            <a id="textB" href="login.jsp">
-	                                Sair
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </div>
+	                 <%@ include file="menuDropDown.jsp"  %>
 	            </div>
 	        </nav>
 	
@@ -121,12 +113,14 @@
 			                          <th>Nível</th>
 			                      </thead>
 			                      <tbody>
+			                      	<% for(usuario : usuarios){%>
 			                          <tr>
-			                          	<td>111</td>
-			                          	<td><a href="EditarNivel.jsp">Usuário 1</a></td>
-			                          	<td>teste@gmail</td>
-			                          	<td>comum</td>
-			                          </tr>                        
+			                          	<td><%=usuario.getId() %></td>
+			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=usuario.getId() %>></a><%usuario.getNome()%></td>
+			                          	<td><%usuario.getEmail()%></td>
+			                          	<td><%usuario.getNivel()%></td>
+			                          </tr>                    
+		                          	<%}%>    
 			                      </tbody>
 			                  </table>
 			              </div>

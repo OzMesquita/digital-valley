@@ -79,15 +79,7 @@
                     
                     <a id="textB" class="navbar-brand" href="">Perfil do Usuário</a>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                         <li>
-                            <a id="textB" href="logout">
-                                Sair
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                 <%@ include file="menuDropDown.jsp"  %>
             </div>
         </nav>
 

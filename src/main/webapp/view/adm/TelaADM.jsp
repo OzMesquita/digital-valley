@@ -284,15 +284,7 @@
 	                <div class="navbar-header">
 	                    <a id="textB" class="navbar-brand" >Sistema Controle de Acesso</a>
 	                </div>
-	                <div class="collapse navbar-collapse">
-	                    <ul class="nav navbar-nav navbar-right">
-	                         <li>
-                                     <a id="textB" title="Fazer logout" href="logout.jsp">
-	                                Sair
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </div>
+	                <%@ include file="menuDropDown.jsp"  %>
 	            </div>
 	        </nav>
                 <div class="content">
