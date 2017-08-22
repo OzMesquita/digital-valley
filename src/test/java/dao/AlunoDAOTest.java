@@ -100,5 +100,11 @@ public class AlunoDAOTest {
 		}
 		Assert.assertTrue(alunos != null);
 	}
+	
+	@Test
+	public void testBuscarCursoPreCadastrado(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		Assert.assertTrue(aDAO.buscarCursoPreCadastrado("370178", "Deyvisoogueira rodrigues") ==-1 );
+	}
 
 }

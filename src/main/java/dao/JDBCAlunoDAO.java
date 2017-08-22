@@ -12,6 +12,7 @@ import java.util.List;
 
 import model.Aluno;
 import model.Curso;
+import model.EnumCurso;
 import model.Usuario;
 import util.ConnectionFactory;
 
@@ -308,6 +309,40 @@ public class JDBCAlunoDAO implements AlunoDAO {
 				ps.close();
 				return false;
 			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
+	public int buscarCursoPreCadastrado (String matricula, String nome){
+		try {
+			String SQL = "SELECT id_curso FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2, "%"+nome+"%");
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+			
+				return rs.getInt("id_curso");
+			}else{
+				return -1;
+			}
+			
+				
+				
+				
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Aluno;
+import model.EnumCurso;
 
 public interface AlunoDAO{
 
@@ -21,6 +22,8 @@ public interface AlunoDAO{
 	public void editar(Aluno aluno);
 	
 	public boolean buscarPreCadastro(String matricula, String nome);
+	
+	public int buscarCursoPreCadastrado (String matricula, String nome);
 	
 	
 
