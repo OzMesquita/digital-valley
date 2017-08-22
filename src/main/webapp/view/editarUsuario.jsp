@@ -73,15 +73,7 @@
                                 <div class="navbar-header">
                                     <a id="textB" class="navbar-brand" href="">Sistema Controle de Acesso</a>
                                 </div>
-                                <div class="collapse navbar-collapse">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                           <a id="textB" title="Fazer logout" href="logout">
-                                               Sair
-                                           </a>
-                                       </li>
-                                    </ul>
-                                </div>
+                                <%@ include file="adm/menuDropDown.jsp"  %>
                             </div>
 			</nav>
 			<div class="content">
@@ -89,72 +81,72 @@
 					<div class="row">
 						<div class="col-md-8" style="margin-left: 15%;">
 							<div class="card">
-                                                            <div class="header" style="text-align: center;">
-                                                                <h4 class="title">Informações do Usuário</h4>
-                                                            </div>
-                                                            <div class="content">
-                                                                    <form action="editarUsuario" method="post">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label>Código Interno</label>
-                                                                                    <input type="text" class="form-control" disabled value="<%= usuario.getPessoa().getId()%>">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                            <div class="col-md-8">
-                                                                                <div class="form-group">
-                                                                                    <label>Nome Completo</label>
-                                                                                    <input type="text" class="form-control" name="nome" disabled  value="<%= usuario.getPessoa().getNome()%>">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label>CPF</label>
-                                                                                    <input type="text" id="cpf" name ="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuario.getPessoa().getCpf() %>">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label>Data de Nascimento</label>
-                                                                                    <input type="data" class="form-control" name="nascimento" maxlength="8"  value="<%= usuario.getPessoa().getDataNascimento() %>">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>E-mail</label>
-                                                                                    <input type="email" class="form-control" name="email" value="<%= usuario.getPessoa().getEmail() %>">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label>Login</label>
-                                                                                    <input type="text" class="form-control" name="login" value="<%= usuario.getLogin() %>">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label>Nova Senha</label>
-                                                                                    <input type="password" class="form-control" name="senha" placeholder="Nova senha">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label>Confirmar Nova Senha</label>
-                                                                                    <input type="password" class="form-control" name="cSenha" placeholder="Confirmar senha">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <input type="submit" id="salva" value="Salvar" title="Salvar alterações">                                
-                                                                        <div class="clearfix"></div>
-                                                                    </form>
-                                                            </div>
+                                <div class="header" style="text-align: center;">
+                                    <h4 class="title">Informações do Usuário</h4>
+                                </div>
+                                <div class="content">
+                                        <form action="editarUsuario" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Código Interno</label>
+                                                        <input type="text" class="form-control" disabled value="<%= usuario.getPessoa().getId()%>">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Nome Completo</label>
+                                                        <input type="text" class="form-control" name="nome" disabled  value="<%= usuario.getPessoa().getNome()%>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>CPF</label>
+                                                        <input type="text" id="cpf" name ="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuario.getPessoa().getCpf() %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Data de Nascimento</label>
+                                                        <input type="data" class="form-control" name="nascimento" maxlength="8"  value="<%= usuario.getPessoa().getDataNascimento() %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>E-mail</label>
+                                                        <input type="email" class="form-control" name="email" value="<%= usuario.getPessoa().getEmail() %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Login</label>
+                                                        <input type="text" class="form-control" name="login" value="<%= usuario.getLogin() %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Nova Senha</label>
+                                                        <input type="password" class="form-control" name="senha" placeholder="Nova senha">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Confirmar Nova Senha</label>
+                                                        <input type="password" class="form-control" name="cSenha" placeholder="Confirmar senha">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="submit" id="salva" value="Salvar" title="Salvar alterações">                                
+                                            <div class="clearfix"></div>
+                                        </form>
+                                </div>
 							</div>
 						</div>
 					</div>
