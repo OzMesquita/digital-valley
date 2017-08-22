@@ -15,5 +15,18 @@ public enum EnumNivel {
 		}
 		return valorNivel;
 	}
+	
+	public static String value(Integer valor){
+		switch(valor){
+		case 1:
+			return "Administrador";
+		case 2:
+			return "Comun";
+		default:
+			return "";
+		}
+	
+	}
+	
 
 }

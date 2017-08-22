@@ -3,8 +3,9 @@
     Created on : 17/08/2017, 14:55:06
     Author     : N2S-PC03
 --%>
-
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,10 +15,9 @@
         <script src="../../assets2/js2/drop.js" type="text/javascript"></script>
     </head>
     <body>
-        <%if(session.getAttribute("usuario")!= null){
-            Usuario u = (Usuario) session.getAttribute("usuario");
-        }else{response.sendRedirect("login.jsp");}
-        %>
+	<%
+	  	Usuario u = (Usuario)session.getAttribute("usuario");
+	%>   
     
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
