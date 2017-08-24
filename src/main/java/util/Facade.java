@@ -8,6 +8,7 @@ import java.util.List;
 
 import dao.AlunoDAO;
 import dao.ModuloDAO;
+import dao.PerfilDAO;
 import dao.PessoaDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
@@ -29,6 +30,7 @@ public class Facade {
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
+		
 	}
 
 	public static void cadastrarAluno(Pessoa pessoa, Aluno aluno) {
@@ -40,6 +42,10 @@ public class Facade {
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
+		//alunoDAO = DAOFactory.criarAlunoDAO();
+		//alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
+		
+		
 	}
 
 	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor) {
@@ -169,20 +175,25 @@ public class Facade {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		return pDAO.buscarPorNome(nome);
 	}
-        
+     
+	
+	
         public static Perfil buscaPerfilPorId(int id){
-        //    PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
-         //   return pDAO.buscarPorId(id);
-        	return null;
+            PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+            return pDAO.buscarPorId(id);
+        	
         }
 
-    public static void AdicionarModulosParaUsuario(int id, Modulo modulosCadadastrado) {
-
+    public static void AdicionarModulosParaUsuario(int idUsuario, int idModulo) {
+    	ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+    	mDAO.associarUsuarioModulo(idUsuario, idModulo);
 
     }
 
-    public static void AdicionarModulosParaPerfil(int id, Modulo modulosCadadastrado) {
-
+    public static void AdicionarModulosParaPerfil(int idPerfil, int idModulo) {
+    	ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+    	mDAO.associarPerfilModulo(idPerfil, idModulo);
+    	
     }
 	
 	

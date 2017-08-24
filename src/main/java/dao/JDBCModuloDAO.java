@@ -192,11 +192,12 @@ public class JDBCModuloDAO implements ModuloDAO {
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
-				ps.close();
-				rs.close();
-				return modulos;
+				
+				
 			}
-
+			ps.close();
+			rs.close();
+			return modulos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
@@ -208,7 +209,63 @@ public class JDBCModuloDAO implements ModuloDAO {
 			}
 		}
 
-		return null;
+		
+	}
+	@Override
+	public void associarUsuarioModulo(int idUsuario, int idModulo ){
+		try {
+			String SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo) VALUES (?, ?)";
+
+			PreparedStatement ps;
+
+			ps = connection.prepareStatement(SQL);
+
+			ps.setInt(1, idUsuario);
+			ps.setInt(2, idModulo);
+
+			ps.executeUpdate();
+			ps.close();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Override
+	public void associarPerfilModulo (int idPerfil, int idModulo){
+		try {
+			String SQL = "INSERT INTO perfil_modulo(id_perfil, id_modulo) VALUES (?, ?)";
+
+			PreparedStatement ps;
+
+			ps = connection.prepareStatement(SQL);
+
+			ps.setInt(1, idPerfil);
+			ps.setInt(2, idModulo);
+
+			ps.executeUpdate();
+			ps.close();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -18,5 +18,9 @@ public interface ModuloDAO {
 	public List<Modulo> buscar(Pessoa pessoa);
 	
 	public List<Modulo> listar();
+	
+	public void associarUsuarioModulo(int idUsuario, int idModulo);
+	
+	public void associarPerfilModulo (int idPerfil, int idModulo);
 
 }

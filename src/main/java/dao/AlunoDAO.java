@@ -25,6 +25,8 @@ public interface AlunoDAO{
 	
 	public int buscarCursoPreCadastrado (String matricula, String nome);
 	
+	public void excluirAlunoPreCadastro(String matricula, String nome);
+	
 	
 
 }

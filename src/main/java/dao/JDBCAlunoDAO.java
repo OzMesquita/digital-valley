@@ -12,7 +12,6 @@ import java.util.List;
 
 import model.Aluno;
 import model.Curso;
-import model.EnumCurso;
 import model.Usuario;
 import util.ConnectionFactory;
 
@@ -340,6 +339,30 @@ public class JDBCAlunoDAO implements AlunoDAO {
 			}
 			
 				
+				
+				
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void excluirAlunoPreCadastro(String matricula, String nome){
+		try {
+			String SQL = "DELETE FROM pre_cadastro_aluno WHERE matricula=? AND UPPER(nome) like UPPER(?)";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2, "%"+nome+"%");
+			ps.executeUpdate();
+			
 				
 				
 			
