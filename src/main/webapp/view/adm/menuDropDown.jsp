@@ -22,15 +22,15 @@
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
                 <ul class="dropdown">
-                    <li title="Voltar a tela Inicial"><a href="#">Inicio</a></li>
-                    <li title="Editar dados pessoais"><a href="#">Editar Perfil</a></li>
-                    <%if(u.getNivel().equals("adm")){%>
-                        <li title="Atribuir módulos aos usuários"><a href="#">Atribuir Módulos</a></li>
-                        <li title="cadastrar novo módulo"><a href="#">Cadastrar Módulo</a></li>
-                        <li title="Realizar importação de matriculas"><a href="#">Importar Matriculas</a></li>
-                        <li title="Listar usuários do sistema"><a href="#">Listar Usuários</a></li>
+                    <li title="Voltar a tela Inicial"><a href="../../telaInicial.jsp">Inicio</a></li>
+                    <li title="Editar dados pessoais"><a href="../../esitarUsuario.jsp">Editar Perfil</a></li>
+                    <%if(u.getNivel().equals("administrador")){%>
+                        <li title="Atribuir módulos aos usuários"><a href="telaADM.jsp">Atribuir Módulos</a></li>
+                        <li title="cadastrar novo módulo"><a href="cadastarModulo.jsp">Cadastrar Módulo</a></li>
+                        <li title="Realizar importação de matriculas"><a href="importarMatriculas.jsp">Importar Matriculas</a></li>
+                        <li title="Listar usuários do sistema"><a href="listaDeUsuarios.jsp">Listar Usuários</a></li>
                     <%}%>
-                    <li title="Realizar logout"><a href="#">Sair</a></li>
+                    <li title="Realizar logout"><a href="logout">Sair</a></li>
                 </ul>
             </div>
         </div>
