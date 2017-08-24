@@ -77,7 +77,7 @@
 	
 <body>
 
-	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("listaDeUsuarios"); %>
+	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuarios"); %>
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -98,10 +98,12 @@
 			          <div class="card">
 			              <div class="header">
 			              	<div id="busca">
-							  	<input id="txt_Busca" type="text"  placeholder="Buscar..."/>
-							  	<!--  <img src="search3.png" id="btnBusca" alt="Buscar"/> -->
-							  	<input id="btn_Busca" type="button" value="Buscar"/>
-							</div>
+                                <form action="pesquisaUsuario" method="get">
+                                    <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
+                                    <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
+                                    <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
+                                </form>
+                            </div>
 							<br>
 			                <h4 class="title">Usuários</h4>
 			              </div>
@@ -114,21 +116,12 @@
 			                          <th>Nível</th>
 			                      </thead>
 			                      <tbody>
-<<<<<<< HEAD
-			                      	<% for(Usuario usuario : usuarios){%>
-			                          <tr>
-			                          	<td><%=usuario.getPessoa().getId() %></td>
-			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=usuario.getPessoa().getId() %>></a><%usuario.getPessoa().getNome()%></td>
-			                          	<td><%usuario.getPessoa().getEmail()%></td>
-			                          	<td><%usuario.getNivel()%></td>
-=======
 			                      	<% for(Usuario user : usuarios){%>
 			                          <tr>
 			                          	<td><%=user.getPessoa().getId() %></td>
 			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
 			                          	<td><%=u.getPessoa().getEmail()%></td>
 			                          	<td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
->>>>>>> 5fa4c14d8f12bd3908f46791bf01b110798791b5
 			                          </tr>                    
 		                          	<%}%>    
 			                      </tbody>

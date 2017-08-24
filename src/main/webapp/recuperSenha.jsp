@@ -71,7 +71,7 @@
                                     <div class="form-group">
                                         <div class="tab-content">
                                             <form method="post" action="recuperacao" name="formVerifica" >
-                                                <label for="email" >E-mail</label><input type="text" title="Preencha este campo" name="email" class="form-control" placeholder=""><br>
+                                                <label for="email" >E-mail</label><input type="text" title="Preencha este campo" name="email" class="form-control" placeholder="exemplo@email.com"><br>
                                                 <a href="login.jsp">Voltar para tela de login</a>
                                                 <input id="btn_confirma" type="submit" value="Confirmar">
                                             </form>

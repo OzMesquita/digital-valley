@@ -103,7 +103,7 @@
                     position: absolute;
                     margin-left: 60%;
                     margin-top: -23%;
-}
+                }
                 #btn_inclui{height: 50px;
                     width: 60px;
                 }
@@ -244,11 +244,7 @@
             else{ 
                 perfis = new ArrayList<>();
             }
-            //perfis.add(new Perfil("Aluno"));
-            //perfis.add(new Perfil("Administrador"));
-            //perfis.add(new Perfil("Professor"));
-            //perfis.add(new Perfil("Secretário"));
-            //perfis.add(new Perfil("Servidor"));
+
         }else{
             if(session.getAttribute("usuarios")== null){
                 usuarios = new ArrayList<>();
@@ -304,7 +300,7 @@
                                 <div id="busca">
                                     <form action="pesquisaUsuario" method="get">
                                         <input id="txt_busca" type="search" name="busca" <% if(mostra.equals("Usuarios")){%> autofocus="true" <%}else{%>disabled <%}%> placeholder="Buscar por usuários..."/>
-                                        <img style="margin-left: -5%;" src="assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
+                                        <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
                                         <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários" <% if(!mostra.equals("Usuarios")){%>disabled<%}%>/>
                                     </form>
                                 </div>
@@ -408,15 +404,15 @@
           </div>
 </body>
 <!--   Core JS Files   -->
-	<script src="../assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets/js/jquery.validate.min.js"></script>
+	<script src="../assets2/js/jquery.validate.min.js"></script>
         
         <script>
             function selecionaTudo(){

@@ -93,7 +93,7 @@
                                 <h4 class="title">Perfil do Usuário</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form action="AlterarEmail" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -128,13 +128,14 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input type="text" class="form-control"  value="<%=p.getEmail()%>">
+                                                <input type="text" name="email" class="form-control" required value="<%=p.getEmail()%>">
                                             </div>
                                         </div>
                                     </div>
 
                                 		                                   
                                     <div class="clearfix"></div>
+                                    <input id="save"  type="submit" value="Salvar">
                                 </form>
                             </div>
                         </div>
@@ -144,7 +145,7 @@
                             
                             <div class="content">
                                 <div class="author">
-                                     <form id="nivelUsuario" action="#" method="post">
+                                     <form id="nivelUsuario" action="AlterarNivel" method="post">
 										<div class="header">
 											<label>Nivel do Usuário</label>
 											
