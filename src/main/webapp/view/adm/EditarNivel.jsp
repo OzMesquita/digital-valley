@@ -95,23 +95,16 @@
                             <div class="content">
                                 <form>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Código</label>
                                                 <input type="text" class="form-control" disabled  value="<%= p.getId()%>">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>CPF</label>
                                                 <input type="text" id="cpf" class="form-control" disabled  value="<%= p.getCpf()%>">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label >Sexo</label>
-                                                <input type="text" class="form-control" disabled value="<%="sexo"%>">
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +128,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input type="text" class="form-control" disabled  value="<%=p.getEmail()%>">
+                                                <input type="text" class="form-control"  value="<%=p.getEmail()%>">
                                             </div>
                                         </div>
                                     </div>

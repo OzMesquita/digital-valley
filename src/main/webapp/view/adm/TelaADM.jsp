@@ -366,7 +366,7 @@
                                       </div>
                                     </div>
 
-                                    <form action="adm" method="post" name="modulos">
+                                    <form action="AdicionarModulos" method="post" name="modulos">
                                         <div >
                                             <div class="form-group">
                                                 <div class="col-md-3">

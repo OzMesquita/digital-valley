@@ -76,7 +76,7 @@
 	
 <body>
 
-	<% Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("listaDeUsuarios"); %>
+	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("listaDeUsuarios"); %>
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -113,11 +113,11 @@
 			                          <th>Nível</th>
 			                      </thead>
 			                      <tbody>
-			                      	<% for(usuario : usuarios){%>
+			                      	<% for(Usuario usuario : usuarios){%>
 			                          <tr>
-			                          	<td><%=usuario.getId() %></td>
-			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=usuario.getId() %>></a><%usuario.getNome()%></td>
-			                          	<td><%usuario.getEmail()%></td>
+			                          	<td><%=usuario.getPessoa().getId() %></td>
+			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=usuario.getPessoa().getId() %>></a><%usuario.getPessoa().getNome()%></td>
+			                          	<td><%usuario.getPessoa().getEmail()%></td>
 			                          	<td><%usuario.getNivel()%></td>
 			                          </tr>                    
 		                          	<%}%>    

@@ -15,7 +15,7 @@ import model.Pessoa;
 import util.Facade;
 
 
-public class AlterarNivel extends HttpServlet {
+public class AdicionarModulos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 

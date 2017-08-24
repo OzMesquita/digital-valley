@@ -3,8 +3,9 @@
     Created on : 17/08/2017, 14:55:06
     Author     : N2S-PC03
 --%>
-
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,21 +15,20 @@
         <script src="../../assets2/js2/drop.js" type="text/javascript"></script>
     </head>
     <body>
-        <%if(session.getAttribute("usuario")!= null){
-            Usuario u = (Usuario) session.getAttribute("usuario");
-        }else{response.sendRedirect("login.jsp");}
-        %>
+    <%
+        Usuario u = (Usuario)session.getAttribute("usuario");
+    %>   
     
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
                 <ul class="dropdown">
-                    <li title="Voltar a tela Inicial"><a href="telaInicial">Inicio</a></li>
-                    <li title="Editar dados pessoais"><a href="editarUsuario">Editar Perfil</a></li>
-                    <%if(u.getNivel().equals("adm")){%>
-                        <li title="Atribuir módulos aos usuários"><a href="talaADM">Atribuir Módulos</a></li>
-                        <li title="cadastrar novo módulo"><a href="cadastarModulo">Cadastrar Módulo</a></li>
-                        <li title="Realizar importação de matriculas"><a href="importarMatriculas">Importar Matriculas</a></li>
-                        <li title="Listar usuários do sistema"><a href="listaDeUsuarios">Listar Usuários</a></li>
+                    <li title="Voltar a tela Inicial"><a href="../../telaInicial.jsp">Inicio</a></li>
+                    <li title="Editar dados pessoais"><a href="../../esitarUsuario.jsp">Editar Perfil</a></li>
+                    <%if(u.getNivel().equals("administrador")){%>
+                        <li title="Atribuir módulos aos usuários"><a href="telaADM.jsp">Atribuir Módulos</a></li>
+                        <li title="cadastrar novo módulo"><a href="cadastarModulo.jsp">Cadastrar Módulo</a></li>
+                        <li title="Realizar importação de matriculas"><a href="importarMatriculas.jsp">Importar Matriculas</a></li>
+                        <li title="Listar usuários do sistema"><a href="listaDeUsuarios.jsp">Listar Usuários</a></li>
                     <%}%>
                     <li title="Realizar logout"><a href="logout">Sair</a></li>
                 </ul>
@@ -43,7 +43,6 @@
             DropDown.prototype = {
                     initEvents : function() {
                             var obj = this;
-
                             obj.dd.on('click', function(event){
                                     $(this).toggleClass('active');
                                     event.stopPropagation();
@@ -51,14 +50,11 @@
                     }
             }
             $(function() {
-
                     var dd = new DropDown( $('#dd') );
-
                     $(document).click(function() {
                             // all dropdowns
                             $('.wrapper-dropdown-2').removeClass('active');
                     });
-
             });
         </script>
         
