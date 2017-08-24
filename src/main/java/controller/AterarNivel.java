@@ -18,7 +18,6 @@ public class AlterarNivel extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nivel= request.getParameter("nivel");
-		String email = request.getParameter("email");
 		String pagina = "editarNivel.jsp";
 		HttpSession session = request.getSession();
 
@@ -26,7 +25,6 @@ public class AlterarNivel extends HttpServlet {
 			Usuario usuario = (Usuario) session.getAttribute("usuario");
 			Pessoa pessoa = usuario.getPessoa();
 			usuario.setNivel(nivel);
-			pessoa.setEmail(email);
 			util.Facade.editarPessoa(pessoa, usuario);
 			pagina = "telaInicial.jsp?sucessoEditar=1";
 		} catch (Exception e) {
