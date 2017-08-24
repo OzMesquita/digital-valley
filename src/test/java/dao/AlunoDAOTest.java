@@ -106,5 +106,15 @@ public class AlunoDAOTest {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		Assert.assertTrue(aDAO.buscarCursoPreCadastrado("370178", "Deyvisoogueira rodrigues") ==-1 );
 	}
+	
+	@Ignore
+	@Test
+	public void testExcluirPrecadastro(){
+		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+		aDAO.excluirAlunoPreCadastro("370183", "rogerio sena Leitao");
+		
+		
+	}
+	
 
 }

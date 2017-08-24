@@ -1,5 +1,6 @@
+<%@page import="model.EnumNivel"%>
 <%@page import="model.Usuario"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <html>
 <html lang="pt">
@@ -113,12 +114,21 @@
 			                          <th>Nível</th>
 			                      </thead>
 			                      <tbody>
+<<<<<<< HEAD
 			                      	<% for(Usuario usuario : usuarios){%>
 			                          <tr>
 			                          	<td><%=usuario.getPessoa().getId() %></td>
 			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=usuario.getPessoa().getId() %>></a><%usuario.getPessoa().getNome()%></td>
 			                          	<td><%usuario.getPessoa().getEmail()%></td>
 			                          	<td><%usuario.getNivel()%></td>
+=======
+			                      	<% for(Usuario user : usuarios){%>
+			                          <tr>
+			                          	<td><%=user.getPessoa().getId() %></td>
+			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
+			                          	<td><%=u.getPessoa().getEmail()%></td>
+			                          	<td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
+>>>>>>> 5fa4c14d8f12bd3908f46791bf01b110798791b5
 			                          </tr>                    
 		                          	<%}%>    
 			                      </tbody>

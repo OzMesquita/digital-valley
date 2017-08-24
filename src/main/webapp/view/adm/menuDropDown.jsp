@@ -15,9 +15,15 @@
         <script src="../../assets2/js2/drop.js" type="text/javascript"></script>
     </head>
     <body>
+<<<<<<< HEAD
     <%
         Usuario u = (Usuario)session.getAttribute("usuario");
     %>   
+=======
+	<%
+	  	Usuario u = (Usuario)session.getAttribute("usuario");
+	%>   
+>>>>>>> 5fa4c14d8f12bd3908f46791bf01b110798791b5
     
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
