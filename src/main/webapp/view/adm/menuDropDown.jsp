@@ -3,6 +3,7 @@
     Created on : 17/08/2017, 14:55:06
     Author     : N2S-PC03
 --%>
+<%@page import="model.EnumNivel"%>
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -22,9 +23,9 @@
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
                 <ul class="dropdown">
-                    <li title="Voltar a tela Inicial"><a href="#">Inicio</a></li>
+                    <li title="Voltar a tela Inicial"><a href="../telaInicial.jsp">Inicio</a></li>
                     <li title="Editar dados pessoais"><a href="#">Editar Perfil</a></li>
-                    <%if(u.getNivel().equals("adm")){%>
+                    <%if(u.getNivel() == EnumNivel.ADMINISTRADOR){%>
                         <li title="Atribuir módulos aos usuários"><a href="#">Atribuir Módulos</a></li>
                         <li title="cadastrar novo módulo"><a href="#">Cadastrar Módulo</a></li>
                         <li title="Realizar importação de matriculas"><a href="#">Importar Matriculas</a></li>
