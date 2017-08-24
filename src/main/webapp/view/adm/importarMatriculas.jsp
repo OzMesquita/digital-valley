@@ -81,58 +81,50 @@
 	<div id ="tudo" class="wrapper">   
 		<div class="main-panel" style=" border: 1px solid; border-radius:10px;">
 			<nav class="navbar navbar-default navbar-fixed">
-                            <div id ="topo" class="container-fluid">
-                                <div class="navbar-header">
-                                    <a id="textB" class="navbar-brand" href="">Sistema Controle de Acesso</a>
-                                </div>
-                                <div class="collapse navbar-collapse">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                           <a id="textB" title="Fazer logout" href="logout">
-                                               Sair
-                                           </a>
-                                       </li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div id ="topo" class="container-fluid">
+                    <div class="navbar-header">
+                        <a id="textB" class="navbar-brand" href="">Sistema Controle de Acesso</a>
+                    </div>
+                     <%@ include file="menuDropDown.jsp"  %>
+                </div>
 			</nav>
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-8" style="margin-left: 15%;">
 							<div class="card">
-                                                            <div class="header" style="text-align: center;">
-                                                                <h4 class="title">Importação de Matriculas</h4>
-                                                            </div>
-                                                            <div class="content">
-                                                                <form action="importar" method="post" style="margin-left: 20%;">
-                                                                    <div class="row">
-                                                                        <div class="col-md-8">
-                                                                            <div class="form-group">
-                                                                                <label>Curso</label>
-                                                                                <select class="form-control"  name="curso">
-                                                                                    <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
-                                                                                    <option value="1"> Ciência da Computação</option>
-                                                                                    <option value="2"> Engenharia Civil</option>
-                                                                                    <option value="3"> Engenharia de Produção</option>
-                                                                                    <option value="4"> Engenharia de Software</option>
-                                                                                    <option value="5"> Engenharia Mecânica</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-8">
-                                                                            <div class="form-group">
-                                                                                <label>Matriculas</label><small style="color: gray;"> </small><br>
-                                                                                <textarea name="matriculas" rows="10" cols="50"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="submit" id="salva" value="Importar" title="Importar arquivo">                                
-                                                                    
-                                                                </form>
-                                                            </div>
+                                <div class="header" style="text-align: center;">
+                                    <h4 class="title">Importação de Matriculas</h4>
+                                </div>
+                                <div class="content">
+                                    <form action="importar" method="post" style="margin-left: 20%;">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Curso</label>
+                                                    <select class="form-control"  name="curso">
+                                                        <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
+                                                        <option value="1"> Ciência da Computação</option>
+                                                        <option value="2"> Engenharia Civil</option>
+                                                        <option value="3"> Engenharia de Produção</option>
+                                                        <option value="4"> Engenharia de Software</option>
+                                                        <option value="5"> Engenharia Mecânica</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Matriculas</label><small style="color: gray;"> </small><br>
+                                                    <textarea name="matriculas" rows="10" cols="50"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" id="salva" value="Importar" title="Importar arquivo">                                
+                                        
+                                    </form>
+                                </div>
 							</div>
 						</div>
 					</div>

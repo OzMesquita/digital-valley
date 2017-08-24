@@ -1,5 +1,6 @@
+<%@page import="model.EnumNivel"%>
 <%@page import="model.Usuario"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <html>
 <html lang="pt">
@@ -76,7 +77,7 @@
 	
 <body>
 
-	<% Vector<Usuario> usuarios = (Vector<Usuario>) session.getAttribute("usuarios"); %>
+	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("listaDeUsuarios"); %>
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -87,15 +88,7 @@
 	                    
 	                    <a id="textB" class="navbar-brand" >Lista de Usuários</a>
 	                </div>
-	                <div class="collapse navbar-collapse">
-	                    <ul class="nav navbar-nav navbar-right">
-	                         <li>
-	                            <a id="textB" href="login.jsp">
-	                                Sair
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </div>
+	                 <%@ include file="menuDropDown.jsp"  %>
 	            </div>
 	        </nav>
 	
@@ -121,12 +114,14 @@
 			                          <th>Nível</th>
 			                      </thead>
 			                      <tbody>
+			                      	<% for(Usuario user : usuarios){%>
 			                          <tr>
-			                          	<td>111</td>
-			                          	<td><a href="EditarNivel.jsp">Usuário 1</a></td>
-			                          	<td>teste@gmail</td>
-			                          	<td>comum</td>
-			                          </tr>                        
+			                          	<td><%=user.getPessoa().getId() %></td>
+			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
+			                          	<td><%=u.getPessoa().getEmail()%></td>
+			                          	<td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
+			                          </tr>                    
+		                          	<%}%>    
 			                      </tbody>
 			                  </table>
 			              </div>
