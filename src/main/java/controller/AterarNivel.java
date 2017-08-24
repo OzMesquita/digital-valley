@@ -26,7 +26,8 @@ public class AlterarNivel extends HttpServlet {
 			Pessoa pessoa = usuario.getPessoa();
 			usuario.setNivel(nivel);
 			util.Facade.editarPessoa(pessoa, usuario);
-			pagina = "telaInicial.jsp?sucessoEditar=1";
+			pagina = "editarNivel.jsp?sucessoEditar=1";
+			session.setAttribute("excecao", e."Alterado com sucesso");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			session.setAttribute("excecao", e.getMessage());
