@@ -79,7 +79,7 @@
                     
                     <a id="textB" class="navbar-brand" href="">Perfil do Usuário</a>
                 </div>
-                 <%@ include file="menuDropDown.jsp"  %>
+                 <%@ include file="../menuDropDown.jsp"  %>
             </div>
         </nav>
 
@@ -93,25 +93,18 @@
                                 <h4 class="title">Perfil do Usuário</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form action="AlterarEmail" method="post">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Código</label>
                                                 <input type="text" class="form-control" disabled  value="<%= p.getId()%>">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>CPF</label>
                                                 <input type="text" id="cpf" class="form-control" disabled  value="<%= p.getCpf()%>">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label >Sexo</label>
-                                                <input type="text" class="form-control" disabled value="<%="sexo"%>">
                                             </div>
                                         </div>
                                     </div>
@@ -135,13 +128,14 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input type="text" class="form-control" disabled  value="<%=p.getEmail()%>">
+                                                <input type="text" name="email" class="form-control" required value="<%=p.getEmail()%>">
                                             </div>
                                         </div>
                                     </div>
 
                                 		                                   
                                     <div class="clearfix"></div>
+                                    <input id="save"  type="submit" value="Salvar">
                                 </form>
                             </div>
                         </div>
@@ -151,7 +145,7 @@
                             
                             <div class="content">
                                 <div class="author">
-                                     <form id="nivelUsuario" action="#" method="post">
+                                     <form id="nivelUsuario" action="AlterarNivel" method="post">
 										<div class="header">
 											<label>Nivel do Usuário</label>
 											

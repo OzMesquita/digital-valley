@@ -12,7 +12,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Importação de matriculas</title>
+	<title>Importação de servidores</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -25,11 +25,11 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
 	<!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="assets/css/demo.css" rel="stylesheet" />
+	<link href="../assets2/css/demo.css" rel="stylesheet" />
 	
 	
 	<style>
@@ -94,25 +94,10 @@
 						<div class="col-md-8" style="margin-left: 15%;">
 							<div class="card">
                                 <div class="header" style="text-align: center;">
-                                    <h4 class="title">Importação de Matriculas</h4>
+                                    <h4 class="title">Importação de Servidores</h4>
                                 </div>
                                 <div class="content">
                                     <form action="importar" method="post" style="margin-left: 20%;">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label>Curso</label>
-                                                    <select class="form-control"  name="curso">
-                                                        <option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
-                                                        <option value="1"> Ciência da Computação</option>
-                                                        <option value="2"> Engenharia Civil</option>
-                                                        <option value="3"> Engenharia de Produção</option>
-                                                        <option value="4"> Engenharia de Software</option>
-                                                        <option value="5"> Engenharia Mecânica</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group">
@@ -121,7 +106,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="submit" id="salva" value="Importar" title="Importar arquivo">                                
+                                        <input type="submit" id="salva" value="Importar" title="Importar matriculas">                                
                                         
                                     </form>
                                 </div>
@@ -130,7 +115,6 @@
 					</div>
 				</div>
 			</div>
-                        
 			<footer class="footer">
 				<div id="rodap"class="container-fluid">
 					<p id="rodape" class="copyright pull-right">
@@ -144,15 +128,15 @@
 </body>
 
     <!--   Core JS Files   -->
-	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="assets/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../assets/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="assets/js/jquery.validate.min.js"></script>
+	<script src="../assets/js/jquery.validate.min.js"></script>
 
 	
 

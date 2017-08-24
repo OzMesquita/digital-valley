@@ -15,7 +15,7 @@ import model.Pessoa;
 import util.Facade;
 
 
-public class AlterarNivel extends HttpServlet {
+public class AdicionarModulos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -36,12 +36,12 @@ public class AlterarNivel extends HttpServlet {
                 }
                 if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
                     for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.AdicionarModulosParaUsuario(usuarioSelecionado.getId(),modulosCadadastrado);
+                        Facade.AdicionarModulosParaUsuario(usuarioSelecionado.getId(),modulosCadadastrado.getId());
                     }
                 }
                 if(session.getAttribute("mostra").toString().toLowerCase().equals("perfil")){
                     for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.AdicionarModulosParaPerfil(perfilSelecionado.getId(),modulosCadadastrado);
+                        Facade.AdicionarModulosParaPerfil(perfilSelecionado.getId(),modulosCadadastrado.getId());
                     }
                 }
                 

@@ -22,6 +22,7 @@ public class ModuloDAOTest {
 
 		md.cadastrar(modulo);
 	}
+	@Ignore
 	@Test
 	public void editar() {
 		modulo.setId(4);
@@ -63,12 +64,32 @@ public class ModuloDAOTest {
 		Assert.assertTrue(modulos != null);
 
 	}
+	
 	@Ignore
 	@Test
 	public void listar() {
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 		List<Modulo> modulos = md.listar();
+		for(Modulo m:modulos){
+			System.out.println("Nome: "+m.getTitulo());
+			System.out.println("Imagem: "+m.getImagem());
+		}
 		Assert.assertTrue(modulos != null);
 
 	}
+	
+	@Ignore
+	@Test
+	public void testAssociarUsuario(){
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		mDAO.associarUsuarioModulo(6, 4);
+	}
+	
+	
+	@Test
+	public void testAssociarPerfil(){
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		mDAO.associarPerfilModulo(5, 10);
+	}
+	
 }

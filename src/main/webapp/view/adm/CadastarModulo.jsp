@@ -98,7 +98,7 @@
 	                <div class="navbar-header">
 	                    <a id="textB" class="navbar-brand" >Sistema Controle de Acesso</a>
 	                </div>
-	                 <%@ include file="menuDropDown.jsp"  %>
+	                 <%@ include file="../menuDropDown.jsp"  %>
 	            </div>
 	        </nav>
                 <div class="content">

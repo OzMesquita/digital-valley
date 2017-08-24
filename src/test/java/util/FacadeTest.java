@@ -48,33 +48,29 @@ public class FacadeTest {
 		util.Facade.editarPessoa(pessoa, usuario);
 		
 	}
-	
+	@Ignore
 	@Test
 	public void testVerificacao(){
 		Assert.assertTrue(util.Facade.verificacaoAluno("370178", "Deyvison Nogueira"));
 	}
-	@Ignore
+	
 	@Test
 	public void cadastrarAlunoTest(){
 				
-		pessoa.setNome("testando aluno");
-		pessoa.setCpf("99941179949");
-		pessoa.setEmail("alun5555555o@teste.com");
+		pessoa.setNome("LUAN DHARLIN LEMOS DA SILVA");
+		pessoa.setCpf("99941176948");
+		pessoa.setEmail("alo@teste.com");
 		pessoa.setDataNascimento("22/08/1998");
-		usuario.setLogin("reprovamei");
+		usuario.setLogin("reprov");
 		usuario.setSenha("hbbbbbbbbbbbb");
 		usuario.setNivel(EnumNivel.COMUM);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
 		
 		Aluno aluno = new Aluno();
-		aluno.setMatricula("333321");
+		aluno.setMatricula("370174");
 		aluno.setSemestreIngresso("2016.1");
 		
-		Curso curso = new Curso();
-		curso.setId(1);
-		aluno.setCurso(curso);
-
 		util.Facade.cadastrarAluno(pessoa, aluno);
 		
 	}
