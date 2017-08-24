@@ -25,9 +25,9 @@
         <div class="wrapper-demo">
             <div id="dd" class="wrapper-dropdown-2" tabindex="1">Opções
                 <ul class="dropdown">
-                    <li title="Voltar a tela Inicial"><a href="../telaInicial.jsp">Inicio</a></li>
-                    <li title="Editar dados pessoais"><a href="../esitarUsuario.jsp">Editar Perfil</a></li>
-                    <%if(u.getNivel().equals("administrador")){%>
+                    <li title="Voltar a tela Inicial"><a href="telaInicial.jsp">Inicio</a></li>
+                    <li title="Editar dados pessoais"><a href="editarUsuario.jsp">Editar Perfil</a></li>
+                    <%if(u.getNivel() == EnumNivel.ADMINISTRADOR){%>
                         <li title="Atribuir módulos aos usuários"><a href="adm/telaADM.jsp">Atribuir Módulos</a></li>
                         <li title="cadastrar novo módulo"><a href="adm/cadastarModulo.jsp">Cadastrar Módulo</a></li>
                         <li title="Realizar importação de matriculas"><a href="adm/importarMatriculas.jsp">Importar Matriculas</a></li>
