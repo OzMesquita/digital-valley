@@ -32,7 +32,10 @@
 
 </head>
 <body>
-	<% List<Modulo> modulos = (List<Modulo>) session.getAttribute("modulos");	%>
+	<% 
+	List<Modulo> modulos = (List<Modulo>) session.getAttribute("modulos");
+	Usuario usuario = (Usuario)session.getAttribute("usuario");
+	%>
 
 <div id="tudo" class="wrapper">
     
@@ -78,9 +81,19 @@
 
                 </div>
             </div>
-            <a href="adm/TelaADM.jsp">editar Nivel dos usuários</a><br>
-            <a href="editarUsuario.jsp">editar perfil</a><br>
-            <a href="adm/importarMatriculas.jsp">Importar</a>
+            <%=usuario.getLogin() %>
+            
+            <%
+            if(usuario.getNivel() == EnumNivel.ADMINISTRADOR){
+            %>
+            
+            
+            	<a href="adm/TelaADM.jsp">editar Nivel dos usuários</a><br>
+            	<a href="editarUsuario.jsp">editar perfil</a><br>
+            	<a href="adm/importarMatriculas.jsp">Importar</a>
+            <%
+            }
+            %>
         </div>
 
         <footer class="footer">

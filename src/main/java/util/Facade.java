@@ -42,8 +42,8 @@ public class Facade {
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
-		//alunoDAO = DAOFactory.criarAlunoDAO();
-		//alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
+		alunoDAO = DAOFactory.criarAlunoDAO();
+		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
 		
 		
 	}
