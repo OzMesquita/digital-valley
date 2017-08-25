@@ -13,6 +13,7 @@ import dao.PessoaDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
+import model.Email;
 import model.Pessoa;
 import model.Servidor;
 import model.Usuario;
@@ -197,18 +198,20 @@ public class Facade {
     	
     }
 	
- /*
+ 
     public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado){
         if(emailCadastrado != null){
-	        Email e = new Email("foi constado que você tentou recuperar sua senha!", 
-	                    "Esqueceu a senha!\nClique no link para cadastrar uma nova senha "
-	                            + "http://localhost:8084/ControleDeAcesso/validarConta?cv="+ca.getCodigo()+""
-	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)", emailCadastrado, "");
+	        Email e = new Email("Recuperação de Senha!", 
+	                    "Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
+	                            + "http://localhost:8080/ControleDeAcesso/confirmaRecuperacao.jsp?"
+	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+                                    +"\n Caso não tenha solicitado, ignore este e-mail.", emailCadastrado, "Usuário Controle de Acesso");
             e.sendEmail();
         }else{
         	throw new IllegalArgumentException("Email não pode ser nulo");
         }
-      */ 
+    }
+      
 	
 	
 }
