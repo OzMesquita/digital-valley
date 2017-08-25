@@ -197,6 +197,18 @@ public class Facade {
     	
     }
 	
+ /*
+    public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado){
+        if(emailCadastrado != null){
+	        Email e = new Email("foi constado que você tentou recuperar sua senha!", 
+	                    "Esqueceu a senha!\nClique no link para cadastrar uma nova senha "
+	                            + "http://localhost:8084/ControleDeAcesso/validarConta?cv="+ca.getCodigo()+""
+	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)", emailCadastrado, "");
+            e.sendEmail();
+        }else{
+        	throw new IllegalArgumentException("Email não pode ser nulo");
+        }
+      */ 
 	
 	
 }
