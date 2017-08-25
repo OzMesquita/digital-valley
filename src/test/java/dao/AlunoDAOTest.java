@@ -14,16 +14,16 @@ public class AlunoDAOTest {
 
 	private Aluno aluno = new Aluno();
 
-	@Ignore
+	
 	@Test
 	public void salvar() {
 		Curso curso = new Curso();
 		curso.setNome("CC");
-		curso.setId(1);
+		curso.setId(4);
 
-		aluno.setMatricula("343456");
+		aluno.setMatricula("370178");
 		aluno.setSemestreIngresso("2016.1");
-		aluno.setId(4);
+		aluno.setId(69);
 		aluno.setCurso(curso);
 		AlunoDAO adao = DAOFactory.criarAlunoDAO();
 

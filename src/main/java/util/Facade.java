@@ -29,8 +29,9 @@ public class Facade {
 		pessoaDAO = util.DAOFactory.criarPessoaDAO();
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
-		System.out.println("steo");
 		usuarioDAO.cadastrar(usuario);
+		System.out.println("aqui");
+
 		
 	}
 
