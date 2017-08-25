@@ -81,7 +81,7 @@
 
                 </div>
             </div>
-            <%=usuario.getLogin() %>
+            
             
             <%
             if(usuario.getNivel() == EnumNivel.ADMINISTRADOR){
