@@ -27,7 +27,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void cadastrar(Pessoa pessoa) {
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento) VALUES" + "(?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento,login,senha) VALUES" + "(?,?,?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -35,6 +35,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
+			ps.setString(5, pessoa.getUsuario().getLogin());
+			ps.setString(6, pessoa.getUsuario().getSenha());
 
 			ps.executeUpdate();
 			ps.close();

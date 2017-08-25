@@ -12,13 +12,13 @@ public class ServidorDAOTest {
 
 	Servidor servidor = new Servidor();
 
-	@Ignore
+	
 	@Test
 	public void cadastrar() {
-		servidor.setSiape("1234576");
+		servidor.setSiape("1237654");
 		ServidorDAO sdao = DAOFactory.criarServidorDAO();
 
-		servidor.setId(5);
+		servidor.setId(75);
 		sdao.cadastrar(servidor);
 	}
 

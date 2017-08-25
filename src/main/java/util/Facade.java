@@ -30,8 +30,8 @@ public class Facade {
 		pessoaDAO = util.DAOFactory.criarPessoaDAO();
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
-		System.out.println("steo");
 		usuarioDAO.cadastrar(usuario);
+
 		
 	}
 
@@ -52,7 +52,9 @@ public class Facade {
 
 	public static void cadastrarServidor(Usuario usuario, Servidor servidor) {
 		Facade.cadastrarPessoa(usuario.getPessoa(), usuario);
-
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p1 = pDAO.buscarPorCpf(servidor.getCpf());
+		servidor.setId(p1.getId());
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
 	}

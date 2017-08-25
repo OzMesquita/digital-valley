@@ -71,7 +71,7 @@ public class FacadeTest {
 		aluno.setMatricula("370174");
 		aluno.setSemestreIngresso("2016.1");
 		
-		util.Facade.cadastrarAluno(pessoa, aluno);
+		util.Facade.cadastrarAluno(usuario,aluno);
 		
 	}
 	@Ignore
