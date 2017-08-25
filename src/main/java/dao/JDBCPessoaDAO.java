@@ -43,7 +43,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCpessoaDAO", e);
+			throw new RuntimeException("Falha ao cadastrar pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -72,7 +72,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao editar registro de pessoa", e);
+			throw new RuntimeException("Falha ao editar pessoa, erro:" +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -97,7 +97,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao remover pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -139,7 +139,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -184,7 +184,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -229,7 +229,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -271,7 +271,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao listar registro de pessoa, erro: " +e.getMessage());
 
 		}finally {
 			try {
@@ -315,7 +315,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 
 		}finally {
 			try {

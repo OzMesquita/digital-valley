@@ -19,14 +19,12 @@ public class CadastrarAluno extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
-		System.out.println("param "+cpf);
 		String aux = cpf.replaceAll("-", "");
-		System.out.println("aux "+aux.toString());
 		cpf = aux.replaceAll("[.]", "");
-		System.out.println("cpf "+cpf);
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
 		String login = request.getParameter("login");
+		System.out.println(login);
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
@@ -42,12 +40,14 @@ public class CadastrarAluno extends HttpServlet {
 				aluno.setEmail(email);
 				aluno.setDataNascimento(dataNasci);
 				usuario.setLogin(login);
+				usuario.setPessoa(aluno);
+							
 				usuario.setSenha(senha);
 				aluno.setUsuario(usuario);
 				usuario.setPessoa(aluno);
 				
 
-				Facade.cadastrarAluno(usuario.getPessoa(), aluno);
+				Facade.cadastrarAluno(usuario, aluno);
 
 				pagina = "../login.jsp";
 			}else{

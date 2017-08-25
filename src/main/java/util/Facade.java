@@ -22,28 +22,29 @@ import model.Perfil;
 public class Facade {
 
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
-		System.out.println("entrou fachada");
+		
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		pessoaDAO.cadastrar(pessoa);
 		pessoaDAO = util.DAOFactory.criarPessoaDAO();
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
+		System.out.println("steo");
 		usuarioDAO.cadastrar(usuario);
 		
 	}
 
-	public static void cadastrarAluno(Pessoa pessoa, Aluno aluno) {
-		Facade.cadastrarPessoa(pessoa, pessoa.getUsuario());
+	public static void cadastrarAluno(Usuario usuario, Aluno aluno) {
+		Facade.cadastrarPessoa(aluno, usuario);
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		Pessoa p1 = pDAO.buscarPorCpf(pessoa.getCpf());
+		Pessoa p1 = pDAO.buscarPorCpf(aluno.getCpf());
 
 		aluno.setId(p1.getId());
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
 		alunoDAO = DAOFactory.criarAlunoDAO();
-		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
+		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), aluno.getNome());
 		
 		
 	}
