@@ -31,7 +31,7 @@
 
 </head>
 <body>
-	<%// Vector<Modulo> modulos = (Vector<Modulo>) session.getAttribute("modulos");	%>
+
 
 <div id="tudo" class="wrapper">
     

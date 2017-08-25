@@ -32,7 +32,10 @@
 
 </head>
 <body>
-	<% List<Modulo> modulos = (List<Modulo>) session.getAttribute("modulos");	%>
+	<% 
+	List<Modulo> modulos = (List<Modulo>) session.getAttribute("modulos");
+	Usuario usuario = (Usuario)session.getAttribute("usuario");
+	%>
 
 <div id="tudo" class="wrapper">
     
@@ -43,15 +46,7 @@
                 <div class="navbar-header">
                     <a id="textB" class="navbar-brand" href="">Módulos do Sistema</a>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a id="textB" href="logout">
-                                Sair
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <%@ include file="menuDropDown.jsp"  %>
             </div>
         </nav>
 
@@ -86,9 +81,19 @@
 
                 </div>
             </div>
-            <a href="adm/TelaADM.jsp">editar Nivel dos usuários</a><br>
-            <a href="editarUsuario.jsp">editar perfil</a><br>
-            <a href="adm/importarMatriculas.jsp">Importar</a>
+            
+            
+            <%
+            if(usuario.getNivel() == EnumNivel.ADMINISTRADOR){
+            %>
+            
+            
+            	<a href="adm/TelaADM.jsp">editar Nivel dos usuários</a><br>
+            	<a href="editarUsuario.jsp">editar perfil</a><br>
+            	<a href="adm/importarMatriculas.jsp">Importar</a>
+            <%
+            }
+            %>
         </div>
 
         <footer class="footer">

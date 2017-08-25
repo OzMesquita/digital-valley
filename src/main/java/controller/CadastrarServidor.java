@@ -20,14 +20,19 @@ public class CadastrarServidor extends HttpServlet {
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cpf = request.getParameter("cpf");
+		System.out.println("param "+cpf);
+		String aux = cpf.replaceAll("-", "");
+		System.out.println("aux "+aux.toString());
+		cpf = aux.replaceAll("[.]", "");
+		System.out.println("cpf "+cpf);
 		String email = request.getParameter("email");
-		String dataNasci = request.getParameter("dataNasci");
+		String dataNasci = request.getParameter("nascimento");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 
-		String pagina = "cadastraServidor.jsp?erroCadastro=1";
+		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
 				Servidor servidor = new Servidor();
@@ -41,13 +46,15 @@ public class CadastrarServidor extends HttpServlet {
 				servidor.setUsuario(usuario);
 				usuario.setPessoa(servidor);
 
-				Facade.cadastrarPessoa(servidor, usuario);
+				Facade.cadastrarServidor(usuario, servidor);
 
 				pagina = "login.jsp";
+			}else{
+				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 		} catch (Exception e) {
-			session.setAttribute("exececao", e.getMessage());
+			session.setAttribute("excecao", e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

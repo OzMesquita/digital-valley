@@ -42,14 +42,14 @@ public class Facade {
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
-		//alunoDAO = DAOFactory.criarAlunoDAO();
-		//alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
+		alunoDAO = DAOFactory.criarAlunoDAO();
+		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
 		
 		
 	}
 
-	public static void cadastrarServidor(Pessoa pessoa, Usuario usuario, Servidor servidor) {
-		Facade.cadastrarPessoa(pessoa, usuario);
+	public static void cadastrarServidor(Usuario usuario, Servidor servidor) {
+		Facade.cadastrarPessoa(usuario.getPessoa(), usuario);
 
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);

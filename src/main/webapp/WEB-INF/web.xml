@@ -43,8 +43,14 @@
     
     <!-- 8 -->
     <servlet>
-        <servlet-name>CadastraUsuario</servlet-name>
+        <servlet-name>CadastraAluno</servlet-name>
         <servlet-class>controller.CadastrarAluno</servlet-class>
+    </servlet>
+    
+    <!-- 9 -->
+    <servlet>
+        <servlet-name>CadastraServidor</servlet-name>
+        <servlet-class>controller.CadastrarServidor</servlet-class>
     </servlet>
     
     <!-- Mapaeamento Servlets  -->
@@ -86,8 +92,14 @@
     
     <!-- 8 -->
     <servlet-mapping>
-        <servlet-name>CadastraUsuario</servlet-name>
+        <servlet-name>CadastraAluno</servlet-name>
         <url-pattern>/cadastro/cadastroAluno</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 9 -->
+    <servlet-mapping>
+        <servlet-name>CadastraServidor</servlet-name>
+        <url-pattern>/cadastro/cadastroServidor</url-pattern>
     </servlet-mapping>
     
     <!-- Filtros -->

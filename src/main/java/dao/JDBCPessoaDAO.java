@@ -130,6 +130,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.setEmail(rs.getString("email"));
 			pessoa.getUsuario().setLogin(rs.getString("login"));
 			pessoa.getUsuario().setSenha(rs.getString("senha"));
+			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 			pessoa.getUsuario().setPessoa(pessoa);
 			ps.close();
 			rs.close();
@@ -171,6 +172,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.setEmail(rs.getString("email"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 				pessoa.getUsuario().setPessoa(pessoa);
 				ps.close();
 				rs.close();
@@ -213,6 +215,9 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 				pessoa.getUsuario().setPessoa(pessoa);
 				ps.close();
 				rs.close();
@@ -243,17 +248,19 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Pessoa p = new Pessoa();
+				Pessoa pessoa = new Pessoa();
 				Usuario u = new Usuario();
-				p.setUsuario(u);
-				p.setId(rs.getInt("id_pessoa_usuario"));
-				System.out.println("ID : " + p.getId());
-				p.setNome(rs.getString("nome"));
-				p.setCpf(rs.getString("cpf"));
-				p.setEmail(rs.getString("email"));
-				p.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-				p.getUsuario().setLogin(rs.getString("login"));
-				pessoas.add(p);
+				pessoa.setUsuario(u);
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				System.out.println("ID : " + pessoa.getId());
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoas.add(pessoa);
 
 			}
 
@@ -276,6 +283,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 
+	@Override
 	public List<Pessoa> buscarPorNome(String nome){
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
