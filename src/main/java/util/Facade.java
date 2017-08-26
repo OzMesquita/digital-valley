@@ -213,6 +213,10 @@ public class Facade {
         	throw new IllegalArgumentException("Email não pode ser nulo");
         }
     }
+    public static Pessoa BuscarEmailVinculado(String email){
+        PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+        return pDAO.buscarPorEmail(email);
+    }
       
 	
 	

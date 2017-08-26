@@ -33,7 +33,11 @@ public class RecuperarSenha extends HttpServlet {
         
             String email = request.getParameter("email");
             if(email!= null){
-                Facade.EnviarEmailRecuperacaoDeSenha(email);
+                if(Facade.BuscarEmailVinculado(email)!= null){
+                    Facade.EnviarEmailRecuperacaoDeSenha(email);
+                }else{
+                    throw new IllegalArgumentException("Este e-mail não está vinculado a uma conta ativa.");
+                }
             }else{
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }

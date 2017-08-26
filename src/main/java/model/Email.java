@@ -11,7 +11,7 @@ public class Email {
     private String message;
     private String assunto;
     //adicionar emial e senha 
-    private String user ="betinlimma@gmail.com";
+    private String user ="n2sufcrussas@gmail.com";
     private String pass ="";
     private String nomeTo;
     public Email()
