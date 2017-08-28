@@ -29,7 +29,7 @@
                     <li title="Editar dados pessoais"><a href="editarUsuario.jsp">Editar Perfil</a></li>
                     <%if(u.getNivel() == EnumNivel.ADMINISTRADOR){%>
                         <li title="Atribuir módulos aos usuários"><a href="adm/telaADM.jsp">Atribuir Módulos</a></li>
-                        <li title="cadastrar novo módulo"><a href="adm/cadastarModulo.jsp">Cadastrar Módulo</a></li>
+                        <li title="cadastrar novo módulo"><a href="cadastarModulo.jsp">Cadastrar Módulo</a></li>
                         <li title="Realizar importação de matriculas"><a href="adm/importarMatriculas.jsp">Importar Matriculas</a></li>
                         <li title="Listar usuários do sistema"><a href="adm/listaDeUsuarios.jsp">Listar Usuários</a></li>
                     <%}%>
