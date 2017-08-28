@@ -50,7 +50,7 @@
                                     <div class="wizard-header">
                                         <h3>
                                            <b>Sistema Controle de Acesso</b> <br>
-                                           <small>Preencha seus dados</small>
+                                           <small>Preencha <b>todos </b>os dados requisitados</small>
                                         </h3>
                                     </div>
                                     <div class="wizard-navigation">
@@ -87,7 +87,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>E-mail </label>
-                                                        <input name="e_mail" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Examplo@gmail.com">
+                                                        <input name="e_mail" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Exemplo@gmail.com">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Login </label>

@@ -13,6 +13,7 @@ import dao.PessoaDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
+import model.Email;
 import model.Pessoa;
 import model.Servidor;
 import model.Usuario;
@@ -30,7 +31,6 @@ public class Facade {
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
-		System.out.println("aqui");
 
 		
 	}
@@ -52,7 +52,9 @@ public class Facade {
 
 	public static void cadastrarServidor(Usuario usuario, Servidor servidor) {
 		Facade.cadastrarPessoa(usuario.getPessoa(), usuario);
-
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p1 = pDAO.buscarPorCpf(servidor.getCpf());
+		servidor.setId(p1.getId());
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
 	}
@@ -198,18 +200,24 @@ public class Facade {
     	
     }
 	
- /*
+ 
     public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado){
         if(emailCadastrado != null){
-	        Email e = new Email("foi constado que você tentou recuperar sua senha!", 
-	                    "Esqueceu a senha!\nClique no link para cadastrar uma nova senha "
-	                            + "http://localhost:8084/ControleDeAcesso/validarConta?cv="+ca.getCodigo()+""
-	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)", emailCadastrado, "");
+	        Email e = new Email("Recuperação de Senha!", 
+	                    "Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
+	                            + "http://localhost:8080/ControleDeAcesso/confirmaRecuperacao.jsp?"
+	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+                                    +"\n Caso não tenha solicitado, ignore este e-mail.", emailCadastrado, "Usuário Controle de Acesso");
             e.sendEmail();
         }else{
         	throw new IllegalArgumentException("Email não pode ser nulo");
         }
-      */ 
+    }
+    public static Pessoa BuscarEmailVinculado(String email){
+        PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+        return pDAO.buscarPorEmail(email);
+    }
+      
 	
 	
 }

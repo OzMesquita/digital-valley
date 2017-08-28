@@ -329,4 +329,49 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 
+    @Override
+    public Pessoa buscarPorEmail(String email) {
+        Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+		String SQL = "SELECT * FROM pessoa_usuario WHERE email = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, email);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				ps.close();
+				rs.close();
+				return pessoa;
+			} else {
+				return null;
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+    }
+        
+        
+
 }

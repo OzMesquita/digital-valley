@@ -26,7 +26,7 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets2/css/demo.css" rel="stylesheet" />
         <!--meu css -->
-        <link rel="stylesheet" href="assets2/css/newcss.css" type="text/css" />
+        <link rel="stylesheet" href="newcss.css" type="text/css" />
         
         <style>
             #btn_confirma{
@@ -59,20 +59,23 @@
                         <div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:20px;">
                             <div class="wizard-header">
                                 <h3>
-                                    <b>Recuperação de Senha</b><br>
-                                    <small>Nós mandaremos um <b>e-mail</b> com um link para você redefinir sua senha.</small>
+                                    <b>Confirmar recuperação de senha</b><br>
+                                    <small><b>Quase lá!</b> Só mais alguns passos</small>
                                 </h3>
                             </div>
                             <ul id="faixa_topo">
-                                <li id="texto_faixa">digite seu email</li>
+                                <li id="texto_faixa">Confirme seus dados</li>
                             </ul>
                             <div class="row">
                                 <div class="col-sm-6" style="margin-left: 25%;">
                                     <div class="form-group">
                                         <div class="tab-content">
-                                            <form method="post" action="RecuperarSenha" name="formVerifica" >
-                                                <label for="email" >E-mail</label><input type="text" title="Preencha este campo" name="email" class="form-control" placeholder="exemplo@email.com"><br>
-                                                <a href="login.jsp">Voltar para tela de login</a>
+                                            <form method="post" action="recuperacao" name="formVerifica" >
+                                                <label for="matricula" >Matricula</label>
+                                                <input type="text" title="Preencha este campo" name="matricula" class="form-control" placeholder="Digite sua matricula"><br>
+                                                <label for="matricula" >CPF</label>
+                                                <input type="text" title="Preencha este campo" name="cpf" class="form-control" placeholder="Digite seu CPF"><br>
+                                                <a href="login.jsp">Ir para tela de login</a>
                                                 <input id="btn_confirma" type="submit" value="Confirmar">
                                             </form>
                                         </div>
@@ -91,6 +94,16 @@
         </div>
     </div>
 </body>
+    <script>
+            function SomenteNumero(e){
+                var tecla=(window.event)?event.keyCode:e.which;   
+                if((tecla>47 && tecla<58)) return true;
+                else{
+                    if (tecla===8 || tecla===0) return true;
+                    else  return false;
+                }
+            }
+        </script>
 <!--   Core JS Files   -->
 	<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 	<script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
@@ -102,3 +115,4 @@
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="assets2/js/jquery.validate.min.js"></script>
 </html>
+
