@@ -101,7 +101,6 @@
 				</div>
 			</nav>
 			<div class="content">
-<<<<<<< HEAD
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-8" style="margin-left: 15%;">
@@ -172,7 +171,7 @@
                                             <div class="clearfix"></div>
                                         </form>
                                 </div>
-=======
+
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-8" style="margin-left: 15%;">
@@ -255,7 +254,6 @@
 										<div class="clearfix"></div>
 									</form>
 								</div>
->>>>>>> 5948f1d5279519d6bf3fba693dc1cb25779ec323
 							</div>
 						</div>
 					</div>
