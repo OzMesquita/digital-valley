@@ -77,14 +77,14 @@
                             </div>
 			</nav>
 			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-8" style="margin-left: 15%;">
-							<div class="card">
-                                <div class="header" style="text-align: center;">
-                                    <h4 class="title">Informações do Usuário</h4>
-                                </div>
-                                <div class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-8" style="margin-left: 15%;">
+                                        <div class="card">
+                                    <div class="header" style="text-align: center;">
+                                        <h4 class="title">Informações do Usuário</h4>
+                                    </div>
+                                    <div class="content">
                                         <form action="editarUsuario" method="post">
                                             <div class="row">
                                                 <div class="col-md-6">

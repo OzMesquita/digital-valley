@@ -92,46 +92,45 @@
 	            </div>
 	        </nav>
 	
-			<div class="content">
+                <div class="content">
 	            <div class="container-fluid">
-					<div class="col-md-12">
-			          <div class="card">
-			              <div class="header">
-			              	<div id="busca">
-                                <form action="pesquisaUsuario" method="get">
-                                    <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
-                                    <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
-                                    <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
-                                </form>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <div id="busca">
+                                        <form action="pesquisaUsuario" method="get">
+                                            <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
+                                            <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
+                                            <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
+                                        </form>
+                                    </div><br>
+                                    <h4 class="title">Usuários</h4>
+                                </div>
+                                <div id="tabUsuarios">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Nível</th>
+                                        </thead>
+                                        <tbody>
+                                          <% for(Usuario user : usuarios){%>
+                                            <tr>
+                                                  <td><%=user.getPessoa().getId() %></td>
+                                                  <td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
+                                                  <td><%=u.getPessoa().getEmail()%></td>
+                                                  <td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
+                                            </tr>                    
+                                          <%}%>    
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-							<br>
-			                <h4 class="title">Usuários</h4>
-			              </div>
-			              <div id="tabUsuarios">
-			                  <table class="table table-hover table-striped">
-			                      <thead>
-			                      	  <th>Código</th>
-			                          <th>Nome</th>
-			                          <th>E-mail</th>
-			                          <th>Nível</th>
-			                      </thead>
-			                      <tbody>
-			                      	<% for(Usuario user : usuarios){%>
-			                          <tr>
-			                          	<td><%=user.getPessoa().getId() %></td>
-			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
-			                          	<td><%=u.getPessoa().getEmail()%></td>
-			                          	<td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
-			                          </tr>                    
-		                          	<%}%>    
-			                      </tbody>
-			                  </table>
-			              </div>
-			          </div>
-			      </div>
-	      	</div>
-	      </div>
-	       <footer class="footer">
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
 	            <div id="rodap" class="container-fluid">
 	                <p id="rodape" class="copyright pull-right">
 					<br>
