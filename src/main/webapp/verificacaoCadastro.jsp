@@ -26,7 +26,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets2/css/demo.css" rel="stylesheet" />
     <!--meu css -->
-    <link rel="stylesheet" href="assets2/css/newcss.css" type="text/css" />
+    <link href="assets2/css/newcss.css" rel="stylesheet" type="text/css" />
       
     <style>
         #btn_confirma{
@@ -69,7 +69,7 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane" id="aluno">
                                                     <div class="row">
-                                                        <label for="matricula" >Matricula</label><input type="text" name="matricula" maxlength="6" class="form-control"><br>
+                                                        <label for="matricula" >Matricula</label><input type="text" name="matricula" maxlength="6" class="form-control" onkeypress="return SomenteNumero(event)"><br>
                                                         <label for="nome" >Nome Completo</label><input type="text" name="nomeA" class="form-control"><br>
                                                         <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos1()">
@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="tab-pane" id="servidor">
                                                     <div class="row">
-                                                        <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control"><br>
+                                                        <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control" onkeypress="return SomenteNumero(event)"><br>
                                                         <label for="nome" >Nome Completo</label><input type="text" name="nomeS" class="form-control"><br>
                                                         <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos2()">
@@ -111,6 +111,16 @@
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="assets2/js/jquery.validate.min.js"></script>
         
+		<script>
+            function SomenteNumero(e){
+                var tecla=(window.event)?event.keyCode:e.which;   
+                if((tecla>47 && tecla<58)) return true;
+                else{
+                    if (tecla===8 || tecla===0) return true;
+                    else  return false;
+                }
+            }
+        </script>
         
         <script type="text/javascript">
             function validarCampos1(){
