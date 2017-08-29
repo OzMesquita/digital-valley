@@ -98,7 +98,7 @@
                                     <h4 class="title">Importação de Matriculas</h4>
                                 </div>
                                 <div class="content">
-                                    <form action="importar" method="post" style="margin-left: 20%;">
+                                    <form action="importarAlunos" method="post" style="margin-left: 20%;">
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group">

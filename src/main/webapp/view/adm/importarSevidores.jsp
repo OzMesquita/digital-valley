@@ -97,15 +97,18 @@
                                     <h4 class="title">Importação de Servidores</h4>
                                 </div>
                                 <div class="content">
-                                    <form action="importar" method="post" style="margin-left: 20%;">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label>Matriculas</label><small style="color: gray;"> </small><br>
-                                                    <textarea name="matriculas" rows="10" cols="50"></textarea>
-                                                </div>
-                                            </div>
+                                    <form action="importarServidor" method="post" style="margin-left: 20%;">
+                                        <div class="form-group" >
+                                        	<div class="col-md-12 .col-xs-12"  >
+                                        		<label>Nome Completo </label>
+                                        		<input name="nome" type="text" class="form-control"   ><br>
+                                        	</div>
+                                        	<div class="col-md-6 .col-xs-12" >
+                                        		<label>SIAPE</label>
+                                        		<input name="siape" type="text" class="form-control" >
+                                        	</div>
                                         </div>
+                                        
                                         <input type="submit" id="salva" value="Importar" title="Importar matriculas">                                
                                         
                                     </form>

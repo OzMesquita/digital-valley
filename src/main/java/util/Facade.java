@@ -10,6 +10,8 @@ import dao.AlunoDAO;
 import dao.ModuloDAO;
 import dao.PerfilDAO;
 import dao.PessoaDAO;
+import dao.PreCadastroAlunoDAO;
+import dao.PreCadastroServidorDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
@@ -44,8 +46,8 @@ public class Facade {
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
-		alunoDAO = DAOFactory.criarAlunoDAO();
-		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), aluno.getNome());
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		preA.excluirAlunoPreCadastro(aluno.getMatricula(), aluno.getNome());
 		
 		
 	}
@@ -123,24 +125,31 @@ public class Facade {
 	}
 
 	public static boolean verificacaoAluno(String matricula, String nome) {
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		return aDAO.buscarPreCadastro(matricula, nome);
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		return preA.buscarPreCadastro(matricula, nome);
 	}
 	
 	public static boolean verificacaoServidor(String siape, String nome){
-		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-		return sDAO.buscarPreCadastro(siape, nome);
+		PreCadastroServidorDAO preServDAO = DAOFactory.criarPreCadastroServidor();
+		return preServDAO.buscarPreCadastro(siape, nome);
 	}
 	
 	public static void preCadastrarAluno(String nome, String matricula, int curso){
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		aDAO.preCadastrar(nome, matricula, curso);
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		preA.preCadastrar(nome, matricula, curso);
+		
+	}
+	
+	public static void preCadastroServidor(String nome, String siape){
+		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
+		pDAO.preCadastrarServidor(siape, nome);
+		
 		
 	}
 	
 	public static int buscarCursoPreCadastrado(String matricula, String nome){
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		return aDAO.buscarCursoPreCadastrado(matricula, nome);
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		return preA.buscarCursoPreCadastrado(matricula, nome);
 	}
 	
 	public static boolean compararNomes(String nome1, String nome2){

@@ -8,8 +8,6 @@ import model.EnumCurso;
 public interface AlunoDAO{
 
 	public void cadastrar(Aluno aluno);
-	
-	public void preCadastrar(String nome, String matricula, int curso);
 		
 	public Aluno buscar(int id);
 	
@@ -21,11 +19,6 @@ public interface AlunoDAO{
 	
 	public void editar(Aluno aluno);
 	
-	public boolean buscarPreCadastro(String matricula, String nome);
-	
-	public int buscarCursoPreCadastrado (String matricula, String nome);
-	
-	public void excluirAlunoPreCadastro(String matricula, String nome);
 	
 	
 

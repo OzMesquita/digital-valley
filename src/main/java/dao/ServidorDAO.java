@@ -14,7 +14,6 @@ public interface ServidorDAO {
 	
 	public List<Servidor> listar();
 	
-	public boolean buscarPreCadastro(String siape, String nome);
 	
 	
 }
