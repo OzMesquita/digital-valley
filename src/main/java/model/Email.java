@@ -1,5 +1,9 @@
 package model;
 
+import javax.mail.*;
+
+
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
@@ -11,7 +15,7 @@ public class Email {
     private String message;
     private String assunto;
     //adicionar emial e senha 
-    private String user ="";
+    private String user ="n2sufcrussas@gmail.com";
     private String pass ="";
     private String nomeTo;
     public Email()
@@ -36,7 +40,7 @@ public class Email {
             //Adicione os destinat�rios
             email.addTo(this.fromEmail, this.nomeTo);
             //Configure o seu email do qual enviar�
-            email.setFrom("email@email.com", "N2S - Controle de Acesso");
+            email.setFrom("email@gmail.com", "N2S - Controle de Acesso");
             //Adicione um assunto
             email.setSubject(this.assunto);
             //Adicione a mensagem do email

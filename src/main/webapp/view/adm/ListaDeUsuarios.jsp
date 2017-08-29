@@ -22,12 +22,13 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
 	<!-- CSS Files -->
-    <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="../../assets2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="../assets2/css/demo.css" rel="stylesheet" />
-	
+	<link href="../../assets2/css/demo.css" rel="stylesheet" />
+	<link href="../../assets2/css2/drop.css" rel="stylesheet" />
+
 	<style>
 		#topo{background: steelblue; }
 		#nivelUsuario{margin-top: 70px;}
@@ -92,46 +93,45 @@
 	            </div>
 	        </nav>
 	
-			<div class="content">
+                <div class="content">
 	            <div class="container-fluid">
-					<div class="col-md-12">
-			          <div class="card">
-			              <div class="header">
-			              	<div id="busca">
-                                <form action="pesquisaUsuario" method="get">
-                                    <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
-                                    <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
-                                    <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
-                                </form>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <div id="busca">
+                                        <form action="pesquisaUsuario" method="get">
+                                            <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
+                                            <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
+                                            <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
+                                        </form>
+                                    </div><br>
+                                    <h4 class="title">Usuários</h4>
+                                </div>
+                                <div id="tabUsuarios">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Nível</th>
+                                        </thead>
+                                        <tbody>
+                                          <% for(Usuario user : usuarios){%>
+                                            <tr>
+                                                  <td><%=user.getPessoa().getId() %></td>
+                                                  <td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
+                                                  <td><%=u.getPessoa().getEmail()%></td>
+                                                  <td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
+                                            </tr>                    
+                                          <%}%>    
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-							<br>
-			                <h4 class="title">Usuários</h4>
-			              </div>
-			              <div id="tabUsuarios">
-			                  <table class="table table-hover table-striped">
-			                      <thead>
-			                      	  <th>Código</th>
-			                          <th>Nome</th>
-			                          <th>E-mail</th>
-			                          <th>Nível</th>
-			                      </thead>
-			                      <tbody>
-			                      	<% for(Usuario user : usuarios){%>
-			                          <tr>
-			                          	<td><%=user.getPessoa().getId() %></td>
-			                          	<td><a href="EditarNivel.jsp?idUsuario="<%=user.getPessoa().getId() %>></a><%=user.getPessoa().getNome()%></td>
-			                          	<td><%=u.getPessoa().getEmail()%></td>
-			                          	<td><%=EnumNivel.value(u.getNivel().getValorNivel())%></td>
-			                          </tr>                    
-		                          	<%}%>    
-			                      </tbody>
-			                  </table>
-			              </div>
-			          </div>
-			      </div>
-	      	</div>
-	      </div>
-	       <footer class="footer">
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
 	            <div id="rodap" class="container-fluid">
 	                <p id="rodape" class="copyright pull-right">
 					<br>
@@ -143,13 +143,14 @@
 	</div>
 </body>
 <!--   Core JS Files   -->
-	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../../assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets2/js/jquery.validate.min.js"></script>
+	<script src="../../assets2/js/jquery.validate.min.js"></script>
+	 <script src="../../assets2/js2/drop.js"></script>
 </html>
