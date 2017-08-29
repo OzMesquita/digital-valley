@@ -40,11 +40,11 @@
 <div id="tudo" class="wrapper">
     
 
-    <div class="main-panel">
+    <div class="main-panel" style=" border: 1px solid; border-radius:0px 0px 10px 10px;">
         <nav class="navbar navbar-default navbar-fixed">
             <div id="topo" class="container-fluid">
                 <div class="navbar-header">
-                    <a id="textB" class="navbar-brand" href="">Módulos do Sistema</a>
+                    <a id="textB" class="navbar-brand" href="">Sistema Controle de Acesso</a>
                 </div>
                 <%@ include file="menuDropDown.jsp"  %>
             </div>
@@ -60,9 +60,8 @@
                             </div>
                             <div class="content all-icons">
                                 <div class="row">
-                                <%	
-                                for(Modulo m: modulos){
-	                                	
+                                <%	if(modulos != null){
+										for(Modulo m: modulos){
 	                             %>
                                     <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
                                     <div id="centro" class="font-icon-detail">
@@ -71,8 +70,9 @@
                                     </div>
                                      
                                   </div>
-                                  <%} %>
-                              
+								<%}}else{ %>
+									 <p id="text_aviso"> Você não possui módulos cadastrados!</p>  
+								<%}%>
                                 </div>
                                
                             </div>

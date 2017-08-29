@@ -13,6 +13,7 @@ import dao.PessoaDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
+import model.Email;
 import model.Pessoa;
 import model.Servidor;
 import model.Usuario;
@@ -22,7 +23,7 @@ import model.Perfil;
 public class Facade {
 
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
-		System.out.println("entrou fachada");
+		
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		pessoaDAO.cadastrar(pessoa);
@@ -30,27 +31,30 @@ public class Facade {
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);
+
 		
 	}
 
-	public static void cadastrarAluno(Pessoa pessoa, Aluno aluno) {
-		Facade.cadastrarPessoa(pessoa, pessoa.getUsuario());
+	public static void cadastrarAluno(Usuario usuario, Aluno aluno) {
+		Facade.cadastrarPessoa(aluno, usuario);
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		Pessoa p1 = pDAO.buscarPorCpf(pessoa.getCpf());
+		Pessoa p1 = pDAO.buscarPorCpf(aluno.getCpf());
 
 		aluno.setId(p1.getId());
 
 		AlunoDAO alunoDAO = DAOFactory.criarAlunoDAO();
 		alunoDAO.cadastrar(aluno);
 		alunoDAO = DAOFactory.criarAlunoDAO();
-		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), pessoa.getNome());
+		alunoDAO.excluirAlunoPreCadastro(aluno.getMatricula(), aluno.getNome());
 		
 		
 	}
 
 	public static void cadastrarServidor(Usuario usuario, Servidor servidor) {
 		Facade.cadastrarPessoa(usuario.getPessoa(), usuario);
-
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p1 = pDAO.buscarPorCpf(servidor.getCpf());
+		servidor.setId(p1.getId());
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
 	}
@@ -196,6 +200,24 @@ public class Facade {
     	
     }
 	
+ 
+    public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado){
+        if(emailCadastrado != null){
+	        Email e = new Email("Recuperação de Senha!", 
+	                    "Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
+	                            + "http://localhost:8080/ControleDeAcesso/confirmaRecuperacao.jsp?"
+	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+                                    +"\n Caso não tenha solicitado, ignore este e-mail.", emailCadastrado, "Usuário Controle de Acesso");
+            e.sendEmail();
+        }else{
+        	throw new IllegalArgumentException("Email não pode ser nulo");
+        }
+    }
+    public static Pessoa BuscarEmailVinculado(String email){
+        PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+        return pDAO.buscarPorEmail(email);
+    }
+      
 	
 	
 }

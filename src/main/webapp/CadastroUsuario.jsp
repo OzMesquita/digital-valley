@@ -50,7 +50,7 @@
                                     <div class="wizard-header">
                                         <h3>
                                            <b>Sistema Controle de Acesso</b> <br>
-                                           <small>Preencha seus dados</small>
+                                           <small>Preencha <b>todos </b>os dados requisitados</small>
                                         </h3>
                                     </div>
                                     <div class="wizard-navigation">
@@ -75,7 +75,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Curso </label>
-                                                        <input name="curso" type="text" disabled class="form-control" valu="">
+                                                        <input name="curso" type="text" disabled class="form-control" value="">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>CPF </label><small style="color: gray;"> (Digite apenas os números)</small>
@@ -87,14 +87,14 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>E-mail </label>
-                                                        <input name="e_mail" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Examplo@gmail.com">
+                                                        <input name="e_mail" title="Preencha este campo corretamente" type="email" class="form-control" required placeholder="Exemplo@gmail.com">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Login </label>
                                                         <input name="login" title="Preencha este campo corretamente" type="text" class="form-control" required placeholder="Nome de usuário">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Senha </label><small style="color: gray;">No mínimo 4 dígitos</small>
+                                                        <label>Senha </label><small style="color: gray;">No mínimo 6 dígitos</small>
                                                         <input name="senha" title="Preencha este campo corretamente" type="password" class="form-control" required placeholder="Digite a senha">
                                                     </div>
                                                     <div class="form-group">
@@ -167,6 +167,15 @@
                         return false;
                     }
             }
+			
+			function tamSenha(){
+				var senha = document.formCadastro.senha.value;
+				if(senha.length <6){
+					alert("senha não deve conter menos que 6 dígitos");
+					return false;
+				}
+				return true;
+			}
         </script>
     <!--   Core JS Files   -->
 	<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>

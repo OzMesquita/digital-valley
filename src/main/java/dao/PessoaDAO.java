@@ -20,6 +20,7 @@ public interface PessoaDAO {
         
 	public List<Pessoa> buscarPorNome(String nome);
 	
+        public Pessoa buscarPorEmail(String email);
 	
 	public List<Pessoa> listar();
 }

@@ -27,7 +27,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public void cadastrar(Pessoa pessoa) {
 		try {
-			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento) VALUES" + "(?,?,?,?)";
+			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento,login,senha) VALUES" + "(?,?,?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -35,6 +35,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
+			ps.setString(5, pessoa.getUsuario().getLogin());
+			ps.setString(6, pessoa.getUsuario().getSenha());
 
 			ps.executeUpdate();
 			ps.close();
@@ -43,7 +45,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCpessoaDAO", e);
+			throw new RuntimeException("Falha ao cadastrar pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -72,7 +74,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao editar registro de pessoa", e);
+			throw new RuntimeException("Falha ao editar pessoa, erro:" +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -97,7 +99,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao remover pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -139,7 +141,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -184,7 +186,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -229,7 +231,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de pessoa", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -271,7 +273,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao listar registro de pessoa, erro: " +e.getMessage());
 
 		}finally {
 			try {
@@ -315,7 +317,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
 
 		}finally {
 			try {
@@ -326,5 +328,50 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
+
+    @Override
+    public Pessoa buscarPorEmail(String email) {
+        Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+		String SQL = "SELECT * FROM pessoa_usuario WHERE email = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, email);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				ps.close();
+				rs.close();
+				return pessoa;
+			} else {
+				return null;
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+    }
+        
+        
 
 }
