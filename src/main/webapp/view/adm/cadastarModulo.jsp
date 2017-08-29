@@ -27,6 +27,7 @@
 	<link href="../../assets2/css/demo.css" rel="stylesheet" />
         <!--meu css -->
         <link rel="stylesheet" href="newcss.css" type="text/css" />
+         <link href="../../assets2/css2/drop.css" rel="stylesheet" type="text/css" media="all" />
         
          <style>
             #btn_confirma{
@@ -166,6 +167,7 @@
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="../../assets2/js/jquery.validate.min.js"></script>
+    <script src="../../assets2/js2/drop.js"></script>
 
 
 </html>

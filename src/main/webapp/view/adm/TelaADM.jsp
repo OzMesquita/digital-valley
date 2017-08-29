@@ -38,6 +38,7 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../../assets2/css/demo.css" rel="stylesheet" />
+    <link href="../../assets2/css2/drop.css" rel="stylesheet" />
 
     <style>
 		#topo{background: steelblue; }
@@ -413,6 +414,7 @@
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="../assets2/js/jquery.validate.min.js"></script>
+     <script src="../../assets2/js2/drop.js"></script>
         
         <script>
             function selecionaTudo(){

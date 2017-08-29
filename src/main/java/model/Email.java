@@ -2,6 +2,11 @@ package model;
 
 import javax.mail.*;
 
+
+
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
 public class Email {
     
     private String hostName = "smtp.gmail.com";

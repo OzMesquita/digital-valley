@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\N2S-PC03\Desktop\digital-valley\target\m2e-wtp\web-resources\META-INF\maven\br.com.n2s\digital-valley"/>
 		<item value="C:\Users\N2S-PC03\Desktop\digital-valley"/>
 	</list>
 </section>

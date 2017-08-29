@@ -21,11 +21,12 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 
 	<!-- CSS Files -->
-    <link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="../../assets2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="../assets2/css/demo.css" rel="stylesheet" />
+	<link href="../../assets2/css/demo.css" rel="stylesheet" />
+     <link href="../../assets2/css2/drop.css" rel="stylesheet" type="text/css" media="all" />
 	
 	
 	<style>
@@ -188,15 +189,16 @@
 </body>
 
     <!--   Core JS Files   -->
-	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="../../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="../../assets2/js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets2/js/jquery.validate.min.js"></script>
+	<script src="../../assets2/js/jquery.validate.min.js"></script>
+    <script src="../../assets2/js2/drop.js"></script>
 
 
 </html>
