@@ -18,8 +18,13 @@ public class CadastrarModulo extends HttpServlet {
 		String titulo = request.getParameter("titulo");
 		String url = request.getParameter("url");
 		String imagem = request.getParameter("imagem");
-
-		String pagina = "CadastrarModulo.jsp";
+		String aluno = request.getParameter("aluno");
+		String professor = request.getParameter("professor");
+		String secretario = request.getParameter("secretario");
+		String funcionario = request.getParameter("funcionario");
+		
+		
+		String pagina = "cadastarModulo.jsp?erroCadastro=1";
 		try {
 				
 			Modulo modulo = new Modulo();
@@ -29,12 +34,12 @@ public class CadastrarModulo extends HttpServlet {
 			modulo.setUrl(url);
 			
 			Facade.cadastrarModulo(modulo);
+			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
 			
-			response.sendRedirect(pagina);
 		} catch (Exception e) {
 			
 		}
-
+		response.sendRedirect(pagina);
 	}
 
 }

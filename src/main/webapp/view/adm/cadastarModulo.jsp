@@ -121,16 +121,16 @@
                                     <div class="content">
                                         <div id="corpo">
                                             <div id="centro">
-                                                <form method="post" action="verificacao" name="formCadastro" >
+                                                <form method="post" action="cadastrarModulo" name="formCadastro" >
                                                     <label for="titulo" >Título</label><input type="text" title="Preencha este campo" name="titulo" required class="form-control"><br>
                                                     <label for="url" >URL</label><input type="text" title="Preencha este campo" name="url" required class="form-control"><br>
                                                     <label for="imagem" >Imagem</label><input type="file" title="Preencha este campo" name="imagem" ><br>
                                                     <label for="perfil" >Perfil de Acesso</label><br>
                                                     <div style="margin-left: 3%">
-                                                        <input type="checkbox" class="marcar" name="todos" value="" onclick="marcardesmarcar()"> Todos<br>
+                                                        <input type="checkbox"  class="marcar" name="todos" value="" onclick="marcardesmarcar()"> Todos<br>
                                                         <input  type="checkbox" class="marcar" name="aluno" value="1"> Aluno<br>
-                                                        <input type="checkbox" class="marcar" name="Professor" value="2"> Professor<br>
-                                                        <input type="checkbox" class="marcar" name="secretário" value="2"> Secretário<br>
+                                                        <input type="checkbox" class="marcar" name="professor" value="2"> Professor<br>
+                                                        <input type="checkbox" class="marcar" name="secretario" value="2"> Secretário<br>
                                                         <input type="checkbox" class="marcar" name="funcionário" value="4"> Funcionário<br>
                                                     </div>
                                                     <div style="margin-top: 0% !important">

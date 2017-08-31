@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>digital-valley</display-name>
+    
+    <jsp-config>
+    	<jsp-property-group>
+    		<description>Inclusao do cabecalho, menu e rodape</description>
+    		<url-pattern>/view/*</url-pattern>
+    		<include-prelude>/WEB-INF/templates/header.jspf</include-prelude>
+    		<include-prelude>/WEB-INF/templates/menu.jspf</include-prelude>
+    		<include-coda>/WEB-INF/templates/footer.jspf</include-coda>
+    	</jsp-property-group>
+    	
+    </jsp-config>
+    
+    
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+    
     <servlet-mapping>
         <servlet-name>RecuperarSenha</servlet-name>
         <url-pattern>/RecuperarSenha</url-pattern>
     </servlet-mapping>
-    <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
-    </welcome-file-list>
+
     <!-- Servlets -->
     <!-- 1 -->
     <servlet>
@@ -59,6 +74,12 @@
     <servlet>
         <servlet-name>PreCadastroServidor</servlet-name>
         <servlet-class>controller.ImportarServidorController</servlet-class>
+    </servlet>
+    
+    <!-- 11 -->
+    <servlet>
+        <servlet-name>CadastroServidor</servlet-name>
+        <servlet-class>controller.CadastrarModulo</servlet-class>
     </servlet>
     
     <!-- Mapaeamento Servlets  -->
@@ -117,6 +138,13 @@
         <servlet-name>PreCadastroServidor</servlet-name>
         <url-pattern>/view/adm/importarServidor</url-pattern>
     </servlet-mapping>
+    
+    <!-- 11 -->
+    <servlet-mapping>
+        <servlet-name>CadastroServidor</servlet-name>
+        <url-pattern>/view/adm/cadastrarModulo</url-pattern>
+    </servlet-mapping>
+    
     <!-- Filtros -->
     <!-- 1 -->
     <filter>
