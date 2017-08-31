@@ -33,8 +33,9 @@
     </head>
     <body>
         <% Pessoa usuario = (Pessoa) session.getAttribute("usuario"); %>
-        <% if( session.getAttribute("msg")== null){
-            session.setAttribute("msg", " ");
+        <% String mensagem = (String) session.getAttribute("msg");
+	if( mensagem == null){
+		mensagem = "";
         } %>
         <div class="image-container set-full-height" style="background: steelblue;">
             <div class="container">
@@ -63,7 +64,7 @@
                                             <div class="row">
                                                 <div class="col-sm-8" style="margin-left: 15%;">
                                                     <div id="alerta" style="color: red; text-align: center;">
-                                                        <small name="small" id="t_alerta"> <script>sessionStorage.getItem('msg');</script> </small>
+                                                        <small name="small" id="t_alerta"> <%= mensagem %><%session.setAttribute("msg", null);%> </small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Nome Completo </label>
