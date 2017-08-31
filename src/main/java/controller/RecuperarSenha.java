@@ -20,6 +20,11 @@ import util.Facade;
 public class RecuperarSenha extends HttpServlet {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -30,17 +35,21 @@ public class RecuperarSenha extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        try{
             String email = request.getParameter("email");
             if(email!= null){
                 if(Facade.BuscarEmailVinculado(email)!= null){
                     Facade.EnviarEmailRecuperacaoDeSenha(email);
+                    request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
                 }else{
                     throw new IllegalArgumentException("Este e-mail não está vinculado a uma conta ativa.");
                 }
             }else{
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
+        }catch (Exception e) {
+			request.getSession().setAttribute("msg", "falha ao enviar e-mail.");
+		}
         
         
     }

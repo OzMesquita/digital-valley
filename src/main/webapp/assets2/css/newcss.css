@@ -8,6 +8,12 @@ and open the template in the editor.
     Created on : 24/05/2017, 16:40:12
     Author     : N2S-PC03
 */
+.erroMsg{font-size: 16px;
+	width: 100%;
+	color: red;
+	height: 17px;
+	text-align: center;
+}
 
 #btnsalvar{
     width: 150px;

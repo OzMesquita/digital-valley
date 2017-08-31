@@ -51,6 +51,11 @@
         </style>
     </head>
     <body>
+    <% String mensagem = (String)session.getAttribute("msg");
+    	if(mensagem == null){
+    		mensagem = "";
+    	}
+    %>
         <div class="image-container set-full-height" style="background: steelblue;">
         <div class="container">
             <div class="row">
@@ -66,6 +71,7 @@
                             <ul id="faixa_topo">
                                 <li id="texto_faixa">digite seu email</li>
                             </ul>
+                            <div class="erroMsg"><small><%= mensagem %></small></div>
                             <div class="row">
                                 <div class="col-sm-6" style="margin-left: 25%;">
                                     <div class="form-group">

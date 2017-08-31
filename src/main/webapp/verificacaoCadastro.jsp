@@ -112,46 +112,46 @@
 	<script src="assets2/js/jquery.validate.min.js"></script>
         
 		<script>
-            function SomenteNumero(e){
-                var tecla=(window.event)?event.keyCode:e.which;   
-                if((tecla>47 && tecla<58)) return true;
-                else{
-                    if (tecla===8 || tecla===0) return true;
-                    else  return false;
-                }
-            }
-        </script>
-        
-        <script type="text/javascript">
-            function validarCampos1(){
-                if(document.formVerifica.matricula.value === "" && document.formVerifica.nomeA.value === ""){
-                    alert("Matricula e Nome Inválidos");
-                    return false;
-                }else if(document.formVerifica.matricula.value === "" ){
-                    alert("Campo Matricula Inválido");
-                    return false;
-                }else if(document.formVerifica.nomeA.value === ""){
-                    alert("Campo Nome Inválido");
-                    return false;
-                }
-                formVerifica.siape.value = '';
-                formVerifica.nomeS.value = '';
-                return true;
-            }
-            function validarCampos2(){
-                if(document.formVerifica.siape.value === "" && document.formVerifica.nomeS.value === ""){
-                    alert("Siape e Nome Inválidos");
-                    return false;
-                }else if(document.formVerifica.siape.value === "" ){
-                    alert("Campo Siape Inválido");
-                    return false;
-                }else if(document.formVerifica.nomeS.value === ""){
-                    alert("Campo Nome Inválido");
-                    return false;
-                }
-                formVerifica.matricula.value = '';
-                formVerifica.nomeA.value = '';
-                return true;
-            }
-        </script>
+           function SomenteNumero(e){
+               var tecla=(window.event)?event.keyCode:e.which;   
+               if((tecla>47 && tecla<58)) return true;
+               else{
+                   if (tecla===8 || tecla===0) return true;
+                   else  return false;
+               }
+           }
+       </script>
+       
+       <script type="text/javascript">
+           function validarCampos1(){
+               if(document.formVerifica.matricula.value === "" && document.formVerifica.nomeA.value === ""){
+                   alert("Matricula e Nome Inválidos");
+                   return false;
+               }else if(document.formVerifica.matricula.value === "" ){
+                   alert("Campo Matricula Inválido");
+                   return false;
+               }else if(document.formVerifica.nomeA.value === ""){
+                   alert("Campo Nome Inválido");
+                   return false;
+               }
+               formVerifica.siape.value = '';
+               formVerifica.nomeS.value = '';
+               return true;
+           }
+           function validarCampos2(){
+               if(document.formVerifica.siape.value === "" && document.formVerifica.nomeS.value === ""){
+                   alert("Siape e Nome Inválidos");
+                   return false;
+               }else if(document.formVerifica.siape.value === "" ){
+                   alert("Campo Siape Inválido");
+                   return false;
+               }else if(document.formVerifica.nomeS.value === ""){
+                   alert("Campo Nome Inválido");
+                   return false;
+               }
+               formVerifica.matricula.value = '';
+               formVerifica.nomeA.value = '';
+               return true;
+           }
+       </script>
 </html>
