@@ -6,6 +6,8 @@ import dao.JDBCCursoDAO;
 import dao.JDBCModuloDAO;
 import dao.JDBCPerfilDAO;
 import dao.JDBCPessoaDAO;
+import dao.JDBCPreCadastroAlunoDAO;
+import dao.JDBCPreCadastroServidorDAO;
 import dao.JDBCProfessorDAO;
 import dao.JDBCServidorDAO;
 import dao.JDBCUsuarioDAO;
@@ -48,4 +50,13 @@ public class DAOFactory {
 	public static JDBCCursoDAO criarCursoDAO(){
 		return new JDBCCursoDAO();
 	}
+	
+	public static JDBCPreCadastroServidorDAO criarPreCadastroServidor(){
+		return new JDBCPreCadastroServidorDAO();
+	}
+	
+	public static JDBCPreCadastroAlunoDAO criarPreCadastroAluno(){
+		return new JDBCPreCadastroAlunoDAO();
+	}
+	
 }

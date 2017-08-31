@@ -54,6 +54,13 @@
         <servlet-name>CadastraServidor</servlet-name>
         <servlet-class>controller.CadastrarServidor</servlet-class>
     </servlet>
+    
+    <!-- 10 -->
+    <servlet>
+        <servlet-name>PreCadastroServidor</servlet-name>
+        <servlet-class>controller.ImportarServidorController</servlet-class>
+    </servlet>
+    
     <!-- Mapaeamento Servlets  -->
     <!-- 1 -->
     <servlet>
@@ -77,7 +84,7 @@
     <!-- 4 -->
     <servlet-mapping>
         <servlet-name>Importacao</servlet-name>
-        <url-pattern>/view/adm/importar</url-pattern>
+        <url-pattern>/view/adm/importarAlunos</url-pattern>
     </servlet-mapping>
     <!-- 5 -->
     <servlet-mapping>
@@ -103,6 +110,12 @@
     <servlet-mapping>
         <servlet-name>CadastraServidor</servlet-name>
         <url-pattern>/cadastro/cadastroServidor</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 10 -->
+    <servlet-mapping>
+        <servlet-name>PreCadastroServidor</servlet-name>
+        <url-pattern>/view/adm/importarServidor</url-pattern>
     </servlet-mapping>
     <!-- Filtros -->
     <!-- 1 -->

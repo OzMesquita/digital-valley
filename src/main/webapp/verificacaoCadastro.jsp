@@ -44,7 +44,13 @@
 <title>Cadastre-se</title>
 </head>
 <body>
+
     <div class="image-container set-full-height" style="background: steelblue;">
+    <%if(session.getAttribute("excecao")!= null){ %>
+		<p><%=session.getAttribute("excecao") %></p>
+	<% 
+		session.removeAttribute("excecao");
+	}%>
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">

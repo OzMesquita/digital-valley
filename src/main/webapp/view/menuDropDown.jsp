@@ -31,6 +31,7 @@
                         <li title="Atribuir módulos aos usuários"><a href="adm/telaADM.jsp">Atribuir Módulos</a></li>
                         <li title="cadastrar novo módulo"><a href="cadastarModulo.jsp">Cadastrar Módulo</a></li>
                         <li title="Realizar importação de matriculas"><a href="adm/importarMatriculas.jsp">Importar Matriculas</a></li>
+                        <li title="Realizar pré-cadastro dos servidores"><a href="adm/importarSevidores.jsp">Pré-cadastro Servidores</a></li>
                         <li title="Listar usuários do sistema"><a href="adm/listaDeUsuarios.jsp">Listar Usuários</a></li>
                     <%}%>
                     <li title="Realizar logout"><a href="logout">Sair</a></li>
