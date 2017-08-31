@@ -32,12 +32,20 @@
         <link rel="stylesheet" href="newcss.css" type="text/css" />
     </head>
     <body>
+<<<<<<< HEAD
         <% Pessoa usuario = (Pessoa) session.getAttribute("usuario");
 	        String mensagem = (String)session.getAttribute("msg");
 	    	if(mensagem == null){
 	    		mensagem = "";
     		}
     	%>
+=======
+        <% Pessoa usuario = (Pessoa) session.getAttribute("usuario"); %>
+        <% String mensagem = (String) session.getAttribute("msg");
+	if( mensagem == null){
+		mensagem = "";
+        } %>
+>>>>>>> 676880fc951972469ee13afe01e50c4929be0013
         <div class="image-container set-full-height" style="background: steelblue;">
             <div class="container">
                 <div class="row">
@@ -65,7 +73,13 @@
                                         <div class="" >
                                             <div class="row">
                                                 <div class="col-sm-8" style="margin-left: 15%;">
+<<<<<<< HEAD
                                                    
+=======
+                                                    <div id="alerta" style="color: red; text-align: center;">
+                                                        <small name="small" id="t_alerta"> <%= mensagem %><%session.setAttribute("msg", null);%> </small>
+                                                    </div>
+>>>>>>> 676880fc951972469ee13afe01e50c4929be0013
                                                     <div class="form-group">
                                                         <label>Nome Completo </label>
                                                         <input name="nome" type="text" disabled class="form-control" value="<%= usuario.getNome() %>">
