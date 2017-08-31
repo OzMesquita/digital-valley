@@ -43,7 +43,7 @@ public class ImportacaoController extends HttpServlet {
 			pagina = "importarMatriculas.jsp?sucesso=1";
 			
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute("msg", e.getMessage());
 			pagina = "importarMatriculas.jsp?erro=1";
 		}		
 		

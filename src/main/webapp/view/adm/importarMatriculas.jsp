@@ -72,11 +72,11 @@
         
 </head>
 <body>
-	<%if(session.getAttribute("excecao")!= null){ %>
-		<p><%=session.getAttribute("excecao") %></p>
-	<% 
-		session.removeAttribute("excecao");
-	}%>
+	<%String mensagem = (String)session.getAttribute("msg");
+	if(mensagem == null){
+		mensagem = "";
+	}
+	%>
 
 
 	<div id ="tudo" class="wrapper">   
@@ -97,6 +97,7 @@
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Importação de Matriculas</h4>
                                 </div>
+                                 <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div class="content">
                                     <form action="importarAlunos" method="post" style="margin-left: 20%;">
                                         <div class="row">

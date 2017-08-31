@@ -30,6 +30,7 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="../../assets2/css/demo.css" rel="stylesheet" />
+	<link href="../../assets2/css/newcss.css" rel="stylesheet" />
 	<link href="../../assets2/css2/drop.css" rel="stylesheet" />
 	
 	<style>
@@ -71,11 +72,11 @@
         
 </head>
 <body>
-	<%if(session.getAttribute("excecao")!= null){ %>
-		<p><%=session.getAttribute("excecao") %></p>
-	<% 
-		session.removeAttribute("excecao");
-	}%>
+	<% String mensagem = (String)session.getAttribute("msg");
+		if(mensagem == null){
+			mensagem = "";
+		}
+	%>
 
 
 	<div id ="tudo" class="wrapper">   
@@ -96,16 +97,19 @@
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Importação de Servidores</h4>
                                 </div>
+                                <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div class="content">
                                     <form action="importarServidor" method="post" style="margin-left: 20%;">
                                         <div class="form-group" >
-                                        	<div class="col-md-12 .col-xs-12"  >
+                                        	<div class="col-md-6"   >
                                         		<label>Nome Completo </label>
-                                        		<input name="nome" type="text" class="form-control"   ><br>
+                                        		<input name="nome" type="text" class="form-control" >
                                         	</div>
-                                        	<div class="col-md-6 .col-xs-12" >
+                                       	</div>
+                                       	<div class="form-group">
+                                        	<div class="col-md-6"  >
                                         		<label>SIAPE</label>
-                                        		<input name="siape" type="text" class="form-control" >
+                                        		<input name="siape" type="text" class="form-control" maxlength="7" onkeypress="return SomenteNumero(event)">
                                         	</div>
                                         </div>
                                         
@@ -141,8 +145,16 @@
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="../../assets2/js/jquery.validate.min.js"></script>
 	 <script src="../../assets2/js2/drop.js"></script>
-
-	
+	<script>
+	 function SomenteNumero(e){
+                var tecla=(window.event)?event.keyCode:e.which;   
+                if((tecla>47 && tecla<58)) return true;
+                else{
+                    if (tecla===8 || tecla===0) return true;
+                    else  return false;
+                }
+            }
+	 </script>
 
 </html>
 

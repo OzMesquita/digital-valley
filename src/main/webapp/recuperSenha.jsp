@@ -71,7 +71,7 @@
                             <ul id="faixa_topo">
                                 <li id="texto_faixa">digite seu email</li>
                             </ul>
-                            <div class="erroMsg"><small><%= mensagem %></small></div>
+                            <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                             <div class="row">
                                 <div class="col-sm-6" style="margin-left: 25%;">
                                     <div class="form-group">

@@ -85,6 +85,14 @@
 </style>
 <%
 	Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+	String mensagem = (String)session.getAttribute("msg");
+	if(mensagem == null){
+		mensagem = "";
+	}
+
+
+
 %>
 </head>
 <body>

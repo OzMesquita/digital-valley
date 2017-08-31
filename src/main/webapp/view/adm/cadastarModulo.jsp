@@ -27,7 +27,7 @@
 	<link href="../../assets2/css/demo.css" rel="stylesheet" />
         <!--meu css -->
         <link rel="stylesheet" href="newcss.css" type="text/css" />
-         <link href="../../assets2/css2/drop.css" rel="stylesheet" type="text/css" media="all" />
+         <link href="../../assets2/css2/drop.css" rel="stylesheet" />
         
          <style>
             #btn_confirma{
@@ -92,6 +92,13 @@
         </style>
     </head>
     <body>
+    	<%	String mensagem = (String)session.getAttribute("msg");
+			if(mensagem == null){
+				mensagem = "";
+			}
+		 %>
+    
+    
         <div id ="tudo" class="wrapper">
 	    <div class="main-panel">
 	        <nav class="navbar navbar-default navbar-fixed">
@@ -110,6 +117,7 @@
                                     <div class="header">
                                         <h4 class="title" style="text-align: center;">Cadastro de Módulo</h4>
                                     </div>
+                                     <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                     <div class="content">
                                         <div id="corpo">
                                             <div id="centro">

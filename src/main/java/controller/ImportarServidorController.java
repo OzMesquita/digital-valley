@@ -29,7 +29,7 @@ public class ImportarServidorController  extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			session.setAttribute("exececao", e.getMessage());
+			session.setAttribute("msg", e.getMessage());
 		}
 		
 		response.sendRedirect(pagina);

@@ -53,7 +53,7 @@ public class CadastrarServidor extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute("msg", e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

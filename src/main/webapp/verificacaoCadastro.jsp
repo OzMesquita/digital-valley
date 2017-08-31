@@ -46,10 +46,9 @@
 <body>
 
     <div class="image-container set-full-height" style="background: steelblue;">
-    <%if(session.getAttribute("excecao")!= null){ %>
-		<p><%=session.getAttribute("excecao") %></p>
-	<% 
-		session.removeAttribute("excecao");
+    <% String mensagem = (String) session.getAttribute("msg");
+    if(mensagem == null){
+		mensagem ="";
 	}%>
         <div class="container">
             <div class="row">
@@ -69,6 +68,7 @@
                                         <li><a href="#servidor" data-toggle="tab">Servidor</a></li> 
                                     </ul>
                                 </div>
+                                <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div class="row">
                                     <div class="col-sm-6" style="margin-left: 25%;">
                                         <div class="form-group">

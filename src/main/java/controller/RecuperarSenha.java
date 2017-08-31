@@ -41,15 +41,18 @@ public class RecuperarSenha extends HttpServlet {
                 if(Facade.BuscarEmailVinculado(email)!= null){
                     Facade.EnviarEmailRecuperacaoDeSenha(email);
                     request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
+                    
                 }else{
                     throw new IllegalArgumentException("Este e-mail não está vinculado a uma conta ativa.");
                 }
+              
             }else{
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
         }catch (Exception e) {
 			request.getSession().setAttribute("msg", "falha ao enviar e-mail.");
 		}
+        response.sendRedirect("recuperSenha.jsp");
         
         
     }

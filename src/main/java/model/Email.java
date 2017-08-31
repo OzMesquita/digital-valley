@@ -12,8 +12,8 @@ public class Email {
     private String message;
     private String assunto;
     //adicionar emial e senha 
-    private String user ="wallisonrocha2008";
-    private String pass ="27019899316186";
+    private String user ="betinlimma@";
+    private String pass ="antonialima";
     private String nomeTo;
     public Email()
     {
@@ -37,14 +37,14 @@ public class Email {
             //Adicione os destinat�rios
             email.addTo(this.fromEmail, this.nomeTo);
             //Configure o seu email do qual enviar�
-            email.setFrom("wallisonrocha2008@gmail.com", "N2S - Controle de Acesso");
+            email.setFrom("betinlimma@gmail.com", "N2S - Controle de Acesso");
             //Adicione um assunto
             email.setSubject(this.assunto);
             //Adicione a mensagem do email
             email.setMsg(this.message);
             //Para autenticar no servidor � necess�rio chamar os dois m�todos abaixo
             System.out.println("autenticando...");
-            email.setSSL(true);
+            email.setSSLOnConnect(true);
             email.setAuthentication(user, pass);
             System.out.println("enviando...");
             email.send();
