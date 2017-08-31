@@ -40,11 +40,11 @@
 <body>
 
 	<%
-		String mensage;
+		String mensagem;
 		if(session.getAttribute("msg") == null){
-			mensage = "Login";
+			mensagem = "";
 		}else{
-			mensage = (String)session.getAttribute("msg");
+			mensagem = (String)session.getAttribute("msg");
 			
 		}%>
 
@@ -74,9 +74,10 @@
 								</div>
 								<div class="wizard-navigation">
 									<ul>
-										<li><a href="#about" data-toggle="tab"><%=mensage %></a></li>
+										<li><a href="#about" data-toggle="tab">LOGIN</a></li>
 									</ul>
 								</div>
+								<div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
 								<div class="tab-content">
 									<div class="tab-pane" id="about">
 										<div class="row">

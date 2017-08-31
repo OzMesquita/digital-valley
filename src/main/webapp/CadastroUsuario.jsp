@@ -32,10 +32,20 @@
         <link rel="stylesheet" href="newcss.css" type="text/css" />
     </head>
     <body>
+<<<<<<< HEAD
+        <% Pessoa usuario = (Pessoa) session.getAttribute("usuario");
+	        String mensagem = (String)session.getAttribute("msg");
+	    	if(mensagem == null){
+	    		mensagem = "";
+    		}
+    	%>
+=======
         <% Pessoa usuario = (Pessoa) session.getAttribute("usuario"); %>
-        <% if( session.getAttribute("msg")== null){
-            session.setAttribute("msg", " ");
+        <% String mensagem = (String) session.getAttribute("msg");
+	if( mensagem == null){
+		mensagem = "";
         } %>
+>>>>>>> 676880fc951972469ee13afe01e50c4929be0013
         <div class="image-container set-full-height" style="background: steelblue;">
             <div class="container">
                 <div class="row">
@@ -58,13 +68,18 @@
                                             <li><a data-toggle="tab">Cadastro</a></li>
                                         </ul>
                                     </div>
+                                    <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                     <div class="tab-content">
                                         <div class="" >
                                             <div class="row">
                                                 <div class="col-sm-8" style="margin-left: 15%;">
+<<<<<<< HEAD
+                                                   
+=======
                                                     <div id="alerta" style="color: red; text-align: center;">
-                                                        <small name="small" id="t_alerta"> <script>sessionStorage.getItem('msg');</script> </small>
+                                                        <small name="small" id="t_alerta"> <%= mensagem %><%session.setAttribute("msg", null);%> </small>
                                                     </div>
+>>>>>>> 676880fc951972469ee13afe01e50c4929be0013
                                                     <div class="form-group">
                                                         <label>Nome Completo </label>
                                                         <input name="nome" type="text" disabled class="form-control" value="<%= usuario.getNome() %>">
@@ -103,7 +118,7 @@
                                                     </div>
                                                     <div id="c_russas"  >
                                                         <h3 style=" margin-left: 50%;">
-                                                            <small><a href="login" >Voltar para tela de login</a></small>
+                                                            <small><a href="login.jsp" >Voltar para tela de login</a></small>
                                                         </h3>
                                                     </div>
                                                     <div class="pull-right">

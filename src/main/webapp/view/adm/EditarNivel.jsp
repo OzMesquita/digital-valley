@@ -65,6 +65,12 @@
 <body >
 	<%
 		Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
+	
+		String mensagem = (String)session.getAttribute("msg");
+		if(mensagem == null){
+			mensagem = "";
+		}
+	
 		Pessoa p = (Pessoa) session.getAttribute("pessoa");
 		if (p == null) {
 		} else {
@@ -93,6 +99,7 @@
                             <div class="header">
                                 <h4 class="title">Perfil do Usuário</h4>
                             </div>
+                             <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                             <div class="content">
                                 <form action="AlterarEmail" method="post">
                                     <div class="row">

@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+
+
+import org.apache.commons.mail.EmailException;
+
 import dao.AlunoDAO;
 import dao.ModuloDAO;
 import dao.PerfilDAO;
@@ -214,10 +218,14 @@ public class Facade {
         if(emailCadastrado != null){
 	        Email e = new Email("Recuperação de Senha!", 
 	                    "Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-	                            + "http://localhost:8080/ControleDeAcesso/confirmaRecuperacao.jsp?"
+	                            + "http://localhost:8080/Controle_De_Acesso/confirmaRecuperacao.jsp"
 	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
                                     +"\n Caso não tenha solicitado, ignore este e-mail.", emailCadastrado, "Usuário Controle de Acesso");
-            e.sendEmail();
+            try {
+				e.sendEmail();
+			} catch (EmailException e1) {
+				throw new IllegalArgumentException("Não foi possível enviar o email!");
+			}
         }else{
         	throw new IllegalArgumentException("Email não pode ser nulo");
         }

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator" %>
-<%@page import="model.Modulo" %>>
+<%@page import="model.Modulo" %>
 
 <!doctype html>
 <html lang="pt">
@@ -61,16 +61,15 @@
                             </div>
                             <div class="content all-icons">
                                 <div class="row">
-                                <%	if(modulos != null){
+                                <%	if( !modulos.isEmpty()){
 										for(Modulo m: modulos){
 	                             %>
-                                    <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-                                    <div id="centro" class="font-icon-detail">
-										<img id="img_m" src="<%=m.getImagem()%>"/><br>
-										 <a id="nModulo" href="<%= m.getUrl() %>" > <%=m.getTitulo() %> </a>  
-                                    </div>
-                                     
-                                  </div>
+	                                    <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+		                                    <div id="centro" class="font-icon-detail">
+												<img id="img_m" src="<%=m.getImagem()%>"/><br>
+												 <a id="nModulo" href="<%= m.getUrl() %>" > <%=m.getTitulo() %> </a>  
+		                                    </div> 
+	                                  </div>
 								<%}}else{ %>
 									 <p id="text_aviso"> Você não possui módulos cadastrados!</p>  
 								<%}%>

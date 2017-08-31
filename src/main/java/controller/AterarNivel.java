@@ -26,10 +26,10 @@ public class AterarNivel extends HttpServlet {
 			usuario.setNivel(nivel);
 			util.Facade.editarPessoa(pessoa, usuario);
 			pagina = "editarNivel.jsp?sucessoEditar=1";
-			session.setAttribute("excecao" ,"Alterado com sucesso");
+			session.setAttribute("msg" ,"Alterado com sucesso");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute("msg", e.getMessage());
 		}
 
 		

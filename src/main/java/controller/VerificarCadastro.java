@@ -41,10 +41,10 @@ public class VerificarCadastro extends HttpServlet {
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);
 					if(aluno != null){
 						System.out.println("cadastrado");
-						throw new Exception("Erro, Aluno(a) " + aluno.getNome() + " já possui cadastro");
+						throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 					}else{
 						System.out.println("nada");
-						throw new Exception("Erro, Pre cadastro de aluno não identificado");
+						throw new Exception("Pre cadastro de aluno não identificado");
 					}
 				}
 				
@@ -62,16 +62,16 @@ public class VerificarCadastro extends HttpServlet {
 					Servidor servidor = sDAO.buscar(siape);
 					if(servidor != null){
 						System.out.println("cadastrado");
-						throw new Exception("Erro, Servidor(a) " + servidor.getNome() + " já possui cadastro");
+						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 					}else{
 						System.out.println("nada");
-						throw new Exception("Erro, Pre cadastro não identificado");
+						throw new Exception("msg, Pre cadastro não identificado");
 					}
 				}
 				
 			}
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute("msg", e.getMessage());
 			System.out.println("excecao : " + e.getMessage());
 		}
 

@@ -78,7 +78,11 @@
 	
 <body>
 
-	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuarios"); %>
+	<% List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuarios");
+		String mensagem = (String) session.getAttribute("msg");
+	
+	
+	%>
 	
 	<div id ="tudo" class="wrapper">
 	    
@@ -107,6 +111,7 @@
                                     </div><br>
                                     <h4 class="title">Usuários</h4>
                                 </div>
+                                 <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div id="tabUsuarios">
                                     <table class="table table-hover table-striped">
                                         <thead>

@@ -39,7 +39,7 @@ public class EditarUsuarioController extends HttpServlet {
 				pagina = "telaInicial.jsp?sucessoEditar=1";
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				session.setAttribute("excecao", e.getMessage());
+				session.setAttribute("msg", e.getMessage());
 			}
 
 		}else{
