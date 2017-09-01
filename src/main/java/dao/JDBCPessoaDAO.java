@@ -151,6 +151,51 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
+	
+	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf) {
+		Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+
+		String SQL = "SELECT * FROM pessoa_usuario WHERE matricula = ? and cpf=?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2,cpf);
+
+			ResultSet rs = ps.executeQuery();
+
+			rs.next();
+			pessoa.setId(rs.getInt("id_pessoa_usuario"));
+			pessoa.setNome(rs.getString("nome"));
+			pessoa.setCpf(rs.getString("cpf"));
+			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+			pessoa.setEmail(rs.getString("email"));
+			pessoa.getUsuario().setLogin(rs.getString("login"));
+			pessoa.getUsuario().setSenha(rs.getString("senha"));
+			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+			pessoa.getUsuario().setPessoa(pessoa);
+			ps.close();
+			rs.close();
+			
+			return pessoa;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	
+	
 
 	@Override
 	public Pessoa buscarPorLogin(String login) {

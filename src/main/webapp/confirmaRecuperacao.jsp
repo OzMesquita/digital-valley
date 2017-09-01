@@ -60,7 +60,7 @@
                             <div class="wizard-header">
                                 <h3>
                                     <b>Confirmar recuperação de senha</b><br>
-                                    <small><b>Quase lá!</b> Só mais alguns passos</small>
+                                    <small><b>Quase lá!</b> Só mais uma etapa</small>
                                 </h3>
                             </div>
                             <ul id="faixa_topo">
@@ -70,7 +70,7 @@
                                 <div class="col-sm-6" style="margin-left: 25%;">
                                     <div class="form-group">
                                         <div class="tab-content">
-                                            <form method="post" action="recuperacao" name="formVerifica" >
+                                            <form method="post" action="ConfirmaRecuperacao" name="formVerifica" >
                                                 <label for="matricula" >Matricula</label>
                                                 <input type="text" title="Preencha este campo" name="matricula" class="form-control" placeholder="Digite sua matricula"><br>
                                                 <label for="matricula" >CPF</label>
