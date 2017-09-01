@@ -84,7 +84,8 @@
 }
 </style>
 <%
-	Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+	Usuario usuarioSessao = (Usuario) session.getAttribute("usuario");
 
 	String mensagem = (String)session.getAttribute("msg");
 	if(mensagem == null){
@@ -122,20 +123,20 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Código Interno</label>
-                                                        <input type="text" class="form-control" disabled value="<%= usuario.getPessoa().getId()%>">
+                                                        <input type="text" class="form-control" disabled value="<%= usuarioSessao.getPessoa().getId()%>">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label>Nome Completo</label>
-                                                        <input type="text" class="form-control" name="nome" disabled  value="<%= usuario.getPessoa().getNome()%>">
+                                                        <input type="text" class="form-control" name="nome" disabled  value="<%= usuarioSessao.getPessoa().getNome()%>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>CPF</label>
-                                                        <input type="text" id="cpf" name ="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuario.getPessoa().getCpf() %>">
+                                                        <input type="text" id="cpf" name ="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuarioSessao.getPessoa().getCpf() %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +144,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Data de Nascimento</label>
-                                                        <input type="data" class="form-control" name="nascimento" maxlength="8"  value="<%= usuario.getPessoa().getDataNascimento() %>">
+                                                        <input type="data" class="form-control" name="nascimento" maxlength="8"  value="<%= usuarioSessao.getPessoa().getDataNascimento() %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,7 +152,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>E-mail</label>
-                                                        <input type="email" class="form-control" name="email" value="<%= usuario.getPessoa().getEmail() %>">
+                                                        <input type="email" class="form-control" name="email" value="<%= usuarioSessao.getPessoa().getEmail() %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,7 +160,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Login</label>
-                                                        <input type="text" class="form-control" name="login" value="<%= usuario.getLogin() %>">
+                                                        <input type="text" class="form-control" name="login" value="<%= usuarioSessao.getLogin() %>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">

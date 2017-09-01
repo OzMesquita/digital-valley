@@ -23,4 +23,6 @@ public interface PessoaDAO {
         public Pessoa buscarPorEmail(String email);
 	
 	public List<Pessoa> listar();
+
+	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf);
 }

@@ -82,6 +82,11 @@ public class Facade {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		return pDAO.buscarPorLogin(login).getUsuario();
 	}
+	
+	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		return pDAO.buscarPorMatriculaAndCPF(matricula, cpf).getUsuario();
+	}
 
 	public static String[] lerArquivoBancoDeDados() {
 		String[] bd = new String[3];

@@ -85,7 +85,7 @@
                                                     <div class="row">
                                                         <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control" onkeypress="return SomenteNumero(event)"><br>
                                                         <label for="nome" >Nome Completo</label><input type="text" name="nomeS" class="form-control"><br>
-                                                        <a href="login.jsp">Voltar para tela de login</a>
+                                                        <a href="/Controle_de_Acesso/login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos2()">
                                                     </div>
                                                 </div>
