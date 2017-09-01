@@ -126,7 +126,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de modulo", e);
+			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: "+e.getMessage());
 		}finally {
 			try {
 				connection.close();
@@ -135,6 +135,40 @@ public class JDBCModuloDAO implements ModuloDAO {
 			}
 		}
 
+	}
+	
+	@Override
+	public Modulo buscarPorNome(String nome){
+		Modulo modulo = new Modulo();
+
+		String SQL = "SELECT id_modulo, titulo, url, imagem FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+
+			ps.setString(1, '%'+nome+'%');
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				ps.close();
+				rs.close();
+			}
+			return modulo;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: "+e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -258,7 +292,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO, Erro: "+e.getMessage());
 		}finally {
 			try {
 				connection.close();

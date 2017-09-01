@@ -48,10 +48,6 @@ public class ServidorDAOTest {
 		
 	}
 	
-	@Test
-	public void testPreCadastro(){
-		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-		Assert.assertTrue(sDAO.buscarPreCadastro("1234567", "Ayslan"));
-	}
+
 
 }

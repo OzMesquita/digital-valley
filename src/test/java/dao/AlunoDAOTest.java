@@ -14,7 +14,7 @@ public class AlunoDAOTest {
 
 	private Aluno aluno = new Aluno();
 
-	
+	@Ignore
 	@Test
 	public void salvar() {
 		Curso curso = new Curso();
@@ -81,16 +81,12 @@ public class AlunoDAOTest {
 
 	}
 	
-	@Test
-	public void testPreCadastro(){
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		Assert.assertTrue(aDAO.buscarPreCadastro("370178", "DEYVISON nogueira"));
-	}
+	
 	
 	@Test
 	public void testBuscarNome(){
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		List<Aluno> alunos = aDAO.buscarPorNome("tagila");
+		List<Aluno> alunos = aDAO.buscarPorNome("danmwlkdnawld");
 		
 		System.out.println("Listar alunos: "+alunos.size());
 		for(Aluno a: alunos){
@@ -100,21 +96,6 @@ public class AlunoDAOTest {
 		}
 		Assert.assertTrue(alunos != null);
 	}
-	
-	@Test
-	public void testBuscarCursoPreCadastrado(){
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		Assert.assertTrue(aDAO.buscarCursoPreCadastrado("370178", "Deyvisoogueira rodrigues") ==-1 );
-	}
-	
-	@Ignore
-	@Test
-	public void testExcluirPrecadastro(){
-		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		aDAO.excluirAlunoPreCadastro("370183", "rogerio sena Leitao");
-		
-		
-	}
-	
+
 
 }

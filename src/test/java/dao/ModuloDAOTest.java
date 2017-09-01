@@ -85,11 +85,19 @@ public class ModuloDAOTest {
 		mDAO.associarUsuarioModulo(6, 4);
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testAssociarPerfil(){
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		mDAO.associarPerfilModulo(5, 10);
+	}
+	
+	@Test
+	public void testBuscarPorNome(){
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		Modulo m = mDAO.buscarPorNome("MODULO 1") ;
+		System.out.println(m.getTitulo());
+		Assert.assertTrue(m!= null);
 	}
 	
 }

@@ -53,7 +53,7 @@ public class FacadeTest {
 	public void testVerificacao(){
 		Assert.assertTrue(util.Facade.verificacaoAluno("370178", "Deyvison Nogueira"));
 	}
-	
+	@Ignore
 	@Test
 	public void cadastrarAlunoTest(){
 				
@@ -83,6 +83,13 @@ public class FacadeTest {
 		modulo.setUrl("/testando");
 		
 		util.Facade.cadastrarModulo(modulo);
+	}
+	
+	@Test
+	public void testAssociarModuloPerfil(){
+		
+		util.Facade.adicionarModulosParaPerfil(3, 10);
+		
 	}
 	
 	

@@ -34,6 +34,13 @@ public class CadastrarModulo extends HttpServlet {
 			modulo.setUrl(url);
 			
 			Facade.cadastrarModulo(modulo);
+			
+			modulo = Facade.buscarPorNome(modulo.getTitulo());
+			
+			if(!aluno.equals("")){
+				Facade.adicionarModulosParaPerfil(1, 4);
+			}
+			
 			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
 			
 		} catch (Exception e) {

@@ -57,6 +57,14 @@ public class PerfilDAOTest {
 		
 	}
 	
+	@Test
+	public void testBucarPorNome(){
+		PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+		Perfil p = pDAO.buscarPorNome("aluno");
+		System.out.println(p.getNome());
+		Assert.assertTrue(p != null);
+	}
+	
 	
 
 }
