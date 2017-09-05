@@ -149,6 +149,12 @@ public class Facade {
 		
 	}
 	
+	public static void preCadastrarAluno(String nome, String matricula, int curso, String semestreDeIngresso){
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		preA.preCadastrar(nome, matricula, curso, semestreDeIngresso);
+		
+	}
+	
 	public static void preCadastroServidor(String nome, String siape){
 		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
 		pDAO.preCadastrarServidor(siape, nome);
@@ -179,6 +185,7 @@ public class Facade {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		return aDAO.buscar(id);
 	}
+	
 	
 	public static List<Aluno> buscarAlunoPorNome(String nome){
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();

@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 				List<Modulo> modulos = Facade.buscarModulosPorPessoas(usuario.getPessoa());
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);
-				pagina = "view/telaInicial.jsp";	
+				pagina = "views/telaInicial.jsp";	
 				
 			}
 		

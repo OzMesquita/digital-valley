@@ -41,6 +41,33 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 		}
 		
 	}
+	
+	public void preCadastrar(String nome, String matricula, int curso, String semestreDeIngresso){
+		try {
+
+			String SQL = "INSERT INTO pre_cadastro_aluno( matricula, nome, id_curso, semestre) VALUES (?, ?, ?);";
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, matricula);
+			ps.setString(2, nome);
+			ps.setInt(3, curso);
+
+			ps.execute();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao cadastrar um aluno:"+ e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 
 	@Override
 	public boolean buscarPreCadastro(String matricula, String nome){

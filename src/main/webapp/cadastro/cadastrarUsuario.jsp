@@ -82,6 +82,11 @@
                                                         <input name="curso" type="text" class="form-control" value="<%=EnumCurso.value((Integer) session.getAttribute("curso")) %>" readonly="true">
                                                     </div>
                                                    <%} %>
+                                                  	<div class="form-group">
+                                                        <label>Semestre de Ingresso</label>
+                                                        <input name="semestreDeIngresso" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="6" placeholder="Ex.: 2015.1" OnKeyPress="formatar('####.#',this)">
+                                                    </div>
+                                                   
                                                     <div class="form-group">
                                                         <label>CPF </label>
                                                         <input name="cpf" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="14" placeholder="012.345.678-90" OnKeyPress=" this.value = FormataCpf()">

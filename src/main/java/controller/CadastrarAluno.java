@@ -28,6 +28,7 @@ public class CadastrarAluno extends HttpServlet {
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
 		String valorCurso = request.getParameter("curso");
+		String semestreDeIngresso = request.getParameter("ingresso");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
@@ -42,6 +43,7 @@ public class CadastrarAluno extends HttpServlet {
 				CursoDAO cDAO = DAOFactory.criarCursoDAO();
 				c = cDAO.buscarPorNome(valorCurso);
 				aluno.setCurso(c);
+				aluno.setSemestreIngresso(semestreDeIngresso);
 				aluno.setNome(nome);
 				aluno.setMatricula(codigo);
 				aluno.setCpf(cpf);

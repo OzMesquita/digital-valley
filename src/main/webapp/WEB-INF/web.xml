@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>digital-valley</display-name>
-  <jsp-config>
-    <jsp-property-group>
-      <description>Inclusao do cabecalho, menu e rodape</description>
-      <url-pattern>/view/*</url-pattern>
-      <include-prelude>/WEB-INF/templates/header.jspf</include-prelude>
-      <include-prelude>/WEB-INF/templates/menu.jspf</include-prelude>
-      <include-coda>/WEB-INF/templates/footer.jspf</include-coda>
-    </jsp-property-group>
-  </jsp-config>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
@@ -71,7 +63,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
-    <url-pattern>/view/logout</url-pattern>
+    <url-pattern>/views/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Verificação</servlet-name>
@@ -83,15 +75,15 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EditarUsuario</servlet-name>
-    <url-pattern>/view/editarUsuario</url-pattern>
+    <url-pattern>/views/editarUsuario</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>pesquisaModulos</servlet-name>
-    <url-pattern>/view/adm/pesquisaModulos</url-pattern>
+    <url-pattern>/views/adm/pesquisaModulos</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>pesquisaUsuario</servlet-name>
-    <url-pattern>/view/adm/pesquisaUsuario</url-pattern>
+    <url-pattern>/views/adm/pesquisaUsuario</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CadastraAluno</servlet-name>
@@ -103,11 +95,11 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>PreCadastroServidor</servlet-name>
-    <url-pattern>/view/adm/importarServidor</url-pattern>
+    <url-pattern>/views/adm/importarServidor</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CadastroServidor</servlet-name>
-    <url-pattern>/view/adm/cadastrarModulo</url-pattern>
+    <url-pattern>/views/adm/cadastrarModulo</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>Autentica</filter-name>
@@ -123,7 +115,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>Autentica</filter-name>
-    <url-pattern>/view/*</url-pattern>
+    <url-pattern>/views/*</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>

@@ -127,5 +127,10 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		}
 		
 	}
+	public Usuario buscar(int id){
+		return null;
+		
+		
+	}
 
 }
