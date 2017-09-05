@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.EnumCargo;
 import model.Servidor;
 import model.Usuario;
 import util.Facade;
@@ -29,31 +30,34 @@ public class CadastrarServidor extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
+		String cargo = request.getParameter("cargo");
 
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
 				Servidor servidor = new Servidor();
 				Usuario usuario = new Usuario();
+				
 				servidor.setNome(nome);
 				servidor.setCpf(cpf);
 				servidor.setSiape(codigo);
 				servidor.setEmail(email);
 				servidor.setDataNascimento(dataNasci);
+				servidor.setCargo(EnumCargo.getByString(cargo));
 				usuario.setLogin(login);
 				usuario.setSenha(senha);
 				servidor.setUsuario(usuario);
 				usuario.setPessoa(servidor);
 
 				Facade.cadastrarServidor(usuario, servidor);
-
+				session.setAttribute("excecao", "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
 				pagina = "../login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute("excecao", e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

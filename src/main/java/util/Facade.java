@@ -63,6 +63,8 @@ public class Facade {
 		servidor.setId(p1.getId());
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
+		PreCadastroServidorDAO preDAO = DAOFactory.criarPreCadastroServidor();
+		preDAO.excluirPreCadastro(servidor.getSiape(), servidor.getNome());
 	}
 
 	public static void cadastrarModulo(Modulo modulo) {

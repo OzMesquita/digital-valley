@@ -36,7 +36,7 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar servidor em JDBCServidorDAO", e);
+			throw new RuntimeException("Falha ao cadastrar servidor, "+e.getMessage());
 		}finally {
 			try {
 				connection.close();

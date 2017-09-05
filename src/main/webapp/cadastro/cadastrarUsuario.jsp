@@ -4,16 +4,19 @@
     Author     : N2S-PC03
 --%>
 
+<%@page import="model.EnumCargo"%>
 <%@page import="model.EnumCurso"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
+        
         <meta http-equiv="Content-Language" content="pt-br">
         <link rel="apple-touch-icon" sizes="76x76" href="assets2/img/apple-icon.png">
         <link rel="icon" type="image/png" href="assets2/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        
         <title>Tela de cadastro</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -81,12 +84,31 @@
                                                         <label>Curso</label>
                                                         <input name="curso" type="text" class="form-control" value="<%=EnumCurso.value((Integer) session.getAttribute("curso")) %>" readonly="true">
                                                     </div>
-                                                   <%} %>
+                                                   
                                                   	<div class="form-group">
                                                         <label>Semestre de Ingresso</label>
                                                         <input name="semestreDeIngresso" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="6" placeholder="Ex.: 2015.1" OnKeyPress="formatar('####.#',this)">
                                                     </div>
-                                                   
+                                                   <%}else{ 
+                                                   		
+                                                   %>
+                                                   <div class="form-group" >
+                                                   		<label>Cargo</label>
+                                                   		<select class="form-control" name="cargo" >
+                                                   			<option disabled="disabled" selected="selected" value="0">Selecione um cargo</option>
+                                                   			<%
+                                                   			EnumCargo cargos[]  =  EnumCargo.values();
+                                                       		for(EnumCargo e: cargos){
+                                                   			%>
+                                                   				<option value="<%=e.getCargo() %>" ><%=e.getCargo() %></option>
+                                                   			<%
+                                                   			} 
+                                                   			%>
+                                                   		</select>
+                                                   			
+                                                   </div>
+                                                   <%	
+                                                   	} %>
                                                     <div class="form-group">
                                                         <label>CPF </label>
                                                         <input name="cpf" title="Preencha este campo corretamente" type="text" class="form-control" required maxlength="14" placeholder="012.345.678-90" OnKeyPress=" this.value = FormataCpf()">
