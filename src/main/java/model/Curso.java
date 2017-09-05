@@ -6,11 +6,9 @@ public class Curso {
 	
 	private int id;
 	private String nome;
-	private ArrayList<Disciplina> disciplinas;
 	
 	public Curso(String descricao) {
 		this.nome = descricao;
-		this.disciplinas = new ArrayList<Disciplina>();
 	}
 	
 	public Curso() {
@@ -24,13 +22,6 @@ public class Curso {
 		this.nome = nome;
 	}
 
-	public ArrayList<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
 
 	public int getId() {
 		return id;

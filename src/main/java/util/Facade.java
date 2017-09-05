@@ -207,11 +207,16 @@ public class Facade {
      
 	
 	
-        public static Perfil buscaPerfilPorId(int id){
-            PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
-            return pDAO.buscarPorId(id);
-        	
-        }
+	public static Perfil buscaPerfilPorId(int id){
+		PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+		return pDAO.buscarPorId(id);	
+	}
+	
+	
+	public static List<Perfil> ListarPeril(){
+		PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+		return pDAO.Listar();
+	}
 
     public static void adicionarModulosParaUsuario(int idUsuario, int idModulo) {
     	ModuloDAO mDAO = DAOFactory.criarModuloDAO();

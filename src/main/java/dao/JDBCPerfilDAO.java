@@ -191,7 +191,7 @@ public class JDBCPerfilDAO implements PerfilDAO{
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+			throw new RuntimeException("Falha ao listar pessoas em JDBC perfilDAO, erro: "+e.getMessage() );
 
 		}finally {
 			try {

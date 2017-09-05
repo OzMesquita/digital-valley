@@ -79,14 +79,19 @@ public class PessoaDAOTest {
 
 	}
 
-	@Ignore
+	
 	@Test
 	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pd.listar();
+		for(Pessoa p: pessoas){
+			System.out.println(p.getNome());
+			System.out.println(p.getUsuario().getLogin());
+			System.out.println(p.getUsuario().getNivel());
+		}
 		Assert.assertTrue(pessoas != null);
 	}
-	
+	@Ignore
 	@Test
 	public void testBuscarPorNome(){
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();

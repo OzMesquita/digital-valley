@@ -24,11 +24,12 @@ public class JDBCServidorDAO implements ServidorDAO {
 	public void cadastrar(Servidor servidor) {
 
 		try {
-			String SQL = "INSERT INTO servidor (siape, id_pessoa_usuario) VALUES (?,?)";
+			String SQL = "INSERT INTO servidor (siape, id_pessoa_usuario,cargo) VALUES (?,?,?)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
 			ps.setString(1, servidor.getSiape());
 			ps.setInt(2, servidor.getId());
+			ps.setString(3, servidor.getCargo().getCargo());
 			ps.executeUpdate();
 			ps.close();
 			

@@ -1,13 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Modulo;
+import model.Perfil;
 import util.Facade;
 
 public class CadastrarModulo extends HttpServlet {
@@ -18,10 +21,8 @@ public class CadastrarModulo extends HttpServlet {
 		String titulo = request.getParameter("titulo");
 		String url = request.getParameter("url");
 		String imagem = request.getParameter("imagem");
-		String aluno = request.getParameter("aluno");
-		String professor = request.getParameter("professor");
-		String secretario = request.getParameter("secretario");
-		String funcionario = request.getParameter("funcionario");
+		List<Perfil> perfis = Facade.ListarPeril();
+		HttpSession session = request.getSession();
 		
 		
 		String pagina = "cadastarModulo.jsp?erroCadastro=1";
@@ -36,12 +37,16 @@ public class CadastrarModulo extends HttpServlet {
 			Facade.cadastrarModulo(modulo);
 			
 			modulo = Facade.buscarPorNome(modulo.getTitulo());
-			
-			if(!aluno.equals("")){
-				Facade.adicionarModulosParaPerfil(1, 4);
+			String aux;
+			for(Perfil p: perfis){
+				aux = request.getParameter(p.getNome());
+				if(aux.equals("ok")){
+					util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
+				}
 			}
 			
 			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
+			session.setAttribute("excecao", "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 			
 		} catch (Exception e) {
 			

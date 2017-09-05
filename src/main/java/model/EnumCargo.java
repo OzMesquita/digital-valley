@@ -2,16 +2,16 @@ package model;
 
 public enum EnumCargo {
 	
-	PROFESSOR(1), SECRETARIO(2), FUNCIONARIO(3);
+	PROFESSOR("Professor"), SECRETARIO("Secretário"), FUNCIONARIO("Funcionário");
 
-	public int valorCargo;
+	public String cargo;
 
-	EnumCargo(int valor) {
-		valorCargo = valor;
+	EnumCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
-	public int getValorCargo() {
-		return valorCargo;
+	public String getCargo() {
+		return cargo;
 	}
 	
 }

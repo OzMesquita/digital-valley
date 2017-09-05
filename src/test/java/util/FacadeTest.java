@@ -1,5 +1,7 @@
 package util;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -85,11 +87,22 @@ public class FacadeTest {
 		util.Facade.cadastrarModulo(modulo);
 	}
 	
+	@Ignore
 	@Test
 	public void testAssociarModuloPerfil(){
 		
 		util.Facade.adicionarModulosParaPerfil(3, 10);
 		
+	}
+	
+	@Test
+	public void testListarAluno(){
+		List<Aluno> alunos = util.Facade.buscarAlunos();
+		for(Aluno a:alunos){
+			System.out.println(a.getNome());
+			System.out.println(a.getUsuario().getLogin());
+			System.out.println(a.getUsuario().getNivel());
+		}
 	}
 	
 	

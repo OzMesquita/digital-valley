@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class PessoaTest {
@@ -27,6 +28,7 @@ public class PessoaTest {
 		p.setDataNascimento("01011999");
 	}
 	
+	@Ignore
 	@Test
 	public void valido(){
 		Pessoa p = new Pessoa();

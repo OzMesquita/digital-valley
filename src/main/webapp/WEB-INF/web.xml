@@ -50,7 +50,7 @@
     <servlet-class>controller.ImportarServidorController</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>CadastroServidor</servlet-name>
+    <servlet-name>CadastroModulo</servlet-name>
     <servlet-class>controller.CadastrarModulo</servlet-class>
   </servlet>
   <servlet>
@@ -98,7 +98,7 @@
     <url-pattern>/views/adm/importarServidor</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>CadastroServidor</servlet-name>
+    <servlet-name>CadastroModulo</servlet-name>
     <url-pattern>/views/adm/cadastrarModulo</url-pattern>
   </servlet-mapping>
   <filter>
