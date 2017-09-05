@@ -15,6 +15,8 @@ public interface ModuloDAO {
 	
 	public Modulo buscar(int id);
 	
+	public Modulo buscarPorNome(String nome);
+	
 	public List<Modulo> buscar(Pessoa pessoa);
 	
 	public List<Modulo> listar();

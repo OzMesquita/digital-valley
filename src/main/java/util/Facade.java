@@ -206,15 +206,21 @@ public class Facade {
         	
         }
 
-    public static void AdicionarModulosParaUsuario(int idUsuario, int idModulo) {
+    public static void adicionarModulosParaUsuario(int idUsuario, int idModulo) {
     	ModuloDAO mDAO = DAOFactory.criarModuloDAO();
     	mDAO.associarUsuarioModulo(idUsuario, idModulo);
 
     }
 
-    public static void AdicionarModulosParaPerfil(int idPerfil, int idModulo) {
+    public static void adicionarModulosParaPerfil(int idPerfil, int idModulo) {
     	ModuloDAO mDAO = DAOFactory.criarModuloDAO();
     	mDAO.associarPerfilModulo(idPerfil, idModulo);
+    	
+    }
+    
+    public static Modulo buscarPorNome(String nome){
+    	ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+    	return mDAO.buscarPorNome(nome);
     	
     }
 	

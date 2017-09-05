@@ -14,6 +14,8 @@ public interface PerfilDAO {
 	
 	public Perfil buscarPorId(int id);
 	
+	public Perfil buscarPorNome(String nome);
+	
 	public List<Perfil> Listar();
 	
 }

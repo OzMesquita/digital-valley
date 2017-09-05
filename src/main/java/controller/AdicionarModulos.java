@@ -36,12 +36,12 @@ public class AdicionarModulos extends HttpServlet {
                 }
                 if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
                     for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.AdicionarModulosParaUsuario(usuarioSelecionado.getId(),modulosCadadastrado.getId());
+                        Facade.adicionarModulosParaUsuario(usuarioSelecionado.getId(),modulosCadadastrado.getId());
                     }
                 }
                 if(session.getAttribute("mostra").toString().toLowerCase().equals("perfil")){
                     for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.AdicionarModulosParaPerfil(perfilSelecionado.getId(),modulosCadadastrado.getId());
+                        Facade.adicionarModulosParaPerfil(perfilSelecionado.getId(),modulosCadadastrado.getId());
                     }
                 }
                 

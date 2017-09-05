@@ -132,6 +132,41 @@ public class JDBCPerfilDAO implements PerfilDAO{
 			}
 		}
 	}
+	
+	@Override
+	public Perfil buscarPorNome(String nome){
+		Perfil perfil = new Perfil();
+		String SQL = "SELECT id, nome FROM public.perfil WHERE UPPER(nome) like UPPER(?)";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, '%'+nome+'%');
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				perfil.setId(rs.getInt("id"));
+				perfil.setNome(rs.getString("nome"));
+				
+				ps.close();
+				rs.close();
+				
+				return perfil;
+			}else{
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro do perfil: "+e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	@Override
 	public List<Perfil> Listar() {

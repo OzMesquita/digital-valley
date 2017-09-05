@@ -17,9 +17,16 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/workspace/digital-valley/src/main/webapp/WEB-INF/lib/commons-email-1.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/workspace/digital-valley/src/main/webapp/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/workspace/digital-valley/src/main/webapp/WEB-INF/lib/postgresql-42.1.1.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/commons-email-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/postgresql-42.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/N2S-PC02/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+>>>>>>> c3d7b9ddf2906fc9d279819d44f3eb9d23f8ae4e
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
