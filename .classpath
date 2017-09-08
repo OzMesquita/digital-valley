@@ -24,9 +24,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/N2S-PC02/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/commons-email-1.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/N2S-PC02/workspace/digital-valley/src/main/webapp/WEB-INF/lib/postgresql-42.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/deyvi/workspace/digital-valley/src/main/webapp/WEB-INF/lib/postgresql-42.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/deyvi/workspace/digital-valley/src/main/webapp/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/deyvi/workspace/digital-valley/src/main/webapp/WEB-INF/lib/commons-email-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/deyvi/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
