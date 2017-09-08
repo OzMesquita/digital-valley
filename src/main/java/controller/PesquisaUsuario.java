@@ -33,6 +33,7 @@ public class PesquisaUsuario extends HttpServlet {
             List<Pessoa> usuarios = (List<Pessoa>) Facade.buscarPessoaPorNome(nome);
             
             session.setAttribute("usuarios", usuarios);
+            System.out.println("aqui");
             response.sendRedirect(request.getHeader("referer"));
     }
 

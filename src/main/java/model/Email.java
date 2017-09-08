@@ -7,12 +7,11 @@ import org.apache.commons.mail.SimpleEmail;
 public class Email {
     
     private String hostName = "smtp.gmail.com";
-    private final int port =465;
+    private final int port = 465;
     private String fromEmail;
     private String message;
     private String assunto;
-    //adicionar emial e senha 
-    private String user ="betinlimma@";
+    private String user ="betinlimma";
     private String pass ="antonialima";
     private String nomeTo;
     public Email()
@@ -37,22 +36,82 @@ public class Email {
             //Adicione os destinat�rios
             email.addTo(this.fromEmail, this.nomeTo);
             //Configure o seu email do qual enviar�
-            email.setFrom("betinlimma@gmail.com", "N2S - Controle de Acesso");
+            email.setFrom("ame.russas@ufc.br", "N2S - Controle de Acesso");
             //Adicione um assunto
             email.setSubject(this.assunto);
             //Adicione a mensagem do email
             email.setMsg(this.message);
             //Para autenticar no servidor � necess�rio chamar os dois m�todos abaixo
             System.out.println("autenticando...");
-            email.setSSLOnConnect(true);
+            email.setSSL(true);
             email.setAuthentication(user, pass);
             System.out.println("enviando...");
             email.send();
             System.out.println("Email enviado!");
         }catch(EmailException e){
-            throw new EmailException("Não foi possível enviar o email!");
+            e.printStackTrace();;
 	}
    }
+    
+    
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public String getFromEmail() {
+        return fromEmail;
+    }
+
+    public void setFromEmail(String fromEmail) {
+        this.fromEmail = fromEmail;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getAssunto() {
+        return assunto;
+    }
+
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getNomeTo() {
+        return nomeTo;
+    }
+
+    public void setNomeTo(String nomeTo) {
+        this.nomeTo = nomeTo;
+    }
+
+    
+    
 
    
    
