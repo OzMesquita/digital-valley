@@ -57,13 +57,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     </head>
     <body class="cbp-spmenu-push">
     <% 
-		List<Pessoa> usuarios = new ArrayList<Pessoa>();	
+		List<Pessoa> usuarios = (List<Pessoa>)session.getAttribute("usuarios");	
 		String mensagem = (String) session.getAttribute("msg");
-                if(session.getAttribute("usuarios")!= null){
-                    usuarios = (List<Pessoa>) session.getAttribute("usuarios");
-                }else{
-                    usuarios = (ArrayList<Pessoa>)Facade.buscarPessoas();
-                }
+        if(usuarios!= null && !usuarios.isEmpty()){
+        	System.out.println("dshjdshdj");
+            usuarios = (List<Pessoa>) session.getAttribute("usuarios");
+        }else{
+        	
+            usuarios = (ArrayList<Pessoa>)Facade.buscarPessoas();
+        }
    
 	
 	%>
@@ -80,7 +82,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Usuários</h4><hr style="border: 1px solid lightgray">
                                     <div id="busca">
-                                        <form action="pesquisaUsuario" method="get">
+                                        <form action="ListaUsuario" method="get">
                                             <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
                                             <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
                                             <select id="filtro" name="filtro" class="form-group " style="float: right">
@@ -95,23 +97,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div id="tabUsuarios">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th>Matrícula/Siape</th>
+                                            <th>CPF</th>
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>Nível</th>
                                         </thead>
                                         <tbody>
                                           <% for(Pessoa user : usuarios){
-                                                  Aluno a; Servidor s;
+                                                 
 	                                          %>
                                             <tr>
-                                                <%if(user instanceof Aluno){
-                                                        a = (Aluno) user;
-                                                    %>
-                                                  <td><%=a.getMatricula() %></td>
-                                                  <%}else{ s = (Servidor) user;%>
-                                                  <td><%=s.getSiape() %></td>
-                                                  <%}%>
+                                                
+                                                  <td><%=user.getCpf() %></td>
+                                                
+                                                  
                                                   <td><a href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"><%=user.getNome()%></a></td>
                                                   <td><%=user.getEmail()%></td>
                                                   <td><%=user.getUsuario().getNivel()%></td>
@@ -157,7 +156,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     function filtro(){
                         var select = document.getElementById('filtro');
                         var itemSelecionado = select.options[select.selectedIndex].value;
-                        alert(itemSelecionado);
+                        var nome = document.getElementById('txt_busca');
                         document.location.href = 'listaUsuarios?busca='+itemSelecionado;
                     }
                     

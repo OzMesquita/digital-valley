@@ -29,54 +29,57 @@ public class ListaUsuarios extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            List<Pessoa> usuarios = new ArrayList();
+            List<Pessoa> usuarios = new ArrayList<Pessoa>();
             HttpSession session = request.getSession();
             String nome = request.getParameter("busca");
             String filtro = request.getParameter("filtro");
+            try{
+	            if(nome != null && !"".equals(nome)){
+	                if(filtro.equals("todos")){
+	                    usuarios = (List<Pessoa>) Facade.buscarPessoaPorNome(nome);
+	                }else{
+	                    if(filtro.equals("alunos")){
+	                        List<Aluno> lista = Facade.buscarAlunoPorNome(nome);
+	                        for(Aluno a: lista){
+	                            usuarios.add(Facade.buscarPessoaPorId(a.getId()));
+	                        }
+	                    }else{
+	                        if(filtro.equals("servidores")){
+	                           List<Servidor> lista = Facade.buscarServidorPorNome(nome);
+	                            for(Servidor s: lista){
+	                                usuarios.add(Facade.buscarPessoaPorId(s.getId()));
+	                            } 
+	                        }
+	                    }
+	                }
+	            
+	            }else{
+	                if(filtro.equals("todos")){
+	                    usuarios = (List<Pessoa>) Facade.buscarPessoas();
+	                }else{
+	                    if(filtro.equals("alunos")){
+	                        List<Aluno> lista = Facade.buscarAlunos();
+	                        for(Aluno a: lista){
+	                            usuarios.add(Facade.buscarPessoaPorId(a.getId()));
+	                        }
+	                    }else{
+	                        if(filtro.equals("servidores")){
+	                           List<Servidor> lista = Facade.buscarServidor();
+	                            for(Servidor s: lista){
+	                                usuarios.add(Facade.buscarPessoaPorId(s.getId()));
+	                            } 
+	                        }
+	                    }
+	                }
+	            }
+            }catch (Exception e) {
+            	 session.setAttribute("msg", "Não foi possivel listar os usuários");
+			}
+            finally{
             
-            if(nome != null && !"".equals(nome)){
-                if(filtro.equals("todos")){
-                    usuarios = (List<Pessoa>) Facade.buscarPessoaPorNome(nome);
-                }else{
-                    if(filtro.equals("alunos")){
-                        List<Aluno> lista = Facade.buscarAlunoPorNome(nome);
-                        for(Aluno a: lista){
-                            usuarios.add(Facade.buscarPessoaPorId(a.getId()));
-                        }
-                    }else{
-                        if(filtro.equals("servidores")){
-                           List<Servidor> lista = Facade.buscarServidorPorNome(nome);
-                            for(Servidor s: lista){
-                                usuarios.add(Facade.buscarPessoaPorId(s.getId()));
-                            } 
-                        }
-                    }
-                }
-            
-            }else{
-                if(filtro.equals("todos")){
-                    usuarios = (List<Pessoa>) Facade.buscarPessoas();
-                }else{
-                    if(filtro.equals("alunos")){
-                        List<Aluno> lista = Facade.buscarAlunos();
-                        for(Aluno a: lista){
-                            usuarios.add(Facade.buscarPessoaPorId(a.getId()));
-                        }
-                    }else{
-                        if(filtro.equals("servidores")){
-                           List<Servidor> lista = Facade.buscarServidor();
-                            for(Servidor s: lista){
-                                usuarios.add(Facade.buscarPessoaPorId(s.getId()));
-                            } 
-                        }
-                    }
-                }
+	            session.setAttribute("usuarios", usuarios);
+	            response.sendRedirect("/Controle_de_Acesso/view/adm/listaDeUsuarios.jsp");
             }
-            
-            
-            
-            session.setAttribute("usuarios", usuarios);
-            response.sendRedirect("listaDeUsuarios.jsp");
     }
 
 

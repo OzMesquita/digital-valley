@@ -62,8 +62,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         
 		Pessoa p = Facade.buscarPessoaPorId(id);
 		if (p == null) {
-                    session.setAttribute("msg", "Nenhum uusário selecionado.");
-		} else {
+                    session.setAttribute("msg", "Nenhum usuário selecionado.");
+		} else { session.setAttribute("pessoa", p);
 	%>
         
 	<div class="main-content">
@@ -76,8 +76,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
        
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Perfil do Usuário</h4>
+                            <div class="header" style="text-align: center;">
+                                <h4 class="title">Perfil do Usuário</h4><hr style="border: 1px solid lightgray">
                             </div>
                             <div class="content">
                                 <form action="AlterarEmail" method="post">

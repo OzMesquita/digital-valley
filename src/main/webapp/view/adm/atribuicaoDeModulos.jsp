@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="visu/css/wecss.css" />
+        <link rel="stylesheet" href="../visu/css/wecss.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>editar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">

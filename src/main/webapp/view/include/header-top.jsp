@@ -25,7 +25,7 @@
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="visu/images/2.png" alt=""> </span> 
+									<span class="prfil-img"><img src="/Controle_de_Acesso/view/visu/images/2.png" alt=""> </span> 
 									<div class="user-name">
 										<p><%=usuario.getLogin() %></p>
 										<span><%=usuario.getNivel() %></span>
@@ -37,7 +37,7 @@
 							</a>
 							<ul class="dropdown-menu drp-mnu">
 								
-								<li> <a href="editarUsuario.jsp"><i class="fa fa-user"></i> Perfil</a> </li> 
+								<li> <a href="/Controle_de_Acesso/view/editarUsuario.jsp"><i class="fa fa-user"></i> Perfil</a> </li> 
 								<li> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
