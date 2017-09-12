@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Modulo;
+import model.Perfil;
 import model.Pessoa;
 import util.ConnectionFactory;
 
@@ -201,6 +202,45 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
+	public List<Modulo> buscar(Perfil perfil) {
+		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
+		try {
+			String SQL = "SELECT * FROM perfil_modulo AS p_m, modulo AS m WHERE p_m.id_perfil = ? and m.id_modulo = p_m.id_modulo;";
+
+			PreparedStatement ps;
+			ps = connection.prepareStatement(SQL);
+			ps.setInt(1, perfil.getId());
+
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Modulo modulo = new Modulo();
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				
+				modulos.add(modulo);
+			}
+
+			ps.close();
+			rs.close();
+
+			return modulos;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar Perfis, erro: "+e.getMessage());
 		}finally {
 			try {
 				connection.close();

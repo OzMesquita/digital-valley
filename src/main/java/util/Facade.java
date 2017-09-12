@@ -120,8 +120,7 @@ public class Facade {
         
 	public static List<Modulo> buscarModulosPorPerfil(Perfil perfil) {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
-		//return mDAO.buscar(perfil);
-		return null;
+		return mDAO.buscar(perfil);
 	}
 	
 	public static List<Modulo> buscarTodosModulos() {
