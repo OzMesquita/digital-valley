@@ -38,7 +38,7 @@
 							<ul class="dropdown-menu drp-mnu">
 								
 								<li> <a href="/Controle_de_Acesso/view/editarUsuario.jsp"><i class="fa fa-user"></i> Perfil</a> </li> 
-								<li> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a> </li>
+								<li> <a href="/Controle_de_Acesso/logout"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
 					</ul>

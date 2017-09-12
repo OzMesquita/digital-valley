@@ -24,6 +24,7 @@ public class ImportacaoController extends HttpServlet {
 		String nome, matricula;
 		String aux;
 		String pagina;
+		pagina = "importarAlunos.jsp?erro=1";
 		HttpSession session = request.getSession();
 		try {
 
@@ -31,20 +32,18 @@ public class ImportacaoController extends HttpServlet {
 				
 				matricula = dados.substring(0,6);
 				nome = dados.substring(6,dados.indexOf("\n"));
-				System.out.println("CAdastrado :"+matricula+" "+nome);
 				util.Facade.preCadastrarAluno(nome, matricula, curso);
 				aux = dados.replace(matricula, "");
 				dados = aux;
 				aux = dados.replace(nome+"\n", "");
 				dados = aux;
-				System.out.println("inicioAUx"+aux);
 				
 			}
-			pagina = "importarMatriculas.jsp?sucesso=1";
+			pagina = "importarAlunos.jsp?sucesso=1";
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
-			pagina = "importarMatriculas.jsp?erro=1";
+			session.setAttribute("excecao", e.getMessage());
+			
 		}		
 		
 		response.sendRedirect(pagina);

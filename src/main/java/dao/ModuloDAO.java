@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Modulo;
+import model.Perfil;
 import model.Pessoa;
 
 public interface ModuloDAO {
@@ -18,6 +19,8 @@ public interface ModuloDAO {
 	public Modulo buscarPorNome(String nome);
 	
 	public List<Modulo> buscar(Pessoa pessoa);
+	
+	public List<Modulo> buscar(Perfil perfil);
 	
 	public List<Modulo> listar();
 	
