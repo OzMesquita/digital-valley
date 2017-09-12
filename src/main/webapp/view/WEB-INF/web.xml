@@ -65,7 +65,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
-    <url-pattern>/views/logout</url-pattern>
+    <url-pattern>/view/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Verificação</servlet-name>

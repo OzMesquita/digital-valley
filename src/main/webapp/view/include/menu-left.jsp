@@ -24,7 +24,7 @@
                                     <a href="#"><i class="fa fa-th-large nav_icon"></i>Modulos<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
+                                            <a href="adm/atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
                                         </li>
                                         <li>
                                             <a href="adm/cadastrarModulo.jsp">Cadastrar módulo</a>

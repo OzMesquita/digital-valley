@@ -28,7 +28,7 @@ public class CadastrarAluno extends HttpServlet {
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
 		String valorCurso = request.getParameter("curso");
-		String semestreDeIngresso = request.getParameter("ingresso");
+		String semestreDeIngresso = request.getParameter("semestredeIngresso");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
