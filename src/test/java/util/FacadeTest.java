@@ -10,6 +10,7 @@ import model.Aluno;
 import model.Curso;
 import model.EnumNivel;
 import model.Modulo;
+import model.Perfil;
 import model.Pessoa;
 import model.Usuario;
 
@@ -94,7 +95,7 @@ public class FacadeTest {
 		util.Facade.adicionarModulosParaPerfil(3, 10);
 		
 	}
-	
+	@Ignore
 	@Test
 	public void testListarAluno(){
 		List<Aluno> alunos = util.Facade.buscarAlunos();
@@ -105,7 +106,17 @@ public class FacadeTest {
 		}
 	}
 	
-	
+	@Test
+	public void testBuscarPerfil(){
+		Perfil p = new Perfil();
+		p.setNome("Aluno");
+		p.setId(1);
+		List<Modulo> modulos = util.Facade.buscarModulosPorPerfil(p);
+		
+		for(Modulo m: modulos){
+			System.out.println(m.getTitulo());
+		}
+	}
 	
 	
 }

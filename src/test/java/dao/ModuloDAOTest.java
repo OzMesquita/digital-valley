@@ -1,6 +1,7 @@
 package dao;
 
 import model.Modulo;
+import model.Perfil;
 import model.Pessoa;
 import util.DAOFactory;
 import java.util.List;
@@ -92,12 +93,26 @@ public class ModuloDAOTest {
 		mDAO.associarPerfilModulo(5, 10);
 	}
 	
+	@Ignore
 	@Test
 	public void testBuscarPorNome(){
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
 		Modulo m = mDAO.buscarPorNome("MODULO 1") ;
 		System.out.println(m.getTitulo());
 		Assert.assertTrue(m!= null);
+	}
+	
+	@Test
+	public void testListarModuloPorPerfil(){
+		ModuloDAO mDAO = util.DAOFactory.criarModuloDAO();
+		Perfil p = new Perfil();
+		p.setNome("Aluno");
+		p.setId(1);
+		List<Modulo> modulos = mDAO.buscar(p);
+		
+		for(Modulo m: modulos){
+			System.out.println(m.getTitulo());
+		}
 	}
 	
 }
