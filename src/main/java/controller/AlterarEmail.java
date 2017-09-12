@@ -17,7 +17,7 @@ public class AlterarEmail extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String pagina = "EditarNivel.jsp";
+		String pagina = "editarNivelDoUsuario.jsp";
 		HttpSession session = request.getSession();
 
 		try {

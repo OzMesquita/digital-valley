@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-                <title>importar servidores</title>
+        <title>importar servidores</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,9 +59,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         
         <!-- aqui -->
         
-        <div class="row">
-						<div class="col-md-8" style="margin-left: 15%;">
-							<div class="card">
+                        <div class="col-md-8" style="margin-left: 15%;">
+                                <div class="card">
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Importação de Servidores</h4><hr style="border: 1px solid lightgray">
                                 </div>
@@ -70,20 +69,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group">
-                                                    <label>Matriculas</label><small style="color: gray;"> </small><br>
-                                                    <textarea name="matriculas" rows="10" cols="50"></textarea>
+                                                    <label>Nome Completo</label><small style="color: gray;"> </small><br>
+                                                    <input name="nome" type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Siape</label><small style="color: gray;"> </small><br>
+                                                    <input name="siape" type="text" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="submit" id="salva" value="Importar" title="Importar matriculas">                                
-                                        
                                     </form>
                                 </div>
-							</div>
-						</div>
-					</div>
-        
-        
+                                </div>
+                        </div>
         <!-- aqui -->
        </div>
             </div>
@@ -110,6 +113,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 		</script>
+                
+            <script>
+                function SomenteNumero(e){
+                       var tecla=(window.event)?event.keyCode:e.which;   
+                       if((tecla>47 && tecla<58)) return true;
+                       else{
+                           if (tecla===8 || tecla===0) return true;
+                           else  return false;
+                       }
+                   }
+            </script>
+                
 	<!--scrolling js-->
         <script src="../visu/js/jquery.nicescroll.js"></script>
         <script src="../visu/js/scripts.js"></script>

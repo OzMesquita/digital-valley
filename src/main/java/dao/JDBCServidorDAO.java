@@ -119,6 +119,43 @@ public class JDBCServidorDAO implements ServidorDAO {
 			}
 		}
 	}
+        
+	public List<Servidor> buscarPorNome(String nome){
+		List<Servidor> servidores = new ArrayList<Servidor>();
+                
+
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE nome = ? and s.id_pessoa_usuario = p.id_pessoa_usuario;";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(SQL);
+
+			ps.setString(1, nome);
+
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+                                Servidor servidor = new Servidor();
+				servidor.setSiape(rs.getString("siape"));
+				servidor.setNome(rs.getString("nome"));
+				
+                                servidores.add(servidor);
+                                
+                        }
+                        ps.close();
+                        rs.close();
+                        return servidores;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 

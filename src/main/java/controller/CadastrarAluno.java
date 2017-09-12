@@ -61,6 +61,7 @@ public class CadastrarAluno extends HttpServlet {
 
 				pagina = "../login.jsp";
 			}else{
+                                request.getSession().setAttribute("msg", "senhas não conferem.");
 				pagina="cadastrarUsuario.jsp?erroSenha=1";
 			}
 

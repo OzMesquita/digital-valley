@@ -56,9 +56,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div id="page-wrapper">
                 <div class="container-fluid" style="min-height:400px">
         <!-- aqui-->
-            <div class="row">
-						<div class="col-md-8" style="margin-left: 15%;">
-							<div class="card">
+            
+                    <div class="col-md-8" style="margin-left: 15%;">
+                            <div class="card">
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Importação de Matriculas</h4><hr style="border: 1px solid lightgray">
                                 </div>
@@ -93,7 +93,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </div>
 							</div>
 						</div>
-					</div>
+					
         
         <!-- aqui-->
                 </div>

@@ -33,17 +33,12 @@
                                 </li>
 
                                 <li>
-                                    <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Listar usuários <span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Usuários <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="adm/listaDeAlunos.jsp">Alunos <span class="nav-badge-btm"></span></a>
+                                            <a href="adm/listaDeUsuarios.jsp">Listar Usuários <span class="nav-badge-btm"></span></a>
                                         </li>
-                                        <li>
-                                            <a href="adm/listaDeServidores.jsp">Servidores</a>
-                                        </li>
-                                        <li>
-                                            <a href="adm/listaTodos.jsp">Todos</a>
-                                        </li>
+                                      
                                     </ul>
                                 </li>
                             </ul>
