@@ -65,23 +65,53 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
-    <url-pattern>/views/logout</url-pattern>
+    <url-pattern>/view/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Verificação</servlet-name>
     <url-pattern>/verificacao</url-pattern>
   </servlet-mapping>
+ <!--  aqui -->
+	
+	<servlet>
+        <servlet-name>importarAlunos</servlet-name>
+        <jsp-file>/view/adm/importarAlunos.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>importarAlunos</servlet-name>
+		<url-pattern>/importacaoController</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+        <servlet-name>importarServidores</servlet-name>
+        <jsp-file>/view/adm/importarServidores.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>importarServidores</servlet-name>
+		<url-pattern>/ImportarServidorController</url-pattern>
+	</servlet-mapping>
+  
+	<servlet>
+        <servlet-name>editarUsuario</servlet-name>
+        <jsp-file>/view/editarUsuario.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>editarUsuario</servlet-name>
+		<url-pattern>/EditarUsuarioController</url-pattern>
+	</servlet-mapping>
+  
+ <!--  aqui ---> 
   <servlet-mapping>
     <servlet-name>Importacao</servlet-name>
     <url-pattern>/view/adm/importarAlunos</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EditarUsuario</servlet-name>
-    <url-pattern>/views/editarUsuario</url-pattern>
+    <url-pattern>/view/editarUsuario</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>pesquisaModulos</servlet-name>
-    <url-pattern>/views/adm/pesquisaModulos</url-pattern>
+    <url-pattern>/view/adm/pesquisaModulos</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>pesquisaUsuario</servlet-name>

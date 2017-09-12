@@ -68,7 +68,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div id="page-wrapper">
                 <div class="container-fluid" style="min-height:400px">
         <!-- aqui-->
-                    <div class="row">
                         <div class="col-md-12" >
                                 <div class="card">
                                         <div class="header" style="text-align: center;">
@@ -161,7 +160,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </div>
                 </div>
             </div>
-        </div>
         <!-- aqui-->
            </div>
             <jsp:include page="include/footer.jsp"></jsp:include>

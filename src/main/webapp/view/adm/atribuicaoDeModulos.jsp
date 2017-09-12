@@ -134,6 +134,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 modulosCadastrados = (List<Modulo>) session.getAttribute("modulosCadastrados");
             }
         }
+        String mensagem = (String) session.getAttribute("msg");
+        if(mensagem == null){mensagem = "";}
     %>
         
         
@@ -148,6 +150,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-12">
                         <div class="card">
                             <div class="header">
+                                <h4 class="title" style="text-align: center;">Módulos do Sistema</h4><hr style="border: 1px solid lightgray">
+                                <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div id="rdio_per">
                                     <form name="btn_buttons">
                                         <ul  id="p_por">

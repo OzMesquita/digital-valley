@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="model.Servidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.EnumNivel"%>
 <%@page import="model.Pessoa"%>
@@ -56,11 +57,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     </head>
     <body class="cbp-spmenu-push">
     <% 
-		List<Aluno> usuarios = new ArrayList<Aluno>();	
-   		usuarios = (ArrayList<Aluno>)Facade.buscarAlunos() ;
-    	
+		List<Pessoa> usuarios = new ArrayList<Pessoa>();	
 		String mensagem = (String) session.getAttribute("msg");
-		
+                if(session.getAttribute("usuarios")!= null){
+                    usuarios = (List<Pessoa>) session.getAttribute("usuarios");
+                }else{
+                    usuarios = (ArrayList<Pessoa>)Facade.buscarPessoas();
+                }
    
 	
 	%>
@@ -79,8 +82,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     <div id="busca">
                                         <form action="pesquisaUsuario" method="get">
                                             <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
-                                            <!--  <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/> -->
                                             <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
+                                            <select id="filtro" name="filtro" class="form-group " style="float: right">
+                                                <option value="todos" selected="" onclick="filtro()"> Todos</option>
+                                                <option value="alunos" onclick="filtro()"> Alunos</option>
+                                                <option value="servidores" onclick="filtro()"> Servidores</option>
+                                            </select>
                                         </form>
                                     </div>
                                     
@@ -88,17 +95,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div id="tabUsuarios">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th>Matrícula</th>
+                                            <th>Matrícula/Siape</th>
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>Nível</th>
                                         </thead>
                                         <tbody>
-                                          <% for(Aluno user : usuarios){
- 
+                                          <% for(Pessoa user : usuarios){
+                                                  Aluno a; Servidor s;
 	                                          %>
                                             <tr>
-                                                  <td><%=user.getMatricula() %></td>
+                                                <%if(user instanceof Aluno){
+                                                        a = (Aluno) user;
+                                                    %>
+                                                  <td><%=a.getMatricula() %></td>
+                                                  <%}else{ s = (Servidor) user;%>
+                                                  <td><%=s.getSiape() %></td>
+                                                  <%}%>
                                                   <td><a href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"><%=user.getNome()%></a></td>
                                                   <td><%=user.getEmail()%></td>
                                                   <td><%=user.getUsuario().getNivel()%></td>
@@ -139,6 +152,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 		</script>
+                
+                <script>
+                    function filtro(){
+                        var select = document.getElementById('filtro');
+                        var itemSelecionado = select.options[select.selectedIndex].value;
+                        alert(itemSelecionado);
+                        document.location.href = 'listaUsuarios?busca='+itemSelecionado;
+                    }
+                    
+                </script>
 	<!--scrolling js-->
         <script src="../visu/js/jquery.nicescroll.js"></script>
         <script src="../visu/js/scripts.js"></script>

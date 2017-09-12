@@ -73,7 +73,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                             	for(Modulo m: modulos){
                                          %>
                                        <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-                                           <div id="centro" class="font-icon-detail">
+                                           <div id="centro" class="font-icon-detail" style="text-align: center;">
                                                <img id="img_m" src="<%=m.getImagem()%>"/><br>
                                                 <a id="nModulo" href="<%= m.getUrl() %>" ><%=m.getTitulo() %> </a>  
                                            </div>

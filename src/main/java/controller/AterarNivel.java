@@ -17,7 +17,7 @@ public class AterarNivel extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer nivel= Integer.valueOf(request.getParameter("nivel"));
-		String pagina = "editarNivel.jsp";
+		String pagina = "editarNivelDoUsuario.jsp";
 		HttpSession session = request.getSession();
 
 		try {
