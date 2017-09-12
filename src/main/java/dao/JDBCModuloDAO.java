@@ -342,4 +342,35 @@ public class JDBCModuloDAO implements ModuloDAO {
 		}
 	}
 
+	@Override
+	public List<Modulo> listarDisponiveisParaPessoa(Pessoa pessoa) {
+		try {
+			String SQL = "SELECT * FROM modulo WHERE id_modulo NOT IN (SELECT id_modulo FROM usuario_modulo WHERE usuario_modulo.id_usuario = ?);";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, pessoa.getId());
+			ResultSet rs = ps.executeQuery();
+			List<Modulo> modulos = new ArrayList<Modulo>(); 
+			while (rs.next()) {
+				Modulo modulo = new Modulo();
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				modulos.add(modulo);								
+			}
+			ps.close();
+			rs.close();
+			return modulos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: "+e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
