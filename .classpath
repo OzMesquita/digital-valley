@@ -24,5 +24,12 @@
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/workspace/digital-valley/lib/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/workspace/digital-valley/lib/postgresql-42.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/N2S-PC03/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Matheus Oliveira/workspace/digital-valley/src/main/webapp/WEB-INF/lib/gson-2.8.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
