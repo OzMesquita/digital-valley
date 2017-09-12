@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="visu/css/wecss.css" />
+        <link rel="stylesheet" href="../visu/css/wecss.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>editar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,34 +24,34 @@
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<link href="visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="visu/css/style.css" rel='stylesheet' type='text/css' />
+<link href="../visu/css/style.css" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
 <!-- font-awesome icons -->
-<link href="visu/css/font-awesome.css" rel="stylesheet"> 
+<link href="../visu/css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
  <!-- js-->
- <script src="visu/js/jquery-1.11.1.min.js"></script>
- <script src="visu/js/modernizr.custom.js"></script>
+ <script src="../visu/js/jquery-1.11.1.min.js"></script>
+ <script src="../visu/js/modernizr.custom.js"></script>
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts--> 
 <!--animate-->
-<link href="visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="visu/js/wow.min.js"></script>
+<link href="../visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="../visu/js/wow.min.js"></script>
 	<script>
 		 new WOW().init();
 	</script>
 <!--//end-animate-->
 <!-- chart -->
-<script src="visu/js/Chart.js"></script>
+<script src="../visu/js/Chart.js"></script>
 <!-- //chart -->
 
 <!-- Metis Menu -->
-<script src="visu/js/metisMenu.min.js"></script>
-<script src="visu/js/custom.js"></script>
-<link href="visu/css/custom.css" rel="stylesheet">
+<script src="../visu/js/metisMenu.min.js"></script>
+<script src="../visu/js/custom.js"></script>
+<link href="../visu/css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
 
     </head>
@@ -134,13 +134,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 modulosCadastrados = (List<Modulo>) session.getAttribute("modulosCadastrados");
             }
         }
+        String mensagem = (String) session.getAttribute("msg");
+        if(mensagem == null){mensagem = "";}
     %>
         
         
         
 	<div class="main-content">
-        <jsp:include page="include/menu-left.jsp"></jsp:include>
-        <jsp:include page="include/header-top.jsp" ></jsp:include>
+        <jsp:include page="../include/menu-left.jsp"></jsp:include>
+        <jsp:include page="../include/header-top.jsp" ></jsp:include>
            
             <div id="page-wrapper">
                 <div class="container-fluid" style="min-height:400px">
@@ -148,16 +150,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-12">
                         <div class="card">
                             <div class="header">
+                                <h4 class="title" style="text-align: center;">Módulos do Sistema</h4><hr style="border: 1px solid lightgray">
+                                <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div id="rdio_per">
                                     <form name="btn_buttons">
-                                        <input type="radio" name="usuarios" value="sim"  onclick="getMostra()"/> USUÁRIOS<br />
-                                        <input type="radio" name="usuarios" value="nao" onclick="getMostra()"/> PERFIL <br />
+                                        <ul  id="p_por">
+                                            <li><a href="atribuicaoDeModulos.jsp?mostra=Usuarios"> USUÁRIOS</a></li>
+                                        	 <li><a href="atribuicaoDeModulos.jsp?mostra=Perfil"> PERFIL </a></li>
+                                    	</ul>
                                     </form>
                                 </div>
                                 <div id="busca">
                                     <form action="pesquisaUsuario" method="get">
                                         <input id="txt_busca" type="search" name="busca" <% if(mostra.equals("Usuarios")){%> autofocus="true" <%}else{%>disabled <%}%> placeholder="Buscar por usuários..."/>
-                                        <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
+                                        <img style="margin-left: -5%;" src="../../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/>
                                         <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários" <% if(!mostra.equals("Usuarios")){%>disabled<%}%>/>
                                     </form>
                                 </div>
@@ -167,7 +173,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div id="centro">
                                     <div id="user1">
                                         <div class="form-group">
-                                            <label id="tbl_titu" class="col-md-3" for="selectmultiple"><script> if(document.write(sessionStorage.getItem('mostra')) === null){ sessionStorage.setItem('mostra',"Perfil")}</script></label>
+                                            <label id="tbl_titu" class="col-md-3" for="selectmultiple"><%= mostra %></label>
                                             <label class="col-md-3" for="selectmultiple">Módulos Disponiveis</label>
                                             <label class="col-md-2" for="selectmultiple">Módulos Cadastrados</label>
                                             <div id="tbls" class="col-md-3">
@@ -214,7 +220,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                           </div>
                                         </div>
-
+									<form action="AdicionarModulos" method="post" name="modulos">
                                         <div id="">
                                             <div class="form-group">
                                              <!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
@@ -230,20 +236,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                               </div>
                                             </div>
                                         </div>
+                                        <div id="btn_salva">
+					        				<input type="hidden" id="lista" name="lista">
+					                        <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
+					                	</div>
+                                        
+                                   </form>
                                 </div>
                             </div>
                          </div>
-        <div id="btn_salva">
-                        <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
-                </div>
+        			
         <!-- aqui-->
            </div>
             </div>
         </div>
-        <jsp:include page="include/footer.jsp"></jsp:include>
+        <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>
          <!-- Classie -->
-           <script src="visu/js/classie.js"></script>
+           <script src="../visu/js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 				showLeftPush = document.getElementById( 'showLeftPush' ),
@@ -264,11 +274,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			}
 		</script>
 	<!--scrolling js-->
-        <script src="visu/js/jquery.nicescroll.js"></script>
-        <script src="visu/js/scripts.js"></script>
+        <script src="../visu/js/jquery.nicescroll.js"></script>
+        <script src="../visu/js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-        <script src="visu/js/bootstrap.js"> </script>
+        <script src="../visu/js/bootstrap.js"> </script>
         
         <script>
             function selecionaTudo(){
@@ -325,6 +335,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         </script>
         
         
-        <script src="visu/js/wejs.js" </script>
+        <script src="../visu/js/wejs.js"> </script>
     </body>
 </html>

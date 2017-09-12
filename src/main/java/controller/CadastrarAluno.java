@@ -28,14 +28,14 @@ public class CadastrarAluno extends HttpServlet {
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
 		String valorCurso = request.getParameter("curso");
-		String semestreDeIngresso = request.getParameter("ingresso");
+		String semestreDeIngresso = request.getParameter("semestreDeIngresso");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
-		//try {
+		try {
 			if (senha.equals(senha2)) {
 				Aluno aluno = new Aluno();
 				Usuario usuario = new Usuario();
@@ -61,14 +61,15 @@ public class CadastrarAluno extends HttpServlet {
 
 				pagina = "../login.jsp";
 			}else{
+                request.getSession().setAttribute("msg", "senhas não conferem.");
 				pagina="cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 			
-	//	} catch (Exception e) {
-		//	System.out.println(e.getMessage());
-			//session.setAttribute("excecao", e.getMessage());
-		//}
+		} catch (Exception e) {
+		
+			session.setAttribute("msg", e.getMessage());
+		}
 		response.sendRedirect(pagina);
 	}
 

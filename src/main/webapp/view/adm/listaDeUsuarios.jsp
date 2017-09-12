@@ -4,6 +4,7 @@
     Author     : Usuario
 --%>
 
+<%@page import="model.Servidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.EnumNivel"%>
 <%@page import="model.Pessoa"%>
@@ -23,57 +24,55 @@
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<link href="visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="visu/css/style.css" rel='stylesheet' type='text/css' />
+<link href="../visu/css/style.css" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
 <!-- font-awesome icons -->
-<link href="visu/css/font-awesome.css" rel="stylesheet"> 
+<link href="../visu/css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
  <!-- js-->
- <script src="visu/js/jquery-1.11.1.min.js"></script>
- <script src="visu/js/modernizr.custom.js"></script>
+ <script src="../visu/js/jquery-1.11.1.min.js"></script>
+ <script src="../visu/js/modernizr.custom.js"></script>
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts--> 
 <!--animate-->
-<link href="visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="visu/js/wow.min.js"></script>
+<link href="../visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="../visu/js/wow.min.js"></script>
 	<script>
 		 new WOW().init();
 	</script>
 <!--//end-animate-->
 <!-- chart -->
-<script src="visu/js/Chart.js"></script>
+<script src="../visu/js/Chart.js"></script>
 <!-- //chart -->
 
 <!-- Metis Menu -->
-<script src="visu/js/metisMenu.min.js"></script>
-<script src="visu/js/custom.js"></script>
-<link href="visu/css/custom.css" rel="stylesheet">
+<script src="../visu/js/metisMenu.min.js"></script>
+<script src="../visu/js/custom.js"></script>
+<link href="../visu/css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
 
     </head>
     <body class="cbp-spmenu-push">
     <% 
-		List<Aluno> usuarios = new ArrayList<Aluno>();	
-   		usuarios = (ArrayList<Aluno>)Facade.buscarAlunos() ;
-    	
+		List<Pessoa> usuarios = (List<Pessoa>)session.getAttribute("usuarios");	
 		String mensagem = (String) session.getAttribute("msg");
-		 for(int i=0;i<usuarios.size();i++){
-  			System.out.println(usuarios.get(i).getNome());
-  			System.out.println(usuarios.get(i).getId());
-  			System.out.println(usuarios.get(i).getEmail());
-  			System.out.println(usuarios.get(i).getUsuario().getNivel());
-		}
-  
+        if(usuarios!= null && !usuarios.isEmpty()){
+        	System.out.println("dshjdshdj");
+            usuarios = (List<Pessoa>) session.getAttribute("usuarios");
+        }else{
+        	
+            usuarios = (ArrayList<Pessoa>)Facade.buscarPessoas();
+        }
    
 	
 	%>
     
 	<div class="main-content">
-            <jsp:include page="include/menu-left.jsp"></jsp:include>
-        <jsp:include page="include/header-top.jsp" ></jsp:include>
+            <jsp:include page="../include/menu-left.jsp"></jsp:include>
+        <jsp:include page="../include/header-top.jsp" ></jsp:include>
            
             <div id="page-wrapper">
                 <div class="container-fluid" style="min-height:400px">
@@ -83,10 +82,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div class="header" style="text-align: center;">
                                     <h4 class="title">Usuários</h4><hr style="border: 1px solid lightgray">
                                     <div id="busca">
-                                        <form action="pesquisaUsuario" method="get">
+                                        <form action="ListaUsuario" method="get">
                                             <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
-                                            <!--  <img style="margin-left: -5%;" src="../assets2/img/busca.png" id="btnBusca" alt="Buscar"  title="Buscar Usuários" onclick="busca()"/> -->
                                             <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
+                                            <select id="filtro" name="filtro" class="form-group " style="float: right">
+                                                <option value="todos" selected="" onclick="filtro()"> Todos</option>
+                                                <option value="alunos" onclick="filtro()"> Alunos</option>
+                                                <option value="servidores" onclick="filtro()"> Servidores</option>
+                                            </select>
                                         </form>
                                     </div>
                                     
@@ -94,23 +97,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div id="tabUsuarios">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th>Código</th>
+                                            <th>CPF</th>
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>Nível</th>
                                         </thead>
                                         <tbody>
-                                          <% for(Aluno user : usuarios){
-                                          			System.out.println(user.getNome());
-                                          			System.out.println(user.getId());
-                                          			System.out.println(user.getEmail());
-                                          			//System.out.println(user.getUsuario().getNivel());
-                                          		
-                                          
+                                          <% for(Pessoa user : usuarios){
+                                                 
 	                                          %>
                                             <tr>
-                                                  <td><%=user.getId() %></td><% System.out.println(user.getId()); %>
-                                                  <td><a href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"></a><%=user.getNome()%></td>
+                                                
+                                                  <td><%=user.getCpf() %></td>
+                                                
+                                                  
+                                                  <td><a href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"><%=user.getNome()%></a></td>
                                                   <td><%=user.getEmail()%></td>
                                                   <td><%=user.getUsuario().getNivel()%></td>
                                             </tr>                    
@@ -127,10 +128,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <!-- aqui-->
            </div>
             </div>
-            <%@include file="include/footer.jsp" %>
+            <%@include file="../include/footer.jsp" %>
         </div>
             <!-- Classie -->
-           <script src="visu/js/classie.js"></script>
+           <script src="../visu/js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 				showLeftPush = document.getElementById( 'showLeftPush' ),
@@ -150,12 +151,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 		</script>
+                
+                <script>
+                    function filtro(){
+                        var select = document.getElementById('filtro');
+                        var itemSelecionado = select.options[select.selectedIndex].value;
+                        var nome = document.getElementById('txt_busca');
+                        document.location.href = 'listaUsuarios?busca='+itemSelecionado;
+                    }
+                    
+                </script>
 	<!--scrolling js-->
-        <script src="visu/js/jquery.nicescroll.js"></script>
-        <script src="visu/js/scripts.js"></script>
+        <script src="../visu/js/jquery.nicescroll.js"></script>
+        <script src="../visu/js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-        <script src="visu/js/bootstrap.js"> </script>
+        <script src="../visu/js/bootstrap.js"> </script>
         
     </body>
 </html>

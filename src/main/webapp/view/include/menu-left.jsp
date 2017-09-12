@@ -1,4 +1,5 @@
-
+<%@page import="model.Usuario"%>
+<% Usuario u = (Usuario) session.getAttribute("usuario"); %>
 <script src="../visu/js/metisMenu.min.js"></script>
 <!--left-fixed -navigation-->
 		<div class=" sidebar" role="navigation">
@@ -6,16 +7,18 @@
                         <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
                             <ul class="nav" id="side-menu">
                                 <li>
-                                    <a href="telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
+                                    <a href="/Controle_de_Acesso/view/telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
                                 </li>
+                                <% if(u.getNivel().toString().toLowerCase().equals("administrador")){%>
+                                
                                 <li>
                                     <a href="#"><i class="fa fa-cogs nav_icon"></i>Importar matrículas <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="importarAlunos.jsp">Alunos</a>
+                                            <a href="/Controle_de_Acesso/view/adm/importarAlunos.jsp">Alunos</a>
                                         </li>
                                         <li>
-                                            <a href="importarServidores.jsp">Servidores</a>
+                                            <a href="/Controle_de_Acesso/view/adm/importarServidores.jsp">Servidores</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -24,28 +27,24 @@
                                     <a href="#"><i class="fa fa-th-large nav_icon"></i>Modulos<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
+                                            <a href="/Controle_de_Acesso/view/adm/atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
                                         </li>
                                         <li>
-                                            <a href="cadastrarModulo.jsp">Cadastrar módulo</a>
+                                            <a href="/Controle_de_Acesso/view/adm/cadastrarModulo.jsp">Cadastrar módulo</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li>
-                                    <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Listar usuários <span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Usuários <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="listaDeAlunos.jsp">Alunos <span class="nav-badge-btm"></span></a>
+                                            <a href="/Controle_de_Acesso/view/adm/listaDeUsuarios.jsp">Listar Usuários <span class="nav-badge-btm"></span></a>
                                         </li>
-                                        <li>
-                                            <a href="listaDeServidores.jsp">Servidores</a>
-                                        </li>
-                                        <li>
-                                            <a href="listaTodos.jsp">Todos</a>
-                                        </li>
+                                      
                                     </ul>
                                 </li>
+                                <%} %>
                             </ul>
                             
                            
