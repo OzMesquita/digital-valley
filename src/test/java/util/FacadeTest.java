@@ -106,6 +106,7 @@ public class FacadeTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testBuscarPerfil(){
 		Perfil p = new Perfil();
@@ -116,6 +117,12 @@ public class FacadeTest {
 		for(Modulo m: modulos){
 			System.out.println(m.getTitulo());
 		}
+	}
+	
+	@Test
+	public void testLerEmail(){
+		String []email = util.Facade.lerArquivoEmail();
+		System.out.println(email.toString());
 	}
 	
 	
