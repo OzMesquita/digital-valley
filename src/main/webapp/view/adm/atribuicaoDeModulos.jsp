@@ -27,7 +27,17 @@
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
 
 </script>
 <!-- Bootstrap Core CSS -->
@@ -67,90 +77,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="cbp-spmenu-push">
 	<%
-		Pessoa selecionado = null;
-		Perfil perfilSelecionado = null;
-		String mostra = null;
-
-		//seleciona o que mostra
-		if ((String) request.getParameter("mostra") != null) {
-			mostra = (String) request.getParameter("mostra");
-			session.setAttribute("mostra", mostra);
-			session.setAttribute("usuarioSelecionado", selecionado);
-		} else {
-			mostra = (String) session.getAttribute("mostra");
-			if (mostra == null) {
-				mostra = "Usuarios";
-				session.setAttribute("mostra", mostra);
-				selecionado = null;
-				session.setAttribute("usuarioSelecionado", selecionado);
-			}
-		}
-
-		//usuario selecionado
-		if (mostra.equals("Usuarios")) {
-			if (session.getAttribute("usuarioSelecionado") != null) {
-				selecionado = (Pessoa) session.getAttribute("usuarioSelecionado");
-			} else {
-				selecionado = new Pessoa();
-			}
-		} else {
-			if (session.getAttribute("perfilSelecionado") != null) {
-				perfilSelecionado = (Perfil) session.getAttribute("perfilSelecionado");
-			} else {
-				perfilSelecionado = new Perfil();
-			}
-		}
-		//fazer pesquisa no banco
-
-		//usuarios
-
-		List<Pessoa> usuarios = (List<Pessoa>) session.getAttribute("usuarios");
-		List<Perfil> perfis = new ArrayList<>();
-
-		if (mostra.equals("Perfil")) {
-			if (session.getAttribute("perfis") != null) {
-				perfis = (List<Perfil>) session.getAttribute("perfis");
-			} else {
-				PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
-				perfis = pDAO.Listar();
-			}
-
-		} else {
-			if (session.getAttribute("usuarios") == null) {
-				usuarios = new ArrayList<>();
-			} else {
-				usuarios = (List<Pessoa>) session.getAttribute("usuarios");
-			}
-		}
 		//modulos disponiveis
 		ModuloDAO moduloDao = new JDBCModuloDAO();
-		List<Modulo> modulosDisponiveis = moduloDao.;
-		List<Modulo> modulosCadastrados = new ArrayList<>();
-		if (selecionado != null) {
-			if (session.getAttribute("modulosDisponiveis") == null) {
-				modulosDisponiveis = new ArrayList<>();
-			} else {
-				modulosDisponiveis = (List<Modulo>) session.getAttribute("modulosDisponiveis");
-			}
-			//modulos cadastrados
-			if (session.getAttribute("modulosCadastrados") == null) {
-				modulosCadastrados = new ArrayList<>();
-			} else {
-				modulosCadastrados = (List<Modulo>) session.getAttribute("modulosCadastrados");
-			}
-		}
+		List<Modulo> modulosDisponiveis = moduloDao.listarDisponiveisParaPessoa(pessoa);
 		String mensagem = (String) session.getAttribute("msg");
+		session.setAttribute("msg", null);
 		if (mensagem == null) {
 			mensagem = "";
 		}
 	%>
-
-
-
 	<div class="main-content">
 		<jsp:include page="../include/menu-left.jsp"></jsp:include>
 		<jsp:include page="../include/header-top.jsp"></jsp:include>
-
 		<div id="page-wrapper">
 			<div class="container-fluid" style="min-height: 400px">
 				<!-- aqui-->
@@ -161,9 +99,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								Sistema</h4>
 							<hr style="border: 1px solid lightgray">
 							<div class="erroMsg">
-								<small><%=mensagem%> <%
- 	session.setAttribute("msg", null);
- %></small>
+								<small><%=mensagem%></small>
 							</div>
 							<div id="rdio_per">
 								<form name="btn_buttons">
@@ -178,15 +114,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div id="busca">
 								<form action="pesquisaUsuario" method="get">
 									<input id="txt_busca" type="search" name="busca"
-										<%if (mostra.equals("Usuarios")) {%> autofocus="true"
-										<%} else {%> disabled <%}%>
-										placeholder="Buscar por usuários..." /> <img
+										<%=(mostra.equals("Usuarios") ? "autofocus=\"true\"" : "disabled") %>
+										placeholder="Buscar pelo nome..." /> <img
 										style="margin-left: -5%;" src="../../assets2/img/busca.png"
 										id="btnBusca" alt="Buscar" title="Buscar Usuários"
 										onclick="busca()" /> <input style="margin-left: 1%;"
 										class="btn_pad" type="submit" value="Buscar"
-										title="Buscar Usuários" <%if (!mostra.equals("Usuarios")) {%>
-										disabled <%}%> />
+										title="Buscar Usuários"
+										<%=(!mostra.equals("Usuarios") ? "disabled" : "")) %> />
 								</form>
 							</div>
 						</div>

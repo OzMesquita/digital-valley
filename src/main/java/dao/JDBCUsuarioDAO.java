@@ -103,7 +103,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		return false;
 	}
 
-	
+	@Override
 	public void editarNivel(Usuario usuario) {
 		try {
 		String SQL = "UPDATE pessoa_usuario SET nivel =? WHERE id_pessoa_usuario =?";
@@ -127,10 +127,31 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 		}
 		
 	}
+	
+	@Override
 	public Usuario buscar(int id){
-		return null;
-		
-		
+		return null;	
+	}
+
+	@Override
+	public void salvarToken(String token, int id_usuario) {
+		try {
+			String SQL = "UPDATE pessoa_usuario SET token_sessao =? WHERE id_pessoa_usuario = ?";
+				PreparedStatement ps = connection.prepareStatement(SQL);
+				ps.setString(1, token);
+				ps.setInt(2, id_usuario);
+				ps.executeUpdate();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException("Erro ao gravar token do usuário"+ e.getMessage());
+			}finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 	}
 
 }

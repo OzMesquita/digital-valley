@@ -51,7 +51,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     </head>
     <body class="cbp-spmenu-push">
     <% Usuario usuario = (Usuario) session.getAttribute("usuario");
-
 	String mensagem = (String)session.getAttribute("msg");
 	if(mensagem == null){
 		mensagem = "";

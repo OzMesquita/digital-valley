@@ -14,5 +14,7 @@ public interface UsuarioDAO {
 	public void editarNivel(Usuario usuario);
 
 	public Usuario buscar(int id);
+	
+	public void salvarToken(String token, int id_usuario);
 
 }
