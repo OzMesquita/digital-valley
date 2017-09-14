@@ -36,7 +36,7 @@ public class Email {
             //Adicione os destinat�rios
             email.addTo(this.fromEmail, this.nomeTo);
             //Configure o seu email do qual enviar�
-            email.setFrom("ame.russas@ufc.br", "N2S - Controle de Acesso");
+            email.setFrom("betinlimma@gmail.com", "N2S - Controle de Acesso");
             //Adicione um assunto
             email.setSubject(this.assunto);
             //Adicione a mensagem do email

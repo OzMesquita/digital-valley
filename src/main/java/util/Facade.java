@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 
-
 import org.apache.commons.mail.EmailException;
 
 import dao.AlunoDAO;
@@ -121,8 +120,7 @@ public class Facade {
         
 	public static List<Modulo> buscarModulosPorPerfil(Perfil perfil) {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
-		//return mDAO.buscar(perfil);
-		return null;
+		return mDAO.buscar(perfil);
 	}
 	
 	public static List<Modulo> buscarTodosModulos() {
@@ -258,6 +256,15 @@ public class Facade {
     public static Pessoa BuscarEmailVinculado(String email){
         PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
         return pDAO.buscarPorEmail(email);
+    }
+
+    public static List<Pessoa> buscarPessoas() {
+        PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+        return pDAO.listar();
+    }
+    public static List<Servidor> buscarServidorPorNome(String nome) {
+        ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+        return sDAO.buscarPorNome(nome);
     }
       
 	

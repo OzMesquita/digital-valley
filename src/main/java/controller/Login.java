@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,10 +15,12 @@ import model.Modulo;
 import model.Usuario;
 import util.DAOFactory;
 import util.Facade;
+import util.TokenBuild;
 
 /**
  * Servlet implementation class Login
  */
+
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,13 +51,13 @@ public class Login extends HttpServlet {
 		try {
 			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 			if(uDAO.autenticar(login, senha)){
-				
 				Usuario usuario = Facade.buscarPorLogin(login);
 				List<Modulo> modulos = Facade.buscarModulosPorPessoas(usuario.getPessoa());
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);
-				pagina = "views/telaInicial.jsp";	
-				
+				pagina = "view/telaInicial.jsp";
+				uDAO = DAOFactory.criarUsuarioDAO();
+				uDAO.salvarToken(TokenBuild.buildToken(), usuario.getPessoa().getId());				
 			}
 		
 			

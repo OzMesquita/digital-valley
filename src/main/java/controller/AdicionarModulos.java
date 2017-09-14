@@ -25,13 +25,20 @@ public class AdicionarModulos extends HttpServlet {
 		
 		Pessoa usuarioSelecionado = (Pessoa)session.getAttribute("usuarioSelecionado");
                 Perfil perfilSelecionado = (Perfil) session.getAttribute("perfilSelecionado");
-		String[] modulosAdicionados = request.getParameterValues("modulosCadadastrados");
+		String[] modulosAdicionados = request.getParameterValues("selectmultipleCadastrado");
+		
+		
+		String[] modulosRemovidos = request.getParameterValues("selectmultipleDisponivel");
 		
                 
                 
 		List<Modulo> modulosCadadastrados = new ArrayList<>();
+			
 		
                 for(int i=0;i<modulosAdicionados.length;i++){
+                	
+                	System.out.println(modulosAdicionados[i]);
+                	
                     modulosCadadastrados.add(Facade.buscarModulosPorId(Integer.parseInt(modulosAdicionados[i])));
                 }
                 if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){

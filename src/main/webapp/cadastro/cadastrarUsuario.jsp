@@ -35,15 +35,12 @@
     </head>
     <body>
     
-    <%if(session.getAttribute("excecao")!= null){ %>
-		<p><%=session.getAttribute("excecao") %></p>
-	<% 
-		session.removeAttribute("excecao");
-	}%>
+    <% String mensagem  = (String) session.getAttribute("msg");
+        if(mensagem == null){ 
+            mensagem = "";
+        }
+    %>
     
-        <% if( session.getAttribute("msg")== null){
-            session.setAttribute("msg", " ");
-        } %>
         <div class="image-container set-full-height" style="background: steelblue;">
             <div class="container">
                 <div class="row">
@@ -67,14 +64,14 @@
                                             <div class="row">
                                                 <div class="col-sm-8" style="margin-left: 15%;">
                                                     <div id="alerta" style="color: red; text-align: center;">
-                                                        <small name="small" id="t_alerta"> <script>sessionStorage.getItem('msg');</script> </small>
+                                                        <small name="small" id="t_alerta"> <%= mensagem%> </small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Nome Completo </label>
                                                         <input name="nome" type="text" class="form-control"  value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("nomeA") : session.getAttribute("nomeS") %>" readonly="true" >
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>CÃ³digo Interno </label>
+                                                        <label>Código Interno </label>
                                                         <input name="codigo" type="text" class="form-control" value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("matricula") : session.getAttribute("siape") %>" readonly="true">
                                                     </div>
                                                     <%if(session.getAttribute("nomeA")!=null){
@@ -139,7 +136,7 @@
                                                         </h3>
                                                     </div>
                                                     <div class="pull-right">
-                                                        <input id="btnsalvar" type='submit' value='Salvar' onclick="return validaSenha()" />
+                                                        <input id="btnsalvar" type='submit' value='Salvar' />
                                                     </div>
                                                 </div>
                                             </div>

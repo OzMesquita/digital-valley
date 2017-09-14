@@ -60,7 +60,7 @@ public class PesquisaModulos extends HttpServlet {
         }
         session.setAttribute("modulosDisponiveis", modulosDisponiveis);
         session.setAttribute("modulosCadastrados", modulosCadastrados);
-        response.sendRedirect("TelaADM.jsp");
+        response.sendRedirect("atribuicaoDeModulos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar Nivel do Usuário</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -62,7 +62,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         
 		Pessoa p = Facade.buscarPessoaPorId(id);
 		if (p == null) {
-		} else {
+                    session.setAttribute("msg", "Nenhum usuário selecionado.");
+		} else { session.setAttribute("pessoa", p);
 	%>
         
 	<div class="main-content">
@@ -72,11 +73,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div id="page-wrapper">
                 <div class="container-fluid" style="min-height:400px">
         <!-- aqui -->
-        <div class="row">
+       
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Perfil do Usuário</h4>
+                            <div class="header" style="text-align: center;">
+                                <h4 class="title">Perfil do Usuário</h4><hr style="border: 1px solid lightgray">
                             </div>
                             <div class="content">
                                 <form action="AlterarEmail" method="post">
@@ -118,8 +119,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                         </div>
                                     </div>
-
-                                		                                   
                                     <div class="clearfix"></div>
                                     <input id="save"  type="submit" value="Salvar">
                                 </form>
@@ -132,18 +131,17 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <div class="content">
                                 <div class="author">
                                      <form id="nivelUsuario" action="AlterarNivel" method="post">
-										<div class="header">
-											<label>Nivel do Usuário</label>
-											
-										</div>
-										<select class="form-control" name="nivel" required>
-											<option disabled="disable" selected="true" > <%=p.getUsuario().getNivel() %></option>
-											<option value="comum">Usuário Comum</option>										
-											<option value="administrador">Administrador</option>
-										</select>
-										
-										<input id="save"  type="submit" value="Salvar">
-									</form>
+                                            <div class="header">
+                                                    <label>Nivel do Usuário</label>
+                                            </div>
+                                            <select class="form-control" name="nivel" required>
+                                                    <option disabled="disable" selected="true" > <%=p.getUsuario().getNivel() %></option>
+                                                    <option value="2">Usuário Comum</option>										
+                                                    <option value="1">Administrador</option>
+                                            </select>
+
+                                            <input id="save"  type="submit" value="Salvar">
+                                    </form>
                                 </div>
                                 
                                 <br>
@@ -153,7 +151,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
 
-                </div>
+          
         
         <!-- aqui -->
             </div>

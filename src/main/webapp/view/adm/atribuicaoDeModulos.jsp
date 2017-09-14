@@ -4,6 +4,8 @@
     Author     : Usuario
 --%>
 
+<%@page import="util.DAOFactory"%>
+<%@page import="dao.PerfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Perfil"%>
@@ -15,7 +17,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="visu/css/wecss.css" />
+        <link rel="stylesheet" href="../visu/css/wecss.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>editar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,7 +107,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 perfis = (List<Perfil>) session.getAttribute("perfis");
             }
             else{ 
-                perfis = new ArrayList<>();
+            	PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+                perfis = pDAO.Listar();
             }
 
         }else{
@@ -134,6 +137,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 modulosCadastrados = (List<Modulo>) session.getAttribute("modulosCadastrados");
             }
         }
+        String mensagem = (String) session.getAttribute("msg");
+        if(mensagem == null){mensagem = "";}
     %>
         
         
@@ -148,6 +153,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-12">
                         <div class="card">
                             <div class="header">
+                                <h4 class="title" style="text-align: center;">Módulos do Sistema</h4><hr style="border: 1px solid lightgray">
+                                <div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
                                 <div id="rdio_per">
                                     <form name="btn_buttons">
                                         <ul  id="p_por">
@@ -173,11 +180,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                             <label class="col-md-3" for="selectmultiple">Módulos Disponiveis</label>
                                             <label class="col-md-2" for="selectmultiple">Módulos Cadastrados</label>
                                             <div id="tbls" class="col-md-3">
+                                             <input type="hidden" id="selecionado" name="usuarioSelecionado" value=""/>
                                                 <select id="selectmultiple" name="selectmultiplePerfil" class="form-control" multiple="multiple" size="15">
                                                     <%if(usuarios != null || perfis!= null){
                                                         if(mostra.equals("Perfil")){ 
                                                             for(int i=0;i<perfis.size();i++){%>
-                                                                <option value="<%= perfis.get(i) %>" onclick="mostra()" <%if(perfilSelecionado!= null){if(perfis.get(i).getId() == perfilSelecionado.getId()){%>selected="true"<%}}%>><%= perfis.get(i).getNome() %> </option> 
+                                                                <option value="<%= perfis.get(i).getId() %>" onclick="mostra()" <%if(perfilSelecionado!= null){if(perfis.get(i).getId() == perfilSelecionado.getId()){%>selected="true"<%}}%>><%= perfis.get(i).getNome() %> </option> 
                                                         <%}}else{
                                                             for(int i=0;i<usuarios.size();i++){%>
                                                                 <option value="<%= usuarios.get(i).getId() %>" onclick="mostra()" <%if(selecionado!= null){if(usuarios.get(i).getId() == selecionado.getId()){%>selected="true"<%}}%>><%= usuarios.get(i).getNome() %> </option>
@@ -216,7 +224,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                           </div>
                                         </div>
-									<form action="AdicionarModulos" method="post" name="modulos">
+									<form action="adicionarModulos" method="post" name="modulos">
                                         <div id="">
                                             <div class="form-group">
                                              <!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
@@ -233,8 +241,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                         </div>
                                         <div id="btn_salva">
-					        				<input type="hidden" id="lista" name="lista">
-					                        <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações"/>
+                                        	<input type="hidden" id="lista" name="listaDisponivel">
+					        				<input type="hidden" id="lista" name="listaCadastrado">
+					                        <input class="btn_pad" id="btn_s" type="submit" value="Salvar" title="Salvar Alterações" onclick="selecionaTudo()"/>
 					                	</div>
                                         
                                    </form>
@@ -278,11 +287,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         
         <script>
             function selecionaTudo(){
+                var disponiveis = document.getElementById('selectmultipleDisp');
+                for(i=0; i < disponiveis.length;i++){
+                	disponiveis.options[i].selected = true;
+                }
+                document.getElementById('listaDisponivel').value = disponiveis;
+                
                 var selecionados = document.getElementById('selectmultipleCad');
                 for(i=0; i < selecionados.length;i++){
                     selecionados.options[i].selected = true;
                 }
-                document.getElementById('lista').value = selecionados;
+                document.getElementById('listaCadastrado').value = selecionados;
+                
+                
             }
         </script>
 
@@ -323,9 +340,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         
        <script>
                 function mostra(){
+                	
                     var x = document.getElementById('selectmultiple');
                     var itemSelecionado = x.options[x.selectedIndex].value;
+                
                     document.getElementById('selecionado').value = itemSelecionado;
+                  
                     document.location.href = 'pesquisaModulos?busca='+document.getElementById('selecionado').value+'';
                 }
         </script>

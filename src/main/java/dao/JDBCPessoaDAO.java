@@ -299,7 +299,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				Usuario u = new Usuario();
 				pessoa.setUsuario(u);
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
-				System.out.println("ID : " + pessoa.getId());
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setEmail(rs.getString("email"));
