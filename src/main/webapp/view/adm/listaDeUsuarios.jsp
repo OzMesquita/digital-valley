@@ -60,7 +60,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		List<Pessoa> usuarios = (List<Pessoa>)session.getAttribute("usuarios");	
 		String mensagem = (String) session.getAttribute("msg");
         if(usuarios!= null && !usuarios.isEmpty()){
-        	System.out.println("dshjdshdj");
             usuarios = (List<Pessoa>) session.getAttribute("usuarios");
         }else{
         	
