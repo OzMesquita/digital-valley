@@ -13,4 +13,6 @@ public interface UsuarioDAO {
 	
 	public void editarNivel(Usuario usuario);
 
+	public Usuario buscar(int id);
+
 }

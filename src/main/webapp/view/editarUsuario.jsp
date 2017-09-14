@@ -1,244 +1,198 @@
+<%-- 
+    Document   : editarUsuario
+    Created on : 02/09/2017, 15:37:05
+    Author     : Usuario
+--%>
 
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
-<!doctype html>
-<html lang="pt">
-<head>
-<meta charset="utf-8" />
-<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Editar usuário</title>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>editar</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="visu/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="visu/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+ <script src="visu/js/jquery-1.11.1.min.js"></script>
+ <script src="visu/js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="visu/js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- chart -->
+<script src="visu/js/Chart.js"></script>
+<!-- //chart -->
 
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-	name='viewport' />
-<meta name="viewport" content="width=device-width" />
+<!-- Metis Menu -->
+<script src="visu/js/metisMenu.min.js"></script>
+<script src="visu/js/custom.js"></script>
+<link href="visu/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
 
-
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-	name='viewport' />
-<meta name="viewport" content="width=device-width" />
-
-<!--     Fonts and icons     -->
-<link
-	href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
-	rel="stylesheet">
-
-<!-- CSS Files -->
-<link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
-
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets2/css/demo.css" rel="stylesheet" />
- <link href="../assets2/css2/drop.css" rel="stylesheet" type="text/css" media="all" />
-
-
-<style>
-#topo {
-	background: steelblue;
-}
-
-#nivelUsuario {
-	margin-top: 70px;
-}
-
-#textB {
-	color: white;
-}
-
-#rodap {
-	background: steelblue;
-	border-radius: 0px 0px 10px 10px;
-}
-
-#save {
-	margin-right: 100px;
-	margin-top: 15px;
-}
-
-#tudo {
-	width: 80%;
-	margin-left: 10%;
-	border-radius: 10px;
-}
-
-#rodape {
-	margin-right: 40%;
-	color: white;
-}
-
-#save {
-	background: steelblue;
-	border-color: steelblue;
-}
-
-#salva {
-	background: steelblue;
-	margin-top: 15px;
-	width: 110px;
-	height: 30px;
-	color: white;
-	margin-left: 84%;
-}
-</style>
-<%
-
-	Usuario usuarioSessao = (Usuario) session.getAttribute("usuario");
+    </head>
+    <body class="cbp-spmenu-push">
+    <% Usuario usuario = (Usuario) session.getAttribute("usuario");
 
 	String mensagem = (String)session.getAttribute("msg");
 	if(mensagem == null){
 		mensagem = "";
 	}
+    
+    
+    %>
+    
+    
+	<div class="main-content">
+            <jsp:include page="include/menu-left.jsp"></jsp:include>
+        <jsp:include page="include/header-top.jsp" ></jsp:include>
+           
+            <div id="page-wrapper">
+                <div class="container-fluid" style="min-height:400px">
+        <!-- aqui-->
+                    <div class="row">
+                        <div class="col-md-12" >
+                                <div class="card">
+                                        <div class="header" style="text-align: center;">
+                                            <h4 class="title">InformaÃ§Ãµes do UsuÃ¡rio</h4><hr style="border: 1px solid lightgray">
+                                                <%if(request.getParameter("erro")!= null){%>
+                                                <small class="msgErro" style="color: red;"> mensagens de erro</small>
+                                                <%}%>
+                                        </div>
+                                        <div class="content">
+                                            <div class="col-md-8" style="margin-left: 15%;">
+                                                <form action="editarUsuario" method="post">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                            <label>CÃ³digo Interno</label> <input type="text"
+                                                                                    class="form-control" disabled
+                                                                                    value="<%= usuario.getPessoa().getId()%>">
+                                                                    </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                            <label>Nome Completo</label> <input type="text"
+                                                                                    class="form-control" name="nome" disabled
+                                                                                    value="<%= usuario.getPessoa().getNome()%>">
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="row">
+                                                                        <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                        <label>CPF</label> <input type="text" id="cpf" name="cpf"
+                                                                                                class="form-control" maxlength="14" placeholder="Cpf"
+                                                                                                onkeypress="formatar('###.###.###-##',this); return SomenteNumero(event)"
+                                                                                                value="<%= usuario.getPessoa().getCpf() %>">
+                                                                                </div>
+                                                                        </div>
+                                                                
 
+                                                                <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                                <label>Data de Nascimento</label> <input
+                                                                                        title="Preencha este campo corretamente" type="data"
+                                                                                        class="form-control" name="nascimento" maxlength="10"
+                                                                                        value="<%= usuario.getPessoa().getDataNascimento() %>"
+                                                                                        placeholder="12/02/1996" pattern="^\d{2}/\d{2}/\d{4}$"
+                                                                                        onkeypress="formatar('##/##/####',this); return SomenteNumero(event)">
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                      
+                                                        <div class="row">
+                                                                <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                                <label>E-mail</label> <input type="email"
+                                                                                        class="form-control" name="email"
+                                                                                        value="<%= usuario.getPessoa().getEmail() %>">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                                <label>Login</label> <input type="text"
+                                                                                        class="form-control" name="login"
+                                                                                        value="<%= usuario.getLogin() %>">
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                                <label>Nova Senha</label> <input type="password"
+                                                                                        class="form-control" name="senha" placeholder="Nova senha">
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                                <label>Confirmar Senha</label> <input type="password"
+                                                                                        class="form-control" name="cSenha"
+                                                                                        placeholder="Confirmar senha">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <input type="submit" id="salva" value="Salvar"
+                                                                title="Salvar alteraÃ§Ãµes">
+                                                        <div class="clearfix"></div>
+                                                </form>
+                                            </div>
+                                        </div>
 
-
-%>
-</head>
-<body>
-	<div id="tudo" class="wrapper">
-		<div class="main-panel"
-			style="border: 1px solid; border-radius: 10px;">
-			<nav class="navbar navbar-default navbar-fixed">
-				<div id="topo" class="container-fluid">
-					<div class="navbar-header">
-						<a id="textB" class="navbar-brand" href="">Sistema Controle de
-							Acesso</a>
-					</div>
-					<%@ include file="menuDropDown.jsp"%>
-				</div>
-			</nav>
-			<div class="content">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-8" style="margin-left: 15%;">
-                                        <div class="card">
-                                    <div class="header" style="text-align: center;">
-                                        <h4 class="title">Informações do Usuário</h4>
-                                    </div>
-                                    <div class="content">
-                                        <form action="editarUsuario" method="post">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Código Interno</label>
-                                                        <input type="text" class="form-control" disabled value="<%= usuarioSessao.getPessoa().getId()%>">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <label>Nome Completo</label>
-                                                        <input type="text" class="form-control" name="nome" disabled  value="<%= usuarioSessao.getPessoa().getNome()%>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>CPF</label>
-                                                        <input type="text" id="cpf" name ="cpf" class="form-control" maxlength="11" placeholder="Cpf" onkeypress="return SomenteNumero(event)" value="<%= usuarioSessao.getPessoa().getCpf() %>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Data de Nascimento</label>
-                                                        <input type="data" class="form-control" name="nascimento" maxlength="8"  value="<%= usuarioSessao.getPessoa().getDataNascimento() %>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>E-mail</label>
-                                                        <input type="email" class="form-control" name="email" value="<%= usuarioSessao.getPessoa().getEmail() %>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Login</label>
-                                                        <input type="text" class="form-control" name="login" value="<%= usuarioSessao.getLogin() %>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Nova Senha</label>
-                                                        <input type="password" class="form-control" name="senha" placeholder="Nova senha">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Confirmar Nova Senha</label>
-                                                        <input type="password" class="form-control" name="cSenha" placeholder="Confirmar senha">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input type="submit" id="salva" value="Salvar" title="Salvar alterações">                                
-                                            <div class="clearfix"></div>
-                                        </form>
-                                </div>
-
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- aqui-->
+           </div>
+            <jsp:include page="include/footer.jsp"></jsp:include>
+        </div>
+             <!-- Classie -->
+           <script src="visu/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
 				
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<footer class="footer">
-				<div id="rodap" class="container-fluid">
-					<p id="rodape" class="copyright pull-right">
-						<br> â‚¢ Todos os direitos reservados | N2S
-					</p>
-				</div>
-			</footer>
-		</div>
-	</div>
-</body>
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
 
-<!--   Core JS Files   -->
-<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets2/js/jquery.bootstrap.wizard.js"
-	type="text/javascript"></script>
-
-<!--  Plugin for the Wizard -->
-<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
-
-<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-<script src="../assets2/js/jquery.validate.min.js"></script>
-<script src="../assets2/js2/drop.js" type="text/javascript"></script>
-
-
-<script>
-	function SomenteNumero(e) {
-		var tecla = (window.event) ? event.keyCode : e.which;
-		if ((tecla > 47 && tecla < 58))
-			return true;
-		else {
-			if (tecla === 8 || tecla === 0)
-				return true;
-			else
-				return false;
-		}
-	}
-</script>
-
-<script>
-	function formatar(mascara, documento) {
-		var i = documento.value.length;
-		var saida = mascara.substring(0, 1);
-		var texto = mascara.substring(i)
-
-		if (texto.substring(0, 1) !== saida) {
-			documento.value += texto.substring(0, 1);
-		}
-
-	}
-</script>
-
-
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+        <script src="visu/js/jquery.nicescroll.js"></script>
+        <script src="visu/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+        <script src="visu/js/bootstrap.js"> </script>
+        
+    </body>
 </html>

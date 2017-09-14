@@ -13,6 +13,8 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>controller.Login</servlet-class>
   </servlet>
+  
+ 
   <servlet>
     <servlet-name>Logout</servlet-name>
     <servlet-class>controller.Logout</servlet-class>
@@ -83,7 +85,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>pesquisaUsuario</servlet-name>
-    <url-pattern>/views/adm/pesquisaUsuario</url-pattern>
+    <url-pattern>/view/adm/pesquisaUsuario</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CadastraAluno</servlet-name>
@@ -95,11 +97,11 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>PreCadastroServidor</servlet-name>
-    <url-pattern>/views/adm/importarServidor</url-pattern>
+    <url-pattern>/view/adm/importarServidor</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CadastroModulo</servlet-name>
-    <url-pattern>/views/adm/cadastrarModulo</url-pattern>
+    <url-pattern>/view/adm/cadastrarModulo</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>Autentica</filter-name>
@@ -115,7 +117,7 @@
   </filter>
   <filter-mapping>
     <filter-name>FiltroADM</filter-name>
-    <url-pattern>/views/adm/*</url-pattern>
+    <url-pattern>/view/adm/*</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>Cadastro</filter-name>
@@ -123,7 +125,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>Autentica</filter-name>
-    <url-pattern>/views/*</url-pattern>
+    <url-pattern>/view/*</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>

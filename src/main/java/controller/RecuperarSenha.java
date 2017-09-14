@@ -37,12 +37,15 @@ public class RecuperarSenha extends HttpServlet {
             throws ServletException, IOException {
         try{
             String email = request.getParameter("email");
+            System.out.println(email);
             if(email!= null){
                 if(Facade.BuscarEmailVinculado(email)!= null){
+                	System.out.println("aqui");
                     Facade.EnviarEmailRecuperacaoDeSenha(email);
                     request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
                     
                 }else{
+                	request.getSession().setAttribute("msg", "Este e-mail não está vinculado a uma conta ativa.");
                     throw new IllegalArgumentException("Este e-mail não está vinculado a uma conta ativa.");
                 }
               
@@ -50,7 +53,7 @@ public class RecuperarSenha extends HttpServlet {
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
         }catch (Exception e) {
-			request.getSession().setAttribute("msg", "falha ao enviar e-mail.");
+			request.getSession().setAttribute("msg", e.getMessage());
 		}
         response.sendRedirect("recuperSenha.jsp");
         

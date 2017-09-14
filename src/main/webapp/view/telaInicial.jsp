@@ -1,86 +1,127 @@
+<%-- 
+    Document   : index
+    Created on : 01/09/2017, 19:01:06
+    Author     : Usuario
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@page import="java.util.Iterator" %>
+<%@page import="java.util.ArrayList" %>
 <%@page import="model.Modulo" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>inicio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="visu/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="visu/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+ <script src="visu/js/jquery-1.11.1.min.js"></script>
+ <script src="visu/js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="visu/js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- chart -->
+<script src="visu/js/Chart.js"></script>
+<!-- //chart -->
+
+<!-- Metis Menu -->
+<script src="visu/js/metisMenu.min.js"></script>
+<script src="visu/js/custom.js"></script>
+<link href="visu/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+
+    </head>
+    <body class="cbp-spmenu-push">
+            <% ArrayList<Modulo> modulos = (ArrayList<Modulo>) session.getAttribute("modulos");%>
 
 
-
-
-<div id="tudo" class="wrapper">
+	<div class="main-content">
     
-
-    <div class="main-panel" style=" border: 1px solid; border-radius:0px 0px 10px 10px;">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div id="topo" class="container-fluid">
-                <div class="navbar-header">
-                    <a id="textB" class="navbar-brand" href="">Sistema Controle de Acesso</a>
-                </div>
-                <%@ include file="menuDropDown.jsp"  %>
-            </div>
-        </nav>
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Módulos do Sistema</h4>
-                            </div>
-                            <div class="content all-icons">
-                                <div class="row">
-                                <%	if( !modulos.isEmpty()){
-										for(Modulo m: modulos){
-	                             %>
-	                                    <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-		                                    <div id="centro" class="font-icon-detail">
-												<img id="img_m" src="<%=m.getImagem()%>"/><br>
-												 <a id="nModulo" href="<%= m.getUrl() %>" > <%=m.getTitulo() %> </a>  
-		                                    </div> 
-	                                  </div>
-								<%}}else{ %>
-									 <p id="text_aviso"> Você não possui módulos cadastrados!</p>  
-								<%}%>
+        <jsp:include page="include/menu-left.jsp"></jsp:include>
+        <jsp:include page="include/header-top.jsp" ></jsp:include>
+           
+            <div id="page-wrapper">
+                <div class="container-fluid" style="min-height:400px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title" style="text-align: center;">Módulos do Sistema</h4><hr style="border: 1px solid lightgray">
                                 </div>
-                               
+                                <div class="content all-icons">
+                                    <div class="row">
+
+                                        <%  if( !modulos.isEmpty()){
+                                            	for(Modulo m: modulos){
+                                         %>
+                                       <div id="borda" class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                           <div id="centro" class="font-icon-detail">
+                                               <img id="img_m" src="<%=m.getImagem()%>"/><br>
+                                                <a id="nModulo" href="<%= m.getUrl() %>" ><%=m.getTitulo() %> </a>  
+                                           </div>
+                                       </div>
+                                       <%}}else{%>    
+                                    <div>
+                                        <p id="text_aviso" style="color: red; font-size: 20px; text-align: center;"> Você não possui módulos cadastrados!</p>  
+                                    </div>
+                                    <%}%>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
             </div>
+            </div>
+            <jsp:include page="include/footer.jsp"></jsp:include>
             
-            
-           
         </div>
+            
+           <!-- Classie -->
+           <script src="visu/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
 
-        <footer class="footer">
-            <div id="rodap"class="container-fluid">
-                <p id="rodape" class="copyright pull-right">
-				<br>
-                    ₢ Todos os direitos reservados | N2S
-                </p>
-            </div>
-        </footer>
-
-	</div>
-</div>
-
-
-</body>
-
-    <!--   Core JS Files   -->
-	<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets2/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-
-	<!--  Plugin for the Wizard -->
-	<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
-
-	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="../assets2/js/jquery.validate.min.js"></script>
-    <script src="../assets2/js2/drop.js" type="text/javascript"></script>
-
-
-
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+        <script src="visu/js/jquery.nicescroll.js"></script>
+        <script src="visu/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+        <script src="visu/js/bootstrap.js"> </script>
+    </body>
 </html>
+

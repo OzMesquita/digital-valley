@@ -12,10 +12,10 @@
                                     <a href="#"><i class="fa fa-cogs nav_icon"></i>Importar matrículas <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="importarAlunos.jsp">Alunos</a>
+                                            <a href="adm/importarAlunos.jsp">Alunos</a>
                                         </li>
                                         <li>
-                                            <a href="importarServidores.jsp">Servidores</a>
+                                            <a href="adm/importarServidores.jsp">Servidores</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -27,7 +27,7 @@
                                             <a href="atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
                                         </li>
                                         <li>
-                                            <a href="cadastrarModulo.jsp">Cadastrar módulo</a>
+                                            <a href="adm/cadastrarModulo.jsp">Cadastrar módulo</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -36,13 +36,13 @@
                                     <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Listar usuários <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="listaDeAlunos.jsp">Alunos <span class="nav-badge-btm"></span></a>
+                                            <a href="adm/listaDeAlunos.jsp">Alunos <span class="nav-badge-btm"></span></a>
                                         </li>
                                         <li>
-                                            <a href="listaDeServidores.jsp">Servidores</a>
+                                            <a href="adm/listaDeServidores.jsp">Servidores</a>
                                         </li>
                                         <li>
-                                            <a href="listaTodos.jsp">Todos</a>
+                                            <a href="adm/listaTodos.jsp">Todos</a>
                                         </li>
                                     </ul>
                                 </li>

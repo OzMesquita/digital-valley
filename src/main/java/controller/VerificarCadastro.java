@@ -65,6 +65,7 @@ public class VerificarCadastro extends HttpServlet {
 						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 					}else{
 						System.out.println("nada");
+						session.setAttribute("msg", "Pre cadastro não identificado");
 						throw new Exception("msg, Pre cadastro não identificado");
 					}
 				}
