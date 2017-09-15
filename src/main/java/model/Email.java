@@ -13,6 +13,7 @@ public class Email {
     private String assunto;
     private String user = "n2s.mensageiro";
     private String pass = "n2s@m@1ls3rv1c3";
+
     private String nomeTo;
     public Email(){
         super();
