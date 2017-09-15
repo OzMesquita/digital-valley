@@ -26,19 +26,12 @@
 	content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	
-	
-	
-	
-	
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
-
-
+	addEventListener("load", function() { 
+							 setTimeout(hideURLbar, 0); 
+							 }, false); 
+	function hideURLbar(){ 
+		window.scrollTo(0,1); 
+	} 
 </script>
 <!-- Bootstrap Core CSS -->
 <link href="../visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -78,7 +71,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <body class="cbp-spmenu-push">
 	<%
 		//modulos disponiveis
-		ModuloDAO moduloDao = new JDBCModuloDAO();
+		ModuloDAO moduloDao = DAOFactory.criarModuloDAO();
 		List<Modulo> modulosDisponiveis = moduloDao.listarDisponiveisParaPessoa(pessoa);
 		String mensagem = (String) session.getAttribute("msg");
 		session.setAttribute("msg", null);
@@ -115,13 +108,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<form action="pesquisaUsuario" method="get">
 									<input id="txt_busca" type="search" name="busca"
 										<%=(mostra.equals("Usuarios") ? "autofocus=\"true\"" : "disabled") %>
-										placeholder="Buscar pelo nome..." /> <img
-										style="margin-left: -5%;" src="../../assets2/img/busca.png"
-										id="btnBusca" alt="Buscar" title="Buscar Usuários"
-										onclick="busca()" /> <input style="margin-left: 1%;"
+										placeholder="Buscar pelo nome..." />
+										<img style="margin-left: -5%;" src="../../assets2/img/busca.png"
+										id="btnBusca" alt="Buscar" title="Buscar Usuários" onclick="busca()" />
+										<input style="margin-left: 1%;"
 										class="btn_pad" type="submit" value="Buscar"
 										title="Buscar Usuários"
-										<%=(!mostra.equals("Usuarios") ? "disabled" : "")) %> />
+										<%=(!mostra.equals("Usuarios") ? "disabled" : "") %> />
 								</form>
 							</div>
 						</div>
