@@ -19,6 +19,11 @@ import dao.ServidorDAO;
 import dao.UsuarioDAO;
 
 public class DAOFactory {
+	
+	private DAOFactory() {
+		//
+	}
+	
 	public static PessoaDAO criarPessoaDAO(){
 		return new JDBCPessoaDAO();
 	}	

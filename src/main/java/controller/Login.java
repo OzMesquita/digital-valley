@@ -15,7 +15,6 @@ import model.Modulo;
 import model.Usuario;
 import util.DAOFactory;
 import util.Facade;
-import util.TokenBuild;
 
 /**
  * Servlet implementation class Login
@@ -57,7 +56,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("modulos", modulos);
 				pagina = "view/telaInicial.jsp";
 				uDAO = DAOFactory.criarUsuarioDAO();
-				uDAO.salvarToken(TokenBuild.buildToken(), usuario.getPessoa().getId());				
+				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
 			}
 		
 			

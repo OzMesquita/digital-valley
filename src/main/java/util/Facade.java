@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 
 import org.apache.commons.mail.EmailException;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 import dao.AlunoDAO;
 import dao.ModuloDAO;
@@ -26,7 +32,48 @@ import model.Modulo;
 import model.Perfil;
 
 public class Facade {
+	
+	private Facade() {
+		//
+	}
 
+	public static String executeHTTPRequestToModule(String url, String jsonUser) throws IOException {		
+		// prepare json
+		StringEntity input = new StringEntity(jsonUser);
+		input.setContentType("application/json");
+		// prepare http request
+		HttpPost postRequest = new HttpPost(url);
+		postRequest.setEntity(input);
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		// do request and prepare response
+		HttpResponse response = httpClient.execute(postRequest);
+		if (response.getStatusLine().getStatusCode() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
+		}
+		// prepare output
+		StringBuilder totalOutput = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+		String output;
+		while ((output = br.readLine()) != null) {
+			totalOutput.append(output);
+		}
+		return totalOutput.toString();
+	}
+	
+	public static String buildToken() {
+		int qtdeCaracteres = 60;
+		String[] caracteres = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h",
+				"i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C",
+				"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+				"Y", "Z" };
+		StringBuilder token = new StringBuilder();
+		for (int i = 0; i < qtdeCaracteres; i++) {
+			int posicao = (int) (Math.random() * caracteres.length);
+			token.append(caracteres[posicao]);
+		}
+		return token.toString();
+	}
+	
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
 		
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
