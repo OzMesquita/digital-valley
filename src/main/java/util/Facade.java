@@ -311,16 +311,15 @@ public class Facade {
  
     public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado){
         if(emailCadastrado != null){
-	        Email e = new Email("Recuperação de Senha!", 
-	                    "Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-	                            + "http://localhost:8080/Controle_De_Acesso/confirmaRecuperacao.jsp"
-	                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
-                                    +"\n Caso não tenha solicitado, ignore este e-mail.", emailCadastrado, "Usuário Controle de Acesso");
-            try {
-				e.sendEmail();
-			} catch (EmailException e1) {
-				throw new IllegalArgumentException("Não foi possível enviar o email!");
-			}
+	        Email e = new Email();
+	        
+            e.sendEmail("Recuperação de Senha!",
+            		"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
+                    + "http://localhost:8080/Controle_de_Acesso/confirmaRecuperacao.jsp"
+                    + "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+                    +"\n Caso não tenha solicitado, ignore este e-mail."
+                    ,emailCadastrado
+                    ,"Usuário Controle de Acesso");
         }else{
         	throw new IllegalArgumentException("Email não pode ser nulo");
         }

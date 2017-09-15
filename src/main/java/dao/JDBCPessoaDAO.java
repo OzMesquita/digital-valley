@@ -157,7 +157,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
 
-		String SQL = "SELECT * FROM pessoa_usuario WHERE matricula = ? and cpf=?";
+		String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u, curso AS c WHERE u_a.id_pessoa_usuario = u.id_pessoa_usuario AND u_a.id_curso = c.id_curso AND u_a.matricula = ? and u.cpf = ?";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
