@@ -56,10 +56,13 @@
 						rd.forward(request, response);
 		} else {
 	%>
+	
+	
 	<div class="image-container set-full-height"
 		style="background: steelblue;">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-sm-8 col-sm-offset-2">
 					<div class="wizard-container">
 						<div class="card wizard-card" data-color="orange"
@@ -121,8 +124,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+					<div class="alert alert-danger col-sm-8 col-sm-offset-2" id="alert_erro" role="alert">
+			 			 This is a primary alert—check it out!
+					</div>
+			</div><!-- row  -->
+			
+		</div><!-- container -->
 
 
 

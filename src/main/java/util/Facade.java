@@ -159,6 +159,31 @@ public class Facade {
 		}
 		return bd;
 	}
+	
+	public static String[] lerArquivoEmail(){
+		String []email = new String[2];
+		try {
+			FileReader arquivo = new FileReader("C:\\n2s\\email.txt");
+			BufferedReader reader = new BufferedReader(arquivo);
+			try {
+				email[0] = reader.readLine();
+				email[1] = reader.readLine();
+			} catch (IOException e) {
+				try {
+					reader.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+		
+		return email;
+		
+	}
 
 	public static List<Modulo> buscarModulosPorPessoas(Pessoa pessoa) {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
