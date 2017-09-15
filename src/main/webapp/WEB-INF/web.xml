@@ -73,8 +73,6 @@
    </servlet>
    <!-- 14 -->
    <servlet>
-     <description></description>
-     <display-name>ConfirmarRecuperacao</display-name>
      <servlet-name>ConfirmarRecuperacao</servlet-name>
      <servlet-class>controller.ConfirmarRecuperacao</servlet-class>
    </servlet>
@@ -175,6 +173,6 @@
    <!-- 14 -->
    <servlet-mapping>
      <servlet-name>ConfirmarRecuperacao</servlet-name>
-     <url-pattern>/ConfirmarRecuperacao</url-pattern>
+     <url-pattern>/ConfirmaRecuperacao</url-pattern>
    </servlet-mapping>
 </web-app>
