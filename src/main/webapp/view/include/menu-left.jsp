@@ -8,7 +8,7 @@
                         <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
                             <ul class="nav" id="side-menu">
                                 <li>
-                                    <a href="<%=Constantes.URL %>/view/telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
+                                    <a href="<%=Constantes.APP_URL %>/view/telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
                                 </li>
                                 <% if(u.getNivel().toString().toLowerCase().equals("administrador")){%>
                                 
@@ -16,10 +16,10 @@
                                     <a href="#"><i class="fa fa-cogs nav_icon"></i>Importar matrículas <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="<%=Constantes.ADM %>/importarAlunos.jsp">Alunos</a>
+                                            <a href="<%=Constantes.ADM_URL %>/importarAlunos.jsp">Alunos</a>
                                         </li>
                                         <li>
-                                            <a href="<%=Constantes.ADM %>/importarServidores.jsp">Servidores</a>
+                                            <a href="<%=Constantes.ADM_URL %>/importarServidores.jsp">Servidores</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -28,10 +28,10 @@
                                     <a href="#"><i class="fa fa-th-large nav_icon"></i>Modulos<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="<%=Constantes.ADM %>/atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
+                                            <a href="<%=Constantes.ADM_URL %>/atribuicaoDeModulos.jsp">Atribuir módulos <span class="nav-badge-btm"></span></a>
                                         </li>
                                         <li>
-                                            <a href="<%=Constantes.ADM %>/cadastrarModulo.jsp">Cadastrar módulo</a>
+                                            <a href="<%=Constantes.ADM_URL %>/cadastrarModulo.jsp">Cadastrar módulo</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -40,7 +40,7 @@
                                     <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Usuários <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level collapse">
                                         <li>
-                                            <a href="<%=Constantes.ADM %>/listaDeUsuarios.jsp">Listar Usuários <span class="nav-badge-btm"></span></a>
+                                            <a href="<%=Constantes.ADM_URL %>/listaDeUsuarios.jsp">Listar Usuários <span class="nav-badge-btm"></span></a>
                                         </li>
                                       
                                     </ul>
