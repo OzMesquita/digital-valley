@@ -24,25 +24,37 @@ public class ConfirmarRecuperacao extends HttpServlet {
     }
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	String pagina = "confirmaRecuperacao.jsp?erroRecuperação=1";
         try{
             String matricula = request.getParameter("matricula");
-            String cpf = request.getParameter("cpf");
-            
-            if(cpf!= null){
-                Usuario usuario;;
-                usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpf);
+            String siape = request.getParameter("siape");
+            String cpfA = request.getParameter("cpfA");
+            String cpfS = request.getParameter("cpfS");
+            String aux = cpfA.replaceAll("-", "");
+    		cpfA = aux.replaceAll("[.]", "");
+    		Usuario usuario;
+            if(cpfA!= null){
+                
+                usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
                 request.getSession().setAttribute("usuario",usuario);
-                response.sendRedirect("editarUsuario.jsp");
+                pagina = util.Constantes.URL+"/view/editarUsuario.jsp";
                     
+            }else if(cpfS != null){
+            	
+            	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
+            	request.getSession().setAttribute("usuario", usuario);
+            	pagina = util.Constantes.URL+"/view/editarUsuario.jsp";
+                
             }else{
             	request.getSession().setAttribute("msg","CPF não pode ser vazio.");
-                
             }
-              
+          
            
         }catch (Exception e) {
 			request.getSession().setAttribute("msg", "falha ao buscar conta.");
 		}  
+        
+        response.sendRedirect(pagina);
         
     }
 
