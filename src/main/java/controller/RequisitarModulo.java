@@ -19,11 +19,15 @@ public class RequisitarModulo extends HttpServlet{
 		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 		Usuario userObjectToJSON = Facade.buscarPorLogin(user.getLogin());
 		userObjectToJSON.getPessoa().setUsuario(null);
-		String url = request.getParameter("url");
-		System.out.println(url);
+		userObjectToJSON.setSenha("******");
+		String url = request.getParameter("url")+"autentica";
 		Gson gson = new Gson();
 		String json = gson.toJson(userObjectToJSON);
-		Facade.executeHTTPRequestToModule(url, json);
+		int status = Facade.executeHTTPRequestToModule(url, json);
+		if(status != 200){
+			response.sendError(status);
+		}
+		response.sendRedirect(request.getParameter("url"));
 	}
 	
 }
