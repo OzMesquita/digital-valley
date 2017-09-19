@@ -77,9 +77,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="cbp-spmenu-push">
 	<%
-		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
-		Integer nivelComum = EnumNivel.COMUM.getValorNivel();
-		Integer quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
+		Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
+		List<Modulo> modulos = (List<Modulo>) request.getAttribute("modulos");
 		//paginacao
 		Integer paginaAtual = request.getParameter("pagina") != null
 				? Integer.valueOf(request.getParameter("pagina"))
@@ -96,22 +95,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<table>
 		<thead>
 			<th>ID</th>
-			<th>Nome</th>
-			<th>CPF</th>
-			<th>E-mail</th>
-			<th>Data Nascimento</th>
+			<th>Título</th>
+			<th>URL</th>
+			<th>Imagem</th>
 			<th>Opções</th>
 		</thead>
 		<tbody>
 			<%
-				for (Pessoa pessoa : pessoas) {
+				for (Modulo modulo : modulos) {
 			%>
 			<tr>
-				<td><%=pessoa.getId()%></td>
-				<td><%=pessoa.getNome()%></td>
-				<td><%=pessoa.getCpf()%></td>
-				<td><%=pessoa.getEmail()%></td>
-				<td><%=pessoa.getDataNascimento()%></td>
+				<td><%=modulo.getId()%></td>
+				<td><%=modulo.getTitulo()%></td>
+				<td><%=modulo.getCpf()%></td>
+				<td><%=modulo.getEmail()%></td>
+				<td><%=modulo.getDataNascimento()%></td>
 				<td><a
 					href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
 						módulos</a></td>
