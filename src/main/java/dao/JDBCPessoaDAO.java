@@ -152,6 +152,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 	
+	@Override
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
@@ -166,19 +167,20 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			ResultSet rs = ps.executeQuery();
 
-			rs.next();
-			pessoa.setId(rs.getInt("id_pessoa_usuario"));
-			pessoa.setNome(rs.getString("nome"));
-			pessoa.setCpf(rs.getString("cpf"));
-			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-			pessoa.setEmail(rs.getString("email"));
-			pessoa.getUsuario().setLogin(rs.getString("login"));
-			pessoa.getUsuario().setSenha(rs.getString("senha"));
-			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
-			pessoa.getUsuario().setPessoa(pessoa);
+			if(rs.next()){
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				
+			}
 			ps.close();
 			rs.close();
-			
 			return pessoa;
 
 		} catch (SQLException e) {
@@ -194,7 +196,50 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 	}
 	
-	
+	@Override
+	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
+		Pessoa pessoa = new Pessoa();
+		Usuario usuario = new Usuario();
+		pessoa.setUsuario(usuario);
+
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario AS u WHERE s.id_pessoa_usuario = u.id_pessoa_usuario AND s.siape = ? and u.cpf = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, siape);
+			ps.setString(2,cpf);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				System.out.println("NIVEL:"+usuario.getNivel());
+				usuario.setPessoa(pessoa);
+				
+			}
+			ps.close();
+			rs.close();
+			return usuario;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 	
 
 	@Override
