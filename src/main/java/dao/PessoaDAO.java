@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Pessoa;
+import model.Usuario;
 
 public interface PessoaDAO {
 	
@@ -26,5 +27,5 @@ public interface PessoaDAO {
 
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf);
 	
-	public Pessoa buscarPorSiapeAndCPF(String siape, String cpf);
+	public Usuario buscarPorSiapeAndCPF(String siape, String cpf);
 }

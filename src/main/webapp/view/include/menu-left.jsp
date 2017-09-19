@@ -1,3 +1,4 @@
+<%@page import="model.EnumNivel"%>
 <%@page import="model.Usuario"%>
 <%@page import="util.Constantes"%>
 <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
@@ -10,7 +11,8 @@
                                 <li>
                                     <a href="<%=Constantes.APP_URL %>/view/telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
                                 </li>
-                                <% if(u.getNivel().toString().toLowerCase().equals("administrador")){%>
+                                <%=u.getNivel().toString() %>
+                                <% if(u.getNivel().equals(EnumNivel.ADMINISTRADOR)){%>
                                 
                                 <li>
                                     <a href="#"><i class="fa fa-cogs nav_icon"></i>Importar matrículas <span class="fa arrow"></span></a>

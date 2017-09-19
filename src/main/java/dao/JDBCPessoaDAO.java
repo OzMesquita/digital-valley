@@ -197,7 +197,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	}
 	
 	@Override
-	public Pessoa buscarPorSiapeAndCPF(String siape, String cpf) {
+	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -217,15 +217,16 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
-				pessoa.getUsuario().setLogin(rs.getString("login"));
-				pessoa.getUsuario().setSenha(rs.getString("senha"));
-				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
-				pessoa.getUsuario().setPessoa(pessoa);
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				System.out.println("NIVEL:"+usuario.getNivel());
+				usuario.setPessoa(pessoa);
 				
 			}
 			ps.close();
 			rs.close();
-			return pessoa;
+			return usuario;
 
 		} catch (SQLException e) {
 			e.printStackTrace();

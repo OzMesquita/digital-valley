@@ -24,6 +24,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
     }
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	Usuario usuario = new Usuario();
     	String pagina = "confirmaRecuperacao.jsp?erroRecuperação=1";
         try{
             String matricula = request.getParameter("matricula");
@@ -32,18 +33,12 @@ public class ConfirmarRecuperacao extends HttpServlet {
             String cpfS = request.getParameter("cpfS");
             String aux = cpfA.replaceAll("-", "");
     		cpfA = aux.replaceAll("[.]", "");
-    		Usuario usuario;
+    		
             if(cpfA!= null){
-                
                 usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
-                request.getSession().setAttribute("usuario",usuario);
-                pagina = util.Constantes.URL+"/view/editarUsuario.jsp";
-                    
             }else if(cpfS != null){
-            	
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
-            	request.getSession().setAttribute("usuario", usuario);
-            	pagina = util.Constantes.URL+"/view/editarUsuario.jsp";
+            	
                 
             }else{
             	request.getSession().setAttribute("msg","CPF não pode ser vazio.");
@@ -53,6 +48,10 @@ public class ConfirmarRecuperacao extends HttpServlet {
         }catch (Exception e) {
 			request.getSession().setAttribute("msg", "falha ao buscar conta.");
 		}  
+        if (usuario != null){
+        	request.getSession().setAttribute("usuario",usuario);
+        	pagina = util.Constantes.APP_URL+"/view/editarUsuario.jsp";
+        }
         
         response.sendRedirect(pagina);
         
