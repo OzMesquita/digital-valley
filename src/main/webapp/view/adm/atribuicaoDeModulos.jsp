@@ -14,6 +14,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
+<%@page import="util.Constantes"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,11 +74,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		//modulos disponiveis
 		ModuloDAO moduloDao = DAOFactory.criarModuloDAO();
 		List<Modulo> modulosDisponiveis = moduloDao.listarDisponiveisParaPessoa(pessoa);
+		//mensagens		
 		String mensagem = (String) session.getAttribute("msg");
 		session.setAttribute("msg", null);
 		if (mensagem == null) {
 			mensagem = "";
 		}
+		//
+		String mostra = (String) request.getAttribute("mostra");
 	%>
 	<div class="main-content">
 		<jsp:include page="../include/menu-left.jsp"></jsp:include>
@@ -107,10 +111,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div id="busca">
 								<form action="pesquisaUsuario" method="get">
 									<input id="txt_busca" type="search" name="busca"
-										<%=(mostra.equals("Usuarios") ? "autofocus=\"true\"" : "disabled") %>
-										placeholder="Buscar pelo nome..." />
-										<img style="margin-left: -5%;" src="../../assets2/img/busca.png"
-										id="btnBusca" alt="Buscar" title="Buscar Usuários" onclick="busca()" />
+										<%=("Usuarios".equals(mostra) ? "autofocus=\"true\"" : "disabled") %> placeholder="Buscar pelo nome..." />
+										<a href="#" onclick="busca()">
+											<img style="margin-left: -5%;" src="../../assets2/img/busca.png" id="btnBusca" alt="Buscar" title="Buscar Usuários" />
+										</a>
 										<input style="margin-left: 1%;"
 										class="btn_pad" type="submit" value="Buscar"
 										title="Buscar Usuários"
@@ -217,7 +221,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												%>
 												<option value="<%=modulosCadastrados.get(i).getId()%>"><%=modulosCadastrados.get(i).getTitulo()%></option>
 												<%
-													}
+														}
 													} else {
 												%>
 												<option disabled="disable">(Selecione algum usuário)</option>
@@ -234,114 +238,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									<input class="btn_pad" id="btn_s" type="submit" value="Salvar"
 										title="Salvar Alterações" onclick="selecionaTudo()" />
 								</div>
-
 							</form>
 						</div>
 					</div>
 				</div>
-
-				<!-- aqui-->
 			</div>
 		</div>
 	</div>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
-	</div>
-	<!-- Classie -->
 	<script src="../visu/js/classie.js"></script>
-	<script>
-		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
-				.getElementById('showLeftPush'), body = document.body;
-
-		showLeftPush.onclick = function() {
-			classie.toggle(this, 'active');
-			classie.toggle(body, 'cbp-spmenu-push-toright');
-			classie.toggle(menuLeft, 'cbp-spmenu-open');
-			disableOther('showLeftPush');
-		};
-
-		function disableOther(button) {
-			if (button !== 'showLeftPush') {
-				classie.toggle(showLeftPush, 'disabled');
-			}
-		}
-	</script>
-	<!--scrolling js-->
 	<script src="../visu/js/jquery.nicescroll.js"></script>
 	<script src="../visu/js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../visu/js/bootstrap.js">
-		
-	</script>
-
-	<script>
-		function selecionaTudo() {
-			var disponiveis = document.getElementById('selectmultipleDisp');
-			for (i = 0; i < disponiveis.length; i++) {
-				disponiveis.options[i].selected = true;
-			}
-			document.getElementById('listaDisponivel').value = disponiveis;
-
-			var selecionados = document.getElementById('selectmultipleCad');
-			for (i = 0; i < selecionados.length; i++) {
-				selecionados.options[i].selected = true;
-			}
-			document.getElementById('listaCadastrado').value = selecionados;
-
-		}
-	</script>
-
-	<script>
-		function mostraResposta(resposta) {
-			var remove = document.getElementById('selectmultipleDisp');
-			remove.removeChild(remove.options);
-
-			$('selectmultiple').value.resposta.responseText;
-
-		}
-	</script>
-
-	<script>
-		function inclui() {
-			var novoElemento = document.createElement('option');
-			var remove = document.getElementById('selectmultipleDisp');
-			var itemSelecionado = remove.options[remove.selectedIndex].text;
-			novoElemento.textContent = itemSelecionado;
-			var lista = document.getElementById('selectmultipleCad');
-			lista.appendChild(novoElemento);
-			remove.removeChild(remove.options[remove.selectedIndex]);
-		}
-	</script>
-
-	<script>
-		function remove() {
-			var novoElemento = document.createElement('option');
-			var remove = document.getElementById('selectmultipleCad');
-			var itemSelecionado = remove.options[remove.selectedIndex].text;
-			novoElemento.textContent = itemSelecionado;
-			remove.removeChild(remove.options[remove.selectedIndex]);
-			var lista = document.getElementById('selectmultipleDisp');
-			lista.appendChild(novoElemento);
-		}
-	</script>
-
-
-	<script>
-		function mostra() {
-
-			var x = document.getElementById('selectmultiple');
-			var itemSelecionado = x.options[x.selectedIndex].value;
-
-			document.getElementById('selecionado').value = itemSelecionado;
-
-			document.location.href = 'pesquisaModulos?busca='
-					+ document.getElementById('selecionado').value + '';
-		}
-	</script>
-
-
-	<script src="../visu/js/wejs.js">
-		
-	</script>
+	<script src="../visu/js/bootstrap.js"></script>
+	<script src="<%=Constantes.APP_JS_URL %>/funcoesParaAtribuicaoDeModulo.js"></script>
+	<script src="../visu/js/wejs.js"></script>
 </body>
 </html>

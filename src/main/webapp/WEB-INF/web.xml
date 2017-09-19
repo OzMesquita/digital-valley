@@ -78,8 +78,13 @@
      <servlet-name>ConfirmarRecuperacao</servlet-name>
      <servlet-class>controller.ConfirmarRecuperacao</servlet-class>
    </servlet>
+   <!-- 15 -->
+   <servlet>
+     <servlet-name>RequisitarModulo</servlet-name>
+     <servlet-class>controller.RequisitarModulo</servlet-class>
+   </servlet>
 
-   
+  
    
    <filter>
      <filter-name>Autentica</filter-name>
@@ -95,7 +100,6 @@
    </filter>
    <filter-mapping>
      <filter-name>FiltroADM</filter-name>
-
     <url-pattern>/view/adm/*</url-pattern>
    </filter-mapping>
    <filter-mapping>
@@ -176,5 +180,10 @@
    <servlet-mapping>
      <servlet-name>ConfirmarRecuperacao</servlet-name>
      <url-pattern>/ConfirmaRecuperacao</url-pattern>
+   </servlet-mapping>
+      <!-- 15 -->
+   <servlet-mapping>
+     <servlet-name>RequisitarModulo</servlet-name>
+     <url-pattern>/view/requisitarModulo</url-pattern>
    </servlet-mapping>
 </web-app>
