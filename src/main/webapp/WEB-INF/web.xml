@@ -93,30 +93,6 @@
 
 
 
-	<filter>
-		<filter-name>Autentica</filter-name>
-		<filter-class>controller.AutenticacaoFiltro</filter-class>
-	</filter>
-	<filter>
-		<filter-name>Cadastro</filter-name>
-		<filter-class>controller.CadastroFiltro</filter-class>
-	</filter>
-	<filter>
-		<filter-name>FiltroADM</filter-name>
-		<filter-class>controller.AdmFiltro</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>FiltroADM</filter-name>
-		<url-pattern>/view/adm/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Cadastro</filter-name>
-		<url-pattern>/cadastro/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Autentica</filter-name>
-		<url-pattern>/view/*</url-pattern>
-	</filter-mapping>
 
 	<!-- 1 -->
 	<servlet-mapping>
@@ -198,4 +174,54 @@
 		<servlet-name>ModulosDePessoa</servlet-name>
 		<url-pattern>/view/adm/pessoa_modulos</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	<!-- FILTROS -->
+	<!-- 1 -->
+	<filter>
+		<filter-name>Autentica</filter-name>
+		<filter-class>controller.AutenticacaoFiltro</filter-class>
+	</filter>
+	<!-- 2 -->
+	<filter>
+		<filter-name>Cadastro</filter-name>
+		<filter-class>controller.CadastroFiltro</filter-class>
+	</filter>
+	<!-- 3 -->
+	<filter>
+		<filter-name>FiltroADM</filter-name>
+		<filter-class>controller.AdmFiltro</filter-class>
+	</filter>
+	<!-- 4 -->
+	<filter>
+		<filter-name>FiltroRecuperacao</filter-name>
+		<filter-class>controller.FiltroRecuperacao</filter-class>
+	</filter>
+	
+	
+	
+	
+	<!-- MAPEAMENTOS FILTROS -->
+	<!-- 1 -->
+	<filter-mapping>
+		<filter-name>Autentica</filter-name>
+		<url-pattern>/view/*</url-pattern>
+	</filter-mapping>
+	<!-- 2 -->
+	<filter-mapping>
+		<filter-name>Cadastro</filter-name>
+		<url-pattern>/cadastro/*</url-pattern>
+	</filter-mapping>
+	<!-- 3 -->
+	<filter-mapping>
+		<filter-name>FiltroADM</filter-name>
+		<url-pattern>/view/adm/*</url-pattern>
+	</filter-mapping>
+	<!-- 4 -->
+	<filter-mapping>
+		<filter-name>FiltroRecuperacao</filter-name>
+		<url-pattern>/recuperar/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>

@@ -203,8 +203,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setString(2,cpf);
 
 			ResultSet rs = ps.executeQuery();
-			System.out.println("teste");
 			if(rs.next()){
+				usuario = new Usuario();
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setCpf(rs.getString("cpf"));
@@ -213,7 +213,6 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
-				System.out.println("NIVEL:"+usuario.getNivel());
 				usuario.setPessoa(pessoa);
 				
 			}
