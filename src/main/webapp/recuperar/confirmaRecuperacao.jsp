@@ -26,12 +26,12 @@
 	rel="stylesheet">
 
 <!-- CSS Files -->
-<link href="assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="assets2/css/demo.css" rel="stylesheet" />
+<link href="../assets2/css/demo.css" rel="stylesheet" />
 <!--meu css -->
-<link rel="stylesheet" href="newcss.css" type="text/css" />
+<link rel="stylesheet" href="../newcss.css" type="text/css" />
 
 
 <style>
@@ -78,6 +78,7 @@
 								<div class="col-sm-6" style="margin-left: 25%;">
 									<div class="form-group">
 										<div class="tab-content">
+<<<<<<< HEAD:src/main/webapp/confirmaRecuperacao.jsp
 											<div class="card wizard-card" data-color="orange"
 												id="wizardProfile" style="height: 20px;">
 												<form method="post" action="ConfirmaRecuperacao"
@@ -129,6 +130,48 @@
 													</div>
 												</form>
 											</div>
+=======
+											<div class="card wizard-card" data-color="orange" id="wizardProfile" style="height:20px;">
+                            <form method="post" action="ConfirmaRecuperacao" name="formVerifica" >
+                                <div class="wizard-header">
+                                    <h3>
+                                        <b>Confimarção</b><br>
+                                        <small>Escolha seu tipo de usuário</small>
+                                    </h3>
+                                </div>
+                                <div class="wizard-navigation">
+                                    <ul>
+                                        <li><a href="#aluno" data-toggle="tab">Aluno</a></li>
+                                        <li><a href="#servidor" data-toggle="tab">Servidor</a></li> 
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="margin-left: 25%;">
+                                        <div class="form-group">
+                                            <div class="tab-content">
+                                                <div class="tab-pane" id="aluno">
+                                                    <div class="row">
+                                                        <label for="matricula" >Matricula</label><input type="text" name="matricula" maxlength="6" class="form-control" onkeypress="return SomenteNumero(event)"><br>
+                                                        <label for="cpfA" >CPF</label><input type="text" name="cpfA" class="form-control"><br>
+                                                        <a href="login.jsp">Voltar para tela de login</a>
+                                                        <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos1()">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="servidor">
+                                                    <div class="row">
+                                                        <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control" onkeypress="return SomenteNumero(event)"><br>
+                                                        <label for="cpfS" >CPF</label><input type="text" name="cpfS" class="form-control"><br>
+                                                        <a href="login.jsp">Voltar para tela de login</a>
+                                                        <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos2()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+>>>>>>> 1dd64beebb6327c05bfd1fd538c7c0d1670b1662:src/main/webapp/recuperar/confirmaRecuperacao.jsp
 										</div>
 									</div>
 								</div>
@@ -157,9 +200,9 @@
 	}
 </script>
 <!--   Core JS Files   -->
-<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets2/js/jquery.bootstrap.wizard.js"
+<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets2/js/jquery.bootstrap.wizard.js"
 	type="text/javascript"></script>
 
 <!--  Plugin for the Wizard -->
