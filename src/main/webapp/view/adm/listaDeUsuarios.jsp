@@ -9,18 +9,19 @@
 <%@page import="model.EnumNivel"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Usuario"%>
-<%@page import="model.Aluno" %>
+<%@page import="model.Aluno"%>
 <%@page import="util.Facade"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>lista de alunos</title>
-        
-         <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<title>lista de alunos</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords"
+	content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -29,18 +30,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href="../visu/css/style.css" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
 <!-- font-awesome icons -->
-<link href="../visu/css/font-awesome.css" rel="stylesheet"> 
+<link href="../visu/css/font-awesome.css" rel="stylesheet">
 <!-- //font-awesome icons -->
- <!-- js-->
- <script src="../visu/js/jquery-1.11.1.min.js"></script>
- <script src="../visu/js/modernizr.custom.js"></script>
+<!-- js-->
+<script src="../visu/js/jquery-1.11.1.min.js"></script>
+<script src="../visu/js/modernizr.custom.js"></script>
 <!--webfonts-->
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<!--//webfonts--> 
+<link
+	href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//webfonts-->
 <!--animate-->
-<link href="../visu/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<link href="../visu/css/animate.css" rel="stylesheet" type="text/css"
+	media="all">
 <script src="../visu/js/wow.min.js"></script>
-	<script>
+<script>
 		 new WOW().init();
 	</script>
 <!--//end-animate-->
@@ -54,9 +58,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href="../visu/css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
 
-    </head>
-    <body class="cbp-spmenu-push">
-    <% 
+</head>
+<body class="cbp-spmenu-push">
+	<% 
 		List<Pessoa> usuarios = (List<Pessoa>)session.getAttribute("usuarios");	
 		String mensagem = (String) session.getAttribute("msg");
         if(usuarios!= null && !usuarios.isEmpty()){
@@ -68,70 +72,74 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
    
 	
 	%>
-    
+
 	<div class="main-content">
-            <jsp:include page="../include/menu-left.jsp"></jsp:include>
-        <jsp:include page="../include/header-top.jsp" ></jsp:include>
-           
-            <div id="page-wrapper">
-                <div class="container-fluid" style="min-height:400px">
-        <!-- aqui-->
-                    <div class="col-md-12" >
-                            <div class="card">
-                                <div class="header" style="text-align: center;">
-                                    <h4 class="title">Usuários</h4><hr style="border: 1px solid lightgray">
-                                    <div id="busca">
-                                        <form action="ListaUsuario" method="get">
-                                            <input id="txt_busca" type="search" name="busca" placeholder="Buscar por usuários..."/>
-                                            <input style="margin-left: 1%;" class ="btn_pad" type="submit" value="Buscar" title="Buscar Usuários"/>
-                                            <select id="filtro" name="filtro" class="form-group " style="float: right">
-                                                <option value="todos" selected="" onclick="filtro()"> Todos</option>
-                                                <option value="alunos" onclick="filtro()"> Alunos</option>
-                                                <option value="servidores" onclick="filtro()"> Servidores</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                    
-                                </div>
-                                <div id="tabUsuarios">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>CPF</th>
-                                            <th>Nome</th>
-                                            <th>E-mail</th>
-                                            <th>Nível</th>
-                                        </thead>
-                                        <tbody>
-                                          <% for(Pessoa user : usuarios){
+		<jsp:include page="../include/menu-left.jsp"></jsp:include>
+		<jsp:include page="../include/header-top.jsp"></jsp:include>
+
+		<div id="page-wrapper">
+			<div class="container-fluid" style="min-height: 400px">
+				<!-- aqui-->
+				<div class="col-md-12">
+					<div class="card">
+						<div class="header" style="text-align: center;">
+							<h4 class="title">Usuários</h4>
+							<hr style="border: 1px solid lightgray">
+							<div id="busca">
+								<form action="ListaUsuario" method="get">
+									<input id="txt_busca" type="search" name="busca"
+										placeholder="Buscar por usuários..." /> <input
+										style="margin-left: 1%;" class="btn_pad" type="submit"
+										value="Buscar" title="Buscar Usuários" /> <select id="filtro"
+										name="filtro" class="form-group " style="float: right">
+										<option value="todos" selected="" onclick="filtro()"> Todos</option>
+										<option value="alunos" onclick="filtro()"> Alunos</option>
+										<option value="servidores" onclick="filtro()"> Servidores</option>
+									</select>
+								</form>
+							</div>
+
+						</div>
+						<div id="tabUsuarios">
+							<table class="table table-hover table-striped">
+								<thead>
+									<th>CPF</th>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th>Nível</th>
+								</thead>
+								<tbody>
+									<% for(Pessoa user : usuarios){
                                                  
 	                                          %>
-                                            <tr>
-                                                
-                                                  <td><%=user.getCpf() %></td>
-                                                
-                                                  
-                                                  <td><a href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"><%=user.getNome()%></a></td>
-                                                  <td><%=user.getEmail()%></td>
-                                                  <td><%=user.getUsuario().getNivel()%></td>
-                                            </tr>                    
-                                          <%}%>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-		
-        
-        
-        
-        <!-- aqui-->
-           </div>
-            </div>
-            <%@include file="../include/footer.jsp" %>
-        </div>
-            <!-- Classie -->
-           <script src="../visu/js/classie.js"></script>
-		<script>
+									<tr>
+
+										<td><%=user.getCpf() %></td>
+
+
+										<td><a
+											href="editarNivelDoUsuario.jsp?idUsuario=<%=user.getId() %>"><%=user.getNome()%></a></td>
+										<td><%=user.getEmail()%></td>
+										<td><%=user.getUsuario().getNivel()%></td>
+									</tr>
+									<%}%>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<!-- aqui-->
+			</div>
+		</div>
+		<%@include file="../include/footer.jsp"%>
+	</div>
+	<!-- Classie -->
+	<script src="../visu/js/classie.js"></script>
+	<script>
 			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 				showLeftPush = document.getElementById( 'showLeftPush' ),
 				body = document.body;
@@ -150,8 +158,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 		</script>
-                
-                <script>
+
+	<script>
                     function filtro(){
                         var select = document.getElementById('filtro');
                         var itemSelecionado = select.options[select.selectedIndex].value;
@@ -161,11 +169,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     
                 </script>
 	<!--scrolling js-->
-        <script src="../visu/js/jquery.nicescroll.js"></script>
-        <script src="../visu/js/scripts.js"></script>
+	<script src="../visu/js/jquery.nicescroll.js"></script>
+	<script src="../visu/js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-        <script src="../visu/js/bootstrap.js"> </script>
-        
-    </body>
+	<script src="../visu/js/bootstrap.js"> </script>
+
+</body>
 </html>

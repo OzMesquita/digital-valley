@@ -71,8 +71,8 @@
 	</servlet>
 	<!-- 13 -->
 	<servlet>
-		<servlet-name>AdicionarModulos</servlet-name>
-		<servlet-class>controller.AdicionarModulos</servlet-class>
+		<servlet-name>AssociarModulo</servlet-name>
+		<servlet-class>controller.AssociarModulo</servlet-class>
 	</servlet>
 	<!-- 14 -->
 	<servlet>
@@ -89,7 +89,11 @@
 		<servlet-name>ModulosDePessoa</servlet-name>
 		<servlet-class>controller.ModulosDePessoa</servlet-class>
 	</servlet>
-
+	<!-- 17 -->
+	<servlet>
+		<servlet-name>DesassociarModulo</servlet-name>
+		<servlet-class>controller.DesassociarModulo</servlet-class>
+	</servlet>
 
 
 
@@ -180,8 +184,8 @@
 	</servlet-mapping>
 	<!-- 13 -->
 	<servlet-mapping>
-		<servlet-name>AdicionarModulos</servlet-name>
-		<url-pattern>/view/adm/adicionarModulos</url-pattern>
+		<servlet-name>AssociarModulo</servlet-name>
+		<url-pattern>/view/adm/associar_modulo</url-pattern>
 	</servlet-mapping>
 	<!-- 14 -->
 	<servlet-mapping>
@@ -197,5 +201,10 @@
 	<servlet-mapping>
 		<servlet-name>ModulosDePessoa</servlet-name>
 		<url-pattern>/view/adm/pessoa_modulos</url-pattern>
+	</servlet-mapping>
+	<!-- 17 -->
+	<servlet-mapping>
+		<servlet-name>DesassociarModulo</servlet-name>
+		<url-pattern>/view/adm/desassociar_modulo</url-pattern>
 	</servlet-mapping>
 </web-app>

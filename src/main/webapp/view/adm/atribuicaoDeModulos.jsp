@@ -31,12 +31,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	addEventListener("load", function() { 
 							 setTimeout(hideURLbar, 0); 
 							 }, false); 
 	function hideURLbar(){ 
 		window.scrollTo(0,1); 
 	} 
+
 
 
 </script>
@@ -89,6 +91,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		Integer quantidadePorPagina = fim - inicio;
 		Integer quantidadeDePaginas = quantidadeDePessoasDeNivelComum / quantidadePorPagina;
 		//listagem				
+		pessoaDAO = DAOFactory.criarPessoaDAO();
 		List<Pessoa> pessoas = pessoaDAO.buscarPorNivel(nivelComum, inicio, fim);
 		String url = Constantes.ADM_URL;
 	%>

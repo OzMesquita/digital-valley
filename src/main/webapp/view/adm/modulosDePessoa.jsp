@@ -49,11 +49,12 @@
 			<tr>
 				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
-				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo" alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
+						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
 				<td>
 					<form method="POST" action="<%=url%>/desassociar_modulo">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
-						<input type="submit" value="Desassociar" /> 
+						<input type="submit" value="Desassociar" />
 					</form>
 				</td>
 			</tr>
@@ -77,11 +78,12 @@
 			<tr>
 				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
-				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo" alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
+						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
 				<td>
 					<form method="POST" action="<%=url%>/associar_modulo">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
-						<input type="submit" value="Associar" /> 
+						<input type="submit" value="Associar" />
 					</form>
 				</td>
 			</tr>
