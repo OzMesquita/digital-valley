@@ -76,7 +76,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                            <div id="centro" class="font-icon-detail" style="text-align: center;">
                                            		<img id="img_m" src="<%=m.getImagem()%>"/><br>
                                                <form action="requisitarModulo" method="post">
-                                               		<input type="hidden" name="url"  value="<%= m.getUrl()+"autentica"%>">
+                                               		<input type="hidden" name="url"  value="<%= m.getUrl()%>">
                                                		<input type="submit" id="reqisita" value="Requisitar" title="<%=m.getTitulo() %>">                                               
                                                </form>  
                                            </div>
