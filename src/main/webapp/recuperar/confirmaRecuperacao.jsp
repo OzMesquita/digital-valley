@@ -26,12 +26,12 @@
 	rel="stylesheet">
 
 <!-- CSS Files -->
-<link href="assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="assets2/css/demo.css" rel="stylesheet" />
+<link href="../assets2/css/demo.css" rel="stylesheet" />
 <!--meu css -->
-<link rel="stylesheet" href="newcss.css" type="text/css" />
+<link rel="stylesheet" href="../newcss.css" type="text/css" />
 
 
 <style>
@@ -98,7 +98,7 @@
                                                 <div class="tab-pane" id="aluno">
                                                     <div class="row">
                                                         <label for="matricula" >Matricula</label><input type="text" name="matricula" maxlength="6" class="form-control" onkeypress="return SomenteNumero(event)"><br>
-                                                        <label for="nome" >CPF</label><input type="text" name="cpfA" class="form-control"><br>
+                                                        <label for="cpfA" >CPF</label><input type="text" name="cpfA" class="form-control"><br>
                                                         <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos1()">
                                                     </div>
@@ -106,7 +106,7 @@
                                                 <div class="tab-pane" id="servidor">
                                                     <div class="row">
                                                         <label for="siape" >Siape</label><input type="text" name="siape" maxlength="7" class="form-control" onkeypress="return SomenteNumero(event)"><br>
-                                                        <label for="nome" >CPF</label><input type="text" name="cpfS" class="form-control"><br>
+                                                        <label for="cpfS" >CPF</label><input type="text" name="cpfS" class="form-control"><br>
                                                         <a href="login.jsp">Voltar para tela de login</a>
                                                         <input id="btn_confirma" type="submit" value="Confirmar" onclick="return validarCampos2()">
                                                     </div>
@@ -145,9 +145,9 @@
 	}
 </script>
 <!--   Core JS Files   -->
-<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets2/js/jquery.bootstrap.wizard.js"
+<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets2/js/jquery.bootstrap.wizard.js"
 	type="text/javascript"></script>
 
 <!--  Plugin for the Wizard -->

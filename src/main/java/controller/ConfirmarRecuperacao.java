@@ -33,12 +33,21 @@ public class ConfirmarRecuperacao extends HttpServlet {
             String cpfS = request.getParameter("cpfS");
             String aux = cpfA.replaceAll("-", "");
     		cpfA = aux.replaceAll("[.]", "");
+            aux = cpfS.replaceAll("-", "");
+    		cpfS = aux.replaceAll("[.]", "");
     		
-            if(cpfA!= null){
-                usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
-            }else if(cpfS != null){
+    		System.out.println("Matricula:"+!matricula.equals(""));
+    		System.out.println("Siape "+!siape.equals(""));
+    		
+    		
+            if(!matricula.equals("")){
+            	System.out.println("teste a");
+            	usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
+                System.out.println("nome : "+usuario.getPessoa().getNome());
+            }else if(!siape.equals("")){
+            	System.out.println("teste s");
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
-            	
+            	System.out.println("nome : "+usuario.getPessoa().getNome());
                 
             }else{
             	request.getSession().setAttribute("msg","CPF não pode ser vazio.");
@@ -49,6 +58,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
 			request.getSession().setAttribute("msg", "falha ao buscar conta.");
 		}  
         if (usuario != null){
+        	System.out.println("dmawlçdmkawl : "+usuario.getPessoa().getNome());
         	request.getSession().setAttribute("usuario",usuario);
         	pagina = util.Constantes.APP_URL+"/view/editarUsuario.jsp";
         }

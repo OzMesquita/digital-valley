@@ -11,7 +11,7 @@
                                 <li>
                                     <a href="<%=Constantes.APP_URL %>/view/telaInicial.jsp" class="active"><i class="fa fa-home nav_icon"></i>Inicio</a>
                                 </li>
-                                <%=u.getNivel().toString() %>
+                                
                                 <% if(u.getNivel().equals(EnumNivel.ADMINISTRADOR)){%>
                                 
                                 <li>

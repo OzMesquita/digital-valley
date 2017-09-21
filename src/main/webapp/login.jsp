@@ -124,9 +124,7 @@
 						</div>
 					</div>
 				</div>
-					<div class="alert alert-danger col-sm-8 col-sm-offset-2" id="alert_erro" role="alert">
-			 			 This is a primary alert—check it out!
-					</div>
+					
 			</div><!-- row  -->
 			
 		</div><!-- container -->

@@ -199,7 +199,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	@Override
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
 		Pessoa pessoa = new Pessoa();
-		Usuario usuario = new Usuario();
+		Usuario usuario = null;
 		pessoa.setUsuario(usuario);
 
 		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario AS u WHERE s.id_pessoa_usuario = u.id_pessoa_usuario AND s.siape = ? and u.cpf = ?";
@@ -210,7 +210,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			ps.setString(2,cpf);
 
 			ResultSet rs = ps.executeQuery();
-
+			System.out.println("teste");
 			if(rs.next()){
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
 				pessoa.setNome(rs.getString("nome"));
