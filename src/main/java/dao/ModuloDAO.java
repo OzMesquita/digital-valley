@@ -26,6 +26,8 @@ public interface ModuloDAO {
 	
 	public List<Modulo> listarDisponiveisParaPessoa(Pessoa pessoa);
 	
+	public List<Modulo> listarAssociadosParaPessoa(Pessoa pessoa);
+	
 	public void associarUsuarioModulo(int idUsuario, int idModulo);
 	
 	public void associarPerfilModulo (int idPerfil, int idModulo);

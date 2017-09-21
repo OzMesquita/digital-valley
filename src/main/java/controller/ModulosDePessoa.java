@@ -34,7 +34,8 @@ public class ModulosDePessoa extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(Constantes.ADM_URL+"/modulosDePessoa.jsp");
 		Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorId(Integer.valueOf(request.getParameter("pessoa_id")));
-		request.setAttribute("modulos", DAOFactory.criarModuloDAO().listarDisponiveisParaPessoa(pessoa));
+		request.setAttribute("modulosAssociados", DAOFactory.criarModuloDAO().listarAssociadosParaPessoa(pessoa));
+		request.setAttribute("modulosDisponiveis", DAOFactory.criarModuloDAO().listarDisponiveisParaPessoa(pessoa));
 		request.setAttribute("pessoa", DAOFactory.criarModuloDAO().listarDisponiveisParaPessoa(pessoa));
 		rd.forward(request, response);
 	}
