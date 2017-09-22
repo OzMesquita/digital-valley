@@ -306,7 +306,7 @@ public class Facade {
 
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-							+ "http://localhost:8080/Controle_de_Acesso/confirmaRecuperacao.jsp"
+							+ "http://localhost:8080/"+Constantes.APP_URL+"/recuperar/confirmaRecuperacao.jsp"
 							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
 					emailCadastrado, "Usuário Controle de Acesso");

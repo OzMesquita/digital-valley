@@ -52,7 +52,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
 		}  
         if (usuario != null){
         	request.getSession().setAttribute("usuario",usuario);
-        	pagina = util.Constantes.APP_URL+"/view/editarUsuario.jsp";
+        	pagina = util.Constantes.APP_URL+"/../view/editarUsuario.jsp";
         }
         
         response.sendRedirect(pagina);

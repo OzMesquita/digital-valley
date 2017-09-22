@@ -26,8 +26,8 @@ public class RequisitarModulo extends HttpServlet{
 		int status = Facade.executeHTTPRequestToModule(url, json);
 		if(status != 200){
 			response.sendError(status);
+		}else{
+			response.sendRedirect(request.getParameter("url")+"?token="+userObjectToJSON.getToken());
 		}
-		response.sendRedirect(request.getParameter("url"));
 	}
-	
 }

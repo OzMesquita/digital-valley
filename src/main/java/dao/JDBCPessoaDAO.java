@@ -427,10 +427,11 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
-				pessoa.getUsuario().setLogin(rs.getString("login"));
-				pessoa.getUsuario().setSenha(rs.getString("senha"));
-				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
-				pessoa.getUsuario().setPessoa(pessoa);
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				usuario.setPessoa(pessoa);
+				pessoa.setUsuario(usuario);
 				ps.close();
 				rs.close();
 				return pessoa;
@@ -488,6 +489,39 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 	}
 
+	@Override
+	public String buscarTokenRecuperacao(Pessoa pessoa){
+		String token = "";
+		String SQL = "SELECT data_nascimento, nome, cpf, email, login, senha, id_pessoa_usuario, nivel, token_sessao, data_ultima_sessao, token_recuperacao, data_ultima_recuperacao FROM public.pessoa_usuario WHERE id_pessoa_usuario = 2 AND data_ultima_recuperacao = ?";
+		try {
+
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, LocalDate.now().toString());
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				token = rs.getString("token_recuperacao");
+				ps.close();
+				rs.close();
+				return token;
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	@Override
 	public Integer getQuantidadePorNivel(int nivel) {
 		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nivel = ?";

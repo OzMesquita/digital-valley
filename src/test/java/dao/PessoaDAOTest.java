@@ -103,5 +103,16 @@ public class PessoaDAOTest {
 		}
 		Assert.assertTrue(pessoas != null);
 	}
+	
+	@Test
+	public void testBuscarToken(){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		pessoa = pDAO.buscarPorId(2);
+		pDAO = DAOFactory.criarPessoaDAO();
+		String token = pDAO.buscarTokenRecuperacao(pessoa);
+		
+		System.out.println("token é: "+token);
+		
+	}
 
 }
