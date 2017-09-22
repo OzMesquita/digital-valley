@@ -33,13 +33,15 @@ public class ConfirmarRecuperacao extends HttpServlet {
             String cpfS = request.getParameter("cpfS");
             String aux = cpfA.replaceAll("-", "");
     		cpfA = aux.replaceAll("[.]", "");
+            aux = cpfS.replaceAll("-", "");
+    		cpfS = aux.replaceAll("[.]", "");
     		
-            if(cpfA!= null){
-                usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
-            }else if(cpfS != null){
+    		
+    		
+            if(!matricula.equals("")){
+            	usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
+            }else if(!siape.equals("")){
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
-            	
-                
             }else{
             	request.getSession().setAttribute("msg","CPF não pode ser vazio.");
             }
@@ -50,7 +52,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
 		}  
         if (usuario != null){
         	request.getSession().setAttribute("usuario",usuario);
-        	pagina = util.Constantes.APP_URL+"/view/editarUsuario.jsp";
+        	pagina = util.Constantes.APP_URL+"/../view/editarUsuario.jsp";
         }
         
         response.sendRedirect(pagina);

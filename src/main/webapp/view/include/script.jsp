@@ -1,6 +1,6 @@
 
 <script src="visu/js/classie.js"></script>
-	<script>
+<script>
 		var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 			showLeftPush = document.getElementById( 'showLeftPush' ),
 			body = document.body;
@@ -19,9 +19,9 @@
 			}
 		}
 	</script>
-        
-        <!-- formate -->
-        <script>
+
+<!-- formate -->
+<script>
             function SomenteNumero(e) {
                 var tecla = (window.event) ? event.keyCode : e.which;
                 if ((tecla > 47 && tecla < 58))
@@ -34,8 +34,8 @@
                 }
             }
         </script>
-        
-        <script>
+
+<script>
             function formatar(mascara, documento) {
                     var i = documento.value.length;
                     var saida = mascara.substring(0, 1);
@@ -47,15 +47,15 @@
 
             }
         </script>
-        
-        
-        
-        
-        <!-- formate -->
-        
-	<!--scrolling js-->
-	<script src="visu/js/jquery.nicescroll.js"></script>
-	<script src="visu/js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap Core JavaScript -->
-   <script src="visu/js/bootstrap.js"> </script>
+
+
+
+
+<!-- formate -->
+
+<!--scrolling js-->
+<script src="visu/js/jquery.nicescroll.js"></script>
+<script src="visu/js/scripts.js"></script>
+<!--//scrolling js-->
+<!-- Bootstrap Core JavaScript -->
+<script src="visu/js/bootstrap.js"> </script>

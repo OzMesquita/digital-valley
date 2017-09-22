@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import model.Usuario;
 
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -16,7 +16,7 @@ public class Pessoa implements Serializable{
 	private LocalDate dataNascimento;
 
 	public Pessoa(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento) {
-		super();
+		this();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -25,7 +25,7 @@ public class Pessoa implements Serializable{
 	}
 
 	public Pessoa() {
-
+		this.setUsuario(new Usuario());
 	}
 
 	public int getId() {
@@ -97,11 +97,13 @@ public class Pessoa implements Serializable{
 	}
 
 	public void setDataNascimento(String dataNascimento) {
-		String [] data = dataNascimento.split("/");
-		if(data.length == 3){
-			this.setDataNascimento(LocalDate.of(Integer.valueOf(data[2]),Integer.valueOf(data[1]), Integer.valueOf(data[0])));
-		}else {
-			throw new RuntimeException("Erro: A data de nascimento não está no formato correto, valor informado "+ dataNascimento);
+		String[] data = dataNascimento.split("/");
+		if (data.length == 3) {
+			this.setDataNascimento(
+					LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0])));
+		} else {
+			throw new RuntimeException(
+					"Erro: A data de nascimento não está no formato correto, valor informado " + dataNascimento);
 		}
 	}
 }

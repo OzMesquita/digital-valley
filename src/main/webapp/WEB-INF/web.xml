@@ -1,189 +1,236 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-   <display-name>digital-valley</display-name>
- 
-   <welcome-file-list>
-     <welcome-file>login.jsp</welcome-file>
-   </welcome-file-list>
-   
-    
-   
-   <!-- 1 -->
-   <servlet>
-     <servlet-name>Login</servlet-name>
-     <servlet-class>controller.Login</servlet-class>
-   </servlet>
-   <!-- 2 -->
-   <servlet>
-     <servlet-name>Logout</servlet-name>
-     <servlet-class>controller.Logout</servlet-class>
-   </servlet>
-   <!-- 3 -->
-   <servlet>
-     <servlet-name>Verificacao</servlet-name>
-     <servlet-class>controller.VerificarCadastro</servlet-class>
-   </servlet>
-   <!-- 4 -->
-   <servlet>
-     <servlet-name>Importacao</servlet-name>
-     <servlet-class>controller.ImportacaoController</servlet-class>
-   </servlet>
-   <!-- 5  -->
-   <servlet>
-     <servlet-name>EditarUsuario</servlet-name>
-     <servlet-class>controller.EditarUsuarioController</servlet-class>
-   </servlet>
-   <!-- 6 -->
-   <servlet>
-     <servlet-name>pesquisaModulos</servlet-name>
-     <servlet-class>controller.PesquisaModulos</servlet-class>
-   </servlet>
-   <!-- 7 -->
-   <servlet>
-     <servlet-name>pesquisaUsuario</servlet-name>
-     <servlet-class>controller.PesquisaUsuario</servlet-class>
-   </servlet>
-   <!-- 8 -->
-   <servlet>
-     <servlet-name>CadastraAluno</servlet-name>
-     <servlet-class>controller.CadastrarAluno</servlet-class>
-   </servlet>
-   <!-- 9 -->
-   <servlet>
-     <servlet-name>CadastraServidor</servlet-name>
-     <servlet-class>controller.CadastrarServidor</servlet-class>
-   </servlet>
-   <!-- 10 -->
-   <servlet>
-     <servlet-name>PreCadastroServidor</servlet-name>
-     <servlet-class>controller.ImportarServidorController</servlet-class>
-   </servlet>
-   <!-- 11 -->
-   <servlet>
-     <servlet-name>CadastroModulo</servlet-name>
-     <servlet-class>controller.CadastrarModulo</servlet-class>
-   </servlet>
-   <!-- 12 -->
-   <servlet>
-     <servlet-name>RecuperarSenha</servlet-name>
-     <servlet-class>controller.RecuperarSenha</servlet-class>
-   </servlet>
-   <!-- 13 -->
-   <servlet>
-     <servlet-name>AdicionarModulos</servlet-name>
-     <servlet-class>controller.AdicionarModulos</servlet-class>
-   </servlet>
-   <!-- 14 -->
-   <servlet>
-     <servlet-name>ConfirmarRecuperacao</servlet-name>
-     <servlet-class>controller.ConfirmarRecuperacao</servlet-class>
-   </servlet>
-   <!-- 15 -->
-   <servlet>
-     <servlet-name>RequisitarModulo</servlet-name>
-     <servlet-class>controller.RequisitarModulo</servlet-class>
-   </servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>digital-valley</display-name>
 
-  
-   
-   <filter>
-     <filter-name>Autentica</filter-name>
-     <filter-class>controller.AutenticacaoFiltro</filter-class>
-   </filter>
-   <filter>
-     <filter-name>Cadastro</filter-name>
-     <filter-class>controller.CadastroFiltro</filter-class>
-   </filter>
-   <filter>
-     <filter-name>FiltroADM</filter-name>
-     <filter-class>controller.AdmFiltro</filter-class>
-   </filter>
-   <filter-mapping>
-     <filter-name>FiltroADM</filter-name>
-    <url-pattern>/view/adm/*</url-pattern>
-   </filter-mapping>
-   <filter-mapping>
-     <filter-name>Cadastro</filter-name>
-     <url-pattern>/cadastro/*</url-pattern>
-   </filter-mapping>
-   <filter-mapping>
-     <filter-name>Autentica</filter-name>
-    <url-pattern>/view/*</url-pattern>
-   </filter-mapping>
-   
-   <!-- 1 -->
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 1 -->
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>controller.Login</servlet-class>
+	</servlet>
+	<!-- 2 -->
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>controller.Logout</servlet-class>
+	</servlet>
+	<!-- 3 -->
+	<servlet>
+		<servlet-name>Verificacao</servlet-name>
+		<servlet-class>controller.VerificarCadastro</servlet-class>
+	</servlet>
+	<!-- 4 -->
+	<servlet>
+		<servlet-name>Importacao</servlet-name>
+		<servlet-class>controller.ImportacaoController</servlet-class>
+	</servlet>
+	<!-- 5 -->
+	<servlet>
+		<servlet-name>EditarUsuario</servlet-name>
+		<servlet-class>controller.EditarUsuarioController</servlet-class>
+	</servlet>
+	<!-- 6 -->
+	<servlet>
+		<servlet-name>pesquisaModulos</servlet-name>
+		<servlet-class>controller.PesquisaModulos</servlet-class>
+	</servlet>
+	<!-- 7 -->
+	<servlet>
+		<servlet-name>pesquisaUsuario</servlet-name>
+		<servlet-class>controller.PesquisaUsuario</servlet-class>
+	</servlet>
+	<!-- 8 -->
+	<servlet>
+		<servlet-name>CadastraAluno</servlet-name>
+		<servlet-class>controller.CadastrarAluno</servlet-class>
+	</servlet>
+	<!-- 9 -->
+	<servlet>
+		<servlet-name>CadastraServidor</servlet-name>
+		<servlet-class>controller.CadastrarServidor</servlet-class>
+	</servlet>
+	<!-- 10 -->
+	<servlet>
+		<servlet-name>PreCadastroServidor</servlet-name>
+		<servlet-class>controller.ImportarServidorController</servlet-class>
+	</servlet>
+	<!-- 11 -->
+	<servlet>
+		<servlet-name>CadastroModulo</servlet-name>
+		<servlet-class>controller.CadastrarModulo</servlet-class>
+	</servlet>
+	<!-- 12 -->
+	<servlet>
+		<servlet-name>RecuperarSenha</servlet-name>
+		<servlet-class>controller.RecuperarSenha</servlet-class>
+	</servlet>
+	<!-- 13 -->
+	<servlet>
+		<servlet-name>AssociarModulo</servlet-name>
+		<servlet-class>controller.AssociarModulo</servlet-class>
+	</servlet>
+	<!-- 14 -->
+	<servlet>
+		<servlet-name>ConfirmarRecuperacao</servlet-name>
+		<servlet-class>controller.ConfirmarRecuperacao</servlet-class>
+	</servlet>
+	<!-- 15 -->
+	<servlet>
+		<servlet-name>RequisitarModulo</servlet-name>
+		<servlet-class>controller.RequisitarModulo</servlet-class>
+	</servlet>
+	<!-- 16 -->
+	<servlet>
+		<servlet-name>ModulosDePessoa</servlet-name>
+		<servlet-class>controller.ModulosDePessoa</servlet-class>
+	</servlet>
+	<!-- 17 -->
+	<servlet>
+		<servlet-name>DesassociarModulo</servlet-name>
+		<servlet-class>controller.DesassociarModulo</servlet-class>
+	</servlet>
+
+
+
+
+	<!-- 1 -->
 	<servlet-mapping>
-     	<servlet-name>Login</servlet-name>
-     	<url-pattern>/login</url-pattern>
-   	</servlet-mapping>
-   	<!-- 2 -->
-   <servlet-mapping>
-     <servlet-name>Logout</servlet-name>
-     <url-pattern>/logout</url-pattern>
-   </servlet-mapping>
-   <!-- 3 -->
-   <servlet-mapping>
-     <servlet-name>Verificacao</servlet-name>
-     <url-pattern>/verificacao</url-pattern>
-   </servlet-mapping>
-   <!-- 4 -->
-   <servlet-mapping>
-     <servlet-name>Importacao</servlet-name>
-     <url-pattern>/view/adm/importarAlunos</url-pattern>
-   </servlet-mapping>
-   <!-- 5 -->
-   <servlet-mapping>
-     <servlet-name>EditarUsuario</servlet-name>
-     <url-pattern>/view/editarUsuario</url-pattern>
-   </servlet-mapping>
-   <!-- 6 -->
-   <servlet-mapping>
-     <servlet-name>pesquisaModulos</servlet-name>
-     <url-pattern>/view/adm/pesquisaModulos</url-pattern>
-   </servlet-mapping>
-   <!-- 7 -->
-   <servlet-mapping>
-     <servlet-name>pesquisaUsuario</servlet-name>
-    <url-pattern>/view/adm/pesquisaUsuario</url-pattern>
-   </servlet-mapping>
-   <!-- 8 -->
-   <servlet-mapping>
-     <servlet-name>CadastraAluno</servlet-name>
-     <url-pattern>/cadastro/cadastroAluno</url-pattern>
-   </servlet-mapping>
-   <!-- 9 -->
-   <servlet-mapping>
-     <servlet-name>CadastraServidor</servlet-name>
-     <url-pattern>/cadastro/cadastroServidor</url-pattern>
-   </servlet-mapping>
-   <!-- 10 -->
-   <servlet-mapping>
-     <servlet-name>PreCadastroServidor</servlet-name>
-    <url-pattern>/view/adm/importarServidor</url-pattern>
-   </servlet-mapping>
-   <!-- 11 -->
-   <servlet-mapping>
-     <servlet-name>CadastroModulo</servlet-name>
-    <url-pattern>/view/adm/cadastrarModulo</url-pattern>
-   </servlet-mapping>
-   <!-- 12 -->
-   <servlet-mapping>
-     <servlet-name>RecuperarSenha</servlet-name>
-     <url-pattern>/RecuperarSenha</url-pattern>
-   </servlet-mapping>
-   <!-- 13 -->
-   <servlet-mapping>
-   		<servlet-name>AdicionarModulos</servlet-name>
-   		<url-pattern>/view/adm/adicionarModulos</url-pattern>
-   </servlet-mapping>
-   <!-- 14 -->
-   <servlet-mapping>
-     <servlet-name>ConfirmarRecuperacao</servlet-name>
-     <url-pattern>/ConfirmaRecuperacao</url-pattern>
-   </servlet-mapping>
-      <!-- 15 -->
-   <servlet-mapping>
-     <servlet-name>RequisitarModulo</servlet-name>
-     <url-pattern>/view/requisitarModulo</url-pattern>
-   </servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<!-- 2 -->
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<!-- 3 -->
+	<servlet-mapping>
+		<servlet-name>Verificacao</servlet-name>
+		<url-pattern>/verificacao</url-pattern>
+	</servlet-mapping>
+	<!-- 4 -->
+	<servlet-mapping>
+		<servlet-name>Importacao</servlet-name>
+		<url-pattern>/view/adm/importarAlunos</url-pattern>
+	</servlet-mapping>
+	<!-- 5 -->
+	<servlet-mapping>
+		<servlet-name>EditarUsuario</servlet-name>
+		<url-pattern>/view/editarUsuario</url-pattern>
+	</servlet-mapping>
+	<!-- 6 -->
+	<servlet-mapping>
+		<servlet-name>pesquisaModulos</servlet-name>
+		<url-pattern>/view/adm/pesquisaModulos</url-pattern>
+	</servlet-mapping>
+	<!-- 7 -->
+	<servlet-mapping>
+		<servlet-name>pesquisaUsuario</servlet-name>
+		<url-pattern>/view/adm/pesquisaUsuario</url-pattern>
+	</servlet-mapping>
+	<!-- 8 -->
+	<servlet-mapping>
+		<servlet-name>CadastraAluno</servlet-name>
+		<url-pattern>/cadastro/cadastroAluno</url-pattern>
+	</servlet-mapping>
+	<!-- 9 -->
+	<servlet-mapping>
+		<servlet-name>CadastraServidor</servlet-name>
+		<url-pattern>/cadastro/cadastroServidor</url-pattern>
+	</servlet-mapping>
+	<!-- 10 -->
+	<servlet-mapping>
+		<servlet-name>PreCadastroServidor</servlet-name>
+		<url-pattern>/view/adm/importarServidor</url-pattern>
+	</servlet-mapping>
+	<!-- 11 -->
+	<servlet-mapping>
+		<servlet-name>CadastroModulo</servlet-name>
+		<url-pattern>/view/adm/cadastrarModulo</url-pattern>
+	</servlet-mapping>
+	<!-- 12 -->
+	<servlet-mapping>
+		<servlet-name>RecuperarSenha</servlet-name>
+		<url-pattern>/RecuperarSenha</url-pattern>
+	</servlet-mapping>
+	<!-- 13 -->
+	<servlet-mapping>
+		<servlet-name>AssociarModulo</servlet-name>
+		<url-pattern>/view/adm/associar_modulo</url-pattern>
+	</servlet-mapping>
+	<!-- 14 -->
+	<servlet-mapping>
+		<servlet-name>ConfirmarRecuperacao</servlet-name>
+		<url-pattern>/ConfirmaRecuperacao</url-pattern>
+	</servlet-mapping>
+	<!-- 15 -->
+	<servlet-mapping>
+		<servlet-name>RequisitarModulo</servlet-name>
+		<url-pattern>/view/requisitarModulo</url-pattern>
+	</servlet-mapping>
+	<!-- 16 -->
+	<servlet-mapping>
+		<servlet-name>ModulosDePessoa</servlet-name>
+		<url-pattern>/view/adm/pessoa_modulos</url-pattern>
+	</servlet-mapping>
+	<!-- 17 -->
+	<servlet-mapping>
+		<servlet-name>DesassociarModulo</servlet-name>
+		<url-pattern>/view/adm/desassociar_modulo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- FILTROS -->
+	<!-- 1 -->
+	<filter>
+		<filter-name>Autentica</filter-name>
+		<filter-class>controller.AutenticacaoFiltro</filter-class>
+	</filter>
+	<!-- 2 -->
+	<filter>
+		<filter-name>Cadastro</filter-name>
+		<filter-class>controller.CadastroFiltro</filter-class>
+	</filter>
+	<!-- 3 -->
+	<filter>
+		<filter-name>FiltroADM</filter-name>
+		<filter-class>controller.AdmFiltro</filter-class>
+	</filter>
+	<!-- 4 -->
+	<filter>
+		<filter-name>FiltroRecuperacao</filter-name>
+		<filter-class>controller.FiltroRecuperacao</filter-class>
+	</filter>
+	
+	
+	
+	<!-- MAPEAMENTOS FILTROS -->
+	<!-- 1 -->
+	<filter-mapping>
+		<filter-name>Autentica</filter-name>
+		<url-pattern>/view/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 2 -->
+	<filter-mapping>
+    	 <filter-name>Cadastro</filter-name>
+    	 <url-pattern>/cadastro/*</url-pattern>
+   	</filter-mapping>
+	<!-- 3 -->
+	<filter-mapping>
+    	 <filter-name>FiltroADM</filter-name>
+   	 <url-pattern>/view/adm/*</url-pattern>
+   </filter-mapping>
+   	
+   	<!-- 4 -->
+	<filter-mapping>
+    	 <filter-name>FiltroRecuperacao</filter-name>
+    	 <url-pattern>/recuperar/*</url-pattern>
+   	</filter-mapping>
+	
+	
 </web-app>

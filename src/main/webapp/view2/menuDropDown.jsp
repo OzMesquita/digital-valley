@@ -9,38 +9,47 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="../assets2/css2/drop.css" rel="stylesheet" type="text/css" media="all" />
-        <script src="../assets2/js2/drop.js" type="text/javascript"></script>
-    </head>
-    <body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<link href="../assets2/css2/drop.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script src="../assets2/js2/drop.js" type="text/javascript"></script>
+</head>
+<body>
 
-    <%
+	<%
         Usuario u = (Usuario)session.getAttribute("usuario");
-    %>   
+    %>
 
-    
-        <div class="wrapper-demo">
-            <div id="dd" class="wrapper-dropdown-2" tabindex="1" style="z-index: 100;">Opções
-                <ul class="dropdown">
-                <li style="text-align: center;"><%= u.getNivel()%></li>
-                    <li title="Voltar a tela Inicial"><a href="telaInicial.jsp">Inicio</a></li>
-                    <li title="Editar dados pessoais"><a href="editarUsuario.jsp">Editar Perfil</a></li>
-                    <%if(u.getNivel() == EnumNivel.ADMINISTRADOR){%>
-                        <li title="Atribuir módulos aos usuários"><a href="/adm/telaADM.jsp">Atribuir Módulos</a></li>
-                        <li title="cadastrar novo módulo"><a href="adm/cadastarModulo.jsp">Cadastrar Módulo</a></li>
-                        <li title="Realizar importação de matriculas"><a href="/adm/importarMatriculas.jsp">Importar Matriculas</a></li>
-                        <li title="Realizar pré-cadastro dos servidores"><a href="adm/importarSevidores.jsp">Pré-cadastro Servidores</a></li>
-                        <li title="Listar usuários do sistema"><a href="adm/listaDeUsuarios.jsp">Listar Usuários</a></li>
-                    <%}%>
-                    <li title="Realizar logout"><a href="logout">Sair</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <script type="text/javascript">
+
+	<div class="wrapper-demo">
+		<div id="dd" class="wrapper-dropdown-2" tabindex="1"
+			style="z-index: 100;">
+			Opções
+			<ul class="dropdown">
+				<li style="text-align: center;"><%= u.getNivel()%></li>
+				<li title="Voltar a tela Inicial"><a href="telaInicial.jsp">Inicio</a></li>
+				<li title="Editar dados pessoais"><a href="editarUsuario.jsp">Editar
+						Perfil</a></li>
+				<%if(u.getNivel() == EnumNivel.ADMINISTRADOR){%>
+				<li title="Atribuir módulos aos usuários"><a
+					href="/adm/telaADM.jsp">Atribuir Módulos</a></li>
+				<li title="cadastrar novo módulo"><a
+					href="adm/cadastarModulo.jsp">Cadastrar Módulo</a></li>
+				<li title="Realizar importação de matriculas"><a
+					href="/adm/importarMatriculas.jsp">Importar Matriculas</a></li>
+				<li title="Realizar pré-cadastro dos servidores"><a
+					href="adm/importarSevidores.jsp">Pré-cadastro Servidores</a></li>
+				<li title="Listar usuários do sistema"><a
+					href="adm/listaDeUsuarios.jsp">Listar Usuários</a></li>
+				<%}%>
+				<li title="Realizar logout"><a href="logout">Sair</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
             function DropDown(el) {
                     this.dd = el;
                     this.initEvents();
@@ -62,5 +71,5 @@
                     });
             });
         </script>
-   </body>
+</body>
 </html>

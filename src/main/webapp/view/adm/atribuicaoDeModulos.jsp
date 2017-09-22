@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="dao.ModuloDAO"%>
+<%@page import="dao.PessoaDAO"%>
 <%@page import="dao.JDBCModuloDAO"%>
 <%@page import="util.DAOFactory"%>
 <%@page import="dao.PerfilDAO"%>
@@ -14,6 +15,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Pessoa"%>
 <%@page import="model.Modulo"%>
+<%@page import="model.EnumNivel"%>
 <%@page import="util.Constantes"%>
 <!DOCTYPE html>
 <html>
@@ -27,12 +29,18 @@
 	content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
+	
+	
 	addEventListener("load", function() { 
 							 setTimeout(hideURLbar, 0); 
 							 }, false); 
 	function hideURLbar(){ 
 		window.scrollTo(0,1); 
 	} 
+
+
+
 </script>
 <!-- Bootstrap Core CSS -->
 <link href="../visu/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -71,186 +79,91 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="cbp-spmenu-push">
 	<%
-		//modulos disponiveis
-		ModuloDAO moduloDao = DAOFactory.criarModuloDAO();
-		List<Modulo> modulosDisponiveis = moduloDao.listarDisponiveisParaPessoa(pessoa);
-		//mensagens		
-		String mensagem = (String) session.getAttribute("msg");
-		session.setAttribute("msg", null);
-		if (mensagem == null) {
-			mensagem = "";
-		}
-		//
-		String mostra = (String) request.getAttribute("mostra");
+		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
+		Integer nivelComum = EnumNivel.COMUM.getValorNivel();
+		Integer quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
+		//paginacao
+		Integer paginaAtual = request.getParameter("pagina") != null
+				? Integer.valueOf(request.getParameter("pagina"))
+				: 1;
+		Integer fim = Constantes.NUMBER_OF_ROWS_PER_PAGE * paginaAtual;
+		Integer inicio = fim - Constantes.NUMBER_OF_ROWS_PER_PAGE;
+		Integer quantidadePorPagina = fim - inicio;
+		Integer quantidadeDePaginas = quantidadeDePessoasDeNivelComum / quantidadePorPagina;
+		//listagem				
+		pessoaDAO = DAOFactory.criarPessoaDAO();
+		List<Pessoa> pessoas = pessoaDAO.buscarPorNivel(nivelComum, inicio, fim);
+		String url = Constantes.ADM_URL;
 	%>
-	<div class="main-content">
-		<jsp:include page="../include/menu-left.jsp"></jsp:include>
-		<jsp:include page="../include/header-top.jsp"></jsp:include>
-		<div id="page-wrapper">
-			<div class="container-fluid" style="min-height: 400px">
-				<!-- aqui-->
-				<div class="col-md-12">
-					<div class="card">
-						<div class="header">
-							<h4 class="title" style="text-align: center;">Módulos do
-								Sistema</h4>
-							<hr style="border: 1px solid lightgray">
-							<div class="erroMsg">
-								<small><%=mensagem%></small>
-							</div>
-							<div id="rdio_per">
-								<form name="btn_buttons">
-									<ul id="p_por">
-										<li><a href="atribuicaoDeModulos.jsp?mostra=Usuarios">
-												USUÁRIOS</a></li>
-										<li><a href="atribuicaoDeModulos.jsp?mostra=Perfil">
-												PERFIL </a></li>
-									</ul>
-								</form>
-							</div>
-							<div id="busca">
-								<form action="pesquisaUsuario" method="get">
-									<input id="txt_busca" type="search" name="busca"
-										<%=("Usuarios".equals(mostra) ? "autofocus=\"true\"" : "disabled") %> placeholder="Buscar pelo nome..." />
-										<a href="#" onclick="busca()">
-											<img style="margin-left: -5%;" src="../../assets2/img/busca.png" id="btnBusca" alt="Buscar" title="Buscar Usuários" />
-										</a>
-										<input style="margin-left: 1%;"
-										class="btn_pad" type="submit" value="Buscar"
-										title="Buscar Usuários"
-										<%=(!mostra.equals("Usuarios") ? "disabled" : "") %> />
-								</form>
-							</div>
-						</div>
-					</div>
-					<div id="corpo">
-						<div id="centro">
-							<div id="user1">
-								<div class="form-group">
-									<label id="tbl_titu" class="col-md-3" for="selectmultiple"><%=mostra%></label>
-									<label class="col-md-3" for="selectmultiple">Módulos
-										Disponiveis</label> <label class="col-md-2" for="selectmultiple">Módulos
-										Cadastrados</label>
-									<div id="tbls" class="col-md-3">
-										<input type="hidden" id="selecionado"
-											name="usuarioSelecionado" value="" /> <select
-											id="selectmultiple" name="selectmultiplePerfil"
-											class="form-control" multiple="multiple" size="15">
-											<%
-												if (usuarios != null || perfis != null) {
-													if (mostra.equals("Perfil")) {
-														for (int i = 0; i < perfis.size(); i++) {
-											%>
-											<option value="<%=perfis.get(i).getId()%>" onclick="mostra()"
-												<%if (perfilSelecionado != null) {
-							if (perfis.get(i).getId() == perfilSelecionado.getId()) {%>
-												selected="true" <%}
-						}%>><%=perfis.get(i).getNome()%> </option>
-											<%
-												}
-													} else {
-														for (int i = 0; i < usuarios.size(); i++) {
-											%>
-											<option value="<%=usuarios.get(i).getId()%>"
-												onclick="mostra()"
-												<%if (selecionado != null) {
-							if (usuarios.get(i).getId() == selecionado.getId()) {%>
-												selected="true" <%}
-						}%>><%=usuarios.get(i).getNome()%> </option>
-											<%
-												}
-													}
-												} else {
-											%>
-											<option disabled="disable">(Faça uma busca por usuário)</option>
-											<%
-												}
-											%>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div id="">
-								<!--  <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label>-->
-								<div class="col-md-3">
-									<select id="selectmultipleDisp" name="selectmultipleDisponivel"
-										class="form-control" multiple="multiple" size="15">
-										<%
-											if (selecionado != null) {
-												for (int i = 0; i < modulosDisponiveis.size(); i++) {
-										%>
-										<option value="<%=modulosDisponiveis.get(i).getId()%>"><%=modulosDisponiveis.get(i).getTitulo()%> </option>
-										<%
-											}
-											} else {
-										%>
-										<option disabled="disable">(Selecione algum usuário)</option>
-										<%
-											}
-										%>
-									</select>
-								</div>
-								<!--</div> -->
-							</div>
-							<div class="form-group">
-								<!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
-								<div class="col-md-1">
-									<div id="">
-										<div id="btn_inclui">
-											<input id="btn_r" type="button" name="incluir" value=">>"
-												title="Incluir Módulo" onclick="inclui()" />
-										</div>
-										<div id="btn_retira">
-											<input id="btn_i" type="button" name="retirar"
-												value="<<" title=" Remover Módulo" onclick="remove()" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<form action="adicionarModulos" method="post" name="modulos">
-								<div id="">
-									<div class="form-group">
-										<!-- <label class="col-md-4 " for="selectmultiple">Módulos Cadastrados</label> -->
-										<div class="col-md-3">
-											<select id="selectmultipleCad"
-												name="selectmultipleCadastrado" class="form-control"
-												multiple="multiple" size="15">
-												<%
-													if (selecionado != null) {
-														for (int i = 0; i < modulosCadastrados.size(); i++) {
-												%>
-												<option value="<%=modulosCadastrados.get(i).getId()%>"><%=modulosCadastrados.get(i).getTitulo()%></option>
-												<%
-														}
-													} else {
-												%>
-												<option disabled="disable">(Selecione algum usuário)</option>
-												<%
-													}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div id="btn_salva">
-									<input type="hidden" id="lista" name="listaDisponivel">
-									<input type="hidden" id="lista" name="listaCadastrado">
-									<input class="btn_pad" id="btn_s" type="submit" value="Salvar"
-										title="Salvar Alterações" onclick="selecionaTudo()" />
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<form action="" method="GET"></form>
+	<table>
+		<thead>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>CPF</th>
+			<th>E-mail</th>
+			<th>Data Nascimento</th>
+			<th>Opções</th>
+		</thead>
+		<tbody>
+			<%
+				for (Pessoa pessoa : pessoas) {
+			%>
+			<tr>
+				<td><%=pessoa.getId()%></td>
+				<td><%=pessoa.getNome()%></td>
+				<td><%=pessoa.getCpf()%></td>
+				<td><%=pessoa.getEmail()%></td>
+				<td><%=pessoa.getDataNascimento()%></td>
+				<td><a
+					href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
+						módulos</a></td>
+			</tr>
+			<%
+				}
+			%>
+		</tbody>
+	</table>
+	<ul>
+		<%
+			if (paginaAtual > 1) {
+		%>
+		<li><a
+			href="<%=url%>/view/adm/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual - 1)%>">
+				<< </a></li>
+		<%
+			}
+			for (int i = 1; i <= quantidadeDePaginas; i++) {
+		%>
+		<li>
+			<%
+				if (i == paginaAtual) {
+			%> <strong><a
+				href="<%=url%>/view/adm/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a></strong>
+			<%
+				} else {
+			%> <a href="<%=url%>/view/adm/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a>
+			<%
+				}
+			%>
+		</li>
+		<%
+			}
+			if (paginaAtual < quantidadeDePaginas) {
+		%>
+		<li><a
+			href="<%=url%>/view/adm/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual + 1)%>">>></a></li>
+		<%
+			}
+		%>
+	</ul>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<script src="../visu/js/classie.js"></script>
 	<script src="../visu/js/jquery.nicescroll.js"></script>
 	<script src="../visu/js/scripts.js"></script>
 	<script src="../visu/js/bootstrap.js"></script>
-	<script src="<%=Constantes.APP_JS_URL %>/funcoesParaAtribuicaoDeModulo.js"></script>
+	<script
+		src="<%=Constantes.APP_JS_URL%>/funcoesParaAtribuicaoDeModulo.js"></script>
 	<script src="../visu/js/wejs.js"></script>
 </body>
 </html>

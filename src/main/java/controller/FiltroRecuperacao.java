@@ -14,10 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import dao.PessoaDAO;
 import model.EnumNivel;
+import model.Pessoa;
 import model.Usuario;
 import util.DAOFactory;
 
-public class AdmFiltro implements Filter {
+public class FiltroRecuperacao implements Filter {
 
 	@Override
 	public void destroy() {
@@ -29,19 +30,16 @@ public class AdmFiltro implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = (HttpSession) (((HttpServletRequest)request).getSession());
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		String token = "";
+		Pessoa pessoa = (Pessoa)session.getAttribute("pessoa");
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		String token = pDAO.buscarTokenRecuperacao(pessoa);
 		
-		if(usuario !=null){
-			PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-			token = pDAO.buscarTokenRecuperacao(usuario.getPessoa());
-		}
-		
-		if (!token.equals("")) {
+		if (token!=null) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoRecuperacao=1");
+			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoPreCadastro=1");
 		}
+		
 		
 	}
 
@@ -50,6 +48,5 @@ public class AdmFiltro implements Filter {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

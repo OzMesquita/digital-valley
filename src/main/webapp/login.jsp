@@ -56,13 +56,13 @@
 						rd.forward(request, response);
 		} else {
 	%>
-	
-	
+
+
 	<div class="image-container set-full-height"
 		style="background: steelblue;">
 		<div class="container">
 			<div class="row">
-			
+
 				<div class="col-sm-8 col-sm-offset-2">
 					<div class="wizard-container">
 						<div class="card wizard-card" data-color="orange"
@@ -80,7 +80,10 @@
 										<li><a href="#about" data-toggle="tab">LOGIN</a></li>
 									</ul>
 								</div>
-								<div class="erroMsg"><small><%= mensagem %><%session.setAttribute("msg", null);%></small></div>
+								<div class="erroMsg">
+									<small><%= mensagem %>
+										<%session.setAttribute("msg", null);%></small>
+								</div>
 								<div class="tab-content">
 									<div class="tab-pane" id="about">
 										<div class="row">
@@ -88,7 +91,7 @@
 												<div class="picture-container">
 													<div class="picture">
 														<img src="assets2/img/ufc_logo.png" class="picture-src"
-															id="wizardPicturePreview" title="UFC - Campus Russas"  />
+															id="wizardPicturePreview" title="UFC - Campus Russas" />
 													</div>
 												</div>
 											</div>
@@ -109,7 +112,8 @@
 												</div>
 												<div id="cadastro">
 													Ainda não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se</a><br>
-													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu a senha?</a>
+													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu
+														a senha?</a>
 												</div>
 
 												<div class="pull-right">
@@ -124,13 +128,11 @@
 						</div>
 					</div>
 				</div>
-					<div class="alert alert-danger col-sm-8 col-sm-offset-2" id="alert_erro" role="alert">
-			 			 This is a primary alert—check it out!
-					</div>
+
+					
 			</div><!-- row  -->
 			
 		</div><!-- container -->
-
 
 
 		<div class="footer">

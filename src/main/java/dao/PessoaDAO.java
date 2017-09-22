@@ -6,26 +6,32 @@ import model.Pessoa;
 import model.Usuario;
 
 public interface PessoaDAO {
-	
+
 	public void cadastrar(Pessoa pessoa);
-	
+
 	public void editar(Pessoa pessoa);
-	
+
 	public void remover(int id);
-	
+
 	public Pessoa buscarPorId(int id);
-	
+
 	public Pessoa buscarPorLogin(String login);
-	
+
 	public Pessoa buscarPorCpf(String cpf);
-        
+
 	public List<Pessoa> buscarPorNome(String nome);
+
+	public List<Pessoa> listar();
 	
+	public List<Pessoa> buscarPorNivel(int nivel, int inicio, int fim);
+
     public Pessoa buscarPorEmail(String email);
 	
-	public List<Pessoa> listar();
+	public Integer getQuantidadePorNivel(int nivel);
 
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf);
 	
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf);
+	
+	public String buscarTokenRecuperacao(Pessoa pessoa);
 }
