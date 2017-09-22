@@ -6,34 +6,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Constantes;
+import util.DAOFactory;
+
 /**
  * Servlet implementation class DesassociarModulo
  */
 public class DesassociarModulo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DesassociarModulo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Integer  pessoaId = Integer.valueOf(request.getParameter("pessoa_id"));
+		Integer  moduloId = Integer.valueOf(request.getParameter("modulo_id"));
+		DAOFactory.criarModuloDAO().desassociarUsuarioModulo(pessoaId, moduloId);
+		response.sendRedirect(Constantes.ADM_URL+"/pessoa_modulos?pessoa_id="+pessoaId);
 	}
 
 }

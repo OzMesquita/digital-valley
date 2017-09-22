@@ -32,12 +32,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
 	addEventListener("load", function() { 
 							 setTimeout(hideURLbar, 0); 
 							 }, false); 
 	function hideURLbar(){ 
 		window.scrollTo(0,1); 
 	} 
+
+
+
+
+
 
 
 
@@ -79,23 +89,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="cbp-spmenu-push">
 	<%
-		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
-		Integer nivelComum = EnumNivel.COMUM.getValorNivel();
-		Integer quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
-		//paginacao
-		Integer paginaAtual = request.getParameter("pagina") != null
-				? Integer.valueOf(request.getParameter("pagina"))
-				: 1;
-		Integer fim = Constantes.NUMBER_OF_ROWS_PER_PAGE * paginaAtual;
-		Integer inicio = fim - Constantes.NUMBER_OF_ROWS_PER_PAGE;
-		Integer quantidadePorPagina = fim - inicio;
-		Integer quantidadeDePaginas = quantidadeDePessoasDeNivelComum / quantidadePorPagina;
-		//listagem				
-		pessoaDAO = DAOFactory.criarPessoaDAO();
-		List<Pessoa> pessoas = pessoaDAO.buscarPorNivel(nivelComum, inicio, fim);
-		String url = Constantes.ADM_URL;
+		String url = (String) request.getAttribute("url");
+		List<Pessoa> pessoas = (List<Pessoa>) request.getAttribute("pessoas");
+		Integer quantidadeDePaginas = (Integer) request.getAttribute("quantidadeDePaginas");
+		Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
 	%>
-	<form action="" method="GET"></form>
+	<form
+		action="<%=Constantes.ADM_URL + "/atribuir_modulos"%>"
+		method="GET">
+		<input type="text" name="nome" /> <input type="submit" value="Buscar" />
+	</form>
 	<table>
 		<thead>
 			<th>ID</th>

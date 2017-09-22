@@ -54,6 +54,7 @@
 				<td>
 					<form method="POST" action="<%=url%>/desassociar_modulo">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
+						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
 						<input type="submit" value="Desassociar" />
 					</form>
 				</td>
@@ -83,6 +84,7 @@
 				<td>
 					<form method="POST" action="<%=url%>/associar_modulo">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
+						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
 						<input type="submit" value="Associar" />
 					</form>
 				</td>

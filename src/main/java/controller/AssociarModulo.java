@@ -1,59 +1,35 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Modulo;
-import model.Perfil;
-import model.Pessoa;
-import util.Facade;
 
+import util.Constantes;
+import util.DAOFactory;
 
+/**
+ * Servlet implementation class AssociarModulo
+ */
 public class AssociarModulo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		
-		Pessoa usuarioSelecionado = (Pessoa)session.getAttribute("usuarioSelecionado");
-                Perfil perfilSelecionado = (Perfil) session.getAttribute("perfilSelecionado");
-		String[] modulosAdicionados = request.getParameterValues("selectmultipleCadastrado");
-		
-		
-		String[] modulosRemovidos = request.getParameterValues("selectmultipleDisponivel");
-		
-                
-                
-		List<Modulo> modulosCadadastrados = new ArrayList<>();
-			
-		
-                for(int i=0;i<modulosAdicionados.length;i++){
-                	
-                	System.out.println(modulosAdicionados[i]);
-                	
-                    modulosCadadastrados.add(Facade.buscarModulosPorId(Integer.parseInt(modulosAdicionados[i])));
-                }
-                if(session.getAttribute("mostra").toString().toLowerCase().equals("usuarios")){
-                    for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.adicionarModulosParaUsuario(usuarioSelecionado.getId(),modulosCadadastrado.getId());
-                    }
-                }
-                if(session.getAttribute("mostra").toString().toLowerCase().equals("perfil")){
-                    for (Modulo modulosCadadastrado : modulosCadadastrados) {
-                        Facade.adicionarModulosParaPerfil(perfilSelecionado.getId(),modulosCadadastrado.getId());
-                    }
-                }
-                
-                
-		
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AssociarModulo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer  pessoaId = Integer.valueOf(request.getParameter("pessoa_id"));
+		Integer  moduloId = Integer.valueOf(request.getParameter("modulo_id"));
+		DAOFactory.criarModuloDAO().associarUsuarioModulo(pessoaId, moduloId);
+		response.sendRedirect(Constantes.ADM_URL+"/pessoa_modulos?pessoa_id="+pessoaId);
 	}
 
 }

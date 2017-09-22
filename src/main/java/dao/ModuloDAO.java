@@ -30,6 +30,8 @@ public interface ModuloDAO {
 	
 	public void associarUsuarioModulo(int idUsuario, int idModulo);
 	
+	public void desassociarUsuarioModulo(int idUsuario, int idModulo);
+	
 	public void associarPerfilModulo (int idPerfil, int idModulo);
 
 }
