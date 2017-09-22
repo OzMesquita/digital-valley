@@ -449,17 +449,19 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			}
 		}
 	}
-
+	
 	@Override
 	public List<Pessoa> buscarPorNivel(int nivel, int inicio, int fim) {
-		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = " + nivel
-				+ " LIMIT ORDER BY id_pessoa_usuario ASC LIMIT " + (fim - inicio) + " OFFSET " + inicio + ";";
+		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			Pessoa pessoa = new Pessoa();
+			ps.setInt(1, nivel);
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio) ;
+			ResultSet rs = ps.executeQuery();			
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 			while (rs.next()) {
+				Pessoa pessoa = new Pessoa();
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setCpf(rs.getString("cpf"));
