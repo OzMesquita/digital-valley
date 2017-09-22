@@ -208,4 +208,29 @@
 	
 	
 	
+	<!-- MAPEAMENTOS FILTROS -->
+	<!-- 1 -->
+	<filter-mapping>
+		<filter-name>Autentica</filter-name>
+		<url-pattern>/view/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 2 -->
+	<filter-mapping>
+    	 <filter-name>Cadastro</filter-name>
+    	 <url-pattern>/cadastro/*</url-pattern>
+   	</filter-mapping>
+	<!-- 3 -->
+	<filter-mapping>
+    	 <filter-name>FiltroADM</filter-name>
+   	 <url-pattern>/view/adm/*</url-pattern>
+   </filter-mapping>
+   	
+   	<!-- 4 -->
+	<filter-mapping>
+    	 <filter-name>FiltroRecuperacao</filter-name>
+    	 <url-pattern>/recuperar/*</url-pattern>
+   	</filter-mapping>
+	
+	
 </web-app>

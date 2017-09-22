@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.PessoaDAO;
 import model.EnumNivel;
 import model.Usuario;
+import util.DAOFactory;
 
 public class AdmFiltro implements Filter {
 
@@ -28,10 +30,17 @@ public class AdmFiltro implements Filter {
 			throws IOException, ServletException {
 		HttpSession session = (HttpSession) (((HttpServletRequest)request).getSession());
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		if (usuario.getNivel() == EnumNivel.ADMINISTRADOR) {
+		String token = "";
+		
+		if(usuario !=null){
+			PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+			token = pDAO.buscarTokenRecuperacao(usuario.getPessoa());
+		}
+		
+		if (!token.equals("")) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoADM=1");
+			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoRecuperacao=1");
 		}
 		
 	}

@@ -32,4 +32,6 @@ public interface PessoaDAO {
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf);
 	
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf);
+	
+	public String buscarTokenRecuperacao(Pessoa pessoa);
 }

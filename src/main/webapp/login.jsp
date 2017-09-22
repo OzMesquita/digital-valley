@@ -128,22 +128,11 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-				<div class="alert alert-danger col-sm-8 col-sm-offset-2"
-					id="alert_erro" role="alert">This is a primary alert—check it
-					out!</div>
-			</div>
-			<!-- row  -->
 
-		</div>
-		<!-- container -->
-=======
 					
 			</div><!-- row  -->
 			
 		</div><!-- container -->
->>>>>>> 1dd64beebb6327c05bfd1fd538c7c0d1670b1662
-
 
 
 		<div class="footer">

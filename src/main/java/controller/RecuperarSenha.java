@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Pessoa;
 import util.Facade;
 
 /**
@@ -34,10 +36,12 @@ public class RecuperarSenha extends HttpServlet {
             String email = request.getParameter("email");
             System.out.println(email);
             if(email!= null){
-                if(Facade.BuscarEmailVinculado(email)!= null){
+            	Pessoa p = Facade.BuscarEmailVinculado(email);
+                if(p != null){
                 	System.out.println("aqui");
                     Facade.EnviarEmailRecuperacaoDeSenha(email);
                     request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
+                    request.getSession().setAttribute("pessoa", p);
                     
                 }else{
                 	request.getSession().setAttribute("msg", "Este e-mail não está vinculado a uma conta ativa.");
