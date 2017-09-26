@@ -128,6 +128,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			pessoa.getUsuario().setSenha(rs.getString("senha"));
 			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 			pessoa.getUsuario().setPessoa(pessoa);
+			pessoa.getUsuario().setToken(rs.getString("token_sessao"));
+			pessoa.getUsuario().setTokenUsuario(rs.getString("token_usuario"));
 			ps.close();
 			rs.close();
 
@@ -258,6 +260,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 				pessoa.getUsuario().setPessoa(pessoa);
 				pessoa.getUsuario().setToken(rs.getString("token_sessao"));
+				pessoa.getUsuario().setTokenUsuario(rs.getString("token_usuario"));
 				ps.close();
 				rs.close();
 				return pessoa;

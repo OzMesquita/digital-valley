@@ -16,5 +16,7 @@ public interface UsuarioDAO {
 	public Usuario buscar(int id);
 	
 	public void salvarToken(String token, int id_usuario);
+	
+	public void salvarTokenUsuario(String token, int id_usuario);
 
 }

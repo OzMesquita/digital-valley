@@ -24,10 +24,12 @@ public class RequisitarModulo extends HttpServlet{
 		Gson gson = new Gson();
 		String json = gson.toJson(userObjectToJSON);
 		int status = Facade.executeHTTPRequestToModule(url, json);
+		Usuario userToken = Facade.buscarPorLogin(user.getLogin());
 		if(status != 200){
-			response.sendError(status);
+			request.getSession().setAttribute("msg", "Acesso negado!");
+			response.sendRedirect("/Controle_de_Acesso/login.jsp");
 		}else{
-			response.sendRedirect(request.getParameter("url")+"?token="+userObjectToJSON.getToken());
+			response.sendRedirect(request.getParameter("url")+"telaInicial.jsp"+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
 		}
 	}
 }
