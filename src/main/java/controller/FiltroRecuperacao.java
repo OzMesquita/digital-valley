@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DAOFactory;
 import dao.PessoaDAO;
 import model.Pessoa;
-import util.DAOFactory;
 
 public class FiltroRecuperacao implements Filter {
 	@Override

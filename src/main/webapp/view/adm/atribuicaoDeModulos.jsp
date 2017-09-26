@@ -96,15 +96,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		List<Perfil> perfis = (List<Perfil>) request.getAttribute("perfis");		
 		Integer quantidadeDePaginas = (Integer) request.getAttribute("quantidadeDePaginas");
 		Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
+		String nomePessoa = (String) request.getAttribute("nomePessoa"); 
 	%>
 	<h1>Atribuir por pessoa</h1>
 	<form action="<%=Constantes.ADM_URL + "/atribuir_modulos"%>"
 		method="GET">
-		<input type="text" name="nome" /> <input type="submit" value="Buscar" />
+		<input type="text" name="nome" value="<%=nomePessoa != null ? nomePessoa : "" %>" /> <input type="submit" value="Buscar" />
 	</form>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Nome</th>
 			<th>CPF</th>
 			<th>E-mail</th>
@@ -116,7 +116,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				for (Pessoa pessoa : pessoas) {
 			%>
 			<tr>
-				<td><%=pessoa.getId()%></td>
 				<td><%=pessoa.getNome()%></td>
 				<td><%=pessoa.getCpf()%></td>
 				<td><%=pessoa.getEmail()%></td>
@@ -166,7 +165,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<h1>Atribuir por perfil</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Nome</th>
 			<th>Opções</th>
 		</thead>
@@ -175,7 +173,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			for (Perfil perfil: perfis) {
 		%>
 			<tr>
-				<td><%=perfil.getId() %></td>
 				<td><%=perfil.getNome() %></td>
 				<td><a href="<%=url %>/perfil_modulos?perfil_id=<%=perfil.getId() %>">Gerenciar módulos</a></td>
 			</tr>

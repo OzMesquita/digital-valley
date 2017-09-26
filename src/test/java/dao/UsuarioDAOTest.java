@@ -8,7 +8,6 @@ import dao.UsuarioDAO;
 import model.EnumNivel;
 import model.Pessoa;
 import model.Usuario;
-import util.DAOFactory;
 
 
 public class UsuarioDAOTest {

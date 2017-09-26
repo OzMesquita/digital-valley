@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import model.Aluno;
 import model.Curso;
-import util.DAOFactory;
 
 public class AlunoDAOTest {
 

@@ -11,7 +11,6 @@ import org.junit.Test;
 import dao.PessoaDAO;
 import model.Pessoa;
 import model.Usuario;
-import util.DAOFactory;
 
 public class PessoaDAOTest {
 

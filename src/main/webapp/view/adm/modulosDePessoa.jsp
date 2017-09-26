@@ -37,7 +37,6 @@
 	<h1>Módulos associados</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Título</th>
 			<th>URL</th>
 			<th>Opções</th>
@@ -47,7 +46,6 @@
 				for (Modulo modulo : modulosAssociados) {
 			%>
 			<tr>
-				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
@@ -67,7 +65,6 @@
 	<h1>Módulos disponíveis</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Título</th>
 			<th>URL</th>
 			<th>Opções</th>
@@ -77,7 +74,6 @@
 				for (Modulo modulo : modulosDisponiveis) {
 			%>
 			<tr>
-				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>

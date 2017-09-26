@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DAOFactory;
 import dao.UsuarioDAO;
 import model.Modulo;
 import model.Usuario;
-import util.DAOFactory;
 import util.Facade;
 
 /**

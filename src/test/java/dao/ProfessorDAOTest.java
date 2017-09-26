@@ -8,7 +8,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import model.Professor;
-import util.DAOFactory;
 
 public class ProfessorDAOTest {
 

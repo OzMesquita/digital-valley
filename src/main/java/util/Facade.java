@@ -18,6 +18,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 import dao.AlunoDAO;
+import dao.DAOFactory;
 import dao.ModuloDAO;
 import dao.PerfilDAO;
 import dao.PessoaDAO;
@@ -73,7 +74,7 @@ public class Facade {
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
 		pessoaDAO.cadastrar(pessoa);
-		pessoaDAO = util.DAOFactory.criarPessoaDAO();
+		pessoaDAO = dao.DAOFactory.criarPessoaDAO();
 		Pessoa p1 = pessoaDAO.buscarPorCpf(pessoa.getCpf());
 		usuario.setPessoa(p1);
 		usuarioDAO.cadastrar(usuario);

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Modulo;
 import model.Perfil;
 
 
@@ -15,7 +13,7 @@ public class JDBCPerfilDAO extends JDBCDAO implements PerfilDAO{
 	
 	
 	
-	public JDBCPerfilDAO(){
+	protected JDBCPerfilDAO(){
 
 	}
 

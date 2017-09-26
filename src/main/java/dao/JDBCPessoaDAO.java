@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Pessoa;
 import model.Usuario;
-import util.ConnectionFactory;
+
 
 public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
-	public JDBCPessoaDAO() {
+	protected JDBCPessoaDAO() {
 
 	}
 
@@ -544,10 +544,10 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	@Override
 	public Integer getQuantidadePorNomeENivel(String nome, int nivel) {
 		super.open();
-		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nome LIKE '?%' nivel = ?";
+		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nome LIKE UPPER(?) AND nivel = ?";
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, nome);
+			ps.setString(1, "%"+nome+"%");
 			ps.setInt(2, nivel);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {

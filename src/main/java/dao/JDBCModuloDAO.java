@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,13 +10,13 @@ import java.util.List;
 import model.Modulo;
 import model.Perfil;
 import model.Pessoa;
-import util.ConnectionFactory;
+
 
 public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 
 
 
-	public JDBCModuloDAO() {
+	protected JDBCModuloDAO() {
 	}
 
 	@Override

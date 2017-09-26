@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AlunoDAO;
+import dao.DAOFactory;
 import dao.ServidorDAO;
 import model.Aluno;
 import model.Servidor;
-import util.DAOFactory;
 import util.Facade;
 
 public class VerificarCadastro extends HttpServlet {

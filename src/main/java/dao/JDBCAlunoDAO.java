@@ -1,7 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,12 +11,11 @@ import java.util.List;
 import model.Aluno;
 import model.Curso;
 import model.Usuario;
-import util.ConnectionFactory;
 
 public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 	
 
-	public JDBCAlunoDAO() {
+	protected JDBCAlunoDAO() {
 	
 	}
 

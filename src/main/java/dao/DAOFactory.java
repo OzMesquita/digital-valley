@@ -1,22 +1,4 @@
-package util;
-
-import dao.AlunoDAO;
-import dao.JDBCAlunoDAO;
-import dao.JDBCCursoDAO;
-import dao.JDBCModuloDAO;
-import dao.JDBCPerfilDAO;
-import dao.JDBCPessoaDAO;
-import dao.JDBCPreCadastroAlunoDAO;
-import dao.JDBCPreCadastroServidorDAO;
-import dao.JDBCProfessorDAO;
-import dao.JDBCServidorDAO;
-import dao.JDBCUsuarioDAO;
-import dao.ModuloDAO;
-import dao.PerfilDAO;
-import dao.PessoaDAO;
-import dao.ProfessorDAO;
-import dao.ServidorDAO;
-import dao.UsuarioDAO;
+package dao;
 
 public class DAOFactory {
 	

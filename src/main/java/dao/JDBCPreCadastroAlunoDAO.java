@@ -10,7 +10,7 @@ import util.ConnectionFactory;
 public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAlunoDAO{
 
 
-	public JDBCPreCadastroAlunoDAO(){
+	protected JDBCPreCadastroAlunoDAO(){
 	}
 	
 	@Override

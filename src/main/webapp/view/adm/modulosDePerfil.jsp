@@ -99,7 +99,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<h1>Modulos Associados</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Título</th>
 			<th>URL</th>
 			<th>Opções</th>
@@ -109,7 +108,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				for (Modulo modulo : modulosDoPerfil) {
 			%>
 			<tr>
-				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
@@ -129,7 +127,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<h1>Modulos Desassociados</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>Título</th>
 			<th>URL</th>
 			<th>Opções</th>
@@ -139,7 +136,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				for (Modulo modulo : modulos) {
 			%>
 			<tr>
-				<td><%=modulo.getId()%></td>
 				<td><%=modulo.getTitulo()%></td>
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>

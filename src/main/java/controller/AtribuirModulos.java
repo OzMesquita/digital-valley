@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOFactory;
 import dao.PerfilDAO;
 import dao.PessoaDAO;
 import model.EnumNivel;
@@ -17,7 +18,6 @@ import model.Modulo;
 import model.Perfil;
 import model.Pessoa;
 import util.Constantes;
-import util.DAOFactory;
 
 /**
  * Servlet implementation class AtribuirModulos
@@ -47,7 +47,7 @@ public class AtribuirModulos extends HttpServlet {
 		if (nomePessoa != null) {
 			quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelComum);
 			pessoaDAO = DAOFactory.criarPessoaDAO();
-			pessoas = pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelComum, inicio, fim);
+			pessoas = pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelComum, inicio, fim);			
 		} else {
 			quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
 			pessoaDAO = DAOFactory.criarPessoaDAO();
@@ -64,6 +64,7 @@ public class AtribuirModulos extends HttpServlet {
 		request.setAttribute("perfis", perfis);
 		request.setAttribute("quantidadeDePaginas", quantidadeDePessoasDeNivelComum / quantidadePorPagina);
 		request.setAttribute("paginaAtual", paginaAtual);
+		request.setAttribute("nomePessoa", nomePessoa);
 		requestDispatcher.forward(request, response);
 	}
 

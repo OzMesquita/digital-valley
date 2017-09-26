@@ -3,7 +3,7 @@ package dao;
 import model.Modulo;
 import model.Perfil;
 import model.Pessoa;
-import util.DAOFactory;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -104,7 +104,7 @@ public class ModuloDAOTest {
 	
 	@Test
 	public void testListarModuloPorPerfil(){
-		ModuloDAO mDAO = util.DAOFactory.criarModuloDAO();
+		ModuloDAO mDAO = dao.DAOFactory.criarModuloDAO();
 		Perfil p = new Perfil();
 		p.setNome("Aluno");
 		p.setId(1);

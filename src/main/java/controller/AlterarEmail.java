@@ -27,7 +27,6 @@ public class AlterarEmail extends HttpServlet {
 			util.Facade.editarPessoa(pessoa, usuario);
 			pagina = "telaInicial.jsp?sucessoEditar=1";
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			session.setAttribute("msg", e.getMessage());
 		}
 

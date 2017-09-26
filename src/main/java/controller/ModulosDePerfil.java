@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOFactory;
 import model.Perfil;
 import util.Constantes;
-import util.DAOFactory;
 
 /**
  * Servlet implementation class ModulosDePerfil

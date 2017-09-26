@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Professor;
-import util.ConnectionFactory;
 
 public class JDBCProfessorDAO extends JDBCDAO implements ProfessorDAO{
 
 	
 
-	public JDBCProfessorDAO() {
+	protected JDBCProfessorDAO() {
 	
 	}
 		

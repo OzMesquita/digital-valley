@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOFactory;
 import model.Pessoa;
-import util.DAOFactory;
 
 /**
  * Servlet implementation class ModulosDePessoa
