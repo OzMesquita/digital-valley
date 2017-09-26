@@ -27,7 +27,7 @@ public class AdmFiltro implements Filter {
 			throws IOException, ServletException {
 		HttpSession session = (HttpSession) (((HttpServletRequest)request).getSession());
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		if (usuario.getNivel() == EnumNivel.ADMINISTRADOR) {
+		if (usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 			chain.doFilter(request, response);
 		} else {
 			((HttpServletResponse) response).sendRedirect(util.Constantes.APP_URL+"/login.jsp?permisaoADM=1");
