@@ -7,20 +7,21 @@ import java.sql.SQLException;
 
 import util.ConnectionFactory;
 
-public class JDBCPreCadastroServidorDAO implements PreCadastroServidorDAO {
-	Connection connection;
+public class JDBCPreCadastroServidorDAO extends JDBCDAO implements PreCadastroServidorDAO {
+	
 
 	public JDBCPreCadastroServidorDAO() {
-		connection = ConnectionFactory.getConnection();
+	
 	}
 
 	@Override
 	public void preCadastrarServidor(String siape, String nome) {
+		super.open();
 		try {
 
 			String SQL = "INSERT INTO pre_cadastro_servidor( siape, nome) VALUES (?, ?);";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
 			ps.setString(2, nome);
 
@@ -31,21 +32,18 @@ public class JDBCPreCadastroServidorDAO implements PreCadastroServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar um servidor:"+ e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}
 
 	@Override
 	public boolean buscarPreCadastro(String siape, String nome){
+		super.open();
 		try {
 			String SQL = "SELECT * FROM pre_cadastro_servidor WHERE siape = ? AND UPPER(nome) LIKE UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
 			ps.setString(2, "%"+nome+"%");
 
@@ -69,20 +67,17 @@ public class JDBCPreCadastroServidorDAO implements PreCadastroServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro do servidor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public void excluirPreCadastro(String siape, String nome) {
+		super.open();
 		try {
 			String SQL = "DELETE FROM pre_cadastro_servidor WHERE siape=? AND UPPER(nome) like UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
 			ps.setString(2, "%"+nome+"%");
 			ps.executeUpdate();
@@ -95,11 +90,7 @@ public class JDBCPreCadastroServidorDAO implements PreCadastroServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro do servidor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}

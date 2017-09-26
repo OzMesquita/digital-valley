@@ -63,6 +63,8 @@ public class PerfilDAOTest {
 		Perfil p = pDAO.buscarPorNome("aluno");
 		System.out.println(p.getNome());
 		Assert.assertTrue(p != null);
+		
+		
 	}
 	
 	

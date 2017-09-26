@@ -11,19 +11,20 @@ import java.util.List;
 import model.Professor;
 import util.ConnectionFactory;
 
-public class JDBCProfessorDAO implements ProfessorDAO{
+public class JDBCProfessorDAO extends JDBCDAO implements ProfessorDAO{
 
-	Connection connection;
+	
 
 	public JDBCProfessorDAO() {
-		connection = ConnectionFactory.getConnection();
+	
 	}
 		
 	@Override
 	public void cadastrar(Professor professor) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO professor (coordenador, id_pessoa_prof) VALUES " + " (?,?)";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			
 			ps.setBoolean(1, professor.isCoordenador());
 			ps.setInt(2, professor.getId());
@@ -35,19 +36,16 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar professor em JDBCProfessorDAO", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}
 	@Override
 	public void editar(Professor professor) {
+		super.open();
 		try {
-		String SQL = "UPDATE professor SET coordenador=? WHERE id_pessoa_prof=?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			String SQL = "UPDATE professor SET coordenador=? WHERE id_pessoa_prof=?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setBoolean(1, professor.isCoordenador());
 			ps.setInt(2,  professor.getId());
 			ps.executeUpdate();
@@ -57,22 +55,18 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar registro de professor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Professor buscar(int id) {
-
+		super.open();
 		String SQL = "SELECT * FROM professor AS p, pessoa_usuario AS u, servidor AS s WHERE p.id_pessoa_prof=? AND u.id_pessoa_usuario = p.id_pessoa_prof AND p.id_pessoa_prof = s.id_pessoa_usuario";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
@@ -98,20 +92,17 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de professor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Professor> listar() {
+		super.open();
 		List<Professor> professores = new ArrayList<Professor>();
 		try {
 			String SQL = "SELECT * FROM professor AS p, pessoa_usuario AS u, servidor AS s WHERE u.id_pessoa_usuario = p.id_pessoa_prof AND u.id_pessoa_usuario = s.id_pessoa_usuario";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -138,11 +129,7 @@ public class JDBCProfessorDAO implements ProfessorDAO{
 			throw new RuntimeException("Falha ao listar professor em JDBCProfessorDAO", e);
 
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}

@@ -8,21 +8,21 @@ import java.sql.SQLException;
 import model.Curso;
 import util.ConnectionFactory;
 
-public class JDBCCursoDAO implements CursoDAO{
+public class JDBCCursoDAO extends JDBCDAO implements CursoDAO{
 	
-	Connection connection;
+
 	
 	public JDBCCursoDAO() {
-		connection = ConnectionFactory.getConnection();
+		
 	}
+	
 
 	@Override
 	public void cadastrar(Curso curso) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO curso(nome_curso, id_curso) VALUES (?, ?)";
-
-			PreparedStatement ps;
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, curso.getNome());
 			ps.setInt(2, curso.getId());
@@ -35,11 +35,7 @@ public class JDBCCursoDAO implements CursoDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar curso, erro: "+ e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}
@@ -64,11 +60,12 @@ public class JDBCCursoDAO implements CursoDAO{
 	
 	@Override
 	public Curso buscarPorNome(String nome){
+		super.open();
 		Curso curso = new Curso();
 		String SQL = "SELECT nome_curso, id_curso FROM curso WHERE UPPER(nome_curso) like UPPER( ? )";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, "%"+nome+"%");
 
@@ -87,11 +84,7 @@ public class JDBCCursoDAO implements CursoDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro do curso"+e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}

@@ -10,22 +10,21 @@ import java.util.List;
 import model.Servidor;
 import util.ConnectionFactory;
 
-public class JDBCServidorDAO implements ServidorDAO {
+public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 
-	Connection connection;
+
 
 	public JDBCServidorDAO() {
-
-		connection = ConnectionFactory.getConnection();
 
 	}
 
 	@Override
 	public void cadastrar(Servidor servidor) {
+		super.open();
 
 		try {
 			String SQL = "INSERT INTO servidor (siape, id_pessoa_usuario,cargo) VALUES (?,?,?)";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, servidor.getSiape());
 			ps.setInt(2, servidor.getId());
@@ -38,32 +37,26 @@ public class JDBCServidorDAO implements ServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar servidor, "+e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public Servidor buscar(String siape) {
+		super.open();
 		Servidor servidor = new Servidor();
 
 		String SQL = "SELECT * FROM servidor WHERE siape = ?";
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SQL);
-
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
-
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
 
 				servidor.setSiape(rs.getString("siape"));
 				
-
 			}
 			ps.close();
 			rs.close();
@@ -73,22 +66,19 @@ public class JDBCServidorDAO implements ServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		return servidor;
 	}
 	
 	public Servidor buscarPorSiape(String siape){
+		super.open();
 		Servidor servidor = new Servidor();
 
 		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE siape = ? and s.id_pessoa_usuario = p.id_pessoa_usuario;";
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, siape);
 
@@ -112,22 +102,19 @@ public class JDBCServidorDAO implements ServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
         
 	public List<Servidor> buscarPorNome(String nome){
+		super.open();
 		List<Servidor> servidores = new ArrayList<Servidor>();
                 
 
 		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE nome = ? and s.id_pessoa_usuario = p.id_pessoa_usuario;";
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, nome);
 
@@ -149,11 +136,7 @@ public class JDBCServidorDAO implements ServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 	
@@ -161,11 +144,12 @@ public class JDBCServidorDAO implements ServidorDAO {
 
 	@Override
 	public List<Servidor> listar() {
+		super.open();
 		ArrayList<Servidor> servidores = new ArrayList<>();
 		try {
 			String SQL = "SELECT * FROM servidor";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -184,11 +168,7 @@ public class JDBCServidorDAO implements ServidorDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 		return servidores;

@@ -30,7 +30,7 @@ public class AdmFiltro implements Filter {
 		if (usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect(util.Constantes.APP_URL+"/login.jsp?permisaoADM=1");
+			((HttpServletResponse) response).sendRedirect(util.Constantes.APP_URL+"/view/telaInicial.jsp?erroPermissao=1");
 		}
 		
 	}

@@ -7,21 +7,20 @@ import java.sql.SQLException;
 
 import util.ConnectionFactory;
 
-public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
+public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAlunoDAO{
 
-	Connection connection;
 
 	public JDBCPreCadastroAlunoDAO(){
-		connection = ConnectionFactory.getConnection();
 	}
 	
 	@Override
 	public void preCadastrar(String nome, String matricula, int curso) {
+		super.open();
 		try {
 
 			String SQL = "INSERT INTO pre_cadastro_aluno( matricula, nome, id_curso) VALUES (?, ?, ?);";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, nome);
 			ps.setInt(3, curso);
@@ -33,21 +32,18 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar um aluno:"+ e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}
 	
 	public void preCadastrar(String nome, String matricula, int curso, String semestreDeIngresso){
+		super.open();
 		try {
 
 			String SQL = "INSERT INTO pre_cadastro_aluno( matricula, nome, id_curso, semestre) VALUES (?, ?, ?);";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, nome);
 			ps.setInt(3, curso);
@@ -59,11 +55,7 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar um aluno:"+ e.getMessage());
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 		
 	}
@@ -71,10 +63,11 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 
 	@Override
 	public boolean buscarPreCadastro(String matricula, String nome){
+		super.open();
 		try {
 			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, "%"+nome+"%");
 
@@ -98,19 +91,16 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 	@Override
 	public int buscarCursoPreCadastrado (String matricula, String nome){
+		super.open();
 		try {
 			String SQL = "SELECT id_curso FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, "%"+nome+"%");
 
@@ -122,45 +112,30 @@ public class JDBCPreCadastroAlunoDAO implements PreCadastroAlunoDAO{
 				return -1;
 			}
 			
-				
-				
-				
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	public void excluirAlunoPreCadastro(String matricula, String nome){
+		super.open();
 		try {
 			String SQL = "DELETE FROM pre_cadastro_aluno WHERE matricula=? AND UPPER(nome) like UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, "%"+nome+"%");
 			ps.executeUpdate();
-			
-				
-				
-			
+						
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
 		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 

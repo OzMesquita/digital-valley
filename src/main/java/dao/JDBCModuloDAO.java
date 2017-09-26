@@ -12,23 +12,20 @@ import model.Perfil;
 import model.Pessoa;
 import util.ConnectionFactory;
 
-public class JDBCModuloDAO implements ModuloDAO {
+public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 
-	Connection connection;
+
 
 	public JDBCModuloDAO() {
-
-		connection = ConnectionFactory.getConnection();
 	}
 
 	@Override
 	public void cadastrar(Modulo modulo) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO modulo (titulo, url, imagem) VALUES" + "(?,?,?)";
 
-			PreparedStatement ps;
-
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, modulo.getTitulo());
 			ps.setString(2, modulo.getUrl());
@@ -41,19 +38,16 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar módulo em JDBCModuloDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public void editar(Modulo modulo) {
+		super.open();
 		try {
 			String SQL = "UPDATE modulo SET titulo=?, url=?, imagem=? WHERE id_modulo = ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, modulo.getTitulo());
 			ps.setString(2, modulo.getUrl());
 			ps.setString(3, modulo.getImagem());
@@ -66,21 +60,17 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar módulo em JDBCModuloDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public void remover(int id) {
-
+		super.open();
 		try {
 			String SQL = "DELETE FROM modulo WHERE id_modulo = ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			ps.executeUpdate();
 
@@ -90,23 +80,20 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Modulo buscar(int id) {
+		super.open();
 		Modulo modulo = new Modulo();
 
 		String SQL = "SELECT * FROM modulo WHERE id_modulo = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setInt(1, id);
 
@@ -126,23 +113,20 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.open();
 		}
 
 	}
 
 	@Override
 	public Modulo buscarPorNome(String nome) {
+		super.open();
 		Modulo modulo = new Modulo();
 
 		String SQL = "SELECT id_modulo, titulo, url, imagem FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, '%' + nome + '%');
 
@@ -161,22 +145,17 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Modulo> buscar(Pessoa pessoa) {
+		super.open();
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
 			String SQL = "SELECT * FROM usuario_modulo AS u_m, modulo AS m WHERE u_m.id_usuario = ? and m.id_modulo = u_m.id_modulo";
-
-			PreparedStatement ps;
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 
 			ResultSet rs = ps.executeQuery();
@@ -200,22 +179,19 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Modulo> buscar(Perfil perfil) {
+		super.open();
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
 			String SQL = "SELECT * FROM perfil_modulo AS p_m, modulo AS m WHERE p_m.id_perfil = ? and m.id_modulo = p_m.id_modulo;";
 
-			PreparedStatement ps;
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, perfil.getId());
 
 			ResultSet rs = ps.executeQuery();
@@ -239,21 +215,18 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar Perfis, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Modulo> listar() {
+		super.open();
 		ArrayList<Modulo> modulos = new ArrayList<>();
 		try {
 			String SQL = "SELECT * FROM modulo";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -272,24 +245,18 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public void associarUsuarioModulo(int idUsuario, int idModulo) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo) VALUES (?, ?)";
 
-			PreparedStatement ps;
-
-			ps = connection.prepareStatement(SQL);
-
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idUsuario);
 			ps.setInt(2, idModulo);
 
@@ -300,22 +267,17 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public void associarPerfilModulo(int idPerfil, int idModulo) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO perfil_modulo(id_perfil, id_modulo) VALUES (?, ?)";
 
-			PreparedStatement ps;
-
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setInt(1, idPerfil);
 			ps.setInt(2, idModulo);
@@ -327,19 +289,16 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO, Erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Modulo> listarDisponiveisParaPessoa(Pessoa pessoa) {
+		super.open();
 		try {
 			String SQL = "SELECT * FROM modulo WHERE id_modulo NOT IN (SELECT id_modulo FROM usuario_modulo WHERE usuario_modulo.id_usuario = ?);";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 			ResultSet rs = ps.executeQuery();
 			List<Modulo> modulos = new ArrayList<Modulo>();
@@ -359,19 +318,17 @@ public class JDBCModuloDAO implements ModuloDAO {
 			throw new RuntimeException(
 					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Modulo> listarAssociadosParaPessoa(Pessoa pessoa) {
+		super.open();
+		
 		try {
 			String SQL = "SELECT * FROM modulo AS m, usuario_modulo AS um WHERE m.id_modulo = um.id_modulo AND um.id_usuario = ?;";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 			ResultSet rs = ps.executeQuery();
 			List<Modulo> modulos = new ArrayList<Modulo>();
@@ -391,20 +348,16 @@ public class JDBCModuloDAO implements ModuloDAO {
 			throw new RuntimeException(
 					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public void desassociarUsuarioModulo(int idUsuario, int idModulo) {
+		super.open();
 		try {
 			String SQL = "DELETE FROM usuario_modulo WHERE id_usuario = ? AND  id_modulo = ?";
-			PreparedStatement ps;
-			ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idUsuario);
 			ps.setInt(2, idModulo);
 			ps.executeUpdate();
@@ -413,11 +366,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 

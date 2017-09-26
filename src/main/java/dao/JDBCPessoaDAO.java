@@ -12,23 +12,20 @@ import model.Pessoa;
 import model.Usuario;
 import util.ConnectionFactory;
 
-public class JDBCPessoaDAO implements PessoaDAO {
-
-	private Connection connection;
+public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
 	public JDBCPessoaDAO() {
-
-		this.connection = ConnectionFactory.getConnection();
 
 	}
 
 	@Override
 	public void cadastrar(Pessoa pessoa) {
+		super.open();
 		try {
 			String SQL = "INSERT INTO pessoa_usuario (nome, cpf, email , data_nascimento,login,senha) VALUES"
 					+ "(?,?,?,?,?,?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
@@ -44,20 +41,17 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public void editar(Pessoa pessoa) {
+		super.open();
 		try {
 			String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id_pessoa_usuario = ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
@@ -71,21 +65,17 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao editar pessoa, erro:" + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public void remover(int id) {
-
+		super.open();
 		try {
 			String SQL = "DELETE FROM pessoa_usuario WHERE id_pessoa_usuario = ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			ps.executeUpdate();
 
@@ -95,17 +85,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Pessoa buscarPorId(int id) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -113,7 +100,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		String SQL = "SELECT * FROM pessoa_usuario WHERE id_pessoa_usuario = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
@@ -137,17 +124,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -155,7 +139,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u, curso AS c WHERE u_a.id_pessoa_usuario = u.id_pessoa_usuario AND u_a.id_curso = c.id_curso AND u_a.matricula = ? and u.cpf = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
 			ps.setString(2, cpf);
 
@@ -180,17 +164,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = null;
 		pessoa.setUsuario(usuario);
@@ -198,7 +179,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario AS u WHERE s.id_pessoa_usuario = u.id_pessoa_usuario AND s.siape = ? and u.cpf = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
 			ps.setString(2, cpf);
 
@@ -224,17 +205,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Pessoa buscarPorLogin(String login) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -242,7 +220,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		String SQL = "SELECT * FROM pessoa_usuario WHERE login = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, login);
 
 			ResultSet rs = ps.executeQuery();
@@ -269,17 +247,14 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Pessoa buscarPorCpf(String cpf) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
@@ -287,7 +262,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		String SQL = "SELECT * FROM pessoa_usuario WHERE cpf = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, cpf);
 
 			ResultSet rs = ps.executeQuery();
@@ -313,21 +288,18 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public List<Pessoa> listar() {
+		super.open();
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 		try {
 			String SQL = "SELECT * FROM pessoa_usuario";
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Pessoa pessoa = new Pessoa();
@@ -355,23 +327,20 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			throw new RuntimeException("Falha ao listar registro de pessoa, erro: " + e.getMessage());
 
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public List<Pessoa> buscarPorNome(String nome) {
+		super.open();
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 		try {
 			String SQL = "SELECT * FROM pessoa_usuario AS u WHERE  UPPER(u.nome) like UPPER(?)";
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, '%' + nome + '%');
 			ResultSet rs = ps.executeQuery();
 
@@ -399,24 +368,21 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 
 	}
 
 	@Override
 	public Pessoa buscarPorEmail(String email) {
+		super.open();
 		Pessoa pessoa = new Pessoa();
 		Usuario usuario = new Usuario();
 		pessoa.setUsuario(usuario);
 		String SQL = "SELECT * FROM pessoa_usuario WHERE email = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, email);
 
 			ResultSet rs = ps.executeQuery();
@@ -443,19 +409,16 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Pessoa> buscarPorNivel(int nivel, int inicio, int fim) {
-		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
+		super.open();
+		String SQL = "SELECT * FROM pessoa_usuario WHERE nivel = ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
 		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
 			ps.setInt(2, fim - inicio);
 			ps.setInt(3, inicio);
@@ -481,22 +444,20 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public String buscarTokenRecuperacao(Pessoa pessoa){
+		super.open();
 		String token = "";
-		String SQL = "SELECT data_nascimento, nome, cpf, email, login, senha, id_pessoa_usuario, nivel, token_sessao, data_ultima_sessao, token_recuperacao, data_ultima_recuperacao FROM public.pessoa_usuario WHERE id_pessoa_usuario = 2 AND data_ultima_recuperacao = ?";
+		String SQL = "SELECT data_nascimento, nome, cpf, email, login, senha, id_pessoa_usuario, nivel, token_sessao, data_ultima_sessao, token_recuperacao, data_ultima_recuperacao FROM public.pessoa_usuario WHERE id_pessoa_usuario = ? AND data_ultima_recuperacao = ?";
 		try {
 
-			PreparedStatement ps = connection.prepareStatement(SQL);
-			ps.setString(1, LocalDate.now().toString());
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, pessoa.getId());
+			ps.setString(2, LocalDate.now().toString());
 
 			ResultSet rs = ps.executeQuery();
 
@@ -513,20 +474,17 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 	
 	
 	@Override
 	public Integer getQuantidadePorNivel(int nivel) {
+		super.open();
 		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nivel = ?";
 		try {
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -540,19 +498,16 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public List<Pessoa> buscarPorNomeENivel(String nome, int nivel, int inicio, int fim) {
-		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = ? AND nome LIKE ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
+		super.open();
+		String SQL = "SELECT * FROM pessoa_usuario WHERE nivel = ? AND nome LIKE ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
 		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
 			ps.setString(2, nome+"%");
 			ps.setInt(3, fim - inicio);
@@ -579,19 +534,16 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 
 	@Override
 	public Integer getQuantidadePorNomeENivel(String nome, int nivel) {
+		super.open();
 		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nome LIKE '?%' nivel = ?";
 		try {
-			PreparedStatement ps = connection.prepareStatement(SQL);
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, nome);
 			ps.setInt(2, nivel);
 			ResultSet rs = ps.executeQuery();
@@ -606,11 +558,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
 		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.close();
 		}
 	}
 }
