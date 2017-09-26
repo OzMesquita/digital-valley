@@ -26,15 +26,7 @@
                                     </ul>
                                 </li>
 
-				<li><a href="#"><i class="fa fa-cogs nav_icon"></i>Importar
-						matrículas <span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level collapse">
-						<li><a href="<%=Constantes.ADM_URL %>/importarAlunos.jsp">Alunos</a>
-						</li>
-						<li><a href="<%=Constantes.ADM_URL %>/importarServidores.jsp">Servidores</a>
-						</li>
-					</ul></li>
-
+				
 				<li><a href="#"><i class="fa fa-th-large nav_icon"></i>Modulos<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
