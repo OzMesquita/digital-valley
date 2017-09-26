@@ -11,6 +11,7 @@ public class Usuario implements Serializable {
 	private Pessoa pessoa;
 	private EnumNivel nivel;
 	private String token;
+	private String tokenUsuario;
 
 	public void setToken(String token) {
 		this.token = token;
@@ -87,5 +88,11 @@ public class Usuario implements Serializable {
 	}
 	public String getToken() {
 		return token;
+	}
+	public String getTokenUsuario() {
+		return tokenUsuario;
+	}
+	public void setTokenUsuario(String tokenUsuario) {
+		this.tokenUsuario = tokenUsuario;
 	}
 }
