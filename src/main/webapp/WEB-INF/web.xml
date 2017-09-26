@@ -86,18 +86,33 @@
 	</servlet>
 	<!-- 16 -->
 	<servlet>
-		<servlet-name>DesassociarModulo</servlet-name>
-		<servlet-class>controller.DesassociarModulo</servlet-class>
+		<servlet-name>DesassociarModuloPessoa</servlet-name>
+		<servlet-class>controller.DesassociarModuloPessoa</servlet-class>
 	</servlet>
 	<!-- 17 -->
 	<servlet>
-		<servlet-name>AssociarModulo</servlet-name>
-		<servlet-class>controller.AssociarModulo</servlet-class>
+		<servlet-name>AssociarModuloPessoa</servlet-name>
+		<servlet-class>controller.AssociarModuloPessoa</servlet-class>
 	</servlet>
 	<!-- 18 -->
 	<servlet>
 		<servlet-name>AtribuirModulos</servlet-name>
 		<servlet-class>controller.AtribuirModulos</servlet-class>
+	</servlet>
+	<!-- 19 -->
+	<servlet>
+		<servlet-name>ModulosDePerfil</servlet-name>
+		<servlet-class>controller.ModulosDePerfil</servlet-class>
+	</servlet>
+	<!-- 20 -->
+	<servlet>
+		<servlet-name>AssociarModuloPerfil</servlet-name>
+		<servlet-class>controller.AssociarModuloPerfil</servlet-class>
+	</servlet>
+	<!-- 21 -->
+	<servlet>
+		<servlet-name>DesassociarModuloPerfil</servlet-name>
+		<servlet-class>controller.DesassociarModuloPerfil</servlet-class>
 	</servlet>
 
 	<!-- 1 -->
@@ -177,18 +192,33 @@
 	</servlet-mapping>
 	<!-- 16 -->
 	<servlet-mapping>
-		<servlet-name>DesassociarModulo</servlet-name>
-		<url-pattern>/view/adm/desassociar_modulo</url-pattern>
+		<servlet-name>DesassociarModuloPessoa</servlet-name>
+		<url-pattern>/view/adm/desassociar_modulo_pessoa</url-pattern>
 	</servlet-mapping>
 	<!-- 17 -->
 	<servlet-mapping>
-		<servlet-name>AssociarModulo</servlet-name>
-		<url-pattern>/view/adm/associar_modulo</url-pattern>
+		<servlet-name>AssociarModuloPessoa</servlet-name>
+		<url-pattern>/view/adm/associar_modulo_pessoa</url-pattern>
 	</servlet-mapping>
 	<!-- 18 -->
 	<servlet-mapping>
 		<servlet-name>AtribuirModulos</servlet-name>
 		<url-pattern>/view/adm/atribuir_modulos</url-pattern>
+	</servlet-mapping>
+	<!-- 19 -->
+	<servlet-mapping>
+		<servlet-name>ModulosDePerfil</servlet-name>
+		<url-pattern>/view/adm/perfil_modulos</url-pattern>
+	</servlet-mapping>		
+	<!-- 20 -->	
+	<servlet-mapping>
+		<servlet-name>AssociarModuloPerfil</servlet-name>
+		<url-pattern>/view/adm/associar_modulo_perfil</url-pattern>
+	</servlet-mapping>
+	<!-- 21 -->
+	<servlet-mapping>
+		<servlet-name>DesassociarModuloPerfil</servlet-name>
+		<url-pattern>/view/adm/desassociar_modulo_perfil</url-pattern>
 	</servlet-mapping>	
 	
 	<!-- FILTROS -->

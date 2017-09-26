@@ -92,94 +92,68 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <body class="cbp-spmenu-push">
 	<%
 		String url = (String) request.getAttribute("url");
-		List<Pessoa> pessoas = (List<Pessoa>) request.getAttribute("pessoas");
-		List<Perfil> perfis = (List<Perfil>) request.getAttribute("perfis");		
-		Integer quantidadeDePaginas = (Integer) request.getAttribute("quantidadeDePaginas");
-		Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
+		List<Modulo> modulosDoPerfil = (List<Modulo>) request.getAttribute("modulosDoPerfil");
+		List<Modulo> modulos = (List<Modulo>) request.getAttribute("modulos");
+		Perfil perfil = (Perfil) request.getAttribute("perfil");		
 	%>
-	<h1>Atribuir por pessoa</h1>
-	<form action="<%=Constantes.ADM_URL + "/atribuir_modulos"%>"
-		method="GET">
-		<input type="text" name="nome" /> <input type="submit" value="Buscar" />
-	</form>
+	<h1>Modulos Associados</h1>
 	<table>
 		<thead>
 			<th>ID</th>
-			<th>Nome</th>
-			<th>CPF</th>
-			<th>E-mail</th>
-			<th>Data Nascimento</th>
+			<th>Título</th>
+			<th>URL</th>
 			<th>Opções</th>
 		</thead>
 		<tbody>
 			<%
-				for (Pessoa pessoa : pessoas) {
+				for (Modulo modulo : modulosDoPerfil) {
 			%>
 			<tr>
-				<td><%=pessoa.getId()%></td>
-				<td><%=pessoa.getNome()%></td>
-				<td><%=pessoa.getCpf()%></td>
-				<td><%=pessoa.getEmail()%></td>
-				<td><%=pessoa.getDataNascimento()%></td>
-				<td><a
-					href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
-						módulos</a></td>
+				<td><%=modulo.getId()%></td>
+				<td><%=modulo.getTitulo()%></td>
+				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
+						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+				<td>
+					<form method="POST" action="<%=url%>/desassociar_modulo_perfil">
+						<input type="hidden" value="<%=perfil.getId()%>" name="perfil_id" />
+						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
+						<input type="submit" value="Desassociar" />
+					</form>
+				</td>
 			</tr>
 			<%
 				}
 			%>
 		</tbody>
 	</table>
-	<ul>
-		<%
-			if (paginaAtual > 1) {
-		%>
-		<li><a
-			href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual - 1)%>">
-				<< </a></li>
-		<%
-			}
-			for (int i = 1; i <= quantidadeDePaginas; i++) {
-		%>
-		<li>
-			<%
-				if (i == paginaAtual) {
-			%> <strong><a
-				href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a></strong>
-			<%
-				} else {
-			%> <a href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a>
-			<%
-				}
-			%>
-		</li>
-		<%
-			}
-			if (paginaAtual < quantidadeDePaginas) {
-		%>
-		<li><a
-			href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual + 1)%>">>></a></li>
-		<%
-			}
-		%>
-	</ul>
-	<h1>Atribuir por perfil</h1>
+	<h1>Modulos Desassociados</h1>
 	<table>
 		<thead>
 			<th>ID</th>
-			<th>Nome</th>
+			<th>Título</th>
+			<th>URL</th>
 			<th>Opções</th>
 		</thead>
 		<tbody>
-		<%
-			for (Perfil perfil: perfis) {
-		%>
+			<%
+				for (Modulo modulo : modulos) {
+			%>
 			<tr>
-				<td><%=perfil.getId() %></td>
-				<td><%=perfil.getNome() %></td>
-				<td><a href="<%=url %>/perfil_modulos?perfil_id=<%=perfil.getId() %>">Gerenciar módulos</a></td>
+				<td><%=modulo.getId()%></td>
+				<td><%=modulo.getTitulo()%></td>
+				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
+						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+				<td>
+					<form method="POST" action="<%=url%>/associar_modulo_perfil">
+						<input type="hidden" value="<%=perfil.getId()%>" name="perfil_id" />
+						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
+						<input type="submit" value="Associar" />
+					</form>
+				</td>
 			</tr>
-		<% } %>
+			<%
+				}
+			%>
 		</tbody>
 	</table>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

@@ -52,7 +52,7 @@
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
 				<td>
-					<form method="POST" action="<%=url%>/desassociar_modulo">
+					<form method="POST" action="<%=url%>/desassociar_modulo_pessoa">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
 						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
 						<input type="submit" value="Desassociar" />
@@ -82,7 +82,7 @@
 				<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 						alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
 				<td>
-					<form method="POST" action="<%=url%>/associar_modulo">
+					<form method="POST" action="<%=url%>/associar_modulo_pessoa">
 						<input type="hidden" value="<%=pessoa.getId()%>" name="pessoa_id" />
 						<input type="hidden" value="<%=modulo.getId()%>" name="modulo_id" />
 						<input type="submit" value="Associar" />

@@ -6,13 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Modulo;
 import model.Perfil;
 
-public class JDBCPerfilDAO implements PerfilDAO{
-	
+public class JDBCPerfilDAO implements PerfilDAO {
+
 	private Connection connection;
-	
-	public JDBCPerfilDAO(){
+
+	public JDBCPerfilDAO() {
 		this.connection = util.ConnectionFactory.getConnection();
 	}
 
@@ -28,19 +30,17 @@ public class JDBCPerfilDAO implements PerfilDAO{
 			ps.executeUpdate();
 			ps.close();
 
-			
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCPerfilDAO: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCPerfilDAO: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -50,19 +50,16 @@ public class JDBCPerfilDAO implements PerfilDAO{
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			
 			ps.setString(1, perfil.getNome());
 			ps.setInt(2, perfil.getId());
 
 			ps.executeUpdate();
 			ps.close();
 
-			
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCPerfilDAO: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Falha ao cadastrar pessoas em JDBCPerfilDAO: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -70,7 +67,6 @@ public class JDBCPerfilDAO implements PerfilDAO{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -83,23 +79,22 @@ public class JDBCPerfilDAO implements PerfilDAO{
 
 			ps.close();
 
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	@Override
 	public Perfil buscarPorId(int id) {
-		
+
 		Perfil perfil = new Perfil();
 		String SQL = "SELECT * FROM perfil WHERE id = ?";
 		try {
@@ -109,22 +104,22 @@ public class JDBCPerfilDAO implements PerfilDAO{
 
 			ResultSet rs = ps.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				perfil.setId(rs.getInt("id"));
 				perfil.setNome(rs.getString("nome"));
-				
+
 				ps.close();
 				rs.close();
-				
+
 				return perfil;
-			}else{
+			} else {
 				return null;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro do perfil: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Erro ao buscar registro do perfil: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -132,34 +127,34 @@ public class JDBCPerfilDAO implements PerfilDAO{
 			}
 		}
 	}
-	
+
 	@Override
-	public Perfil buscarPorNome(String nome){
+	public Perfil buscarPorNome(String nome) {
 		Perfil perfil = new Perfil();
 		String SQL = "SELECT id, nome FROM public.perfil WHERE UPPER(nome) like UPPER(?)";
 		try {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
-			ps.setString(1, '%'+nome+'%');
+			ps.setString(1, '%' + nome + '%');
 
 			ResultSet rs = ps.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				perfil.setId(rs.getInt("id"));
 				perfil.setNome(rs.getString("nome"));
-				
+
 				ps.close();
 				rs.close();
-				
+
 				return perfil;
-			}else{
+			} else {
 				return null;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro do perfil: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Erro ao buscar registro do perfil: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -171,7 +166,7 @@ public class JDBCPerfilDAO implements PerfilDAO{
 	@Override
 	public List<Perfil> Listar() {
 		List<Perfil> perfis = new ArrayList<>();
-		
+
 		try {
 			String SQL = "SELECT * FROM perfil ";
 			PreparedStatement ps = connection.prepareStatement(SQL);
@@ -186,14 +181,14 @@ public class JDBCPerfilDAO implements PerfilDAO{
 
 			ps.close();
 			rs.close();
-			
+
 			return perfis;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar pessoas em JDBC perfilDAO, erro: "+e.getMessage() );
+			throw new RuntimeException("Falha ao listar pessoas em JDBC perfilDAO, erro: " + e.getMessage());
 
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -201,6 +196,5 @@ public class JDBCPerfilDAO implements PerfilDAO{
 			}
 		}
 	}
-	
 
 }
