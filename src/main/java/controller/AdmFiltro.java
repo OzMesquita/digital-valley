@@ -11,15 +11,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.EnumNivel;
 import model.Usuario;
 
 public class AdmFiltro implements Filter {
-
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -32,14 +32,11 @@ public class AdmFiltro implements Filter {
 		} else {
 			((HttpServletResponse) response).sendRedirect(util.Constantes.APP_URL+"/view/telaInicial.jsp?erroPermissao=1");
 		}
-		
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 }

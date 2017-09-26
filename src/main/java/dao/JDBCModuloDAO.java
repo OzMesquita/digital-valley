@@ -370,4 +370,80 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 		}
 	}
 
+	@Override
+	public List<Modulo> getModulosDePerfil(Perfil perfil) {
+		super.open();
+		try {
+			String SQL = "SELECT * FROM modulo as m, perfil_modulo as pm WHERE m.id_modulo = pm.id_modulo AND pm.id_perfil = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, perfil.getId());
+			ResultSet rs = ps.executeQuery();
+			List<Modulo> modulos = new ArrayList<Modulo>();
+			while (rs.next()) {
+				Modulo modulo = new Modulo();
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				modulos.add(modulo);
+			}
+			ps.close();
+			rs.close();
+			return modulos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(
+					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+
+	@Override
+	public List<Modulo> getModulosDisponiveisParaPerfil(Perfil perfil) {
+		super.open();
+		try {
+			String SQL = "SELECT * FROM modulo as m  WHERE m.id_modulo NOT IN (SELECT id_modulo FROM perfil_modulo WHERE id_perfil = ?);";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, perfil.getId());
+			ResultSet rs = ps.executeQuery();
+			List<Modulo> modulos = new ArrayList<Modulo>();
+			while (rs.next()) {
+				Modulo modulo = new Modulo();
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				modulos.add(modulo);
+			}
+			ps.close();
+			rs.close();
+			return modulos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(
+					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+
+	@Override
+	public void desassociarPerfilModulo(int idPerfil, int idModulo) {
+		super.open();
+		try {
+			String SQL = "DELETE FROM perfil_modulo WHERE id_modulo = ? AND id_perfil = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, idModulo);
+			ps.setInt(2, idPerfil);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+
 }

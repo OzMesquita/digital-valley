@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import model.Modulo;
 import model.Perfil;
 
 public interface PerfilDAO {

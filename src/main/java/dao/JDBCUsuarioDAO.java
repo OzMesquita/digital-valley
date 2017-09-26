@@ -134,5 +134,23 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 				super.close();
 			}
 	}
+	
+	@Override
+	public void salvarTokenUsuario(String token, int id_usuario) {
+		super.open();
+		try {
+			String SQL = "UPDATE pessoa_usuario SET token_usuario =? WHERE id_pessoa_usuario = ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+				ps.setString(1, token);
+				ps.setInt(2, id_usuario);
+				ps.executeUpdate();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException("Erro ao gravar token do usuário"+ e.getMessage());
+			}finally {
+				super.close();
+			}
+	}
 
 }
