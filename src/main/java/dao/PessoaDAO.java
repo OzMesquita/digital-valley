@@ -24,6 +24,10 @@ public interface PessoaDAO {
 	public List<Pessoa> listar();
 	
 	public List<Pessoa> buscarPorNivel(int nivel, int inicio, int fim);
+	
+	public List<Pessoa> buscarPorNomeENivel(String nome, int nivel, int inicio, int fim);
+	
+	public Integer getQuantidadePorNomeENivel(String nome, int nivel);
 
     public Pessoa buscarPorEmail(String email);
 	

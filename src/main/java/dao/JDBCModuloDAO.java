@@ -36,12 +36,11 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			ps.executeUpdate();
 			ps.close();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao cadastrar módulo em JDBCModuloDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -62,12 +61,11 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			ps.executeUpdate();
 			ps.close();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao editar módulo em JDBCModuloDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -87,12 +85,11 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.executeUpdate();
 
 			ps.close();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao remover registro de pessoas em JDBC pessoaDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -127,8 +124,8 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -137,9 +134,9 @@ public class JDBCModuloDAO implements ModuloDAO {
 		}
 
 	}
-	
+
 	@Override
-	public Modulo buscarPorNome(String nome){
+	public Modulo buscarPorNome(String nome) {
 		Modulo modulo = new Modulo();
 
 		String SQL = "SELECT id_modulo, titulo, url, imagem FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
@@ -147,10 +144,10 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			ps.setString(1, '%'+nome+'%');
+			ps.setString(1, '%' + nome + '%');
 
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setUrl(rs.getString("url"));
@@ -162,8 +159,8 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -183,14 +180,14 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.setInt(1, pessoa.getId());
 
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-				
+
 				modulos.add(modulo);
 			}
 
@@ -202,7 +199,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -210,7 +207,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 			}
 		}
 	}
-	
+
 	@Override
 	public List<Modulo> buscar(Perfil perfil) {
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
@@ -222,14 +219,14 @@ public class JDBCModuloDAO implements ModuloDAO {
 			ps.setInt(1, perfil.getId());
 
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-				
+
 				modulos.add(modulo);
 			}
 
@@ -240,8 +237,8 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao listar Perfis, erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Falha ao listar Perfis, erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -258,7 +255,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
@@ -266,8 +263,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
-				
-				
+
 			}
 			ps.close();
 			rs.close();
@@ -275,7 +271,7 @@ public class JDBCModuloDAO implements ModuloDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar pessoas em JDBC pessoaDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -283,10 +279,10 @@ public class JDBCModuloDAO implements ModuloDAO {
 			}
 		}
 
-		
 	}
+
 	@Override
-	public void associarUsuarioModulo(int idUsuario, int idModulo ){
+	public void associarUsuarioModulo(int idUsuario, int idModulo) {
 		try {
 			String SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo) VALUES (?, ?)";
 
@@ -299,23 +295,21 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			ps.executeUpdate();
 			ps.close();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
-	
+
 	@Override
-	public void associarPerfilModulo (int idPerfil, int idModulo){
+	public void associarPerfilModulo(int idPerfil, int idModulo) {
 		try {
 			String SQL = "INSERT INTO perfil_modulo(id_perfil, id_modulo) VALUES (?, ?)";
 
@@ -328,12 +322,11 @@ public class JDBCModuloDAO implements ModuloDAO {
 
 			ps.executeUpdate();
 			ps.close();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO, Erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -349,22 +342,23 @@ public class JDBCModuloDAO implements ModuloDAO {
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 			ResultSet rs = ps.executeQuery();
-			List<Modulo> modulos = new ArrayList<Modulo>(); 
+			List<Modulo> modulos = new ArrayList<Modulo>();
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-				modulos.add(modulo);								
+				modulos.add(modulo);
 			}
 			ps.close();
 			rs.close();
 			return modulos;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException(
+					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -374,28 +368,51 @@ public class JDBCModuloDAO implements ModuloDAO {
 	}
 
 	@Override
-	public List<Modulo> listarAssociadosParaPessoa(Pessoa pessoa) {		
+	public List<Modulo> listarAssociadosParaPessoa(Pessoa pessoa) {
 		try {
 			String SQL = "SELECT * FROM modulo AS m, usuario_modulo AS um WHERE m.id_modulo = um.id_modulo AND um.id_usuario = ?;";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 			ResultSet rs = ps.executeQuery();
-			List<Modulo> modulos = new ArrayList<Modulo>(); 
+			List<Modulo> modulos = new ArrayList<Modulo>();
 			while (rs.next()) {
 				Modulo modulo = new Modulo();
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-				modulos.add(modulo);								
+				modulos.add(modulo);
 			}
 			ps.close();
 			rs.close();
 			return modulos;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: "+e.getMessage());
-		}finally {
+			throw new RuntimeException(
+					"Falha ao buscar módulos disponíveis para pessoa em JDBCModuloDAO, Erro: " + e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void desassociarUsuarioModulo(int idUsuario, int idModulo) {
+		try {
+			String SQL = "DELETE FROM usuario_modulo WHERE id_usuario = ? AND  id_modulo = ?";
+			PreparedStatement ps;
+			ps = connection.prepareStatement(SQL);
+			ps.setInt(1, idUsuario);
+			ps.setInt(2, idModulo);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {

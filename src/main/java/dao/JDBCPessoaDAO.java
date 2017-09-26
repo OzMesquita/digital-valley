@@ -147,7 +147,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
-	
+
 	@Override
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		Pessoa pessoa = new Pessoa();
@@ -163,7 +163,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			ResultSet rs = ps.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setCpf(rs.getString("cpf"));
@@ -173,7 +173,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 				pessoa.getUsuario().setPessoa(pessoa);
-				
+
 			}
 			ps.close();
 			rs.close();
@@ -190,7 +190,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 		}
 
 	}
-	
+
 	@Override
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
 		Pessoa pessoa = new Pessoa();
@@ -202,10 +202,10 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, siape);
-			ps.setString(2,cpf);
+			ps.setString(2, cpf);
 
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				usuario = new Usuario();
 				pessoa.setId(rs.getInt("id_pessoa_usuario"));
 				pessoa.setNome(rs.getString("nome"));
@@ -216,7 +216,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
 				usuario.setPessoa(pessoa);
-				
+
 			}
 			ps.close();
 			rs.close();
@@ -224,8 +224,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " +e.getMessage());
-		}finally {
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -453,7 +453,7 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			}
 		}
 	}
-	
+
 	@Override
 	public List<Pessoa> buscarPorNivel(int nivel, int inicio, int fim) {
 		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
@@ -461,8 +461,8 @@ public class JDBCPessoaDAO implements PessoaDAO {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, nivel);
 			ps.setInt(2, fim - inicio);
-			ps.setInt(3, inicio) ;
-			ResultSet rs = ps.executeQuery();			
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 			while (rs.next()) {
 				Pessoa pessoa = new Pessoa();
@@ -527,9 +527,76 @@ public class JDBCPessoaDAO implements PessoaDAO {
 	
 	@Override
 	public Integer getQuantidadePorNivel(int nivel) {
-		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nivel = " + nivel;
+		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nivel = ?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, nivel);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("quantidade");
+			} else {
+				ps.close();
+				rs.close();
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public List<Pessoa> buscarPorNomeENivel(String nome, int nivel, int inicio, int fim) {
+		String sql = "SELECT * FROM pessoa_usuario WHERE nivel = ? AND nome LIKE ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, nivel);
+			ps.setString(2, nome+"%");
+			ps.setInt(3, fim - inicio);
+			ps.setInt(4, inicio);
+			ResultSet rs = ps.executeQuery();
+			List<Pessoa> pessoas = new ArrayList<Pessoa>();
+			while (rs.next()) {
+				Pessoa pessoa = new Pessoa();
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				pessoas.add(pessoa);
+			}
+			ps.close();
+			rs.close();
+			return pessoas;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public Integer getQuantidadePorNomeENivel(String nome, int nivel) {
+		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE nome LIKE '?%' nivel = ?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setString(1, nome);
+			ps.setInt(2, nivel);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt("quantidade");
