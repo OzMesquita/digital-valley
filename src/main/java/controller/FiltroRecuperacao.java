@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.PessoaDAO;
-import model.EnumNivel;
 import model.Pessoa;
-import model.Usuario;
 import util.DAOFactory;
 
 public class FiltroRecuperacao implements Filter {

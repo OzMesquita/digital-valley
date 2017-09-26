@@ -4,17 +4,6 @@
 <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
 <script src="../visu/js/metisMenu.min.js"></script>
 <!--left-fixed -navigation-->
-<<<<<<< HEAD
-<div class=" sidebar" role="navigation">
-	<div class="navbar-collapse">
-		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left"
-			id="cbp-spmenu-s1">
-			<ul class="nav" id="side-menu">
-				<li><a href="<%=Constantes.APP_URL %>/view/telaInicial.jsp"
-					class="active"><i class="fa fa-home nav_icon"></i>Inicio</a></li>
-				<%=u.getNivel().toString() %>
-				<% if(u.getNivel().equals(EnumNivel.ADMINISTRADOR)){%>
-=======
 		<div class=" sidebar" role="navigation">
                     <div class="navbar-collapse">
                         <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
@@ -36,7 +25,6 @@
                                         </li>
                                     </ul>
                                 </li>
->>>>>>> 1dd64beebb6327c05bfd1fd538c7c0d1670b1662
 
 				<li><a href="#"><i class="fa fa-cogs nav_icon"></i>Importar
 						matrículas <span class="fa arrow"></span></a>
