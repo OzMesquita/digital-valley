@@ -12,7 +12,7 @@ public class Constantes {
 	public final static String APP_CSS_URL;
 	public final static String APP_IMG_USER_DIR;
 	public final static Integer NUMBER_OF_ROWS_PER_PAGE;	
-	
+	public final static String SESSION_MSG;
 	private Constantes() {
 		//
 	}
@@ -26,6 +26,7 @@ public class Constantes {
 		APP_IMG_USER_DIR = APP_URL + "/img";
 		APP_CSS_URL = APP_ASSETS_URL + "/css";
 		NUMBER_OF_ROWS_PER_PAGE = 20;
+		SESSION_MSG = "msg";
 	}
 
 }

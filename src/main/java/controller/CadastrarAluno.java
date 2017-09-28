@@ -13,6 +13,7 @@ import dao.DAOFactory;
 import model.Aluno;
 import model.Curso;
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 public class CadastrarAluno extends HttpServlet {
@@ -61,14 +62,14 @@ public class CadastrarAluno extends HttpServlet {
 
 				pagina = "../login.jsp";
 			}else{
-                request.getSession().setAttribute("msg", "senhas não conferem.");
+                session.setAttribute(Constantes.SESSION_MSG, "senhas não conferem.");
 				pagina="cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 			
 		} catch (Exception e) {
 		
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

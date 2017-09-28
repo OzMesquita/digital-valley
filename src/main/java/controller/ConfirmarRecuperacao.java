@@ -5,8 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -26,6 +28,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
             throws ServletException, IOException {
     	Usuario usuario = new Usuario();
     	String pagina = "confirmaRecuperacao.jsp?erroRecuperação=1";
+    	HttpSession session = request.getSession();
         try{
             String matricula = request.getParameter("matricula");
             String siape = request.getParameter("siape");
@@ -43,15 +46,15 @@ public class ConfirmarRecuperacao extends HttpServlet {
             }else if(!siape.equals("")){
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
             }else{
-            	request.getSession().setAttribute("msg","CPF não pode ser vazio.");
+            	session.setAttribute(Constantes.SESSION_MSG,"CPF não pode ser vazio.");
             }
           
            
         }catch (Exception e) {
-			request.getSession().setAttribute("msg", "falha ao buscar conta.");
+        	session.setAttribute(Constantes.SESSION_MSG, "Falha ao buscar a conta");
 		}  
         if (usuario != null){
-        	request.getSession().setAttribute("usuario",usuario);
+        	session.setAttribute("usuario",usuario);
         	pagina = util.Constantes.APP_URL+"/../view/editarUsuario.jsp";
         }
         

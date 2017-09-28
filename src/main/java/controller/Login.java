@@ -13,6 +13,7 @@ import dao.DAOFactory;
 import dao.UsuarioDAO;
 import model.Modulo;
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -60,8 +61,8 @@ public class Login extends HttpServlet {
 		
 			
 		} catch (Exception e) {
-			session.setAttribute("msg","Usuários e/ou senha inválidos");
-			session.setAttribute("excecao",e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG,"Usuários e/ou senha inválidos");
+			
 			
 		}
 			response.sendRedirect(pagina);
