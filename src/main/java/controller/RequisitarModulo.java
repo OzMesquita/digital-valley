@@ -32,7 +32,7 @@ public class RequisitarModulo extends HttpServlet{
 		int status = Facade.executeHTTPRequestToModule(url, json);
 		Usuario userToken = Facade.buscarPorLogin(user.getLogin());
 		if(status != 200){
-			session.setAttribute(Constantes.SESSION_MSG, "Acesso negado!");
+			session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
 			response.sendRedirect("/Controle_de_Acesso/login.jsp");
 		}else{
 			response.sendRedirect(request.getParameter("url")+"telaInicial.jsp"+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());

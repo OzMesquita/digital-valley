@@ -65,14 +65,14 @@ public class VerificarCadastro extends HttpServlet {
 						
 						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 					}else{
-						session.setAttribute(Constantes.SESSION_MSG, "Pre cadastro não identificado");
+						session.setAttribute(Constantes.getSessionMsg(), "Pre cadastro não identificado");
 						throw new Exception("msg, Pre cadastro não identificado");
 					}
 				}
 				
 			}
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 
 		response.sendRedirect(pagina);

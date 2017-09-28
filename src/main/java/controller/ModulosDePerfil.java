@@ -30,10 +30,10 @@ public class ModulosDePerfil extends HttpServlet {
 			request.setAttribute("modulosDoPerfil", DAOFactory.criarModuloDAO().getModulosDePerfil(perfil));
 			request.setAttribute("modulos", DAOFactory.criarModuloDAO().getModulosDisponiveisParaPerfil(perfil));
 			request.setAttribute("perfil", perfil);
-			request.setAttribute("url", Constantes.ADM_URL);
+			request.setAttribute("url", Constantes.getAdmUrl());
 			request.getRequestDispatcher("modulosDePerfil.jsp").forward(request, response);
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 	}
 
