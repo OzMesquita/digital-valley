@@ -2,19 +2,17 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
-import dao.PerfilDAO;
 import dao.PessoaDAO;
 import model.EnumNivel;
-import model.Modulo;
 import model.Perfil;
 import model.Pessoa;
 import util.Constantes;
@@ -42,30 +40,37 @@ public class AtribuirModulos extends HttpServlet {
 		Integer nivelComum = EnumNivel.COMUM.getValorNivel();
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
 		Integer quantidadeDePessoasDeNivelComum;
+		HttpSession session = request.getSession();
 		List<Pessoa> pessoas;
-		// se pesquisa foi feita
-		if (nomePessoa != null) {
-			quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelComum);
+		try {
+
+			// se pesquisa foi feita
+			if (nomePessoa != null) {
+				quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelComum);
+				pessoaDAO = DAOFactory.criarPessoaDAO();
+				pessoas = pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelComum, inicio, fim);
+			} else {
+				quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
+				pessoaDAO = DAOFactory.criarPessoaDAO();
+				pessoas = pessoaDAO.buscarPorNivel(nivelComum, inicio, fim);
+			}
+			// listagem de pessoas
 			pessoaDAO = DAOFactory.criarPessoaDAO();
-			pessoas = pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelComum, inicio, fim);			
-		} else {
-			quantidadeDePessoasDeNivelComum = pessoaDAO.getQuantidadePorNivel(nivelComum);
-			pessoaDAO = DAOFactory.criarPessoaDAO();
-			pessoas = pessoaDAO.buscarPorNivel(nivelComum, inicio, fim);
+			// listagem de perfis
+			List<Perfil> perfis = DAOFactory.criarPerfilDAO().Listar();
+			// enviar dados
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("atribuicaoDeModulos.jsp");
+			request.setAttribute("url", Constantes.ADM_URL);
+			request.setAttribute("pessoas", pessoas);
+			request.setAttribute("perfis", perfis);
+			request.setAttribute("quantidadeDePaginas", quantidadeDePessoasDeNivelComum / quantidadePorPagina);
+			request.setAttribute("paginaAtual", paginaAtual);
+			request.setAttribute("nomePessoa", nomePessoa);
+			requestDispatcher.forward(request, response);
+		} catch (Exception e) {
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
-		// listagem de pessoas
-		pessoaDAO = DAOFactory.criarPessoaDAO();
-		//listagem de perfis
-		List<Perfil> perfis = DAOFactory.criarPerfilDAO().Listar();
-		// enviar dados
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("atribuicaoDeModulos.jsp");
-		request.setAttribute("url", Constantes.ADM_URL);
-		request.setAttribute("pessoas", pessoas);
-		request.setAttribute("perfis", perfis);
-		request.setAttribute("quantidadeDePaginas", quantidadeDePessoasDeNivelComum / quantidadePorPagina);
-		request.setAttribute("paginaAtual", paginaAtual);
-		request.setAttribute("nomePessoa", nomePessoa);
-		requestDispatcher.forward(request, response);
+
 	}
 
 }

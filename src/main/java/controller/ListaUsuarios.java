@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import model.Pessoa;
 import model.Aluno;
 import model.Servidor;
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -73,7 +74,7 @@ public class ListaUsuarios extends HttpServlet {
 	                }
 	            }
             }catch (Exception e) {
-            	 session.setAttribute("msg", "Não foi possivel listar os usuários");
+            	 session.setAttribute(Constantes.SESSION_MSG, "Não foi possivel listar os usuários");
 			}
             finally{
             

@@ -14,12 +14,12 @@
 
 		String url = Constantes.ADM_URL;
 	%>
-	<h1>Módulos associados</h1>
+	<h1>MÃ³dulos associados</h1>
 	<table>
 		<thead>
-			<th>Título</th>
+			<th>TÃ­tulo</th>
 			<th>URL</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%
@@ -42,12 +42,12 @@
 			%>
 		</tbody>
 	</table>
-	<h1>Módulos disponíveis</h1>
+	<h1>MÃ³dulos disponÃ­veis</h1>
 	<table>
 		<thead>
-			<th>Título</th>
+			<th>TÃ­tulo</th>
 			<th>URL</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%

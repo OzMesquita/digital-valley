@@ -15,9 +15,9 @@
 	<h1>Modulos Associados</h1>
 	<table>
 		<thead>
-			<th>Título</th>
+			<th>TÃ­tulo</th>
 			<th>URL</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%
@@ -43,9 +43,9 @@
 	<h1>Modulos Desassociados</h1>
 	<table>
 		<thead>
-			<th>Título</th>
+			<th>TÃ­tulo</th>
 			<th>URL</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%

@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import model.Aluno;
-import model.EnumCurso;
 
 public interface AlunoDAO{
 

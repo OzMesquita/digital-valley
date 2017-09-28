@@ -2,10 +2,10 @@ package dao;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import model.Perfil;
 
 public class PerfilDAOTest {

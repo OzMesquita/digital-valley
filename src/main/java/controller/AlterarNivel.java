@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Pessoa;
 import model.Usuario;
+import util.Constantes;
 
 public class AlterarNivel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +18,7 @@ public class AlterarNivel extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer nivel= Integer.valueOf(request.getParameter("nivel"));
-		String pagina = "/Controle_de_Acesso/view/adm/editarNivelDoUsuario.jsp";
+		String pagina = Constantes.ADM_URL+"/editarNivelDoUsuario.jsp";
 		HttpSession session = request.getSession();
 
 		try {
@@ -29,7 +30,7 @@ public class AlterarNivel extends HttpServlet {
 			pagina = util.Constantes.ADM_URL+"/editarNivelDoUsuario.jsp?sucessoEditar=1";
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
 
 		

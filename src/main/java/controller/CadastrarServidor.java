@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import model.EnumCargo;
 import model.Servidor;
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 public class CadastrarServidor extends HttpServlet {
@@ -50,14 +51,14 @@ public class CadastrarServidor extends HttpServlet {
 				usuario.setPessoa(servidor);
 
 				Facade.cadastrarServidor(usuario, servidor);
-				session.setAttribute("excecao", "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
+				session.setAttribute(Constantes.SESSION_MSG, "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
 				pagina = "../login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

@@ -27,7 +27,7 @@ public class AssociarModuloPerfil extends HttpServlet {
 			DAOFactory.criarModuloDAO().associarPerfilModulo(perfilId, moduloId);
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
 		
 		response.sendRedirect(Constantes.ADM_URL+"/perfil_modulos?perfil_id="+perfilId);

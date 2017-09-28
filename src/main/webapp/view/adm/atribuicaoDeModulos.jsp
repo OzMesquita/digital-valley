@@ -28,7 +28,7 @@
 			<th>CPF</th>
 			<th>E-mail</th>
 			<th>Data Nascimento</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%
@@ -41,7 +41,7 @@
 				<td><%=pessoa.getDataNascimento()%></td>
 				<td><a
 					href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
-						módulos</a></td>
+						mÃ³dulos</a></td>
 			</tr>
 			<%
 				}
@@ -84,7 +84,7 @@
 	<table>
 		<thead>
 			<th>Nome</th>
-			<th>Opções</th>
+			<th>OpÃ§Ãµes</th>
 		</thead>
 		<tbody>
 			<%
@@ -94,7 +94,7 @@
 				<td><%=perfil.getNome()%></td>
 				<td><a
 					href="<%=url%>/perfil_modulos?perfil_id=<%=perfil.getId()%>">Gerenciar
-						módulos</a></td>
+						mÃ³dulos</a></td>
 			</tr>
 			<%
 				}
