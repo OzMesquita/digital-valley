@@ -1,0 +1,21 @@
+<%@page import="util.Constantes"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<footer>
+    <div id="logos">
+        <a href="http://n2s.russas.ufc.br" id="n2s"  target="_blank"><img id="logo-n2s" src="<%=Constantes.APP_IMG_URL %>/n2s-logo.png" alt="N2S"></a>
+        <a href="http://www.campusrussas.ufc.br" id="ufc"  target="_blank"><img id="logo-ufc" src="<%=Constantes.APP_IMG_URL %>/brasao-ufc.png" alt="UFC"></a>
+    </div>
+</footer>
+
+</body>
+
+
+    <script src="<%=Constantes.APP_JS_URL%>/jquery-3.2.1.min.js"></script>    
+    <script src="<%=Constantes.APP_JS_URL%>/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	var perfil = $( "#perfil, #link-usuarios,#link-modulos" );
+		perfil.on( "click", function( event ) {
+			perfil.css('background-color', 'steelblue');
+		});
+    </script>
+</html>
