@@ -18,7 +18,7 @@ public abstract class JDBCDAO {
 	}
 
 	protected void open() {
-		this.connection = util.ConnectionFactory.getConnection();
+		this.connection = dao.JDBCConnectionFactory.getConnection();
 	}
 	
 	protected void close() {

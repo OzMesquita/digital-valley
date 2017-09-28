@@ -1,11 +1,8 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import util.ConnectionFactory;
 
 public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAlunoDAO{
 
