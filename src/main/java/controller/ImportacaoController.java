@@ -44,7 +44,7 @@ public class ImportacaoController extends HttpServlet {
 			pagina = "importarAlunos.jsp?sucesso=1";
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 			
 		}		
 		

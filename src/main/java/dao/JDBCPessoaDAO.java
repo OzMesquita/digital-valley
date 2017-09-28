@@ -50,14 +50,14 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	public void editar(Pessoa pessoa) {
 		super.open();
 		try {
-			String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ? WHERE id_pessoa_usuario = ?";
+			String SQL = "UPDATE pessoa_usuario SET nome=?, cpf=?, email=?, data_nascimento = ?, imagem=? WHERE id_pessoa_usuario = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, pessoa.getNome());
 			ps.setString(2, pessoa.getCpf());
 			ps.setString(3, pessoa.getEmail());
 			ps.setDate(4, Date.valueOf(pessoa.getDataNascimento()));
-			ps.setInt(5, pessoa.getId());
-
+			ps.setString(5, pessoa.getImagem());
+			ps.setInt(6, pessoa.getId());
 			ps.executeUpdate();
 			ps.close();
 
@@ -111,6 +111,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			pessoa.setCpf(rs.getString("cpf"));
 			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 			pessoa.setEmail(rs.getString("email"));
+			pessoa.setImagem(rs.getString("imagem"));
 			pessoa.getUsuario().setLogin(rs.getString("login"));
 			pessoa.getUsuario().setSenha(rs.getString("senha"));
 			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
@@ -153,6 +154,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
@@ -193,6 +195,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
@@ -233,6 +236,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
@@ -276,6 +280,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
@@ -312,6 +317,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
@@ -355,6 +361,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
@@ -396,6 +403,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
@@ -434,6 +442,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
@@ -524,6 +533,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.setCpf(rs.getString("cpf"));
 				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
 				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
 				pessoa.getUsuario().setLogin(rs.getString("login"));
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));

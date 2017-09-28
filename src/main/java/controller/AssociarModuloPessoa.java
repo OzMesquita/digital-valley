@@ -34,10 +34,10 @@ public class AssociarModuloPessoa extends HttpServlet {
 			DAOFactory.criarModuloDAO().associarUsuarioModulo(pessoaId, moduloId);
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		
-		response.sendRedirect(Constantes.ADM_URL+"/pessoa_modulos?pessoa_id="+pessoaId);
+		response.sendRedirect(Constantes.getAdmUrl()+"/pessoa_modulos?pessoa_id="+pessoaId);
 	}
 
 }

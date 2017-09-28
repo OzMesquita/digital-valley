@@ -46,7 +46,7 @@ public class Login extends HttpServlet {
 		
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG,"Usuários e/ou senha inválidos");
+			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
 			
 			
 		}

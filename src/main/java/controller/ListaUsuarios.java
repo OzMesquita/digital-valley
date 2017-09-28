@@ -74,7 +74,7 @@ public class ListaUsuarios extends HttpServlet {
 	                }
 	            }
             }catch (Exception e) {
-            	 session.setAttribute(Constantes.SESSION_MSG, "Não foi possivel listar os usuários");
+            	 session.setAttribute(Constantes.getSessionMsg(), "Não foi possivel listar os usuários");
 			}
             finally{
             

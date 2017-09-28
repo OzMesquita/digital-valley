@@ -40,7 +40,7 @@ public class ModulosDePessoa extends HttpServlet {
 		request.setAttribute("pessoa", DAOFactory.criarPessoaDAO().buscarPorId(pessoa_id));
 		rd.forward(request, response);
 		}catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		
 	}

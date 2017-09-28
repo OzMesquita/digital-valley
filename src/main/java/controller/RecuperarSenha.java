@@ -54,7 +54,7 @@ public class RecuperarSenha extends HttpServlet {
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
         }catch (Exception e) {
-        	session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+        	session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
         response.sendRedirect("recuperSenha.jsp");
         
