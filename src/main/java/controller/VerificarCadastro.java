@@ -13,6 +13,7 @@ import dao.DAOFactory;
 import dao.ServidorDAO;
 import model.Aluno;
 import model.Servidor;
+import util.Constantes;
 import util.Facade;
 
 public class VerificarCadastro extends HttpServlet {
@@ -40,10 +41,10 @@ public class VerificarCadastro extends HttpServlet {
 					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);
 					if(aluno != null){
-						System.out.println("cadastrado");
+						
 						throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 					}else{
-						System.out.println("nada");
+						
 						throw new Exception("Pre cadastro de aluno não identificado");
 					}
 				}
@@ -61,19 +62,17 @@ public class VerificarCadastro extends HttpServlet {
 					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 					Servidor servidor = sDAO.buscar(siape);
 					if(servidor != null){
-						System.out.println("cadastrado");
+						
 						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");
 					}else{
-						System.out.println("nada");
-						session.setAttribute("msg", "Pre cadastro não identificado");
+						session.setAttribute(Constantes.SESSION_MSG, "Pre cadastro não identificado");
 						throw new Exception("msg, Pre cadastro não identificado");
 					}
 				}
 				
 			}
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
-			System.out.println("excecao : " + e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
 
 		response.sendRedirect(pagina);

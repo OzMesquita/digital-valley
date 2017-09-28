@@ -5,8 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Pessoa;
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -31,6 +33,7 @@ public class RecuperarSenha extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	HttpSession session = request.getSession();
         try{
             String email = request.getParameter("email");
             System.out.println(email);
@@ -51,7 +54,7 @@ public class RecuperarSenha extends HttpServlet {
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
         }catch (Exception e) {
-			request.getSession().setAttribute("msg", e.getMessage());
+        	session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 		}
         response.sendRedirect("recuperSenha.jsp");
         

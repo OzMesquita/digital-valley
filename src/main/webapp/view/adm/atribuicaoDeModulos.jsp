@@ -4,11 +4,6 @@
     Author     : Usuario
 --%>
 
-<%@page import="dao.ModuloDAO"%>
-<%@page import="dao.PessoaDAO"%>
-<%@page import="dao.JDBCModuloDAO"%>
-<%@page import="util.DAOFactory"%>
-<%@page import="dao.PerfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Perfil"%>

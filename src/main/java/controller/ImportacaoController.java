@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.Constantes;
+
 @MultipartConfig
 public class ImportacaoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +44,7 @@ public class ImportacaoController extends HttpServlet {
 			pagina = "importarAlunos.jsp?sucesso=1";
 			
 		} catch (Exception e) {
-			session.setAttribute("excecao", e.getMessage());
+			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
 			
 		}		
 		
