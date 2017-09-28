@@ -1,12 +1,3 @@
-<%-- 
-    Document   : atribuicaoDeModulos
-    Created on : 02/09/2017, 18:19:47
-    Author     : Usuario
---%>
-
-
-<%@page import="dao.PerfilDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Perfil"%>
 <%@page import="java.util.List"%>
@@ -14,21 +5,13 @@
 <%@page import="model.Modulo"%>
 <%@page import="model.EnumNivel"%>
 <%@page import="util.Constantes"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="../visu/css/wecss.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Modulos de uma pessoa</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
-<body class="cbp-spmenu-push">
+
+<div class="cbp-spmenu-push">
 	<%
 		Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
 		List<Modulo> modulosDisponiveis = (List<Modulo>) request.getAttribute("modulosDisponiveis");
 		List<Modulo> modulosAssociados = (List<Modulo>) request.getAttribute("modulosAssociados");
-		
+
 		String url = Constantes.ADM_URL;
 	%>
 	<h1>Módulos associados</h1>
@@ -87,6 +70,4 @@
 			%>
 		</tbody>
 	</table>
-	<jsp:include page="../include/footer.jsp"></jsp:include>
-</body>
-</html>
+</div>
