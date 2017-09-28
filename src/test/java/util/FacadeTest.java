@@ -7,7 +7,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import model.Aluno;
-import model.Curso;
 import model.EnumNivel;
 import model.Modulo;
 import model.Perfil;

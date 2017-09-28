@@ -1,11 +1,13 @@
-package util;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionFactory {
+import util.Facade;
 
-	private ConnectionFactory() {
+public class JDBCConnectionFactory {
+
+	private JDBCConnectionFactory() {
 		//
 	}
 
@@ -15,7 +17,7 @@ public class ConnectionFactory {
 			Class.forName("org.postgresql.Driver");
 			return DriverManager.getConnection(bd[0], bd[1], bd[2]);
 		} catch (Exception e) {
-			throw new RuntimeException("falha ao conectar no banco!");
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 

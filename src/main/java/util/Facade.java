@@ -17,6 +17,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.harium.dotenv.Env;
+
 import dao.AlunoDAO;
 import dao.DAOFactory;
 import dao.ModuloDAO;
@@ -136,7 +138,7 @@ public class Facade {
 	public static String[] lerArquivoBancoDeDados() {
 		String[] bd = new String[3];
 		try {
-			FileReader arquivo = new FileReader("C:\\n2s\\bd.txt");
+			FileReader arquivo = new FileReader(Env.get("DATABASE_CONF_DIR"));
 			BufferedReader reader = new BufferedReader(arquivo);
 			try {
 				bd[0] = reader.readLine();
