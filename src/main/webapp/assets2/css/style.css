@@ -26,6 +26,14 @@ header{
     float: left;
 }
 
+.btn-importar{
+	color: white;
+	background-color: steelblue;
+	border: none;
+	width: 90px;
+	height: 40px;
+}
+
 #menu a:hover{
     background-color: rgb(100,160,210);
     color: black;
@@ -44,6 +52,12 @@ header ul li {
     float: left;
 }
 
+#img-modulos{
+	border-radius: 70px;
+	width: 110px;
+	height: 110px;
+}
+
 #brand,#link-importar-matriculas,#link-modulos,#link-usuarios,#perfil,#ver-perfil,#sair,#atribuir-modulos,#cadastrar-modulo,#listar-usuarios,#importar-alunos,#importar-servidores {
 	color: white;	
 	font-family: 'Righteous', cursive;
@@ -52,8 +66,8 @@ header ul li {
 					
 footer{
     background-color: steelblue;
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: 50px;
 }

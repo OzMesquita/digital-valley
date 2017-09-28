@@ -46,16 +46,16 @@ public class ConfirmarRecuperacao extends HttpServlet {
             }else if(!siape.equals("")){
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
             }else{
-            	session.setAttribute(Constantes.SESSION_MSG,"CPF não pode ser vazio.");
+            	session.setAttribute(Constantes.getSessionMsg(),"CPF não pode ser vazio.");
             }
           
            
         }catch (Exception e) {
-        	session.setAttribute(Constantes.SESSION_MSG, "Falha ao buscar a conta");
+        	session.setAttribute(Constantes.getSessionMsg(), "Falha ao buscar a conta");
 		}  
         if (usuario != null){
         	session.setAttribute("usuario",usuario);
-        	pagina = util.Constantes.APP_URL+"/../view/editarUsuario.jsp";
+        	pagina = util.Constantes.getAppUrl()+"/../view/editarUsuario.jsp";
         }
         
         response.sendRedirect(pagina);

@@ -51,14 +51,14 @@ public class CadastrarServidor extends HttpServlet {
 				usuario.setPessoa(servidor);
 
 				Facade.cadastrarServidor(usuario, servidor);
-				session.setAttribute(Constantes.SESSION_MSG, "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
+				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
 				pagina = "../login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

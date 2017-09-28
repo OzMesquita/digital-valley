@@ -16,11 +16,6 @@ import model.EnumNivel;
 import model.Usuario;
 
 public class AdmFiltro implements Filter {
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -30,13 +25,8 @@ public class AdmFiltro implements Filter {
 		if (usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect(util.Constantes.APP_URL+"/view/telaInicial.jsp?erroPermissao=1");
+			((HttpServletResponse) response).sendRedirect(util.Constantes.getAppUrl()+"/view/telaInicial.jsp?erroPermissao=1");
 		}
 	}
 
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-
-	}
 }

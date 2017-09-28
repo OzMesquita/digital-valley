@@ -29,7 +29,7 @@ public class AutenticacaoFiltro implements Filter {
 		if (session.getAttribute("usuario") != null) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect(Constantes.APP_URL+"/login.jsp?notlog=1");
+			((HttpServletResponse) response).sendRedirect(Constantes.getAppUrl()+"/login.jsp?notlog=1");
 		}
 		
 	}

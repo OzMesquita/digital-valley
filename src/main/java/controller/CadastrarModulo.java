@@ -47,10 +47,10 @@ public class CadastrarModulo extends HttpServlet {
 			}
 			
 			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
-			session.setAttribute(Constantes.SESSION_MSG, "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
+			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

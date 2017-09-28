@@ -32,8 +32,8 @@ public class AtribuirModulos extends HttpServlet {
 		// paginacao de pessoas
 		Integer paginaAtual = request.getParameter("pagina") != null ? Integer.valueOf(request.getParameter("pagina"))
 				: 1;
-		Integer fim = Constantes.NUMBER_OF_ROWS_PER_PAGE * paginaAtual;
-		Integer inicio = fim - Constantes.NUMBER_OF_ROWS_PER_PAGE;
+		Integer fim = Constantes.getNumberOfRowsPerPage() * paginaAtual;
+		Integer inicio = fim - Constantes.getNumberOfRowsPerPage();
 		Integer quantidadePorPagina = fim - inicio;
 		// pegar dados de pessoas
 		String nomePessoa = (String) request.getParameter("nome");
@@ -60,7 +60,7 @@ public class AtribuirModulos extends HttpServlet {
 			List<Perfil> perfis = DAOFactory.criarPerfilDAO().Listar();
 			// enviar dados
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("atribuicaoDeModulos.jsp");
-			request.setAttribute("url", Constantes.ADM_URL);
+			request.setAttribute("url", Constantes.getAdmUrl());
 			request.setAttribute("pessoas", pessoas);
 			request.setAttribute("perfis", perfis);
 			request.setAttribute("quantidadeDePaginas", quantidadeDePessoasDeNivelComum / quantidadePorPagina);
@@ -68,7 +68,7 @@ public class AtribuirModulos extends HttpServlet {
 			request.setAttribute("nomePessoa", nomePessoa);
 			requestDispatcher.forward(request, response);
 		} catch (Exception e) {
-			session.setAttribute(Constantes.SESSION_MSG, e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 
 	}
