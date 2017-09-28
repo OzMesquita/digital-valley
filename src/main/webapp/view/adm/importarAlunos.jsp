@@ -36,7 +36,7 @@
 										</div>
 									</div>
 								</div>
-								<input type="submit" id="salva" value="Importar"
+								<input type="submit" class="btn-importar" value="Importar"
 									title="Importar arquivo">
 
 							</form>

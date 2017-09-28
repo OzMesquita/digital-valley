@@ -6,10 +6,9 @@
 	<% ArrayList<Modulo> modulos = (ArrayList<Modulo>) session.getAttribute("modulos");%>
 
 		<div id="page-wrapper">
-			<div class="container-fluid" style="min-height: 400px">
-
+			
 				<div class="col-md-12">
-					<div class="card">
+					
 						<div class="header">
 							<h4 class="title" style="text-align: center;">Módulos do
 								Sistema</h4>
@@ -21,11 +20,11 @@
 								<%  if( !modulos.isEmpty()){
                                             	for(Modulo m: modulos){
                                          %>
-								<div id="borda"
+								<div
 									class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
 									<div id="centro" class="font-icon-detail"
 										style="text-align: center;">
-										<img id="img_m" src="<%=m.getImagem()%>" /><br>
+										<img id="img-modulos" src="<%=m.getImagem()%>" /><br>
 										<form action="requisitarModulo" method="post">
 											<input type="hidden" name="url" value="<%= m.getUrl()%>">
 											<input type="submit" id="reqisita" value="Requisitar"
@@ -43,9 +42,6 @@
 							</div>
 
 						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>
