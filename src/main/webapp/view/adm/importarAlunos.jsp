@@ -15,9 +15,9 @@
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
-											<label>Curso</label> <select class="form-control"
+											<label>Curso</label> <select required="true" class="form-control"
 												name="curso">
-												<option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
+												<option disabled="disabled" selected="selected" value="0" >Selecione um curso</option>
 												<option value="1"> Ciência da Computação</option>
 												<option value="2"> Engenharia Civil</option>
 												<option value="3"> Engenharia de Produção</option>
@@ -32,7 +32,7 @@
 										<div class="form-group">
 											<label>Matriculas</label><small style="color: gray;">
 											</small><br>
-											<textarea name="matriculas" rows="10" cols="50"></textarea>
+											<textarea name="matriculas" required="true" rows="10" cols="50"></textarea>
 										</div>
 									</div>
 								</div>

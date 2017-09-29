@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -69,6 +70,16 @@ public class Facade {
 		return token.toString();
 	}
 
+	public static String getdDiretorioPerfilUsuario(int id) {
+		Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorId(id);
+		String imagem = pessoa.getImagem();
+		if (imagem != null && !imagem.trim().isEmpty()) {
+			return Constantes.getUSER_PROFILE_IMAGES_DIR()+File.separator+imagem;	
+		}else {
+			return Constantes.getUSER_PROFILE_NONE_IMAGE_DIR();
+		}
+	} 
+	
 	public static void cadastrarPessoa(Pessoa pessoa, Usuario usuario) {
 
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
@@ -325,6 +336,10 @@ public class Facade {
 	public static List<Servidor> buscarServidorPorNome(String nome) {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		return sDAO.buscarPorNome(nome);
+	}
+
+	public static String getdDiretorioImagemModulo(int id) {		
+		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
 	}
 
 }

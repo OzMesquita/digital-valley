@@ -23,6 +23,7 @@ public class ImportacaoController extends HttpServlet {
 		
 		int curso = Integer.valueOf(request.getParameter("curso"));
 		String dados = request.getParameter("matriculas");
+		dados = dados + "\n";
 		String nome, matricula;
 		String aux;
 		String pagina;
@@ -45,6 +46,7 @@ public class ImportacaoController extends HttpServlet {
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+			System.out.println(dados);
 			
 		}		
 		

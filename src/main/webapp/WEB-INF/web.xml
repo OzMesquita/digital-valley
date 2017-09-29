@@ -123,6 +123,16 @@
 		<servlet-name>DesassociarModuloPerfil</servlet-name>
 		<servlet-class>controller.DesassociarModuloPerfil</servlet-class>
 	</servlet>
+	<!-- 22 -->
+	<servlet>
+		<servlet-name>ImagemPerfilUsuario</servlet-name>
+		<servlet-class>controller.ImagemPerfilUsuario</servlet-class>
+	</servlet>
+	<!-- 23 -->
+	<servlet>
+		<servlet-name>ImagemModulo</servlet-name>
+		<servlet-class>controller.ImagemModulo</servlet-class>
+	</servlet>
 
 	<!-- 1 -->
 	<servlet-mapping>
@@ -228,7 +238,18 @@
 	<servlet-mapping>
 		<servlet-name>DesassociarModuloPerfil</servlet-name>
 		<url-pattern>/view/adm/desassociar_modulo_perfil</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
+	<!-- 23 -->	
+	<servlet-mapping>
+		<servlet-name>ImagemPerfilUsuario</servlet-name>
+		<url-pattern>/view/imagem_perfil_usuario</url-pattern>
+	</servlet-mapping>
+	<!-- 23 -->
+	<servlet-mapping>
+		<servlet-name>ImagemModulo</servlet-name>
+		<url-pattern>/view/imagem_modulo</url-pattern>
+	</servlet-mapping>
+	
 	
 	<!-- FILTROS -->
 	<!-- 1 -->

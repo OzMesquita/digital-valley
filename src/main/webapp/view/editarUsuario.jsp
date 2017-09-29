@@ -1,3 +1,4 @@
+<%@page import="model.Aluno"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 
@@ -31,7 +32,7 @@
 											<div class="form-group">
 												<label>Código Interno</label> <input type="text"
 													class="form-control" disabled
-													value="<%= usuario.getPessoa().getId()%>">
+													value="<%= usuario.getPessoa() instanceof Aluno ? usuario.getPessoa().getId():usuario.getPessoa().getId()%>">
 											</div>
 										</div>
 										<div class="col-md-8">
