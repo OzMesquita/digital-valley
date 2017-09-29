@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.Constantes;
 import util.Facade;
 
 public class ImportarServidorController  extends HttpServlet {
@@ -29,7 +30,7 @@ public class ImportarServidorController  extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		
 		response.sendRedirect(pagina);

@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import util.Constantes;
@@ -21,8 +22,14 @@ public class DesassociarModuloPerfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer perfilId = Integer.valueOf(request.getParameter("perfil_id"));
 		Integer moduloId = Integer.valueOf(request.getParameter("modulo_id"));
-		DAOFactory.criarModuloDAO().desassociarPerfilModulo(perfilId, moduloId);
-		response.sendRedirect(Constantes.ADM_URL+"/perfil_modulos?perfil_id="+perfilId);
+		HttpSession session = request.getSession();
+		try {
+			DAOFactory.criarModuloDAO().desassociarPerfilModulo(perfilId, moduloId);
+		} catch (Exception e) {
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+		}
+		
+		response.sendRedirect(Constantes.getAdmUrl()+"/perfil_modulos?perfil_id="+perfilId);
 	}
 
 }

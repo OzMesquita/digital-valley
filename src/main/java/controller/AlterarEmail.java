@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Pessoa;
 import model.Usuario;
+import util.Constantes;
 
 public class AlterarEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +28,7 @@ public class AlterarEmail extends HttpServlet {
 			util.Facade.editarPessoa(pessoa, usuario);
 			pagina = "telaInicial.jsp?sucessoEditar=1";
 		} catch (Exception e) {
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 
 		

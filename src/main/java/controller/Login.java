@@ -13,6 +13,7 @@ import dao.DAOFactory;
 import dao.UsuarioDAO;
 import model.Modulo;
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -21,22 +22,7 @@ import util.Facade;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public Login() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -60,8 +46,8 @@ public class Login extends HttpServlet {
 		
 			
 		} catch (Exception e) {
-			session.setAttribute("msg","Usuários e/ou senha inválidos");
-			session.setAttribute("excecao",e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
+			
 			
 		}
 			response.sendRedirect(pagina);

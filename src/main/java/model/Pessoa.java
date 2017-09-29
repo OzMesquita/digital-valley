@@ -12,6 +12,7 @@ public class Pessoa implements Serializable {
 	private String nome;
 	private String cpf;
 	private String email;
+	private String imagem;
 	private Usuario usuario;
 	private LocalDate dataNascimento;
 
@@ -38,6 +39,14 @@ public class Pessoa implements Serializable {
 		} else {
 			throw new IllegalArgumentException("Erro: O valor do id deve ser maior do que 0, valor informardo: " + id);
 		}
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 	public String getNome() {

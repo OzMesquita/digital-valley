@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Modulo;
 import model.Perfil;
+import util.Constantes;
 import util.Facade;
 
 public class CadastrarModulo extends HttpServlet {
@@ -46,10 +47,10 @@ public class CadastrarModulo extends HttpServlet {
 			}
 			
 			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
-			session.setAttribute("excecao", "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
+			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 			
 		} catch (Exception e) {
-			
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

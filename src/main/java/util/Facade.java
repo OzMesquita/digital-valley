@@ -135,8 +135,8 @@ public class Facade {
 
 	public static String[] lerArquivoBancoDeDados() {
 		String[] bd = new String[3];
-		try {
-			FileReader arquivo = new FileReader("C:\\n2s\\bd.txt");
+		try {			
+			FileReader arquivo = new FileReader(Constantes.getDatabaseConfDir());
 			BufferedReader reader = new BufferedReader(arquivo);
 			try {
 				bd[0] = reader.readLine();
@@ -160,7 +160,7 @@ public class Facade {
 	public static String[] lerArquivoEmail() {
 		String[] email = new String[2];
 		try {
-			FileReader arquivo = new FileReader("C:\\n2s\\email.txt");
+			FileReader arquivo = new FileReader(Constantes.getEmailConfDir());
 			BufferedReader reader = new BufferedReader(arquivo);
 			try {
 				email[0] = reader.readLine();
@@ -303,7 +303,7 @@ public class Facade {
 
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-							+ "http://localhost:8080/"+Constantes.APP_URL+"/recuperar/confirmaRecuperacao.jsp"
+							+ "http://localhost:8080/"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp"
 							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
 					emailCadastrado, "Usuário Controle de Acesso");

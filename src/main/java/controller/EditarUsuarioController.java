@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Pessoa;
 import model.Usuario;
+import util.Constantes;
 
 public class EditarUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +40,7 @@ public class EditarUsuarioController extends HttpServlet {
 				pagina = "telaInicial.jsp?sucessoEditar=1";
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				session.setAttribute("msg", e.getMessage());
+				session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 			}
 
 		}else{
