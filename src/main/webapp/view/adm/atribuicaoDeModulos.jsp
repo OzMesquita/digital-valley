@@ -16,7 +16,7 @@
 		String nomePessoa = (String) request.getAttribute("nomePessoa");
 	%>
 	<h1>Atribuir por pessoa</h1>
-	<form action="<%=Constantes.ADM_URL + "/atribuir_modulos"%>"
+	<form action="<%=Constantes.getAdmUrl() + "/atribuir_modulos"%>"
 		method="GET">
 		<input type="text" name="nome"
 			value="<%=nomePessoa != null ? nomePessoa : ""%>" /> <input

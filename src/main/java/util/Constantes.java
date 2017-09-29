@@ -26,7 +26,7 @@ public class Constantes {
 		APP_ASSETS_URL = APP_URL + "/assets2";
 		APP_JS_URL = APP_ASSETS_URL + "/js";
 		APP_IMG_URL = APP_ASSETS_URL + "/img";
-		APP_IMG_USER_DIR = "C:\\n2s";
+		APP_IMG_USER_DIR = "C:\\n2s\\img";
 		APP_CSS_URL = APP_ASSETS_URL + "/css";
 		NUMBER_OF_ROWS_PER_PAGE = 20;
 		SESSION_MSG = "msg";
