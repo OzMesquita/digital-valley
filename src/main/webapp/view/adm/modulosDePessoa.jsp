@@ -11,8 +11,7 @@
 		Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
 		List<Modulo> modulosDisponiveis = (List<Modulo>) request.getAttribute("modulosDisponiveis");
 		List<Modulo> modulosAssociados = (List<Modulo>) request.getAttribute("modulosAssociados");
-
-		String url = Constantes.ADM_URL;
+		String url = Constantes.getAdmUrl();
 	%>
 	<h1>Módulos associados</h1>
 	<table>
