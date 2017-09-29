@@ -6,7 +6,6 @@
 
 
 <%@page import="controller.Login"%>
-<%@page import="beans.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>

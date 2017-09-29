@@ -8,17 +8,19 @@ public class Constantes {
 	private static String APP_JS_URL;
 	private static String APP_IMG_URL;
 	private static String APP_CSS_URL;
-	private static String APP_IMG_USER_DIR;
-	private static Integer NUMBER_OF_ROWS_PER_PAGE;	
+	private static Integer NUMBER_OF_ROWS_PER_PAGE;
 	private static String SESSION_MSG;
 	private static String DATABASE_CONF_DIR;
 	private static String EMAIL_CONF_DIR;
-	
+	private static String MODULES_IMAGES_DIR;
+	private static String USER_PROFILE_IMAGES_DIR;
+	private static String USER_PROFILE_NONE_IMAGE_DIR;
+
 	private Constantes() {
 		//
 	}
 
-	static {		
+	static {
 		DATABASE_CONF_DIR = "C:\\n2s\\bd.txt";
 		EMAIL_CONF_DIR = "C:\\n2s\\email.txt";
 		APP_URL = "/Controle_de_Acesso";
@@ -26,10 +28,12 @@ public class Constantes {
 		APP_ASSETS_URL = APP_URL + "/assets2";
 		APP_JS_URL = APP_ASSETS_URL + "/js";
 		APP_IMG_URL = APP_ASSETS_URL + "/img";
-		APP_IMG_USER_DIR = "C:\\n2s\\img";
 		APP_CSS_URL = APP_ASSETS_URL + "/css";
 		NUMBER_OF_ROWS_PER_PAGE = 20;
 		SESSION_MSG = "msg";
+		MODULES_IMAGES_DIR = "C:\\imagens\\modulo";
+		USER_PROFILE_IMAGES_DIR = "C:\\imagens\\usuario";
+		USER_PROFILE_NONE_IMAGE_DIR = "C:\\imagens\\usuario\\none.png";
 	}
 
 	/**
@@ -75,13 +79,6 @@ public class Constantes {
 	}
 
 	/**
-	 * @return the appImgUserDir
-	 */
-	public static String getAppImgUserDir() {
-		return APP_IMG_USER_DIR;
-	}
-
-	/**
 	 * @return the numberOfRowsPerPage
 	 */
 	public static Integer getNumberOfRowsPerPage() {
@@ -108,7 +105,49 @@ public class Constantes {
 	public static String getEmailConfDir() {
 		return EMAIL_CONF_DIR;
 	}
-	
-	
 
+	/**
+	 * @return the mODULES_IMAGES_DIR
+	 */
+	public static String getMODULES_IMAGES_DIR() {
+		return MODULES_IMAGES_DIR;
+	}
+
+	/**
+	 * @param mODULES_IMAGES_DIR
+	 *            the mODULES_IMAGES_DIR to set
+	 */
+	public static void setMODULES_IMAGES_DIR(String mODULES_IMAGES_DIR) {
+		MODULES_IMAGES_DIR = mODULES_IMAGES_DIR;
+	}
+
+	/**
+	 * @return the uSER_PROFILE_IMAGES_DIR
+	 */
+	public static String getUSER_PROFILE_IMAGES_DIR() {
+		return USER_PROFILE_IMAGES_DIR;
+	}
+
+	/**
+	 * @param uSER_PROFILE_IMAGES_DIR
+	 *            the uSER_PROFILE_IMAGES_DIR to set
+	 */
+	public static void setUSER_PROFILE_IMAGES_DIR(String uSER_PROFILE_IMAGES_DIR) {
+		USER_PROFILE_IMAGES_DIR = uSER_PROFILE_IMAGES_DIR;
+	}
+
+	/**
+	 * @return the uSER_PROFILE_NONE_IMAGE_DIR
+	 */
+	public static String getUSER_PROFILE_NONE_IMAGE_DIR() {
+		return USER_PROFILE_NONE_IMAGE_DIR;
+	}
+
+	/**
+	 * @param uSER_PROFILE_NONE_IMAGE_DIR
+	 *            the uSER_PROFILE_NONE_IMAGE_DIR to set
+	 */
+	public static void setUSER_PROFILE_NONE_IMAGE_DIR(String uSER_PROFILE_NONE_IMAGE_DIR) {
+		USER_PROFILE_NONE_IMAGE_DIR = uSER_PROFILE_NONE_IMAGE_DIR;
+	}
 }

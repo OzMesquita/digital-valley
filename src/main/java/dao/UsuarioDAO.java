@@ -12,8 +12,6 @@ public interface UsuarioDAO {
 	public boolean autenticar(String login, String senha);
 	
 	public void editarNivel(Usuario usuario);
-
-	public Usuario buscar(int id);
 	
 	public void salvarToken(String token, int id_usuario);
 	
