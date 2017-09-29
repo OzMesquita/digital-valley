@@ -40,20 +40,20 @@
 
 	<%
 		String mensagem;
-		if(session.getAttribute("msg") == null){
+		if (session.getAttribute("msg") == null) {
 			mensagem = "";
-		}else{
-			mensagem = (String)session.getAttribute("msg");
-			
-		}%>
+		} else {
+			mensagem = (String) session.getAttribute("msg");
+
+		}
+	%>
 
 	<%
-	
 		if (session.getAttribute("usuario") == null) {
-			if (request.getParameter("login") != null && request.getParameter("senha")!=null) {
+			if (request.getParameter("login") != null && request.getParameter("senha") != null) {
 				RequestDispatcher rd = request.getRequestDispatcher("login");
-						rd.forward(request, response);
-		} else {
+				rd.forward(request, response);
+			} else {
 	%>
 
 
@@ -80,8 +80,7 @@
 									</ul>
 								</div>
 								<div class="erroMsg">
-									<small><%= mensagem %>
-										<%session.setAttribute("msg", null);%></small>
+									<small><%=mensagem%> <% session.setAttribute("msg", null);%></small>
 								</div>
 								<div class="tab-content">
 									<div class="tab-pane" id="about">
@@ -124,14 +123,20 @@
 									</div>
 								</div>
 							</form>
+							
 						</div>
+
+
+
 					</div>
 				</div>
 
-					
-			</div><!-- row  -->
-			
-		</div><!-- container -->
+
+			</div>
+			<!-- row  -->
+
+		</div>
+		<!-- container -->
 
 
 		<div class="footer">
