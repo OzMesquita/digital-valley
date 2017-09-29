@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="util.Constantes"%>
 <%@page import="controller.Login"%>
 <%@page import="beans.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,14 +29,13 @@
 <link
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
 	rel="stylesheet">
-
 <!-- CSS Files -->
-<link href="assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>//gsdk-bootstrap-wizard.css" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="assets2/css/demo.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>//demo.css" rel="stylesheet" />
 <!--meu css -->
-<link rel="stylesheet" href="assets2/css/newcss.css" type="text/css" />
+<link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
 </head>
 <body>
 

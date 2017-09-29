@@ -14,7 +14,6 @@
 								Sistema</h4>
 							<hr style="border: 1px solid lightgray">
 						</div>
-						<div class="content all-icons">
 							<div class="row">
 
 								<%  if( !modulos.isEmpty()){
@@ -24,11 +23,11 @@
 									class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
 									<div id="centro" class="font-icon-detail"
 										style="text-align: center;">
-										<img id="img-modulos" src="<%=m.getImagem()%>" /><br>
+										<img id="img-modulos" alt="<%=m.getTitulo() %>" src="<%=m.getImagem()%>" /><br>
 										<form action="requisitarModulo" method="post">
 											<input type="hidden" name="url" value="<%= m.getUrl()%>">
-											<input type="submit" id="reqisita" value="Requisitar"
-												title="<%=m.getTitulo() %>">
+											<input type="submit" id="btn-modulo" value="<%=m.getTitulo()%>"
+												title="<%=m.getTitulo() %>">											
 										</form>
 									</div>
 								</div>
@@ -42,7 +41,6 @@
 							</div>
 
 						</div>
-			</div>
 		</div>
 	</div>
 
