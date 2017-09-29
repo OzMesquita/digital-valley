@@ -26,7 +26,7 @@ public class CadastrarModulo extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		
-		String pagina = "cadastarModulo.jsp?erroCadastro=1";
+		String pagina = "cadastrarModulo.jsp?erroCadastro=1";
 		try {
 				
 			Modulo modulo = new Modulo();

@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
 				uDAO = DAOFactory.criarUsuarioDAO();
 				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
 			}
-		
+			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
