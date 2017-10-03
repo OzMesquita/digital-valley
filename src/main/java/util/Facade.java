@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -354,7 +356,7 @@ public class Facade {
 		return sDAO.buscarPorNome(nome);
 	}
 
-	public static String getdDiretorioImagemModulo(int id) {		
+	public static String getDiretorioImagemModulo(int id) {		
 		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
 	}
 
@@ -367,4 +369,9 @@ public class Facade {
 		return sDAO.buscarPorNome(nome, inicio, fim);
 	}
 
+	public static String converterLocalDateParaString(LocalDate localDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		return localDate.format(formatter);
+	}
+	
 }

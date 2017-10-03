@@ -13,7 +13,7 @@
 		<jsp-property-group>
 			<url-pattern>/view/*</url-pattern>
 			<include-prelude>/WEB-INF/templates/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/templates/footer.jspf</include-coda>
+			<include-coda>/WEB-INF/templates/footer.jspf</include-coda>			
 		</jsp-property-group>
 	</jsp-config>
 

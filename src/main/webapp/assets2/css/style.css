@@ -26,6 +26,11 @@ header{
     float: left;
 }
 
+#img_pessoa{
+	width: 100px;
+	height: 100px;
+}
+
 .btn-importar{
 	color: white;
 	background-color: steelblue;
@@ -48,6 +53,14 @@ header{
 
 header ul li {
     margin-left: 5px;
+}
+
+#titulo_da_pagina{
+	text-align: center;
+}
+
+#botao_buscar{
+	margin-top: 25px;
 }
 
 #img-perfil{

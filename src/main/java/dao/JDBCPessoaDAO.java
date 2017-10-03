@@ -519,11 +519,11 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	@Override
 	public List<Pessoa> buscarPorNomeENivel(String nome, int nivel, int inicio, int fim) {
 		super.open();
-		String SQL = "SELECT * FROM pessoa_usuario WHERE nivel = ? AND nome LIKE ? ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
+		String SQL = "SELECT * FROM pessoa_usuario WHERE nivel = ? AND UPPER(nome) LIKE UPPER(?) ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
-			ps.setString(2, nome+"%");
+			ps.setString(2, "%"+nome+"%");
 			ps.setInt(3, fim - inicio);
 			ps.setInt(4, inicio);
 			ResultSet rs = ps.executeQuery();

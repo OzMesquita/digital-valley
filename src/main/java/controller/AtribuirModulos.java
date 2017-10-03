@@ -66,6 +66,7 @@ public class AtribuirModulos extends HttpServlet {
 			request.setAttribute("quantidadeDePaginas", quantidadeDePessoasDeNivelComum / quantidadePorPagina);
 			request.setAttribute("paginaAtual", paginaAtual);
 			request.setAttribute("nomePessoa", nomePessoa);
+			response.setContentType("text/html;charset=UTF-8");
 			requestDispatcher.forward(request, response);
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
