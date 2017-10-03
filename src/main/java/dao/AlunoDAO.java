@@ -12,11 +12,15 @@ public interface AlunoDAO{
 	
 	public Aluno buscarPorMatricula(String matricula);
 	
-	public List<Aluno> buscarPorNome(String nome);
+	public List<Aluno> buscarPorNome(String nome, int inicio, int fim);
 	
 	public List<Aluno> listar();
 	
 	public void editar(Aluno aluno);
+
+	public List<Aluno> buscarPorNome(String nome);
+
+	public Integer getQuantidadePorNome(String nome);
 	
 	
 	

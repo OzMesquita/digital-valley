@@ -57,7 +57,7 @@
 						aria-haspopup="true" aria-expanded="false">Usuários</a>
 						<ul class="dropdown-menu">
 							<li><a id="listar-usuarios"
-								href="<%=Constantes.getAdmUrl()%>/listaDeUsuarios.jsp">Listar
+								href="<%=Constantes.getAdmUrl()%>/listar_usuarios">Listar
 									Usuários</a></li>
 							<li><a id="importar-alunos"
 								href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Importar

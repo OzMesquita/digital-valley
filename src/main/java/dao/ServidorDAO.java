@@ -14,6 +14,10 @@ public interface ServidorDAO {
 	
 	public List<Servidor> listar();
         public List<Servidor> buscarPorNome(String nome);
+
+		public List<Servidor> buscarPorNome(String nome, Integer inicio, Integer fim);
+
+		public Integer getQuantidadePorNome(String nome);
 	
 	
 	

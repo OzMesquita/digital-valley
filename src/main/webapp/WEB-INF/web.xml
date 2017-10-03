@@ -13,7 +13,7 @@
 		<jsp-property-group>
 			<url-pattern>/view/*</url-pattern>
 			<include-prelude>/WEB-INF/templates/header.jspf</include-prelude>
-			 <include-coda>/WEB-INF/templates/footer.jspf</include-coda>
+			<include-coda>/WEB-INF/templates/footer.jspf</include-coda>
 		</jsp-property-group>
 	</jsp-config>
 
@@ -133,7 +133,12 @@
 		<servlet-name>ImagemModulo</servlet-name>
 		<servlet-class>controller.ImagemModulo</servlet-class>
 	</servlet>
-
+	<!-- 24 -->
+	<servlet>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<servlet-class>controller.ListarUsuarios</servlet-class>
+	</servlet>
+	
 	<!-- 1 -->
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -228,8 +233,8 @@
 	<servlet-mapping>
 		<servlet-name>ModulosDePerfil</servlet-name>
 		<url-pattern>/view/adm/perfil_modulos</url-pattern>
-	</servlet-mapping>		
-	<!-- 20 -->	
+	</servlet-mapping>
+	<!-- 20 -->
 	<servlet-mapping>
 		<servlet-name>AssociarModuloPerfil</servlet-name>
 		<url-pattern>/view/adm/associar_modulo_perfil</url-pattern>
@@ -239,7 +244,7 @@
 		<servlet-name>DesassociarModuloPerfil</servlet-name>
 		<url-pattern>/view/adm/desassociar_modulo_perfil</url-pattern>
 	</servlet-mapping>
-	<!-- 23 -->	
+	<!-- 22 -->
 	<servlet-mapping>
 		<servlet-name>ImagemPerfilUsuario</servlet-name>
 		<url-pattern>/view/imagem_perfil_usuario</url-pattern>
@@ -249,8 +254,12 @@
 		<servlet-name>ImagemModulo</servlet-name>
 		<url-pattern>/view/imagem_modulo</url-pattern>
 	</servlet-mapping>
-	
-	
+	<!-- 24 -->
+	<servlet-mapping>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<url-pattern>/view/adm/listar_usuarios</url-pattern>
+	</servlet-mapping>
+
 	<!-- FILTROS -->
 	<!-- 1 -->
 	<filter>
@@ -271,32 +280,32 @@
 	<filter>
 		<filter-name>FiltroRecuperacao</filter-name>
 		<filter-class>controller.FiltroRecuperacao</filter-class>
-	</filter>		
-	
-	
-	
+	</filter>
+
+
+
 	<!-- MAPEAMENTOS FILTROS -->
 	<!-- 1 -->
 	<filter-mapping>
 		<filter-name>Autentica</filter-name>
 		<url-pattern>/view/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- 2 -->
 	<filter-mapping>
-    	 <filter-name>Cadastro</filter-name>
-    	 <url-pattern>/cadastro/*</url-pattern>
-   	</filter-mapping>
+		<filter-name>Cadastro</filter-name>
+		<url-pattern>/cadastro/*</url-pattern>
+	</filter-mapping>
 	<!-- 3 -->
 	<filter-mapping>
-    	 <filter-name>FiltroADM</filter-name>
-   	 <url-pattern>/view/adm/*</url-pattern>
-   </filter-mapping>
-   	
-   	<!-- 4 -->
+		<filter-name>FiltroADM</filter-name>
+		<url-pattern>/view/adm/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 4 -->
 	<filter-mapping>
-    	 <filter-name>FiltroRecuperacao</filter-name>
-    	 <url-pattern>/recuperar/*</url-pattern>
-   	</filter-mapping>
-	
+		<filter-name>FiltroRecuperacao</filter-name>
+		<url-pattern>/recuperar/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

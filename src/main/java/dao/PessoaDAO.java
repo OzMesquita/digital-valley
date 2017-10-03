@@ -38,4 +38,9 @@ public interface PessoaDAO {
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf);
 	
 	public String buscarTokenRecuperacao(Pessoa pessoa);
+
+	public List<Pessoa> buscarPorNome(String nome, int inicio, int fim);
+
+	public Integer getQuantidadePorNome(String nome);
+
 }

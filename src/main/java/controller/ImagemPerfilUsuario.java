@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -26,14 +27,19 @@ public class ImagemPerfilUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			// Get the absolute path of the image
-			String filename = Facade.getdDiretorioPerfilUsuario(Integer.valueOf(request.getParameter("id_usuario")));
+			String filename = Facade.getDiretorioPerfilUsuario(Integer.valueOf(request.getParameter("id_usuario")));
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
 			if (mime == null) {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			} else {
 				File file = new File(filename);
-				FileInputStream in = new FileInputStream(file);
+				FileInputStream in = null;
+				if (file.exists()) {
+					in = new FileInputStream(file);
+				}else {					
+					in = new FileInputStream(Constantes.getUSER_PROFILE_NONE_IMAGE_DIR()); 
+				}
 				// copiar conteudo
 				OutputStream out = response.getOutputStream();
 				byte[] buf = new byte[1024];

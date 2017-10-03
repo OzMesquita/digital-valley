@@ -70,7 +70,7 @@ public class Facade {
 		return token.toString();
 	}
 
-	public static String getdDiretorioPerfilUsuario(int id) {
+	public static String getDiretorioPerfilUsuario(int id) {
 		Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorId(id);
 		String imagem = pessoa.getImagem();
 		if (imagem != null && !imagem.trim().isEmpty()) {
@@ -254,6 +254,22 @@ public class Facade {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		return aDAO.listar();
 	}
+	
+	public static List<Pessoa> buscarPessoasPorNome(String nome, int inicio, int fim) {
+		return DAOFactory.criarPessoaDAO().buscarPorNome(nome, inicio, fim);
+	}
+	
+	public static Integer getQuantidadePessoasPorNome(String nome) {
+		return DAOFactory.criarPessoaDAO().getQuantidadePorNome(nome);
+	}
+	
+	public static List<Aluno> buscarAlunosPorNome(String nome, int inicio, int fim) {
+		return DAOFactory.criarAlunoDAO().buscarPorNome(nome, inicio, fim);
+	}
+	
+	public static Integer getQuantidadeAlunosPorNome(String nome) {
+		return DAOFactory.criarAlunoDAO().getQuantidadePorNome(nome);
+	}
 
 	public static List<Servidor> buscarServidor() {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
@@ -340,6 +356,15 @@ public class Facade {
 
 	public static String getdDiretorioImagemModulo(int id) {		
 		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
+	}
+
+	public static Integer getQuantidadeServidoresPorNome(String nome) {
+		return DAOFactory.criarServidorDAO().getQuantidadePorNome(nome);
+	}
+
+	public static List<Servidor> buscarServidoresPorNome(String nome, Integer inicio, Integer fim) {
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		return sDAO.buscarPorNome(nome, inicio, fim);
 	}
 
 }

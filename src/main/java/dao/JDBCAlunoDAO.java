@@ -252,6 +252,80 @@ public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 		}
 
 	}
+
+	@Override
+	public List<Aluno> buscarPorNome(String nome, int inicio, int fim) {
+		super.open();
+		List<Aluno> alunos = new ArrayList<Aluno>();
+
+		try {
+			String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u, curso AS c WHERE u_a.id_pessoa_usuario = u.id_pessoa_usuario AND u_a.id_curso = c.id_curso AND  UPPER(u.nome) like UPPER(?) LIMIT ? OFFSET ?";
+			
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, '%'+nome+'%');
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Aluno aluno = new Aluno();
+				Curso curso = new Curso();
+				Usuario usuario = new Usuario();
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				aluno.setUsuario(usuario);
+				curso.setId(rs.getInt("id_curso"));
+				curso.setNome(rs.getString("nome_curso"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setCurso(curso);
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				aluno.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				aluno.setEmail(rs.getString("email"));
+				
+				alunos.add(aluno);
+			}
+			rs.close();
+			ps.close();
+			return alunos;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
+
+		}finally {
+			super.close();
+		}
+	}
+
+	@Override
+	public Integer getQuantidadePorNome(String nome) {
+		super.open();
+		try {
+			String SQL = "SELECT COUNT(*) AS quantidade FROM aluno AS u_a, pessoa_usuario AS u, curso AS c WHERE u_a.id_pessoa_usuario = u.id_pessoa_usuario AND u_a.id_curso = c.id_curso AND  UPPER(u.nome) like UPPER(?)";			
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, '%'+nome+'%');
+			ResultSet rs = ps.executeQuery();
+			Integer quantidade = null;
+			if (rs.next()) {				
+				quantidade = rs.getInt("quantidade");								
+			}else {
+				quantidade = 0;
+			}
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar pessoas em JDBC AlunoDAO", e);
+
+		}finally {
+			super.close();
+		}
+	}
 	
 	
 	
