@@ -18,6 +18,8 @@ public interface AlunoDAO{
 	
 	public void editar(Aluno aluno);
 	
+	public Aluno buscarTokenRecuperacao(String texto);
+	
 	
 	
 

@@ -104,6 +104,16 @@ public class PessoaDAOTest {
 	}
 	
 	@Test
+	public void testInserirToken(){
+		Pessoa p = new Pessoa();
+		p.setNome("Deyvison");
+		p.setId(2);
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		pDAO.inserirTokenRecuperacao(p);
+		
+	}
+	
+	@Test
 	public void testBuscarToken(){
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		pessoa = pDAO.buscarPorId(2);
@@ -113,5 +123,7 @@ public class PessoaDAOTest {
 		System.out.println("token é: "+token);
 		
 	}
+	
+	
 
 }

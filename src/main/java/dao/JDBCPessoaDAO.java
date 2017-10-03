@@ -469,7 +469,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
-			ps.setString(2, LocalDate.now().toString());
+			ps.setDate(2, Date.valueOf (LocalDate.now()));
 
 			ResultSet rs = ps.executeQuery();
 
@@ -485,6 +485,31 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+	
+	
+	
+	@Override
+	public void inserirTokenRecuperacao (Pessoa pessoa){
+		super.open();
+		String SQL = "UPDATE public.pessoa_usuario SET token_recuperacao=?, data_ultima_recuperacao=? WHERE id_pessoa_usuario = ?";
+		try {
+
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			String token = util.Facade.buildToken();
+			ps.setString(1, token);
+			ps.setDate(2, Date.valueOf (LocalDate.now()));
+			ps.setInt(3, pessoa.getId());
+
+			ps.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao inserir token em "+pessoa.getNome()+" de pessoa, erro: " + e.getMessage());
 		} finally {
 			super.close();
 		}

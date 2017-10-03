@@ -297,19 +297,25 @@ public class Facade {
 
 	}
 
-	public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado) {
-		if (emailCadastrado != null) {
+	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
+		if (pessoa != null) {
 			Email e = new Email();
 
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-							+ "http://localhost:8080/"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp"
+							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
 							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
-					emailCadastrado, "Usuário Controle de Acesso");
+					pessoa.getEmail(), "Usuário Controle de Acesso");
 		} else {
 			throw new IllegalArgumentException("Email não pode ser nulo");
 		}
+	}
+	
+	public static void inserirToken(Pessoa pessoa){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		pDAO.inserirTokenRecuperacao(pessoa);
+		
 	}
 
 	public static Pessoa BuscarEmailVinculado(String email) {
@@ -325,6 +331,18 @@ public class Facade {
 	public static List<Servidor> buscarServidorPorNome(String nome) {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		return sDAO.buscarPorNome(nome);
+	}
+	
+	public static Pessoa verificarTokenRecuperacao(String token){
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscarTokenRecuperacao(token);
+		Servidor servidor = DAOFactory.criarServidorDAO().buscarPorToken(token);
+		if(aluno != null){
+			return aluno;
+		}else if(servidor != null){
+			return servidor;
+		}else{
+			return null;
+		}
 	}
 
 }

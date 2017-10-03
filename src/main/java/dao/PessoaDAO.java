@@ -38,4 +38,8 @@ public interface PessoaDAO {
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf);
 	
 	public String buscarTokenRecuperacao(Pessoa pessoa);
+	
+	public void inserirTokenRecuperacao(Pessoa pessoa);
+	
+	
 }

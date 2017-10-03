@@ -13,7 +13,10 @@ public interface ServidorDAO {
 	public Servidor buscarPorSiape(String siape);
 	
 	public List<Servidor> listar();
-        public List<Servidor> buscarPorNome(String nome);
+        
+	public List<Servidor> buscarPorNome(String nome);
+	
+	public Servidor buscarPorToken(String token);
 	
 	
 	

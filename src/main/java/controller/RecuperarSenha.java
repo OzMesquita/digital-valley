@@ -41,7 +41,9 @@ public class RecuperarSenha extends HttpServlet {
             	Pessoa p = Facade.BuscarEmailVinculado(email);
                 if(p != null){
                 	System.out.println("aqui");
-                    Facade.EnviarEmailRecuperacaoDeSenha(email);
+                	Facade.inserirToken(p);
+                    Facade.EnviarEmailRecuperacaoDeSenha(p);
+                    
                     request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
                     request.getSession().setAttribute("pessoa", p);
                     

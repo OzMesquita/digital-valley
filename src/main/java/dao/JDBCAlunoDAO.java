@@ -252,6 +252,51 @@ public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 		}
 
 	}
+	@Override
+	public Aluno buscarTokenRecuperacao(String token){
+		super.open();
+
+		try {
+			String SQL = "SELECT * FROM aluno AS a, pessoa_usuario AS p_u, curso AS c WHERE p_u.token_recuperacao = ? AND a.id_pessoa_usuario = p_u.id_pessoa_usuario AND a.id_curso = c.id_curso";
+
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, token);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				Aluno aluno = new Aluno();
+				Curso curso = new Curso();
+				Usuario usuario = new Usuario();
+				curso.setId(rs.getInt("id_curso"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setCurso(curso);
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				aluno.setUsuario(usuario);			
+				
+				rs.close();
+				ps.close();
+				
+				return aluno;
+				
+			}else{
+				return null;
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			super.close();
+		}
+	}
 	
 	
 	
