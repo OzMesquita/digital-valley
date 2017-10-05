@@ -11,7 +11,7 @@
 	List<Perfil> perfis = (List<Perfil>) request.getAttribute("perfis");
 	Integer quantidadeDePaginas = (Integer) request.getAttribute("quantidadeDePaginas");
 	Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
-	String nomePessoa = (String) request.getAttribute("nomePessoa");
+	String nomePessoa = request.getAttribute("nomePessoa") != null && !"".equals(request.getAttribute("nomePessoa")) ? (String) request.getAttribute("nomePessoa") : "";
 %>
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<label for="nome">Nome: </label> <input type="text" id="nome"
 							name="nome" class="form-control"
-							value="<%=nomePessoa != null ? nomePessoa : ""%>" />
+							value="<%=nomePessoa %>" />
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -66,40 +66,44 @@
 				</tbody>
 			</table>
 		</div>
-		<ul class="pagination">
-			<%
-				if (paginaAtual > 1) {
-			%>
-			<li><a
-				href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual - 1)%>">
-					<< </a></li>
-			<%
-				}
-				for (int i = 1; i <= quantidadeDePaginas; i++) {
-			%>
+		<div class="text-center">
+			<ul class="pagination text-center">			
+				<%
+					if (quantidadeDePaginas > 1) {
+						if (paginaAtual > 1) {
+				%>
+				<li><a
+					href="<%=url%>/atribuir_modulos?pagina=<%=(paginaAtual - 1)%>">
+						<< </a></li>
+				<%
+					}
+						for (int i = 1; i <= quantidadeDePaginas; i++) {
+				%>
 
-			<%
-				if (i == paginaAtual) {
-			%><li class="active"><a
-				href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a></li>
-			<%
-				} else {
-			%>
-			<li><a href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=i%>"><%=i%></a>
-			</li>
-			<%
-				}
-			%>
-			<%
-				}
-				if (paginaAtual < quantidadeDePaginas) {
-			%>
-			<li><a
-				href="<%=url%>/atribuicaoDeModulos.jsp?pagina=<%=(paginaAtual + 1)%>">>></a></li>
-			<%
-				}
-			%>
-		</ul>
+				<%
+					if (i == paginaAtual) {
+				%><li class="active"><a
+					href="<%=url%>/atribuir_modulos?pagina=<%=i%>"><%=i%></a></li>
+				<%
+					} else {
+				%>
+				<li><a href="<%=url%>/atribuir_modulos?pagina=<%=i%>"><%=i%></a>
+				</li>
+				<%
+					}
+				%>
+				<%
+					}
+						if (paginaAtual < quantidadeDePaginas) {
+				%>
+				<li><a
+					href="<%=url%>/atribuir_modulos?nome=<%=nomePessoa %>&pagina=<%=(paginaAtual + 1)%>">>></a></li>
+				<%
+					}
+					}
+				%>
+			</ul>
+		</div>
 	</div>
 </div>
 <div class="row">
