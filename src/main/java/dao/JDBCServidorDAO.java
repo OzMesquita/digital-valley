@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,9 +124,7 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 	public List<Servidor> buscarPorNome(String nome) {
 		super.open();
 		List<Servidor> servidores = new ArrayList<Servidor>();
-		
-
-		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE nome = ? and s.id_pessoa_usuario = p.id_pessoa_usuario;";
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE s.id_pessoa_usuario = p.id_pessoa_usuario AND UPPER(nome) LIKE UPPER(?);";
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
@@ -241,7 +240,64 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 			ps.close();
 			rs.close();
 			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		} finally {
+			super.close();
+		}
+	}
+	public List<Servidor> buscarPorNome(String nome, Integer inicio, Integer fim) {
+		super.open();
+		List<Servidor> servidores = new ArrayList<Servidor>();
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement("SELECT * FROM servidor AS s, pessoa_usuario as p WHERE s.id_pessoa_usuario = p.id_pessoa_usuario AND UPPER(nome) like UPPER(?) LIMIT ? OFFSET ?;");
+			ps.setString(1, "%"+nome+"%");
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Servidor servidor = new Servidor();
+				Usuario usuario = new Usuario();
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setNivel(rs.getInt("nivel"));
+				servidor.setUsuario(usuario);
+				servidor.setId(rs.getInt("id_pessoa_usuario"));
+				servidor.setCpf(rs.getString("cpf"));
+				servidor.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				servidor.setEmail(rs.getString("email"));
+				servidor.setSiape(rs.getString("siape"));
+				servidor.setNome(rs.getString("nome"));
+				servidores.add(servidor);
+			}
+			ps.close();
+			rs.close();
+			return servidores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro de servidor", e);
+		} finally {
+			super.close();
+		}
+	}
 
+	@Override
+	public Integer getQuantidadePorNome(String nome) {
+		super.open();
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement("SELECT COUNT(*) AS quantidade FROM servidor AS s, pessoa_usuario as p WHERE s.id_pessoa_usuario = p.id_pessoa_usuario AND UPPER(nome) LIKE UPPER(?);");
+			ps.setString(1, nome);
+			ResultSet rs = ps.executeQuery();
+			Integer quantidade = null;
+			if (rs.next()) {
+				quantidade = rs.getInt("quantidade");
+			}else {
+				quantidade = 0;
+			}
+			ps.close();
+			rs.close();
+			return quantidade;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de servidor", e);

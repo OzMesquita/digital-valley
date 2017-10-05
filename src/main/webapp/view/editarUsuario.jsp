@@ -95,7 +95,7 @@
 											</div>
 										</div>
 									</div>
-									<input type="submit" id="salva" value="Salvar"
+									<input type="submit" class="btn-importar" value="Salvar"
 										title="Salvar alterações">
 									<div class="clearfix"></div>
 								</form>

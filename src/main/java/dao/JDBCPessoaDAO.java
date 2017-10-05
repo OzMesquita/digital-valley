@@ -524,13 +524,15 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
 			ResultSet rs = ps.executeQuery();
+			Integer quantidade = null;
 			if (rs.next()) {
-				return rs.getInt("quantidade");
+				quantidade =  rs.getInt("quantidade");
 			} else {
 				ps.close();
 				rs.close();
-				return 0;
+				quantidade =  0;
 			}
+			return quantidade;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
@@ -575,6 +577,65 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			super.close();
 		}
 	}
+	
+	@Override
+	public List<Pessoa> buscarPorNome(String nome, int inicio, int fim) {
+		super.open();
+		String SQL = "SELECT * FROM pessoa_usuario WHERE UPPER(nome) LIKE UPPER(?) ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, "%"+nome+"%");
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+			List<Pessoa> pessoas = new ArrayList<Pessoa>();
+			while (rs.next()) {
+				Pessoa pessoa = new Pessoa();
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				pessoas.add(pessoa);
+			}
+			ps.close();
+			rs.close();
+			return pessoas;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public Integer getQuantidadePorNome(String nome) {
+		super.open();
+		String SQL = "SELECT COUNT(*) AS quantidade FROM pessoa_usuario WHERE nome LIKE ?";
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, "%"+nome+"%");
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("quantidade");
+			} else {
+				ps.close();
+				rs.close();
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
 
 	@Override
 	public Integer getQuantidadePorNomeENivel(String nome, int nivel) {
@@ -585,13 +646,15 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			ps.setString(1, "%"+nome+"%");
 			ps.setInt(2, nivel);
 			ResultSet rs = ps.executeQuery();
+			Integer quantidade =null; 
 			if (rs.next()) {
-				return rs.getInt("quantidade");
-			} else {
-				ps.close();
-				rs.close();
-				return 0;
+				quantidade = rs.getInt("quantidade");
+			} else {				
+				quantidade = 0;
 			}
+			ps.close();
+			rs.close();
+			return quantidade;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());

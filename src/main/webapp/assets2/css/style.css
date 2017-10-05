@@ -34,6 +34,12 @@ header{
 	height: 40px;
 }
 
+#btn-modulo{
+	border: none;
+	background-color: inherit;
+	color: steelblue;
+}
+
 #menu a:hover{
     background-color: rgb(100,160,210);
     color: black;

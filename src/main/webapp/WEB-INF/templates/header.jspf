@@ -57,7 +57,7 @@
 						aria-haspopup="true" aria-expanded="false">Usuários</a>
 						<ul class="dropdown-menu">
 							<li><a id="listar-usuarios"
-								href="<%=Constantes.getAdmUrl()%>/listaDeUsuarios.jsp">Listar
+								href="<%=Constantes.getAdmUrl()%>/listar_usuarios">Listar
 									Usuários</a></li>
 							<li><a id="importar-alunos"
 								href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Importar
@@ -73,9 +73,7 @@
 				%>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><img
-						src="<%=Constantes.getAppImgUserDir() + "\\" + usuario.getPessoa().getImagem()%>"
-						id="img-perfil1"></li>
+					<li><img src="<%=Constantes.getAppUrl() %>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId() %>"	id="img-perfil1"></li>
 						
 					<li class="dropdown"><a id="perfil" href="#"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"

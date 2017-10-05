@@ -53,7 +53,7 @@
 												<%} %>
 											</div>
 											<div style="margin-top: 0% !important">
-												<input id="btn_confirma" type="submit" value="Salvar"
+												<input class="btn-importar" type="submit" value="Salvar"
 													title="Salvar módulo">
 											</div>
 										</form>

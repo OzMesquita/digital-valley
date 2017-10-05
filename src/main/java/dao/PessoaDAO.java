@@ -40,6 +40,9 @@ public interface PessoaDAO {
 	public String buscarTokenRecuperacao(Pessoa pessoa);
 	
 	public void inserirTokenRecuperacao(Pessoa pessoa);
-	
-	
+
+	public List<Pessoa> buscarPorNome(String nome, int inicio, int fim);
+
+	public Integer getQuantidadePorNome(String nome);
+
 }
