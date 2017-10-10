@@ -304,8 +304,9 @@
 
 	<!-- 4 -->
 	<filter-mapping>
-		<filter-name>FiltroRecuperacao</filter-name>
-		<url-pattern>/recuperar/*</url-pattern>
-	</filter-mapping>
+    	 <filter-name>FiltroRecuperacao</filter-name>
+    	 <url-pattern>/recuperar/confirmaRecuperacao.jsp</url-pattern>
+   	</filter-mapping>
+	
 
 </web-app>

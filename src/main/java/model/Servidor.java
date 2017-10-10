@@ -44,5 +44,24 @@ public class Servidor extends Pessoa{
 	public void setCargo(EnumCargo cargo) {
 		this.cargo = cargo;
 	}
+	
+	public void setCargo(String cargo){
+		switch (cargo) {
+		case "Funcionario":
+			this.cargo = EnumCargo.FUNCIONARIO;
+			break;
+		case "Secretario":
+			this.cargo = EnumCargo.SECRETARIO;
+			break;
+		case "Professor":
+			this.cargo = EnumCargo.PROFESSOR;
+			break;
+		default:
+			this.cargo = null;
+			break;
+		}
+		
+	}
+	
 
 }

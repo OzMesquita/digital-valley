@@ -22,6 +22,8 @@ public interface AlunoDAO{
 
 	public Integer getQuantidadePorNome(String nome);
 	
+	public Aluno buscarTokenRecuperacao(String texto);
+	
 	
 	
 
