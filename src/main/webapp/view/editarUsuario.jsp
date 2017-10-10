@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input type="submit" class="btn btn-success text-centered form-control"
+						<input type="submit" class="btn btn-success text-center form-control"
 							value="Salvar" title="Salvar alterações">
 					</div>
 				</form>

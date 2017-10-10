@@ -24,7 +24,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit"
-							class="text-centered btn btn-success form-control"
+							class="text-center btn btn-success form-control"
 							value="Importar" title="Importar arquivo">
 					</div>
 				</form>

@@ -16,7 +16,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit"
-							class="btn btn-success form-control text-centered"
+							class="btn btn-success form-control text-center"
 							value="Importar" title="Importar matriculas">
 					</div>
 				</form>
