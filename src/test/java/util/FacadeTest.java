@@ -121,7 +121,8 @@ public class FacadeTest {
 	@Test
 	public void testLerEmail(){
 		String []email = util.Facade.lerArquivoEmail();
-		System.out.println(email.toString());
+		System.out.println(email[0]);
+		System.out.println(email[1]);
 	}
 	
 	

@@ -12,9 +12,10 @@
 	href="<%=Constantes.getAppCssUrl()%>/style.css">
 <link href="https://fonts.googleapis.com/css?family=Righteous"
 	rel="stylesheet">
-<title>Template</title>
+<title>Sistema de Controle de Acesso</title>
 </head>
 <body>
+
 
 	<header>
 
@@ -37,7 +38,8 @@
 
 				<%
 					Usuario usuario = (Usuario) session.getAttribute("usuario");
-					if (usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
+					
+					if ( usuario != null && usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 				%>
 				<ul class="nav navbar-nav" id="menu-left">
 					<li class="dropdown"><a href="#" id="link-modulos"

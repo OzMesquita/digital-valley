@@ -42,9 +42,16 @@ public class RecuperarSenha extends HttpServlet {
                 if(p != null){
                 	System.out.println("aqui");
                 	Facade.inserirToken(p);
-                    Facade.EnviarEmailRecuperacaoDeSenha(p);
+                	String mensagem = "erro ao enviar email";
+                	try {
+                		Facade.EnviarEmailRecuperacaoDeSenha(p);
+                		mensagem = "Um e-mail foi enviado para a conta informada.";
+					} catch (Exception e) {
+						mensagem += e.getMessage();
+					}
                     
-                    request.getSession().setAttribute("msg","Um e-mail foi enviado para a conta informada.");
+                    
+                    request.getSession().setAttribute(Constantes.getSessionMsg(),mensagem);
                     request.getSession().setAttribute("pessoa", p);
                     
                 }else{

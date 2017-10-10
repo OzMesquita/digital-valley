@@ -16,7 +16,7 @@
 						</div>
 							<div class="row">
 
-								<%  if( !modulos.isEmpty()){
+								<%  if( modulos !=null && !modulos.isEmpty()){
                                             	for(Modulo m: modulos){
                                          %>
 								<div
