@@ -159,11 +159,14 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				pessoa.getUsuario().setSenha(rs.getString("senha"));
 				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
 				pessoa.getUsuario().setPessoa(pessoa);
-
+				ps.close();
+				rs.close();
+				return pessoa;
 			}
-			ps.close();
 			rs.close();
-			return pessoa;
+			ps.close();
+			return null;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
@@ -200,11 +203,13 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
 				usuario.setPessoa(pessoa);
-
+				ps.close();
+				rs.close();
+				return usuario;
 			}
 			ps.close();
 			rs.close();
-			return usuario;
+			return null;
 
 		} catch (SQLException e) {
 			e.printStackTrace();

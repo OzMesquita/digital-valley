@@ -26,7 +26,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
     }
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	Usuario usuario = new Usuario();
+    	Usuario usuario = null;
     	String pagina = "confirmaRecuperacao.jsp?erroRecuperação=1";
     	HttpSession session = request.getSession();
         try{
@@ -46,7 +46,8 @@ public class ConfirmarRecuperacao extends HttpServlet {
             }else if(!siape.equals("")){
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
             }else{
-            	session.setAttribute(Constantes.getSessionMsg(),"CPF não pode ser vazio.");
+            	session.setAttribute(Constantes.getSessionMsg()," CPF não pode ser vazio.");
+            	usuario = null;
             }
           
            
@@ -55,7 +56,11 @@ public class ConfirmarRecuperacao extends HttpServlet {
 		}  
         if (usuario != null){
         	session.setAttribute("usuario",usuario);
-        	pagina = util.Constantes.getAppUrl()+"/../view/editarUsuario.jsp";
+        	pagina = util.Constantes.getAppUrl()+"/view/editarUsuario.jsp";
+        }else{
+        	session.setAttribute("usuario", null);
+        	session.setAttribute(Constantes.getSessionMsg(), "Código interno e/ou cpf inválido");
+        	pagina = util.Constantes.getAppUrl()+"/login.jsp";
         }
         
         response.sendRedirect(pagina);

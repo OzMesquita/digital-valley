@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -210,18 +211,20 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		Servidor servidor = new Servidor();
 		Usuario usuario = new Usuario();
 
-		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE p.token_recuperacao = ? and s.id_pessoa_usuario = p.id_pessoa_usuario";
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE p.token_recuperacao = ? and s.id_pessoa_usuario = p.id_pessoa_usuario AND p.data_ultima_recuperacao = ?";
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, token);
+			ps.setDate(2, Date.valueOf (LocalDate.now()));
 
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
 				servidor.setNome(rs.getString("nome"));
 				servidor.setCpf(rs.getString("cpf"));
+				System.out.println(rs.getDate("data_nascimento"));
 				servidor.setDataNascimento(rs.getString("data_nascimento"));
 				servidor.setCargo(rs.getString("cargo"));
 				servidor.setEmail(rs.getString("email"));

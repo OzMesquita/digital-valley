@@ -32,7 +32,8 @@
 				id="bs-example-navbar-collapse-1">
 				<%
 					Usuario usuario = (Usuario) session.getAttribute("usuario");
-					if (usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
+					
+					if ( usuario != null && usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 				%>
 				<ul class="nav navbar-nav" id="menu-left">
 					<li class="dropdown"><a href="#" id="link-modulos"

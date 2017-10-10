@@ -11,7 +11,7 @@ public class ServidorDAOTest {
 
 	Servidor servidor = new Servidor();
 
-	
+	@Ignore
 	@Test
 	public void cadastrar() {
 		servidor.setSiape("1237654");
@@ -39,12 +39,18 @@ public class ServidorDAOTest {
 		Assert.assertTrue(servidores != null);
 
 	}
-	
+	@Ignore
 	@Test
 	public void testBuscarPorSiape(){
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Assert.assertTrue(sDAO.buscarPorSiape("1231231") != null);
 		
+	}
+	
+	@Test
+	public void testBuscarToken(){
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		Assert.assertTrue(sDAO.buscarPorToken("CHcGCXGM8mTLyzcwwndnuBXcepNaNPlUoET5F8Cill8WOB5JOVP8ofZSshGt") != null);
 	}
 	
 

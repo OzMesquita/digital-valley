@@ -329,7 +329,7 @@ public class Facade {
 	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
 		if (pessoa != null) {
 			Email e = new Email();
-
+			System.out.println("Email >>"+pessoa.getEmail());
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
 							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)

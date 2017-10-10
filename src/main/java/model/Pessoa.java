@@ -107,10 +107,16 @@ public class Pessoa implements Serializable {
 
 	public void setDataNascimento(String dataNascimento) {
 		String[] data = dataNascimento.split("/");
+		String[] dataSql = dataNascimento.split("-");
 		if (data.length == 3) {
 			this.setDataNascimento(
 					LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0])));
-		} else {
+		}if(dataSql.length == 3){
+			System.out.println("Data: "+dataSql[2] + dataSql[1] + dataSql[0]);
+			
+			this.setDataNascimento(
+					LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]), Integer.valueOf(dataSql[2])));
+		}else {
 			throw new RuntimeException(
 					"Erro: A data de nascimento não está no formato correto, valor informado " + dataNascimento);
 		}
