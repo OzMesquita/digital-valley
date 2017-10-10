@@ -32,8 +32,8 @@
 							name="url" id="url" required class="form-control">
 					</div>
 					<div class="form-group">
-						<label for="imagem">Imagem</label><input type="file" id="imagem"
-							name="imagem">
+						<label for="imagem">Imagem</label><input type="file"
+							class="btn btn-info" id="imagem" name="imagem">
 					</div>
 					<div class="form-group">
 						<label>Perfil de Acesso</label>
@@ -65,4 +65,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="<%=Constantes.getAppJsUrl()+"/marcarCheckBoxDePerfis.js" %>>"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="<%=Constantes.getAppJsUrl()%>/marcarCheckBoxDePerfis.js"></script>

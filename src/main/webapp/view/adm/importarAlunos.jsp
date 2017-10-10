@@ -1,51 +1,34 @@
-
-		<div id="page-wrapper">
-			<div class="container-fluid" style="min-height: 400px">
-				<!-- aqui-->
-
-				<div class="col-md-8" style="margin-left: 15%;">
-					<div class="card">
-						<div class="header" style="text-align: center;">
-							<h4 class="title">Importação de Matriculas</h4>
-							<hr style="border: 1px solid lightgray">
-						</div>
-						<div class="content">
-							<form action="importarAlunos" method="post"
-								style="margin-left: 20%;">
-								<div class="row">
-									<div class="col-md-8">
-										<div class="form-group">
-											<label>Curso</label> <select required="true" class="form-control"
-												name="curso">
-												<option disabled="disabled" selected="selected" value="0" >Selecione um curso</option>
-												<option value="1"> Ciência da Computação</option>
-												<option value="2"> Engenharia Civil</option>
-												<option value="3"> Engenharia de Produção</option>
-												<option value="4"> Engenharia de Software</option>
-												<option value="5"> Engenharia Mecânica</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-8">
-										<div class="form-group">
-											<label>Matriculas</label><small style="color: gray;">
-											</small><br>
-											<textarea name="matriculas" required="true" rows="10" cols="50"></textarea>
-										</div>
-									</div>
-								</div>
-								<input type="submit" class="btn-importar" value="Importar"
-									title="Importar arquivo">
-
-							</form>
-						</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 id="titulo_da_pagina">Importação de Matriculas</h3>
+			</div>
+			<div class="panel-body">
+				<form action="importarAlunos" method="post">
+					<div class="form-group">
+						<label for="curso">Curso</label> <select required="true"
+							class="form-control" name="curso" id="curso">
+							<option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
+							<option value="1"> Ciência da Computação</option>
+							<option value="2"> Engenharia Civil</option>
+							<option value="3"> Engenharia de Produção</option>
+							<option value="4"> Engenharia de Software</option>
+							<option value="5"> Engenharia Mecânica</option>
+						</select>
 					</div>
-				</div>
-
-
-				<!-- aqui-->
+					<div class="form-group">
+						<label for="matriculas">Matriculas</label>
+						<textarea name="matriculas" id="matriculas" required="true"
+							class="form-control"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit"
+							class="text-centered btn btn-success form-control"
+							value="Importar" title="Importar arquivo">
+					</div>
+				</form>
 			</div>
 		</div>
-
+	</div>
+</div>
