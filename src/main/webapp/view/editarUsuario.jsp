@@ -1,3 +1,5 @@
+<%@page import="model.Servidor"%>
+<%@page import="model.Aluno"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
@@ -27,9 +29,22 @@
 					<div class="row">
 						<div class="col-md-3">
 							<div class="form-group">
+							<%
+							String codigoInterno = "";
+							if(usuario.getPessoa() instanceof Aluno){
+								Aluno aluno = (Aluno) usuario.getPessoa();
+								codigoInterno = aluno.getMatricula();
+							}
+							if(usuario.getPessoa() instanceof Servidor){
+								Servidor servidor = (Servidor) usuario.getPessoa();
+								codigoInterno = servidor.getSiape();
+								
+							}
+							%>
+							
 								<label for="codigo_interno">Código Interno</label> <input
 									id="codigo_interno" type="text" class="form-control" disabled
-									value="<%=usuario.getPessoa().getId()%>">
+									value="<%=codigoInterno%>">
 							</div>
 						</div>
 						<div class="col-md-9">
