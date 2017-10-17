@@ -1,6 +1,7 @@
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="cbp-spmenu-push">
 	<%
 
@@ -10,7 +11,7 @@
         
 		Pessoa p = Facade.buscarPessoaPorId(id);
 		if (p == null) {
-                    session.setAttribute("msg", "Nenhum usuário selecionado.");
+                    session.setAttribute("msg", "Nenhum usuÃ¡rio selecionado.");
 		} else { session.setAttribute("pessoa", p);
 	%>
 
@@ -21,7 +22,7 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="header" style="text-align: center;">
-						<h4 class="title">Perfil do Usuário</h4>
+						<h4 class="title">Perfil do UsuÃ¡rio</h4>
 						<hr style="border: 1px solid lightgray">
 					</div>
 					<div class="content">
@@ -29,7 +30,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Código</label> <input type="text" class="form-control"
+										<label>CÃ³digo</label> <input type="text" class="form-control"
 											disabled value="<%= p.getId()%>">
 									</div>
 								</div>
@@ -44,7 +45,7 @@
 							<div class="row">
 								<div class="col-md-8">
 									<div class="form-group">
-										<label>Nome do Usuário</label> <input type="text"
+										<label>Nome do UsuÃ¡rio</label> <input type="text"
 											class="form-control" disabled value="<%= p.getNome()%>">
 									</div>
 								</div>
@@ -78,12 +79,12 @@
 						<div class="author">
 							<form id="nivelUsuario" action="AlterarNivel" method="post">
 								<div class="header">
-									<label>Nivel do Usuário</label>
+									<label>Nivel do UsuÃ¡rio</label>
 								</div>
 								<select class="form-control" name="nivel" required>
 									<option disabled="disable" selected="true">
 										<%=p.getUsuario().getNivel() %></option>
-									<option value="2">Usuário Comum</option>
+									<option value="2">UsuÃ¡rio Comum</option>
 									<option value="1">Administrador</option>
 								</select> <input id="save" type="submit" value="Salvar">
 							</form>

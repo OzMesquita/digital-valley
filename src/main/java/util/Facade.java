@@ -238,9 +238,17 @@ public class Facade {
 	}
 
 	public static void preCadastroServidor(String nome, String siape) {
-		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
-		pDAO.preCadastrarServidor(siape, nome);
-
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		Servidor s = sDAO.buscar(siape);
+		//System.out.println(s.getNome());
+		if(s == null){
+			PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
+			pDAO.preCadastrarServidor(siape, nome);
+		}else{
+			throw new IllegalArgumentException("Servidor já cadastrado no sistema");
+		}
+				
+		
 	}
 
 	public static int buscarCursoPreCadastrado(String matricula, String nome) {

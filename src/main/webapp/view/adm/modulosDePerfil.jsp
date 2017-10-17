@@ -5,6 +5,7 @@
 <%@page import="model.Modulo"%>
 <%@page import="model.EnumNivel"%>
 <%@page import="util.Constantes"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String url = (String) request.getAttribute("url");
 	List<Modulo> modulosDoPerfil = (List<Modulo>) request.getAttribute("modulosDoPerfil");

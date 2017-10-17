@@ -10,7 +10,7 @@
 	href="<%=Constantes.getAppCssUrl()%>/style.css">
 <link href="https://fonts.googleapis.com/css?family=Righteous"
 	rel="stylesheet">
-<title>Template</title>
+<title>Guardião</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
