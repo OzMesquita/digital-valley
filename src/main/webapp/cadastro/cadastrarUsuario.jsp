@@ -66,11 +66,7 @@
 											seus dados</small>
 									</h3>
 								</div>
-								<div class="wizard-navigation">
-									<ul>
-										<li><a data-toggle="tab">Cadastro</a></li>
-									</ul>
-								</div>
+								
 								<div class="tab-content">
 									<div class="">
 										<div class="row">
@@ -130,21 +126,19 @@
 												<%	
                                                    	} %>
 												<div class="form-group">
-													<label>CPF </label> <input name="cpf"
+													<label>CPF </label> <input name="cpf" id="cpf"
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required maxlength="14"
 														placeholder="012.345.678-90"
 														OnKeyPress=" this.value = FormataCpf()">
 												</div>
 												<div class="form-group">
-													<label>Data de Nascimento </label> <input name="nascimento"
+													<label>Data de Nascimento </label> <input name="nascimento" id="nascimento" 
 														title="Preencha este campo corretamente" type="text"
-														class="form-control" required maxlength="10"
-														placeholder="12/34/5679" pattern="^\d{2}-\d{2}-\d{4}$"
-														onkeypress="formatar('00/00/0000',this)">
+														class="form-control" required >
 												</div>
 												<div class="form-group">
-													<label>E-mail </label> <input name="email"
+													<label>E-mail </label> <input name="email" id="email"
 														title="Preencha este campo corretamente" type="email"
 														class="form-control" required
 														placeholder="Examplo@gmail.com">
@@ -153,7 +147,7 @@
 													<label>Login </label> <input name="login"
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required
-														placeholder="Nome de usuÃ¡rio">
+														placeholder="Nome de usuário">
 												</div>
 												<div class="form-group">
 													<label>Senha </label> <input name="senha"
@@ -192,40 +186,6 @@
 	</div>
 </body>
 
-
-<script>
-        
-        function verificaNumero(e){
-            if(e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)){
-                return false;
-            }
-        }
-        $(document).ready(function(){
-            $("#cpf").keypress(verificaNumero());
-        });
-        
-        function FormataCpf(event){
-            var cpf = document.formCadastro.cpf.value;
-            if(cpf.length === 3) cpf = cpf+'.';
-            if(cpf.length === 7) cpf = cpf+'.';
-            if(cpf.length === 11) cpf = cpf+'-';
-            return cpf;
-        }
-    </script>
-
-<script>
-            function formatar(mascara, documento){
-                var i = documento.value.length;
-                var saida = mascara.substring(0,1);
-                var texto = mascara.substring(i)
-
-                if (texto.substring(0,1) !== saida){
-                        documento.value += texto.substring(0,1);
-                }
-
-            }
-        </script>
-
 <script>
             function validaSenha(){
                var senha = document.formCadastro.senha.value;
@@ -244,28 +204,13 @@
                     }
             }
         </script>
-<!--   Core JS Files   -->
-<script src="../assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets2/js/jquery.bootstrap.wizard.js"
-	type="text/javascript"></script>
 
-<!--  Plugin for the Wizard -->
-<script src="../assets2/js/gsdk-bootstrap-wizard.js"></script>
-
-<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-<script src="../assets2/js/jquery.validate.min.js"></script>
-
-<script>
-                document.querySelector('body').addEventListener('keydowm', function(event){
-                    var tecla = event.keyCode;
-                    if(tecla === 8) alert(tecla.value);
-                } );
-        </script>
 
 
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
 	type="text/javascript"></script>
+	<!--   Core JS Files   -->
+<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
 	type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/validacao.js"

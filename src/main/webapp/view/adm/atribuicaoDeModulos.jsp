@@ -1,3 +1,4 @@
+<%@page import="util.Facade"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Perfil"%>
 <%@page import="java.util.List"%>
@@ -56,7 +57,7 @@
 						<td><%=pessoa.getNome()%></td>
 						<td><%=pessoa.getCpf()%></td>
 						<td><%=pessoa.getEmail()%></td>
-						<td><%=pessoa.getDataNascimento()%></td>
+						<td><%=Facade.converterLocalDateParaString(pessoa.getDataNascimento()) %></td>
 						<td><a
 							href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
 								módulos</a></td>
