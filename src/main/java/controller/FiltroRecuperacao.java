@@ -11,10 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import dao.DAOFactory;
-import dao.PessoaDAO;
+import model.Aluno;
 import model.Pessoa;
+import model.Servidor;
+import util.Facade;
+
 
 public class FiltroRecuperacao implements Filter {
 	@Override
@@ -27,14 +28,34 @@ public class FiltroRecuperacao implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = (HttpSession) (((HttpServletRequest) request).getSession());
-		Pessoa pessoa = (Pessoa) session.getAttribute("pessoa");
-		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		String token = pDAO.buscarTokenRecuperacao(pessoa);
+		
+		
+		String token = request.getParameter("token");
+		Pessoa pessoa = Facade.verificarTokenRecuperacao(token);
+		Aluno aluno = null;
+		Servidor servidor = null;
 
-		if (token != null) {
-			chain.doFilter(request, response);
+		
+		if (pessoa instanceof Aluno){
+			aluno = (Aluno) pessoa;
+		}else{
+			servidor = (Servidor) pessoa;
+		}
+
+		if (token != null){
+			if(aluno != null){
+				session.setAttribute("matricula", aluno.getMatricula());
+				
+			}
+			if(servidor != null){
+				session.setAttribute("siape", servidor.getSiape());
+			}else{
+				chain.doFilter(request, response);
+			
+			}
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoPreCadastro=1");
+			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?recuperacao=1");
+			
 		}
 
 	}

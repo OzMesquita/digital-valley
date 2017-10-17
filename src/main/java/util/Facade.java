@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +72,7 @@ public class Facade {
 		return token.toString();
 	}
 
-	public static String getdDiretorioPerfilUsuario(int id) {
+	public static String getDiretorioPerfilUsuario(int id) {
 		Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorId(id);
 		String imagem = pessoa.getImagem();
 		if (imagem != null && !imagem.trim().isEmpty()) {
@@ -254,6 +256,22 @@ public class Facade {
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 		return aDAO.listar();
 	}
+	
+	public static List<Pessoa> buscarPessoasPorNome(String nome, int inicio, int fim) {
+		return DAOFactory.criarPessoaDAO().buscarPorNome(nome, inicio, fim);
+	}
+	
+	public static Integer getQuantidadePessoasPorNome(String nome) {
+		return DAOFactory.criarPessoaDAO().getQuantidadePorNome(nome);
+	}
+	
+	public static List<Aluno> buscarAlunosPorNome(String nome, int inicio, int fim) {
+		return DAOFactory.criarAlunoDAO().buscarPorNome(nome, inicio, fim);
+	}
+	
+	public static Integer getQuantidadeAlunosPorNome(String nome) {
+		return DAOFactory.criarAlunoDAO().getQuantidadePorNome(nome);
+	}
 
 	public static List<Servidor> buscarServidor() {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
@@ -308,19 +326,25 @@ public class Facade {
 
 	}
 
-	public static void EnviarEmailRecuperacaoDeSenha(String emailCadastrado) {
-		if (emailCadastrado != null) {
+	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
+		if (pessoa != null) {
 			Email e = new Email();
-
+			System.out.println("Email >>"+pessoa.getEmail());
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-							+ "http://localhost:8080/"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp"
+							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
 							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
-					emailCadastrado, "Usuário Controle de Acesso");
+					pessoa.getEmail(), "Usuário Controle de Acesso");
 		} else {
 			throw new IllegalArgumentException("Email não pode ser nulo");
 		}
+	}
+	
+	public static void inserirToken(Pessoa pessoa){
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		pDAO.inserirTokenRecuperacao(pessoa);
+		
 	}
 
 	public static Pessoa BuscarEmailVinculado(String email) {
@@ -337,9 +361,35 @@ public class Facade {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		return sDAO.buscarPorNome(nome);
 	}
+	
+	public static Pessoa verificarTokenRecuperacao(String token){
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscarTokenRecuperacao(token);
+		Servidor servidor = DAOFactory.criarServidorDAO().buscarPorToken(token);
+		if(aluno != null){
+			return aluno;
+		}else if(servidor != null){
+			return servidor;
+		}else{
+			return null;
+		}
+	}
 
-	public static String getdDiretorioImagemModulo(int id) {		
+	public static String getDiretorioImagemModulo(int id) {		
 		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
 	}
 
+	public static Integer getQuantidadeServidoresPorNome(String nome) {
+		return DAOFactory.criarServidorDAO().getQuantidadePorNome(nome);
+	}
+
+	public static List<Servidor> buscarServidoresPorNome(String nome, Integer inicio, Integer fim) {
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		return sDAO.buscarPorNome(nome, inicio, fim);
+	}
+
+	public static String converterLocalDateParaString(LocalDate localDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		return localDate.format(formatter);
+	}
+	
 }
