@@ -3,6 +3,7 @@
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String mensagem = (String) session.getAttribute("msg");
 	if (mensagem == null) {
@@ -13,7 +14,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Informações do Usuário</h3>
+				<h3 id="titulo_da_pagina">InformaÃ§Ãµes do UsuÃ¡rio</h3>
 			</div>
 			<div class="panel-body">
 				<%
@@ -42,7 +43,7 @@
 							}
 							%>
 							
-								<label for="codigo_interno">Código Interno</label> <input
+								<label for="codigo_interno">CÃ³digo Interno</label> <input
 									id="codigo_interno" type="text" class="form-control" disabled
 									value="<%=codigoInterno%>">
 							</div>
@@ -103,7 +104,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-success text-center form-control"
-							value="Salvar" title="Salvar alterações">
+							value="Salvar" title="Salvar alteraÃ§Ãµes">
 					</div>
 				</form>
 			</div>
@@ -114,9 +115,5 @@
 	type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
 	type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function($) {
-		$("#nascimento").mask("00/00/0000");
-		$("#cpf").mask("000.000.000-00");
-	});
-</script>
+<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
+	type="text/javascript"></script>

@@ -6,6 +6,7 @@
 <%@page import="util.Facade"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	List<Pessoa> usuarios = (List<Pessoa>) request.getAttribute("pessoas");
 	String tipo = (String) request.getAttribute("tipo");
@@ -17,7 +18,7 @@
 %>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 id="titulo_da_pagina">Usu·rios</h3>
+		<h3 id="titulo_da_pagina">Usu√°rios</h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -64,7 +65,7 @@
 					<th>CPF</th>
 					<th>Nome</th>
 					<th>E-mail</th>
-					<th>NÌvel</th>
+					<th>N√≠vel</th>
 				</thead>
 				<tbody>
 					<%

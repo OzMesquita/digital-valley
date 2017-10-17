@@ -4,8 +4,10 @@
     Author     : N2S-PC03
 --%>
 
+<%@page import="util.Constantes"%>
 <%@page import="model.EnumCargo"%>
 <%@page import="model.EnumCurso"%>
+<%@page import="util.Constantes" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -139,7 +141,7 @@
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required maxlength="10"
 														placeholder="12/34/5679" pattern="^\d{2}-\d{2}-\d{4}$"
-														onkeypress="formatar('##/##/####',this)">
+														onkeypress="formatar('00/00/0000',this)">
 												</div>
 												<div class="form-group">
 													<label>E-mail </label> <input name="email"
@@ -262,5 +264,10 @@
         </script>
 
 
-
+<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
+	type="text/javascript"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
+	type="text/javascript"></script>
 </html>

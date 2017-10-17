@@ -6,6 +6,7 @@
 <%@page import="model.EnumNivel"%>
 <%@page import="util.Constantes"%>
 <%@page import="util.Facade"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
 	List<Modulo> modulosDisponiveis = (List<Modulo>) request.getAttribute("modulosDisponiveis");

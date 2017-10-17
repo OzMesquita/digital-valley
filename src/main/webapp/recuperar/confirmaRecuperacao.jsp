@@ -75,5 +75,8 @@
 	type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/formularioDeRecuperacao.js"
 	type="text/javascript"></script>
+	<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
+	type="text/javascript"></script>
+	
 </html>
 
