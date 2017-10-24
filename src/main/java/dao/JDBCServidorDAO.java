@@ -46,7 +46,7 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		Usuario usuario =  new Usuario();
 
 
-		String SQL = "SELECT * FROM servidor as se, pessoa_usuario as pu WHERE se.siape = ? AND se.id_pessoa_usuario = pu.id_pessoa_usuario";
+		String SQL = "SELECT * FROM servidor as se, pessoa_usuario as pu WHERE  pu.id_pessoa_usuario = ? AND pu.id_pessoa_usuario = se.id_pessoa_usuario";
 
 
 		try {
