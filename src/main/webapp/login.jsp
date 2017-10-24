@@ -47,6 +47,9 @@
 			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
 
 		}
+		if(session.getAttribute("usuario")!=null){
+			response.sendRedirect("view/telaInicial.jsp");
+		}
 	%>
 
 	
