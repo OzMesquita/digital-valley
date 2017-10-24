@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Pessoa;
 import model.Usuario;
-
 
 public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
@@ -105,23 +103,26 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
 			ResultSet rs = ps.executeQuery();
 
-			rs.next();
-			pessoa.setId(rs.getInt("id_pessoa_usuario"));
-			pessoa.setNome(rs.getString("nome"));
-			pessoa.setCpf(rs.getString("cpf"));
-			pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-			pessoa.setEmail(rs.getString("email"));
-			pessoa.setImagem(rs.getString("imagem"));
-			pessoa.getUsuario().setLogin(rs.getString("login"));
-			pessoa.getUsuario().setSenha(rs.getString("senha"));
-			pessoa.getUsuario().setNivel(rs.getInt("nivel"));
-			pessoa.getUsuario().setPessoa(pessoa);
-			pessoa.getUsuario().setToken(rs.getString("token_sessao"));
-			pessoa.getUsuario().setTokenUsuario(rs.getString("token_usuario"));
+			if (rs.next()) {
+				pessoa.setId(rs.getInt("id_pessoa_usuario"));
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setCpf(rs.getString("cpf"));
+				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.setImagem(rs.getString("imagem"));
+				pessoa.getUsuario().setLogin(rs.getString("login"));
+				pessoa.getUsuario().setSenha(rs.getString("senha"));
+				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
+				pessoa.getUsuario().setPessoa(pessoa);
+				pessoa.getUsuario().setToken(rs.getString("token_sessao"));
+				pessoa.getUsuario().setTokenUsuario(rs.getString("token_usuario"));
+				ps.close();
+				rs.close();
+				return pessoa;
+			}
 			ps.close();
 			rs.close();
-
-			return pessoa;
+			return null;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -166,7 +167,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			rs.close();
 			ps.close();
 			return null;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar registro de pessoa, erro: " + e.getMessage());
@@ -466,7 +467,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	}
 
 	@Override
-	public String buscarTokenRecuperacao(Pessoa pessoa){
+	public String buscarTokenRecuperacao(Pessoa pessoa) {
 		super.open();
 		String token = "";
 		String SQL = "SELECT data_nascimento, nome, cpf, email, login, senha, id_pessoa_usuario, nivel, token_sessao, data_ultima_sessao, token_recuperacao, data_ultima_recuperacao FROM public.pessoa_usuario WHERE id_pessoa_usuario = ? AND data_ultima_recuperacao = ?";
@@ -474,7 +475,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
-			ps.setDate(2, Date.valueOf (LocalDate.now()));
+			ps.setDate(2, Date.valueOf(LocalDate.now()));
 
 			ResultSet rs = ps.executeQuery();
 
@@ -494,11 +495,9 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			super.close();
 		}
 	}
-	
-	
-	
+
 	@Override
-	public void inserirTokenRecuperacao (Pessoa pessoa){
+	public void inserirTokenRecuperacao(Pessoa pessoa) {
 		super.open();
 		String SQL = "UPDATE public.pessoa_usuario SET token_recuperacao=?, data_ultima_recuperacao=? WHERE id_pessoa_usuario = ?";
 		try {
@@ -506,21 +505,20 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			String token = util.Facade.buildToken();
 			ps.setString(1, token);
-			ps.setDate(2, Date.valueOf (LocalDate.now()));
+			ps.setDate(2, Date.valueOf(LocalDate.now()));
 			ps.setInt(3, pessoa.getId());
 
 			ps.executeUpdate();
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Falha ao inserir token em "+pessoa.getNome()+" de pessoa, erro: " + e.getMessage());
+			throw new RuntimeException(
+					"Falha ao inserir token em " + pessoa.getNome() + " de pessoa, erro: " + e.getMessage());
 		} finally {
 			super.close();
 		}
 	}
-	
-	
+
 	@Override
 	public Integer getQuantidadePorNivel(int nivel) {
 		super.open();
@@ -531,11 +529,11 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 			Integer quantidade = null;
 			if (rs.next()) {
-				quantidade =  rs.getInt("quantidade");
+				quantidade = rs.getInt("quantidade");
 			} else {
 				ps.close();
 				rs.close();
-				quantidade =  0;
+				quantidade = 0;
 			}
 			return quantidade;
 		} catch (SQLException e) {
@@ -553,7 +551,7 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, nivel);
-			ps.setString(2, "%"+nome+"%");
+			ps.setString(2, "%" + nome + "%");
 			ps.setInt(3, fim - inicio);
 			ps.setInt(4, inicio);
 			ResultSet rs = ps.executeQuery();
@@ -582,14 +580,14 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			super.close();
 		}
 	}
-	
+
 	@Override
 	public List<Pessoa> buscarPorNome(String nome, int inicio, int fim) {
 		super.open();
 		String SQL = "SELECT * FROM pessoa_usuario WHERE UPPER(nome) LIKE UPPER(?) ORDER BY id_pessoa_usuario ASC LIMIT ? OFFSET ?";
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, "%"+nome+"%");
+			ps.setString(1, "%" + nome + "%");
 			ps.setInt(2, fim - inicio);
 			ps.setInt(3, inicio);
 			ResultSet rs = ps.executeQuery();
@@ -618,14 +616,14 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			super.close();
 		}
 	}
-	
+
 	@Override
 	public Integer getQuantidadePorNome(String nome) {
 		super.open();
 		String SQL = "SELECT COUNT(*) AS quantidade FROM pessoa_usuario WHERE nome LIKE ?";
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, "%"+nome+"%");
+			ps.setString(1, "%" + nome + "%");
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt("quantidade");
@@ -648,13 +646,13 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 		String SQL = "SELECT count(*) AS quantidade FROM public.pessoa_usuario WHERE UPPER(nome) LIKE UPPER(?) AND nivel = ?";
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, "%"+nome+"%");
+			ps.setString(1, "%" + nome + "%");
 			ps.setInt(2, nivel);
 			ResultSet rs = ps.executeQuery();
-			Integer quantidade =null; 
+			Integer quantidade = null;
 			if (rs.next()) {
 				quantidade = rs.getInt("quantidade");
-			} else {				
+			} else {
 				quantidade = 0;
 			}
 			ps.close();

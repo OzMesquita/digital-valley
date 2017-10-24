@@ -31,46 +31,47 @@ public class VerificarCadastro extends HttpServlet {
 
 		try {
 			if (!matricula.equals("")) {
-				if(Facade.verificacaoAluno(matricula, nomeA)){
-					pagina = "cadastro/cadastrarUsuario.jsp";
-					session.setAttribute("preCadastro", "ok");
-					session.setAttribute("nomeA", nomeA);
-					session.setAttribute("matricula", matricula);
-					session.setAttribute("curso", util.Facade.buscarCursoPreCadastrado(matricula, nomeA));
-				}else{
+				if (Facade.verificacaoAluno(matricula, nomeA)) {
 					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);
-					if(aluno != null){
-						
+					if (aluno != null) {
+
 						throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
-					}else{
-						
-						throw new Exception("Pre cadastro de aluno não identificado");
+
+					} else {
+						pagina = "cadastro/cadastrarUsuario.jsp";
+						session.setAttribute("preCadastro", "ok");
+						session.setAttribute("nomeA", nomeA);
+						session.setAttribute("matricula", matricula);
+						session.setAttribute("curso", util.Facade.buscarCursoPreCadastrado(matricula, nomeA));
 					}
 				}
 				
-				
-			}else if(!siape.equals("")){
-				
-				if(Facade.verificacaoServidor(siape, nomeS)){
+				if (session.getAttribute("matricula") == null) {
+
+					throw new Exception("Pre cadastro de aluno não identificado");
+				}
+
+			} else if (!siape.equals("")) {
+
+				if (Facade.verificacaoServidor(siape, nomeS)) {
+					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+					Servidor servidor = sDAO.buscarPorSiape(siape);
+					if (servidor != null) {
+
+						throw new Exception("Servidor(a) " + servidor.getNome() + " já possui cadastro");
+					}
 					pagina = "cadastro/cadastrarUsuario.jsp";
 					session.setAttribute("preCadastro", "ok");
 					session.setAttribute("nomeS", nomeS);
 					session.setAttribute("siape", siape);
-					
-				}else{
-					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-					Servidor servidor = sDAO.buscar(siape);
-					if(servidor != null){
-						
-						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");
-					}else{
+
+				} else if(session.getAttribute("")==null){
 						session.setAttribute(Constantes.getSessionMsg(), "Pre cadastro não identificado");
-						throw new Exception("msg, Pre cadastro não identificado");
+						throw new Exception("Pre cadastro não identificado");
 					}
 				}
-				
-			}
+
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}

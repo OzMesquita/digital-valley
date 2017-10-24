@@ -28,58 +28,76 @@
 				%>
 				<form action="editarUsuario" method="post">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
+							<p>
+								<img
+									src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
+									id="img-edicao-perfil">
+							</p>
 							<div class="form-group">
-							<%
-							String codigoInterno = "";
-							if(usuario.getPessoa() instanceof Aluno){
-								Aluno aluno = (Aluno) usuario.getPessoa();
-								codigoInterno = aluno.getMatricula();
-							}
-							if(usuario.getPessoa() instanceof Servidor){
-								Servidor servidor = (Servidor) usuario.getPessoa();
-								codigoInterno = servidor.getSiape();
-								
-							}
-							%>
-							
-								<label for="codigo_interno">Código Interno</label> <input
-									id="codigo_interno" type="text" class="form-control" disabled
-									value="<%=codigoInterno%>">
+
+								<label for="image-perfil">Editar imagem perfil:</label> <input
+									type="file" name="image-perfil" id="image-perfil">
 							</div>
 						</div>
-						<div class="col-md-9">
-							<div class="form-group">
-								<label for="nome">Nome Completo</label> <input type="text"
-									class="form-control" name="nome" id="nome" disabled
-									value="<%=usuario.getPessoa().getNome()%>">
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<%
+											String codigoInterno = "";
+											if (usuario.getPessoa() instanceof Aluno) {
+												Aluno aluno = (Aluno) usuario.getPessoa();
+												codigoInterno = aluno.getMatricula();
+											}
+											if (usuario.getPessoa() instanceof Servidor) {
+												Servidor servidor = (Servidor) usuario.getPessoa();
+												codigoInterno = servidor.getSiape();
+
+											}
+										%>
+
+										<label for="codigo_interno">Código Interno</label> <input
+											id="codigo_interno" type="text" class="form-control" disabled
+											value="<%=codigoInterno%>">
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="nome">Nome Completo</label> <input type="text"
+											class="form-control" name="nome" id="nome" disabled
+											value="<%=usuario.getPessoa().getNome()%>">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="cpf">CPF</label> <input type="text" id="cpf"
+										name="cpf" class="form-control" maxlength="14" required
+										value="<%=usuario.getPessoa().getCpf()%>">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="nascimento">Data de Nascimento</label> <input
+										title="Preencha este campo corretamente" type="text"
+										id="nascimento" class="form-control" name="nascimento"
+										required
+										value="<%=Facade.converterLocalDateParaString(usuario.getPessoa().getDataNascimento())%>">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="email">E-mail</label> <input type="text" id="email"
+										class="form-control" name="email" required
+										value="<%=usuario.getPessoa().getEmail()%>">
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="cpf">CPF</label> <input type="text" id="cpf"
-									name="cpf" class="form-control" maxlength="14" required
-									value="<%=usuario.getPessoa().getCpf()%>">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="nascimento">Data de Nascimento</label> <input
-									title="Preencha este campo corretamente" type="text"
-									id="nascimento" class="form-control" name="nascimento" required
-									value="<%=Facade.converterLocalDateParaString(usuario.getPessoa().getDataNascimento())%>">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="email">E-mail</label> <input type="text" id="email"
-									class="form-control" name="email" required
-									value="<%=usuario.getPessoa().getEmail()%>">
-							</div>
-						</div>
-					</div>
+
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
@@ -103,8 +121,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input type="submit" class="btn btn-success text-center form-control"
-							value="Salvar" title="Salvar alterações">
+						<input type="submit"
+							class="btn btn-success text-center form-control" value="Salvar"
+							title="Salvar alterações"> 
 					</div>
 				</form>
 			</div>

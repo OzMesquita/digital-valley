@@ -134,7 +134,16 @@ public class Facade {
 
 	public static Usuario buscarPorLogin(String login) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		return pDAO.buscarPorLogin(login).getUsuario();
+		Pessoa p = pDAO.buscarPorLogin(login);
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscar(p.getId());
+		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
+		if(aluno != null){
+			return aluno.getUsuario();
+		}else if (servidor != null){
+			return servidor.getUsuario();
+		}
+			
+		return null;
 	}
 
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
@@ -225,7 +234,12 @@ public class Facade {
 		return preServDAO.buscarPreCadastro(siape, nome);
 	}
 
-	public static void preCadastrarAluno(String nome, String matricula, int curso) {
+	public static void preCadastrarAluno(String nome, String matricula, int curso) throws Exception {
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
+		
+		if(aluno != null){
+			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
+		}
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		preA.preCadastrar(nome, matricula, curso);
 
@@ -239,7 +253,7 @@ public class Facade {
 
 	public static void preCadastroServidor(String nome, String siape) {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-		Servidor s = sDAO.buscar(siape);
+		Servidor s = sDAO.buscarPorSiape(siape);
 		//System.out.println(s.getNome());
 		if(s == null){
 			PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
