@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="org.apache.tomcat.util.bcel.Const"%>
 <%@page import="util.Constantes"%>
 <%@page import="controller.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,21 +41,18 @@
 
 	<%
 		String mensagem;
-		if (session.getAttribute("msg") == null) {
+		if (session.getAttribute(Constantes.getSessionMsg()) == null) {
 			mensagem = "";
 		} else {
-			mensagem = (String) session.getAttribute("msg");
+			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
 
+		}
+		if(session.getAttribute("usuario")!=null){
+			response.sendRedirect("view/telaInicial.jsp");
 		}
 	%>
 
-	<%
-		if (session.getAttribute("usuario") == null) {
-			if (request.getParameter("login") != null && request.getParameter("senha") != null) {
-				RequestDispatcher rd = request.getRequestDispatcher("login");
-				rd.forward(request, response);
-			} else {
-	%>
+	
 
 
 	<div class="image-container set-full-height"
@@ -80,7 +78,7 @@
 									</ul>
 								</div>
 								<div class="erroMsg">
-									<small><%=mensagem%> <% session.setAttribute("msg", null);%></small>
+									<small><%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%></small>
 								</div>
 								<div class="tab-content">
 									<div class="tab-pane" id="about">
@@ -143,12 +141,7 @@
 			<div class="container">₢ Todos os direitos reservados | N2S</div>
 		</div>
 	</div>
-	<%
-		}
-		} else {
-			response.sendRedirect("PaginaDoAluno.jsp");
-		}
-	%>
+	
 </body>
 
 <!--   Core JS Files   -->

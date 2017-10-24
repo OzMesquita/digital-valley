@@ -42,7 +42,7 @@ public class FiltroRecuperacao implements Filter {
 			servidor = (Servidor) pessoa;
 		}
 
-		if (token != null){
+		if (pessoa != null){
 			if(aluno != null){
 				session.setAttribute("matricula", aluno.getMatricula());
 				

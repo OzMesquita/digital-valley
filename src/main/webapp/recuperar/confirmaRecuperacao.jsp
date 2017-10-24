@@ -33,11 +33,12 @@
 							<div id="formulario_recuperar_senha_aluno">
 								<div class="form-group">
 									<label for="matricula">Matrícula</label> <input type="text"
+										id="matricula"
 										name="matricula" maxlength="6" class="form-control">
 								</div>
 								<div class="form-group">
 									<label for="cpfA">CPF</label><input type="text" name="cpfA"
-										id="cpfA" class="form-control">
+										id="cpfA" class="form-control cpf">
 								</div>
 							</div>
 							<div id="formulario_recuperar_senha_servidor">
@@ -47,7 +48,7 @@
 								</div>
 								<div class="form-group">
 									<label for="cpfS">CPF</label><input type="text" name="cpfS"
-										id="cpfS" class="form-control">
+										id="cpfS" class="form-control cpf" >
 								</div>
 							</div>
 							<div class="form-group">
@@ -74,6 +75,8 @@
 <script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"
 	type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/formularioDeRecuperacao.js"
+	type="text/javascript"></script>
+	<script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
 	type="text/javascript"></script>
 	<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
 	type="text/javascript"></script>
