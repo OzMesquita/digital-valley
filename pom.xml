@@ -35,6 +35,11 @@
 
 	<!-- Depedencias -->
 	<dependencies>
+		<dependency>
+			<groupId>br.com.n2s</groupId>
+			<artifactId>n2sCore</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
