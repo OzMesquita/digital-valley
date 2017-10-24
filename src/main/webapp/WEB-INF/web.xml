@@ -16,6 +16,10 @@
 			<include-coda>/WEB-INF/templates/footer.jspf</include-coda>			
 		</jsp-property-group>
 	</jsp-config>
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 
 	<!-- 1 -->
