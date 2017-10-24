@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/webapp/view/adm/atribuicaoDeModulos.jsp=UTF-8
 encoding//src/main/webapp/view/adm/cadastrarModulo.jsp=UTF-8
+encoding//src/main/webapp/view/adm/importarAlunos.jsp=UTF-8
 encoding//src/main/webapp/view/adm/modulosDePerfil.jsp=UTF-8
 encoding//src/main/webapp/view/adm/modulosDePessoa.jsp=UTF-8
 encoding//src/test/java=UTF-8

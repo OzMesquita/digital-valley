@@ -45,7 +45,9 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		Servidor servidor = new Servidor();
 		Usuario usuario =  new Usuario();
 
-		String SQL = "SELECT * FROM servidor as s, pessoa_usuario as pu WHERE s.id_pessoa_usuario = ? AND pu.id_pessoa_usuario = s.id_pessoa_usuario";
+
+		String SQL = "SELECT * FROM servidor as se, pessoa_usuario as pu WHERE se.siape = ? AND se.id_pessoa_usuario = pu.id_pessoa_usuario";
+
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
@@ -65,9 +67,13 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setPessoa(servidor);
 				servidor.setUsuario(usuario);
+				ps.close();
+				rs.close();
+				return servidor;
 			}
 			ps.close();
 			rs.close();
+			return null;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,7 +81,7 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		} finally {
 			super.close();
 		}
-		return servidor;
+		
 	}
 
 	public Servidor buscarPorSiape(String siape) {
