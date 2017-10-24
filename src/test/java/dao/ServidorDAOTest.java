@@ -27,7 +27,7 @@ public class ServidorDAOTest {
 		ServidorDAO sdao = DAOFactory.criarServidorDAO();
 		servidor.setSiape("7654321");
 
-		Assert.assertTrue(sdao.buscar(servidor.getSiape()) != null);
+		Assert.assertTrue(sdao.buscarPorSiape(servidor.getSiape()) != null);
 
 	}
 

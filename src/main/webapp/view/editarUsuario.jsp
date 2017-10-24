@@ -35,6 +35,7 @@
 									id="img-edicao-perfil">
 							</p>
 							<div class="form-group">
+
 								<label for="image-perfil">Editar imagem perfil:</label> <input
 									type="file" name="image-perfil" id="image-perfil">
 							</div>
@@ -120,12 +121,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<<<<<<< HEAD <input type="submit"
+						<input type="submit"
 							class="btn btn-success text-center form-control" value="Salvar"
-							title="Salvar altera��es"> ======= <input type="submit"
-							class="btn btn-success text-center form-control" value="Salvar"
-							title="Salvar alterações"> >>>>>>>
-						0fc99388d38f925601c2974d3ea182234f66d492
+							title="Salvar alterações"> 
 					</div>
 				</form>
 			</div>
