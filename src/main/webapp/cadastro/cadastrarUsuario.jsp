@@ -99,11 +99,12 @@
 
 												<div class="form-group">
 													<label>Semestre de Ingresso</label> <input
+														id="semestreDeIngresso"
 														name="semestreDeIngresso"
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required maxlength="6"
-														placeholder="Ex.: 2015.1"
-														OnKeyPress="formatar('####.#',this)">
+														placeholder="Ex.: 2017.1"
+														>
 												</div>
 												<%}else{ 
                                                    		

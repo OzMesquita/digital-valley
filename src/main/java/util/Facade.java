@@ -234,7 +234,12 @@ public class Facade {
 		return preServDAO.buscarPreCadastro(siape, nome);
 	}
 
-	public static void preCadastrarAluno(String nome, String matricula, int curso) {
+	public static void preCadastrarAluno(String nome, String matricula, int curso) throws Exception {
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
+		
+		if(aluno != null){
+			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
+		}
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		preA.preCadastrar(nome, matricula, curso);
 

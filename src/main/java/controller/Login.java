@@ -42,6 +42,8 @@ public class Login extends HttpServlet {
 				pagina = "view/telaInicial.jsp";
 				uDAO = DAOFactory.criarUsuarioDAO();
 				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
+			}else{
+				session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
 			}
 			
 			
