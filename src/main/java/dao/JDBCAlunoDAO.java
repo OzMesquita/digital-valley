@@ -272,12 +272,21 @@ public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 				Aluno aluno = new Aluno();
 				Curso curso = new Curso();
 				Usuario usuario = new Usuario();
-				curso.setId(rs.getInt("id_curso"));	
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
-				aluno.setUsuario(usuario);			
-				
+				curso.setId(rs.getInt("id_curso"));
+				curso.setNome(rs.getString("nome_curso"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setCurso(curso);
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				aluno.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				aluno.setEmail(rs.getString("email"));		
+				aluno.setUsuario(usuario);
+				usuario.setPessoa(aluno);
 				rs.close();
 				ps.close();
 				

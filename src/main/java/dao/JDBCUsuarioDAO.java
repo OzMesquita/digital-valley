@@ -1,12 +1,10 @@
 package dao;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
-import model.Pessoa;
 import model.Usuario;
 
 public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
