@@ -40,16 +40,16 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 	}
 
 	@Override
-	public Servidor buscar(String siape) {
+	public Servidor buscar(int id) {
 		super.open();
 		Servidor servidor = new Servidor();
 		Usuario usuario =  new Usuario();
 
-		String SQL = "SELECT * FROM servidor WHERE siape = ?";
+		String SQL = "SELECT * FROM servidor as s, pessoa_usuario as pu WHERE s.id_pessoa_usuario = ? AND pu.id_pessoa_usuario = s.id_pessoa_usuario";
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, siape);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -63,6 +63,7 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setNivel(rs.getInt("nivel"));
 				usuario.setSenha(rs.getString("senha"));
+				usuario.setPessoa(servidor);
 				servidor.setUsuario(usuario);
 			}
 			ps.close();

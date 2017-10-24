@@ -31,6 +31,7 @@
 							<div class="form-group">
 							<%
 							String codigoInterno = "";
+							
 							if(usuario.getPessoa() instanceof Aluno){
 								Aluno aluno = (Aluno) usuario.getPessoa();
 								codigoInterno = aluno.getMatricula();
