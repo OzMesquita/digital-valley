@@ -6,9 +6,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String mensagem = (String) session.getAttribute("msg");
-	if (mensagem == null) {
-		mensagem = "";
-	}
+	session.removeAttribute("msg");
 %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
@@ -18,15 +16,15 @@
 			</div>
 			<div class="panel-body">
 				<%
-					if (request.getParameter("erro") != null) {
+					if (mensagem != null) {
 				%>
-				<div class="alert alert-danger">
-					<%=(String) request.getParameter("erro")%>
+				<div class="alert">
+					<%=mensagem %>
 				</div>
 				<%
 					}
 				%>
-				<form action="editarUsuario" method="post">
+				<form action="editarUsuario" method="post" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-md-4">
 							<p>
@@ -114,9 +112,9 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="cSenha">Confirmar Senha</label> <input
-									type="password" class="form-control" name="cSenha" id="cSenha"
-									placeholder="Confirmar senha">
+								<label for="senha_repetida">Confirmar Senha</label> <input
+									type="password" class="form-control" name="senha_repetida" id="senha_repetida"
+									placeholder="Confirmar senha" required>
 							</div>
 						</div>
 					</div>

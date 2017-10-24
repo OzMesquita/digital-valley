@@ -75,7 +75,7 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a id="ver-perfil"
-								href="<%=Constantes.getAppUrl()%>/view/editarUsuario.jsp">Ver
+								href="<%=Constantes.getAppUrl()%>/view/editarUsuario">Ver
 									Perfil</a></li>
 							<li><a id="sair" href="<%=Constantes.getAppUrl()%>/logout">Sair</a></li>
 						</ul></li>
