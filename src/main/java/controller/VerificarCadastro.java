@@ -60,7 +60,7 @@ public class VerificarCadastro extends HttpServlet {
 					
 				}else{
 					ServidorDAO sDAO = DAOFactory.criarServidorDAO();
-					Servidor servidor = sDAO.buscar(siape);
+					Servidor servidor = sDAO.buscarPorSiape(siape);
 					if(servidor != null){
 						
 						throw new Exception("msg, Servidor(a) " + servidor.getNome() + " já possui cadastro");

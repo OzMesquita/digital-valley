@@ -1,22 +1,29 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Modulo"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="cbp-spmenu-push">
 	<% ArrayList<Modulo> modulos = (ArrayList<Modulo>) session.getAttribute("modulos");%>
 
 		<div id="page-wrapper">
-			
+			<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
 				<div class="col-md-12">
 					
 						<div class="header">
-							<h4 class="title" style="text-align: center;">Módulos do
+							<h4 class="title" style="text-align: center;">MÃ³dulos do
 								Sistema</h4>
 							<hr style="border: 1px solid lightgray">
 						</div>
 							<div class="row">
 
-								<%  if( !modulos.isEmpty()){
+								<%  if( modulos !=null && !modulos.isEmpty()){
                                             	for(Modulo m: modulos){
                                          %>
 								<div
@@ -35,7 +42,7 @@
 								<div>
 									<p id="text_aviso"
 										style="color: red; font-size: 20px; text-align: center;">
-										Você não possui módulos cadastrados!</p>
+										VocÃª nÃ£o possui mÃ³dulos cadastrados!</p>
 								</div>
 								<%}%>
 							</div>

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,16 +40,18 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 	}
 
 	@Override
-	public Servidor buscar(String siape) {
+	public Servidor buscar(int id) {
 		super.open();
 		Servidor servidor = new Servidor();
 		Usuario usuario =  new Usuario();
 
-		String SQL = "SELECT * FROM servidor WHERE siape = ?";
+
+		String SQL = "SELECT * FROM servidor as se, pessoa_usuario as pu WHERE se.siape = ? AND se.id_pessoa_usuario = pu.id_pessoa_usuario";
+
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setString(1, siape);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -62,10 +65,15 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setNivel(rs.getInt("nivel"));
 				usuario.setSenha(rs.getString("senha"));
+				usuario.setPessoa(servidor);
 				servidor.setUsuario(usuario);
+				ps.close();
+				rs.close();
+				return servidor;
 			}
 			ps.close();
 			rs.close();
+			return null;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,7 +81,7 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		} finally {
 			super.close();
 		}
-		return servidor;
+		
 	}
 
 	public Servidor buscarPorSiape(String siape) {
@@ -210,18 +218,20 @@ public class JDBCServidorDAO extends JDBCDAO implements ServidorDAO {
 		Servidor servidor = new Servidor();
 		Usuario usuario = new Usuario();
 
-		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE p.token_recuperacao = ? and s.id_pessoa_usuario = p.id_pessoa_usuario";
+		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario as p WHERE p.token_recuperacao = ? and s.id_pessoa_usuario = p.id_pessoa_usuario AND p.data_ultima_recuperacao = ?";
 
 		try {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, token);
+			ps.setDate(2, Date.valueOf (LocalDate.now()));
 
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
 				servidor.setNome(rs.getString("nome"));
 				servidor.setCpf(rs.getString("cpf"));
+				System.out.println(rs.getDate("data_nascimento"));
 				servidor.setDataNascimento(rs.getString("data_nascimento"));
 				servidor.setCargo(rs.getString("cargo"));
 				servidor.setEmail(rs.getString("email"));

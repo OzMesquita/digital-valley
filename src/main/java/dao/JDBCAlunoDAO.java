@@ -1,6 +1,7 @@
 package dao;
 
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,6 +68,7 @@ public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
+				usuario.setPessoa(aluno);
 				aluno.setUsuario(usuario);
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
@@ -258,10 +260,11 @@ public class JDBCAlunoDAO extends JDBCDAO implements AlunoDAO {
 		super.open();
 
 		try {
-			String SQL = "SELECT * FROM aluno AS a, pessoa_usuario AS p_u, curso AS c WHERE p_u.token_recuperacao = ? AND a.id_pessoa_usuario = p_u.id_pessoa_usuario AND a.id_curso = c.id_curso";
+			String SQL = "SELECT * FROM aluno AS a, pessoa_usuario AS p_u, curso AS c WHERE p_u.token_recuperacao = ? AND a.id_pessoa_usuario = p_u.id_pessoa_usuario AND a.id_curso = c.id_curso AND data_ultima_recuperacao = ?";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, token);
+			ps.setDate(2, Date.valueOf (LocalDate.now()));
 
 			ResultSet rs = ps.executeQuery();
 

@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,7 +134,16 @@ public class Facade {
 
 	public static Usuario buscarPorLogin(String login) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		return pDAO.buscarPorLogin(login).getUsuario();
+		Pessoa p = pDAO.buscarPorLogin(login);
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscar(p.getId());
+		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
+		if(aluno != null){
+			return aluno.getUsuario();
+		}else if (servidor != null){
+			return servidor.getUsuario();
+		}
+			
+		return null;
 	}
 
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
@@ -236,9 +247,17 @@ public class Facade {
 	}
 
 	public static void preCadastroServidor(String nome, String siape) {
-		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
-		pDAO.preCadastrarServidor(siape, nome);
-
+		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
+		Servidor s = sDAO.buscarPorSiape(siape);
+		//System.out.println(s.getNome());
+		if(s == null){
+			PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
+			pDAO.preCadastrarServidor(siape, nome);
+		}else{
+			throw new IllegalArgumentException("Servidor já cadastrado no sistema");
+		}
+				
+		
 	}
 
 	public static int buscarCursoPreCadastrado(String matricula, String nome) {
@@ -327,7 +346,7 @@ public class Facade {
 	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
 		if (pessoa != null) {
 			Email e = new Email();
-
+			System.out.println("Email >>"+pessoa.getEmail());
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
 							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
@@ -372,7 +391,7 @@ public class Facade {
 		}
 	}
 
-	public static String getdDiretorioImagemModulo(int id) {		
+	public static String getDiretorioImagemModulo(int id) {		
 		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
 	}
 
@@ -385,4 +404,9 @@ public class Facade {
 		return sDAO.buscarPorNome(nome, inicio, fim);
 	}
 
+	public static String converterLocalDateParaString(LocalDate localDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		return localDate.format(formatter);
+	}
+	
 }

@@ -1,108 +1,138 @@
+<%@page import="model.Servidor"%>
+<%@page import="model.Aluno"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
-
-<body class="cbp-spmenu-push">
-	<% 
-	String mensagem = (String)session.getAttribute("msg");
-	if(mensagem == null){
+<%@page import="util.Facade"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String mensagem = (String) session.getAttribute("msg");
+	if (mensagem == null) {
 		mensagem = "";
 	}
-     
-    %>
-    
+%>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 id="titulo_da_pagina">InformaÃ§Ãµes do UsuÃ¡rio</h3>
+			</div>
+			<div class="panel-body">
+				<%
+					if (request.getParameter("erro") != null) {
+				%>
+				<div class="alert alert-danger">
+					<%=(String) request.getParameter("erro")%>
+				</div>
+				<%
+					}
+				%>
+				<form action="editarUsuario" method="post">
+					<div class="row">
+						<div class="col-md-4">
+							<p>
+								<img
+									src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
+									id="img-edicao-perfil">
+							</p>
+							<div class="form-group">
 
-		<div id="page-wrapper">
-			<div class="container-fluid" style="min-height: 400px">
-				<!-- aqui-->
-				<div class="col-md-12">
-					<div class="card">
-						<div class="header" style="text-align: center;">
-							<h4 class="title">Informações do Usuário</h4>
-							<hr style="border: 1px solid lightgray">
-							<%if(request.getParameter("erro")!= null){%>
-							<small class="msgErro" style="color: red;"> mensagens de
-								erro</small>
-							<%}%>
-						</div>
-						<div class="content">
-							<div class="col-md-8" style="margin-left: 15%;">
-								<form action="editarUsuario" method="post">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Código Interno</label> <input type="text"
-													class="form-control" disabled
-													value="<%= usuario.getPessoa().getId()%>">
-											</div>
-										</div>
-										<div class="col-md-8">
-											<div class="form-group">
-												<label>Nome Completo</label> <input type="text"
-													class="form-control" name="nome" disabled
-													value="<%= usuario.getPessoa().getNome()%>">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>CPF</label> <input type="text" id="cpf" name="cpf"
-													class="form-control" maxlength="14" placeholder="Cpf"
-													onkeypress="formatar('###.###.###-##',this); return SomenteNumero(event)"
-													value="<%= usuario.getPessoa().getCpf() %>">
-											</div>
-										</div>
-
-
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Data de Nascimento</label> <input
-													title="Preencha este campo corretamente" type="data"
-													class="form-control" name="nascimento" maxlength="10"
-													value="<%= usuario.getPessoa().getDataNascimento() %>"
-													placeholder="12/02/1996" pattern="^\d{2}/\d{2}/\d{4}$"
-													onkeypress="formatar('##/##/####',this); return SomenteNumero(event)">
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>E-mail</label> <input type="email"
-													class="form-control" name="email"
-													value="<%= usuario.getPessoa().getEmail() %>">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Login</label> <input type="text" class="form-control"
-													name="login" value="<%= usuario.getLogin() %>">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Nova Senha</label> <input type="password" class="form-control" name="senha" placeholder="Nova senha"> 
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Confirmar Senha</label> <input type="password"
-													class="form-control" name="cSenha"
-													placeholder="Confirmar senha">
-											</div>
-										</div>
-									</div>
-									<input type="submit" class="btn-importar" value="Salvar"
-										title="Salvar alterações">
-									<div class="clearfix"></div>
-								</form>
+								<label for="image-perfil">Editar imagem perfil:</label> <input
+									type="file" name="image-perfil" id="image-perfil">
 							</div>
 						</div>
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<%
+											String codigoInterno = "";
+											if (usuario.getPessoa() instanceof Aluno) {
+												Aluno aluno = (Aluno) usuario.getPessoa();
+												codigoInterno = aluno.getMatricula();
+											}
+											if (usuario.getPessoa() instanceof Servidor) {
+												Servidor servidor = (Servidor) usuario.getPessoa();
+												codigoInterno = servidor.getSiape();
 
+											}
+										%>
+
+										<label for="codigo_interno">CÃ³digo Interno</label> <input
+											id="codigo_interno" type="text" class="form-control" disabled
+											value="<%=codigoInterno%>">
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="nome">Nome Completo</label> <input type="text"
+											class="form-control" name="nome" id="nome" disabled
+											value="<%=usuario.getPessoa().getNome()%>">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="cpf">CPF</label> <input type="text" id="cpf"
+										name="cpf" class="form-control" maxlength="14" required
+										value="<%=usuario.getPessoa().getCpf()%>">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="nascimento">Data de Nascimento</label> <input
+										title="Preencha este campo corretamente" type="text"
+										id="nascimento" class="form-control" name="nascimento"
+										required
+										value="<%=Facade.converterLocalDateParaString(usuario.getPessoa().getDataNascimento())%>">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="email">E-mail</label> <input type="text" id="email"
+										class="form-control" name="email" required
+										value="<%=usuario.getPessoa().getEmail()%>">
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="login">Login</label> <input type="text"
+									class="form-control" name="login" id="login" required
+									value="<%=usuario.getLogin()%>">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="senha">Nova Senha</label> <input type="password"
+									class="form-control" name="senha" id="senha" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="cSenha">Confirmar Senha</label> <input
+									type="password" class="form-control" name="cSenha" id="cSenha"
+									placeholder="Confirmar senha">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="submit"
+							class="btn btn-success text-center form-control" value="Salvar"
+							title="Salvar alteraÃ§Ãµes"> 
+					</div>
+				</form>
 			</div>
 		</div>
+	</div>
+</div>
+<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
+	type="text/javascript"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
+	type="text/javascript"></script>

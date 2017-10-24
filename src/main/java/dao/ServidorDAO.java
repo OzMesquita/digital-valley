@@ -8,7 +8,7 @@ public interface ServidorDAO {
 
 	public void cadastrar(Servidor servidor);
 
-	public Servidor buscar(String siape);
+	public Servidor buscar(int id);
 
 	public Servidor buscarPorSiape(String siape);
 

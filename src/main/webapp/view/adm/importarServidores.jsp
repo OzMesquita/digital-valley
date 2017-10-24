@@ -1,37 +1,46 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 id="titulo_da_pagina">ImportaÃ§Ã£o de Servidores</h3>
+			</div>
+			<div class="panel-body">
+				<div class="panel-body">
+					<%
+						if (session.getAttribute(Constantes.getSessionMsg()) != null) {
+					%>
+					<div class="alert alert-danger" role="alert">
+						<%=session.getAttribute(Constantes.getSessionMsg())%>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null);%>
 
-<div id="page-wrapper">
-	<div class="container-fluid" style="min-height: 400px">
-
-		<!-- aqui -->
-
-		<div class="col-md-8" style="margin-left: 15%;">
-			<div class="card">
-				<div class="header" style="text-align: center;">
-					<h4 class="title">Importação de Servidores</h4>
-					<hr style="border: 1px solid lightgray">
-				</div>
-				<div class="content">
-					<form action="importar" method="post" style="margin-left: 20%;">
-						<div class="row">
-							<div class="col-md-8">
-								<div class="form-group">
-									<label>Nome Completo :</label><input name="nome" type="text" class="form-control">
-								</div>
-							</div>
+					<%
+						}
+					%>
+					<form action="importarServidor" method="post">
+						<div class="form-group">
+							<label for="nome">Nome Completo </label> <input required="true"
+								name="nome" id="nome" type="text" class="form-control">
 						</div>
-						<div class="row">
-							<div class="col-md-8">
-								<div class="form-group">
-									<label>Siape :</label><input name="siape" type="text" class="form-control">
-								</div>
-							</div>
+						<div class="form-group">
+							<label for="siape">Siape </label><input required="true"
+								name="siape" id="siape" type="text" class="form-control">
 						</div>
-						<input type="submit" class="btn-importar" value="Importar"
-							title="Importar matriculas">
+						<div class="form-group">
+							<input type="submit"
+								class="btn btn-success form-control text-center"
+								value="Importar" title="Importar matriculas">
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<!-- aqui -->
 	</div>
-</div>
+	</div>
+	<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
+		type="text/javascript"></script>
+	<script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
+		type="text/javascript"></script>
+	<script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
+		type="text/javascript"></script>

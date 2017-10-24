@@ -45,8 +45,8 @@ public class ImportacaoController extends HttpServlet {
 			pagina = "importarAlunos.jsp?sucesso=1";
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
-			System.out.println(dados);
+			session.setAttribute(Constantes.getSessionMsg(), "Aluno(s) já possui já possui pré cadastro");
+			System.out.println(e.getMessage());
 			
 		}		
 		
