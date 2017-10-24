@@ -1,9 +1,12 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
+import model.Pessoa;
 import model.Usuario;
 
 public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
@@ -136,6 +139,56 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao gravar token do usuário" + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public String buscarToken(int id_pessoa) {
+		super.open();
+		String token = "";
+		String SQL = "SELECT token_sessao FROM public.pessoa_usuario WHERE id_pessoa_usuario = ?";
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id_pessoa);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				token = rs.getString("token_sessao");
+				ps.close();
+				rs.close();
+				return token;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar token de sessão, erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
+
+	@Override
+	public String buscarTokenTemp(int id_pessoa) {
+		super.open();
+		String token = "";
+		String SQL = "SELECT token_usuario FROM public.pessoa_usuario WHERE id_pessoa_usuario = ?";
+		try {
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id_pessoa);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				token = rs.getString("token_usuario");
+				ps.close();
+				rs.close();
+				return token;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar token de sessão, erro: " + e.getMessage());
 		} finally {
 			super.close();
 		}
