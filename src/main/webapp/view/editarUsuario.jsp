@@ -6,9 +6,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String mensagem = (String) session.getAttribute("msg");
-	if (mensagem == null) {
-		mensagem = "";
-	}
+	session.removeAttribute("msg");
 %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
@@ -25,6 +23,7 @@
 					
 				<%} %>
 				<form action="editarUsuario" method="post">
+
 					<div class="row">
 						<div class="col-md-4">
 							<p>
@@ -112,9 +111,9 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="cSenha">Confirmar Senha</label> <input
-									type="password" class="form-control" name="cSenha" id="cSenha"
-									placeholder="Confirmar senha">
+								<label for="senha_repetida">Confirmar Senha</label> <input
+									type="password" class="form-control" name="senha_repetida" id="senha_repetida"
+									placeholder="Confirmar senha" required>
 							</div>
 						</div>
 					</div>

@@ -16,6 +16,7 @@ public class Constantes {
 	private static String USER_PROFILE_IMAGES_DIR;
 	private static String USER_PROFILE_NONE_IMAGE_DIR;
 	private static String APP_IMG_USER_DIR;
+	private static Integer MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
 	private Constantes() {
 		//
 	}
@@ -28,7 +29,7 @@ public class Constantes {
 		APP_ASSETS_URL = APP_URL + "/assets2";
 		APP_JS_URL = APP_ASSETS_URL + "/js";
 		APP_IMG_URL = APP_ASSETS_URL + "/img";
-		//APP_IMG_USER_DIR ="C:\\n2s\\img\\";
+		MAX_USER_PROFILE_IMAGE_SIZE_BYTES = 5242880;
 		APP_CSS_URL = APP_ASSETS_URL + "/css";
 		NUMBER_OF_ROWS_PER_PAGE = 20;
 		SESSION_MSG = "msg";
@@ -159,4 +160,19 @@ public class Constantes {
 	public static void setAppImgUserDir(String aPP_IMG_USER_DIR) {
 		APP_IMG_USER_DIR = aPP_IMG_USER_DIR;
 	}
+
+	/**
+	 * @return the mAX_REQUEST_SIZE_BYTES
+	 */
+	public static Integer getMAX_USER_PROFILE_IMAGE_SIZE_BYTES() {
+		return MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
+	}
+
+	/**
+	 * @param mAX_USER_PROFILE_IMAGE_SIZE_BYTES the mAX_REQUEST_SIZE_BYTES to set
+	 */
+	public static void setMAX_USER_PROFILE_IMAGE_SIZE_BYTES(Integer mAX_USER_PROFILE_IMAGE_SIZE_BYTES) {
+		MAX_USER_PROFILE_IMAGE_SIZE_BYTES = mAX_USER_PROFILE_IMAGE_SIZE_BYTES;
+	}
+	
 }

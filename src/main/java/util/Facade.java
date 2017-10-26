@@ -126,9 +126,8 @@ public class Facade {
 
 	public static void editarPessoa(Pessoa pessoa, Usuario usuario) {
 		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
-		pessoaDAO.editar(pessoa);
-
 		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
+		pessoaDAO.editar(pessoa);		
 		usuarioDAO.editar(usuario);
 	}
 
