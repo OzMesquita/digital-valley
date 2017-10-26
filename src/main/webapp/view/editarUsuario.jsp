@@ -17,15 +17,13 @@
 				<h3 id="titulo_da_pagina">Informações do Usuário</h3>
 			</div>
 			<div class="panel-body">
-				<%
-					if (request.getParameter("erro") != null) {
-				%>
-				<div class="alert alert-danger">
-					<%=(String) request.getParameter("erro")%>
-				</div>
-				<%
-					}
-				%>
+				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
 				<form action="editarUsuario" method="post">
 					<div class="row">
 						<div class="col-md-4">

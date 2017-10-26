@@ -209,9 +209,9 @@ public class Facade {
 		return mDAO.buscar(pessoa);
 	}
 
-	public static List<Modulo> buscarModulosPorPerfil(Perfil perfil) {
+	public static List<Modulo> buscarModulosPorPerfil(int perfil) {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
-		return mDAO.buscar(perfil);
+		return mDAO.buscarPorPerfil(perfil);
 	}
 
 	public static List<Modulo> buscarTodosModulos() {

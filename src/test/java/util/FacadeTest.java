@@ -65,7 +65,7 @@ public class FacadeTest {
 		pessoa.setDataNascimento("22/08/1998");
 		usuario.setLogin("reprov");
 		usuario.setSenha("hbbbbbbbbbbbb");
-		usuario.setNivel(EnumNivel.COMUM);
+		usuario.setNivel(EnumNivel.ALUNO);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
 		
@@ -105,19 +105,19 @@ public class FacadeTest {
 		}
 	}
 	
-	@Ignore
+	
 	@Test
 	public void testBuscarPerfil(){
 		Perfil p = new Perfil();
 		p.setNome("Aluno");
-		p.setId(1);
-		List<Modulo> modulos = util.Facade.buscarModulosPorPerfil(p);
+		p.setId(73);
+		List<Modulo> modulos = util.Facade.buscarModulosPorPerfil(1);
 		
 		for(Modulo m: modulos){
 			System.out.println(m.getTitulo());
 		}
 	}
-	
+	@Ignore
 	@Test
 	public void testLerEmail(){
 		String []email = util.Facade.lerArquivoEmail();

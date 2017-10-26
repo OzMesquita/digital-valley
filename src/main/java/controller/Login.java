@@ -37,6 +37,18 @@ public class Login extends HttpServlet {
 			if(uDAO.autenticar(login, senha)){
 				Usuario usuario = Facade.buscarPorLogin(login);
 				List<Modulo> modulos = Facade.buscarModulosPorPessoas(usuario.getPessoa());
+				List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(usuario.getNivelInteger());
+				for(Modulo m:modulosPerfil){
+					if(!modulos.contains(m)){
+						modulos.add(m);
+					}
+				}
+				System.out.println(modulosPerfil.size());
+				System.out.println("Teste "+usuario.getNivelInteger());
+				for(Modulo m: modulosPerfil){
+					
+					System.out.println(m.getTitulo());
+				}
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);
 				pagina = "view/telaInicial.jsp";

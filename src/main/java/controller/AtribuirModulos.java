@@ -34,14 +34,14 @@ public class AtribuirModulos extends HttpServlet {
 			Integer inicio = fim - Constantes.getNumberOfRowsPerPage();
 			// pegar dados de pessoas
 			String nomePessoa = request.getParameter("nome") != null ? (String) request.getParameter("nome") : "";
-			Integer nivelComum = EnumNivel.COMUM.getValorNivel();
+			Integer nivelAluno = EnumNivel.ALUNO.getValorNivel();
 			PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();			
 			// enviar dados
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("atribuicaoDeModulos.jsp");
 			request.setAttribute("url", Constantes.getAdmUrl());
-			request.setAttribute("pessoas", pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelComum, inicio, fim));
+			request.setAttribute("pessoas", pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelAluno, inicio, fim));
 			request.setAttribute("perfis", DAOFactory.criarPerfilDAO().Listar());
-			request.setAttribute("quantidadeDePaginas", pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelComum) /  (fim - inicio));
+			request.setAttribute("quantidadeDePaginas", pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelAluno) /  (fim - inicio));
 			request.setAttribute("paginaAtual", paginaAtual);
 			request.setAttribute("nomePessoa", nomePessoa);
 			requestDispatcher.forward(request, response);
