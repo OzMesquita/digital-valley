@@ -68,8 +68,13 @@ public class Pessoa implements Serializable {
 	}
 
 	public void setCpf(String cpf) {
-		if (cpf.matches("^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?([0-9]{2})$")) {
+		if (cpf != null && cpf.matches("[0-9]{11}")) {
 			this.cpf = cpf;
+		} else if (cpf.matches("[0-9]{3}[\\.][0-9]{3}[\\.][0-9]{3}[-][0-9]{2}")) {
+			String[] parts = cpf.split(".");
+			for (String string : parts) {
+				System.out.println(string);
+			}
 		} else {
 			throw new IllegalArgumentException(
 					"Erro: O parâmetro CPF não pode ser nulo e deve ter um número de 11 caracteres, valor informado "
@@ -111,12 +116,12 @@ public class Pessoa implements Serializable {
 		if (data.length == 3) {
 			this.setDataNascimento(
 					LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0])));
-		}if(dataSql.length == 3){
-			System.out.println("Data: "+dataSql[2] + dataSql[1] + dataSql[0]);
-			
-			this.setDataNascimento(
-					LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]), Integer.valueOf(dataSql[2])));
-		}else {
+		} else if (dataSql.length == 3) {
+			System.out.println("Data: " + dataSql[2] + dataSql[1] + dataSql[0]);
+
+			this.setDataNascimento(LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]),
+					Integer.valueOf(dataSql[2])));
+		} else {
 			throw new RuntimeException(
 					"Erro: A data de nascimento não está no formato correto, valor informado " + dataNascimento);
 		}

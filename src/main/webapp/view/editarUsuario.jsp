@@ -107,16 +107,16 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="senha">Nova Senha</label> <input type="password"
-									class="form-control" name="senha" id="senha" required>
+									class="form-control" name="senha" id="senha">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="senha_repetida">Confirmar Senha</label> <input
-									type="password" class="form-control" name="senha_repetida" id="senha_repetida"
-									placeholder="Confirmar senha" required>
+									type="password" class="form-control" name="senha_repetida" id="senha_repetida">
 							</div>
 						</div>
+					
 					</div>
 					<div class="form-group">
 						<input type="submit"

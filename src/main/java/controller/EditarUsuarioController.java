@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import dao.DAOFactory;
 import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
@@ -29,8 +30,9 @@ public class EditarUsuarioController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();		
 		if (ServletFileUpload.isMultipartContent(req)) {
+			String sessionMsg = "";
 			try {
 				// pegar dados do formulário
 				DiskFileItemFactory factory = new DiskFileItemFactory(Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES(),
@@ -38,10 +40,11 @@ public class EditarUsuarioController extends HttpServlet {
 								.getAttribute("javax.servlet.context.tempdir"));
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				List<FileItem> items = upload.parseRequest(req);
-				Iterator<FileItem> iter = items.iterator();
 				Map<String, String> dados = new HashMap<String, String>();
 				FileItem imagemPerfil = null;
-				for (FileItem item = iter.next(); iter.hasNext(); item = iter.next()) {	
+				Iterator<FileItem> iter = items.iterator();
+				while (iter.hasNext()) {
+					FileItem item = iter.next();
 					if (item.isFormField()) {
 						dados.put(item.getFieldName(), item.getString());
 					} else {
@@ -49,55 +52,61 @@ public class EditarUsuarioController extends HttpServlet {
 							if (item.getSize() <= Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES()) {
 								imagemPerfil = item;
 							} else {
-								session.setAttribute(Constantes.getSessionMsg(),
-										"Erro: O arquivo selecionado não pode ultrapassar "
-												+ (Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES() / (1024 * 1024))
-												+ " MB.");
+								sessionMsg += "Erro: O arquivo selecionado não pode ultrapassar "
+										+ (Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES() / (1024 * 1024))
+										+ " MB.<br>";
 							}
 						} else {
-							session.setAttribute(Constantes.getSessionMsg(),
-									"Erro: O arquivo selecionado deve ser uma imagem.");
+							sessionMsg += "Erro: O arquivo selecionado deve ser uma imagem.<br>";
 						}
 					}
 				}
 				String nomeDoCampoSenha = "senha";
 				String nomeDoCampocSenha = "senha_repetida";
-				System.out.println(dados.get(nomeDoCampoSenha) + " " + dados.get(nomeDoCampocSenha));
-				if (dados.get(nomeDoCampoSenha).equals(dados.get(nomeDoCampocSenha))) {
-					// configurar objetos
-					Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
-					Pessoa pessoaDaSessao = usuarioDaSessao.getPessoa();
-					Pessoa pessoaEditada = new Pessoa();
-					Usuario usuarioEditado = new Usuario();
-					pessoaEditada.setId(pessoaDaSessao.getId());
-					pessoaEditada.setNome(pessoaDaSessao.getNome());
-					pessoaEditada.setCpf(dados.get("cpf"));
-					pessoaEditada.setDataNascimento(dados.get("nascimento"));
-					pessoaEditada.setEmail("email");
-					usuarioEditado.setPessoa(pessoaEditada);
-					usuarioEditado.setNivel(usuarioDaSessao.getNivel());
-					usuarioEditado.setToken(usuarioDaSessao.getToken());
-					usuarioEditado.setTokenUsuario(usuarioDaSessao.getTokenUsuario());
-					usuarioEditado.setLogin(dados.get("login"));
+				String senha = dados.get(nomeDoCampoSenha).trim();
+				String senhaRepetida = dados.get(nomeDoCampocSenha).trim();
+				// configurar objetos
+				Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
+				Pessoa pessoaDaSessao = usuarioDaSessao.getPessoa();
+				Pessoa pessoaEditada = new Pessoa();
+				Usuario usuarioEditado = new Usuario();
+				pessoaEditada.setId(pessoaDaSessao.getId());
+				pessoaEditada.setNome(pessoaDaSessao.getNome());
+				pessoaEditada.setCpf(pessoaDaSessao.getCpf());
+				pessoaEditada.setDataNascimento(dados.get("nascimento"));
+				pessoaEditada.setEmail(dados.get("email"));
+				usuarioEditado.setPessoa(pessoaEditada);
+				usuarioEditado.setNivel(usuarioDaSessao.getNivel());
+				usuarioEditado.setToken(usuarioDaSessao.getToken());
+				usuarioEditado.setTokenUsuario(usuarioDaSessao.getTokenUsuario());
+				usuarioEditado.setLogin(dados.get("login"));
+				if (!senha.isEmpty() && !senhaRepetida.isEmpty() && senha.equals(senhaRepetida)) {
 					usuarioEditado.setSenha(dados.get(nomeDoCampoSenha));
-					// salvar imagem
-					if (imagemPerfil != null) {
-						String[] parts = imagemPerfil.getName().split(".");
-						String nomeImagemPerfil = pessoaDaSessao.getId() + "." + parts[parts.length - 1];
-						imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
-						pessoaEditada.setImagem(nomeImagemPerfil);
-					} else {
-						pessoaEditada.setImagem(pessoaDaSessao.getImagem());
-					}
-					// salvar dados no banco
-					Facade.editarPessoa(pessoaEditada, usuarioEditado);
-					session.setAttribute("usuario", usuarioEditado);
 				} else {
-					session.setAttribute(Constantes.getSessionMsg(), "Erro: As senhas estão diferentes.");
+					usuarioEditado.setSenha(DAOFactory.criarPessoaDAO().buscarPorId(usuarioDaSessao.getPessoa().getId())
+							.getUsuario().getSenha());
+					sessionMsg += "Erro: As senhas estão diferentes.<br>";
 				}
+				System.out.println("Salvando imagem");
+				// salvar imagem
+				if (imagemPerfil != null) {
+					System.out.println("Salvando foto");					
+					String nomeImagemPerfil = pessoaDaSessao.getId() + "-" + imagemPerfil.getName();
+					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
+					pessoaEditada.setImagem(nomeImagemPerfil);
+				} else {
+					System.out.println("Nao salva");
+					pessoaEditada.setImagem(pessoaDaSessao.getImagem());
+				}
+				// salvar dados no banco
+				Facade.editarPessoa(pessoaEditada, usuarioEditado);
+				session.setAttribute("usuario", usuarioEditado);
+				sessionMsg +=  "Dados alterados com sucesso.<br>";
 			} catch (Exception e) {
-				session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+				e.printStackTrace();
+				sessionMsg += e.getMessage();
 			}
+			session.setAttribute(Constantes.getSessionMsg(), sessionMsg.isEmpty() ? null : sessionMsg);
 		} else {
 			session.setAttribute(Constantes.getSessionMsg(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");

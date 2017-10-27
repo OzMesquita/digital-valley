@@ -53,7 +53,7 @@ public class Usuario implements Serializable {
 		if(senha != null && senha.length() >= 6){
 			this.senha = senha;
 		}else{
-			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: "+senha);
+			throw new IllegalArgumentException("Erro: O valor da senha não pode ser nulo e deve possuir pelo menos 6 caracteres, valor informado: '"+senha+"'");
 		}
 	}
 	public EnumNivel getNivel() {
