@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.DAOFactory;
 import dao.UsuarioDAO;
 import model.Modulo;
+import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;
@@ -36,7 +37,8 @@ public class Login extends HttpServlet {
 			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 			if(uDAO.autenticar(login, senha)){
 				Usuario usuario = Facade.buscarPorLogin(login);
-				List<Modulo> modulos = Facade.buscarModulosPorPessoas(usuario.getPessoa());
+				List<Modulo> modulos = Facade.buscarTodosModulosPorPerfil(usuario.getPessoa());
+				
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);
 				pagina = "view/telaInicial.jsp";

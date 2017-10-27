@@ -17,11 +17,13 @@
 				<h3 id="titulo_da_pagina">Cadastro de Módulo</h3>
 			</div>
 			<div class="panel-body">
-				<div class="alert alert-primary" role="alert"><%=mensagem%>
-					<%
-						session.setAttribute("msg", null);
-					%>
-				</div>
+				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
 				<form method="post" action="adm/cadastrarModulo" name="formCadastro">
 					<div class="form-group">
 						<label for="titulo">Título</label><input type="text"

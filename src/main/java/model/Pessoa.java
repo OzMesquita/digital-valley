@@ -112,7 +112,6 @@ public class Pessoa implements Serializable {
 			this.setDataNascimento(
 					LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0])));
 		}if(dataSql.length == 3){
-			System.out.println("Data: "+dataSql[2] + dataSql[1] + dataSql[0]);
 			
 			this.setDataNascimento(
 					LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]), Integer.valueOf(dataSql[2])));
