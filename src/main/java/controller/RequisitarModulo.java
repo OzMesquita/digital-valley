@@ -28,7 +28,9 @@ public class RequisitarModulo extends HttpServlet{
 		HttpSession session = request.getSession();
 		userObjectToJSON.getPessoa().setUsuario(null);
 		userObjectToJSON.setSenha("******");
-		String url = request.getParameter("url")+"autentica";
+		String url = request.getParameter("url");
+		String [] urlPath = url.split("/");
+		url = urlPath[0]+"//"+urlPath[2]+"/"+urlPath[3]+"/autentica";
 		Gson gson = new Gson();
 		String json = gson.toJson(userObjectToJSON);
 		int status = Facade.executeHTTPRequestToModule(url, json);
@@ -36,9 +38,9 @@ public class RequisitarModulo extends HttpServlet{
 		userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
 		if(status != 200){
 			session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
-			response.sendRedirect("/Controle_de_Acesso/view/telaInicial.jsp");
+			response.sendRedirect("/Controle_de_Acesso/");
 		}else{
-			response.sendRedirect(request.getParameter("url")+"telaInicial.jsp"+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
+			response.sendRedirect(request.getParameter("url")+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
 		}
 	}
 }
