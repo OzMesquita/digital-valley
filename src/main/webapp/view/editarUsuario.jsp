@@ -15,16 +15,15 @@
 				<h3 id="titulo_da_pagina">Informações do Usuário</h3>
 			</div>
 			<div class="panel-body">
-				<%
-					if (mensagem != null) {
-				%>
-				<div class="alert">
-					<%=mensagem %>
-				</div>
-				<%
-					}
-				%>
-				<form action="editarUsuario" method="post" enctype="multipart/form-data">
+				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
+				<form action="editarUsuario" method="post">
+
 					<div class="row">
 						<div class="col-md-4">
 							<p>

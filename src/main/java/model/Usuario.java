@@ -23,14 +23,26 @@ public class Usuario implements Serializable {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.nivel = EnumNivel.COMUM;
+		if(pessoa instanceof Pessoa){
+			this.nivel = EnumNivel.ALUNO;
+		}else if(pessoa instanceof Servidor){
+			this.nivel = EnumNivel.SERVIDOR;
+		}else{
+			this.nivel = EnumNivel.VISITANTE;
+		}
 		this.pessoa = pessoa;
 	}
 	public Usuario(String login, String senha) {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.nivel = EnumNivel.COMUM;
+		if(pessoa instanceof Pessoa){
+			this.nivel = EnumNivel.ALUNO;
+		}else if(pessoa instanceof Servidor){
+			this.nivel = EnumNivel.SERVIDOR;
+		}else{
+			this.nivel = EnumNivel.VISITANTE;
+		}
 	}
 	
 	public String getLogin() {
@@ -60,6 +72,9 @@ public class Usuario implements Serializable {
 		return nivel;
 	}
 	
+	public int getNivelInteger(){
+		return nivel.getValorNivel();
+	}
 	
 	
 	public void setNivel(EnumNivel nivel) {
@@ -72,8 +87,15 @@ public class Usuario implements Serializable {
 			this.nivel = EnumNivel.ADMINISTRADOR; 
 			break;
 		case 2:
-			this.nivel = EnumNivel.COMUM;
+			this.nivel = EnumNivel.ALUNO;
 			break;
+		case 3:
+			this.nivel = EnumNivel.SERVIDOR;
+			break;
+		case 4:
+			this.nivel = EnumNivel.VISITANTE;
+			break;
+			
 		default:
 			throw new IllegalArgumentException("Erro: O valor do nivel não pode ser nulo ou invalido, valor informado: "+nivel);
 			

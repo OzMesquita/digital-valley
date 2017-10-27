@@ -51,8 +51,7 @@ public class CadastrarAluno extends HttpServlet {
 				aluno.setEmail(email);
 				aluno.setDataNascimento(dataNasci);
 				usuario.setLogin(login);
-				usuario.setPessoa(aluno);
-							
+				usuario.setPessoa(aluno);			
 				usuario.setSenha(senha);
 				aluno.setUsuario(usuario);
 				usuario.setPessoa(aluno);

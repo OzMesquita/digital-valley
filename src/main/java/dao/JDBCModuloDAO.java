@@ -185,14 +185,14 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	}
 
 	@Override
-	public List<Modulo> buscar(Perfil perfil) {
+	public List<Modulo> buscarPorPerfil(int perfil) {
 		super.open();
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
 			String SQL = "SELECT * FROM perfil_modulo AS p_m, modulo AS m WHERE p_m.id_perfil = ? and m.id_modulo = p_m.id_modulo;";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setInt(1, perfil.getId());
+			ps.setInt(1, perfil);
 
 			ResultSet rs = ps.executeQuery();
 

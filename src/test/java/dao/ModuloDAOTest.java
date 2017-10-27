@@ -108,7 +108,7 @@ public class ModuloDAOTest {
 		Perfil p = new Perfil();
 		p.setNome("Aluno");
 		p.setId(1);
-		List<Modulo> modulos = mDAO.buscar(p);
+		List<Modulo> modulos = mDAO.buscarPorPerfil(1);
 		
 		for(Modulo m: modulos){
 			System.out.println(m.getTitulo());

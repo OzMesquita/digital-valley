@@ -1,7 +1,7 @@
 package model;
 
 public enum EnumNivel {
-	ADMINISTRADOR(1), COMUM(2);
+	ADMINISTRADOR(1), ALUNO(2), SERVIDOR(3), VISITANTE(4) ;
 
 	private int valorNivel;
 
@@ -21,7 +21,7 @@ public enum EnumNivel {
 		case 1:
 			return "Administrador";
 		case 2:
-			return "Comun";
+			return "Aluno";
 		default:
 			return "";
 		}

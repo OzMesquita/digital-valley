@@ -208,9 +208,28 @@ public class Facade {
 		return mDAO.buscar(pessoa);
 	}
 
-	public static List<Modulo> buscarModulosPorPerfil(Perfil perfil) {
+	public static List<Modulo> buscarModulosPorPerfil(int perfil) {
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
-		return mDAO.buscar(perfil);
+		return mDAO.buscarPorPerfil(perfil);
+	}
+	
+	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
+		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivelInteger());
+		boolean has = false;
+		for(Modulo m:modulosPerfil){
+			has = false;
+			for(Modulo m2: modulos){
+				if(m2.getId() == m.getId()){
+					has = true;
+				}
+			}
+			if(!has){
+				modulos.add(m);
+			}
+		}
+		return modulos;
+		
 	}
 
 	public static List<Modulo> buscarTodosModulos() {

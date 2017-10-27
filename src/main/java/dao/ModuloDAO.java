@@ -20,7 +20,7 @@ public interface ModuloDAO {
 	
 	public List<Modulo> buscar(Pessoa pessoa);
 	
-	public List<Modulo> buscar(Perfil perfil);
+	public List<Modulo> buscarPorPerfil(int perfil);
 	
 	public List<Modulo> listar();
 	
