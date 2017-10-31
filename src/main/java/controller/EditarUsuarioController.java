@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +20,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.DAOFactory;
+import model.Aluno;
 import model.Pessoa;
+import model.Servidor;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;
@@ -30,7 +33,7 @@ public class EditarUsuarioController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();		
+		HttpSession session = req.getSession();
 		if (ServletFileUpload.isMultipartContent(req)) {
 			String sessionMsg = "";
 			try {
@@ -46,6 +49,7 @@ public class EditarUsuarioController extends HttpServlet {
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
+						System.out.println(item.getFieldName());
 						dados.put(item.getFieldName(), item.getString());
 					} else {
 						if (item.getContentType().startsWith("image/")) {
@@ -68,7 +72,16 @@ public class EditarUsuarioController extends HttpServlet {
 				// configurar objetos
 				Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
 				Pessoa pessoaDaSessao = usuarioDaSessao.getPessoa();
-				Pessoa pessoaEditada = new Pessoa();
+				Pessoa pessoaEditada;
+				if (pessoaDaSessao instanceof Aluno) {
+					Aluno aluno = new Aluno();
+					aluno.setMatricula(((Aluno) pessoaDaSessao).getMatricula());
+					pessoaEditada = aluno;
+				} else {
+					Servidor servidor = new Servidor();
+					servidor.setSiape(((Servidor) pessoaDaSessao).getSiape());
+					pessoaEditada = servidor;
+				}
 				Usuario usuarioEditado = new Usuario();
 				pessoaEditada.setId(pessoaDaSessao.getId());
 				pessoaEditada.setNome(pessoaDaSessao.getNome());
@@ -87,21 +100,21 @@ public class EditarUsuarioController extends HttpServlet {
 							.getUsuario().getSenha());
 					sessionMsg += "Erro: As senhas estão diferentes.<br>";
 				}
-				System.out.println("Salvando imagem");
 				// salvar imagem
 				if (imagemPerfil != null) {
-					System.out.println("Salvando foto");					
 					String nomeImagemPerfil = pessoaDaSessao.getId() + "-" + imagemPerfil.getName();
+					if (pessoaDaSessao.getImagem() != null) {
+						new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + pessoaDaSessao.getImagem()).delete();
+					}
 					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
 					pessoaEditada.setImagem(nomeImagemPerfil);
-				} else {
-					System.out.println("Nao salva");
-					pessoaEditada.setImagem(pessoaDaSessao.getImagem());
 				}
 				// salvar dados no banco
 				Facade.editarPessoa(pessoaEditada, usuarioEditado);
+				// salvar sessao
 				session.setAttribute("usuario", usuarioEditado);
-				sessionMsg +=  "Dados alterados com sucesso.<br>";
+				System.out.println(((Usuario) session.getAttribute("usuario")).getPessoa().getCpf());
+				sessionMsg += "Dados alterados com sucesso.<br>";
 			} catch (Exception e) {
 				e.printStackTrace();
 				sessionMsg += e.getMessage();
