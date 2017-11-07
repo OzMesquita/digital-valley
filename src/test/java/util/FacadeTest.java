@@ -65,7 +65,7 @@ public class FacadeTest {
 		pessoa.setDataNascimento("22/08/1998");
 		usuario.setLogin("reprov");
 		usuario.setSenha("hbbbbbbbbbbbb");
-		usuario.setNivel(EnumNivel.ALUNO);
+		usuario.setNivel(EnumNivel.COMUM);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
 		

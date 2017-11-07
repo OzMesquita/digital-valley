@@ -215,7 +215,7 @@ public class Facade {
 	
 	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
 		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
-		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivelInteger());
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivel().getValorNivel());
 		boolean has = false;
 		for(Modulo m:modulosPerfil){
 			has = false;
