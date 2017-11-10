@@ -42,7 +42,7 @@ public class Facade {
 	private Facade() {
 		//
 	}
-
+	
 	public static int executeHTTPRequestToModule(String url, String jsonUser) throws ClientProtocolException, IOException {
 		StringEntity input = new StringEntity(jsonUser);
 		input.setContentType("application/json");
@@ -215,7 +215,7 @@ public class Facade {
 	
 	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
 		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
-		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivelInteger());
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivel().getValorNivel());
 		boolean has = false;
 		for(Modulo m:modulosPerfil){
 			has = false;
