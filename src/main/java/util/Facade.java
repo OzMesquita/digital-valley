@@ -431,5 +431,19 @@ public class Facade {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		return localDate.format(formatter);
 	}
-	
+	public static LocalDate converterStringParaLocalDate(String data) {
+
+		String[] newDate = data.split("/");
+		String[] dataSql = data.split("-");
+		if (newDate.length == 3) {
+			return LocalDate.of(Integer.valueOf(newDate[2]), Integer.valueOf(newDate[1]), Integer.valueOf(newDate[0]));
+		}
+		if (dataSql.length == 3) {
+			return LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]), Integer.valueOf(dataSql[2]));
+		} else {
+			throw new RuntimeException(
+					"Erro: A data de nascimento não está no formato correto, valor informado " + data);
+		}
+
+	}
 }

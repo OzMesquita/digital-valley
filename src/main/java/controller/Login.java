@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import dao.DAOFactory;
 import dao.UsuarioDAO;
 import model.Modulo;
-import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;

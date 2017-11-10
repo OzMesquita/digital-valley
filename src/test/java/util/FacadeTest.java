@@ -1,5 +1,6 @@
 package util;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Assert;
@@ -105,7 +106,7 @@ public class FacadeTest {
 		}
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testBuscarPerfil(){
 		Perfil p = new Perfil();
@@ -125,5 +126,24 @@ public class FacadeTest {
 		System.out.println(email[1]);
 	}
 	
+	@Test
+	public void testConverterStringparaLocalDate(){
+		LocalDate data = util.Facade.converterStringParaLocalDate("2017-11-08");
+		System.out.println("data :"+data.toString());
+		System.out.println("tipo :"+data.getClass());
+		LocalDate hoje = LocalDate.now();
+		if(hoje.getDayOfWeek().name().equals("SUNDAY")){
+			hoje = hoje.plusDays(2);
+		}
+		if(hoje.getDayOfWeek().name().equals("SATURDAY")){
+			hoje = hoje.plusDays(1);
+		}
+		System.out.println(data.getDayOfWeek().name());
+		if(data.plusDays(4).isAfter(LocalDate.now())  ){
+			System.out.println("Fazer Prova");
+		}else{
+			System.out.println("Não fazer prova");
+		}
+	}
 	
 }
