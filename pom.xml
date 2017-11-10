@@ -38,11 +38,8 @@
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>DESKTOP-4SVL9LL-snapshots</name>
-<<<<<<< HEAD
 			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
-=======
-			<url>http://192.169.1.103:8081/artifactory/br.com.n2s</url>
->>>>>>> 11e39d7b09bf7c8a888a13184a5af8b15ccf9fd7
+
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -50,11 +47,8 @@
 		<repository>
 			<id>central</id>
 			<name>DESKTOP-4SVL9LL-releases</name>
-<<<<<<< HEAD
 			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
-=======
-			<url>http://192.169.1.103:8081/artifactory/br.com.n2s</url>
->>>>>>> 11e39d7b09bf7c8a888a13184a5af8b15ccf9fd7
+
 		</repository>
 	</repositories>
 
