@@ -1,6 +1,4 @@
 package util;
-
-import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Assert;
@@ -15,12 +13,13 @@ import model.Pessoa;
 import model.Usuario;
 
 public class FacadeTest {
-	
+
 	Pessoa pessoa = new Pessoa();
 	Usuario usuario = new Usuario();
+
 	@Ignore
 	@Test
-	public void cadatrarPessoaTest(){
+	public void cadatrarPessoaTest() {
 		pessoa.setNome("Fachada Test");
 		pessoa.setCpf("12345378145");
 		pessoa.setEmail("fachada31@email.com");
@@ -30,14 +29,14 @@ public class FacadeTest {
 		usuario.setNivel(EnumNivel.ADMINISTRADOR);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
-	
+
 		util.Facade.cadastrarPessoa(pessoa, usuario);
-		
-		
+
 	}
+
 	@Ignore
 	@Test
-	public void editarPessoaTest(){
+	public void editarPessoaTest() {
 		pessoa.setNome("Fachada Test 2");
 		pessoa.setCpf("12345678999");
 		pessoa.setEmail("fachada2@email.com");
@@ -47,19 +46,21 @@ public class FacadeTest {
 		usuario.setSenha("Senha1234");
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
-		
+
 		util.Facade.editarPessoa(pessoa, usuario);
-		
+
 	}
+
 	@Ignore
 	@Test
-	public void testVerificacao(){
+	public void testVerificacao() {
 		Assert.assertTrue(util.Facade.verificacaoAluno("370178", "Deyvison Nogueira"));
 	}
+
 	@Ignore
 	@Test
-	public void cadastrarAlunoTest(){
-				
+	public void cadastrarAlunoTest() {
+
 		pessoa.setNome("LUAN DHARLIN LEMOS DA SILVA");
 		pessoa.setCpf("99941176948");
 		pessoa.setEmail("alo@teste.com");
@@ -69,81 +70,66 @@ public class FacadeTest {
 		usuario.setNivel(EnumNivel.COMUM);
 		pessoa.setUsuario(usuario);
 		usuario.setPessoa(pessoa);
-		
+
 		Aluno aluno = new Aluno();
 		aluno.setMatricula("370174");
 		aluno.setSemestreIngresso("2016.1");
-		
-		util.Facade.cadastrarAluno(usuario,aluno);
-		
+
+		util.Facade.cadastrarAluno(usuario, aluno);
+
 	}
+
 	@Ignore
 	@Test
-	public void cadastrarModuloTest(){
+	public void cadastrarModuloTest() {
 		Modulo modulo = new Modulo();
 		modulo.setTitulo("Modulo Teste");
 		modulo.setImagem("aaaaaa/bbbbbbb/vvvv");
 		modulo.setUrl("/testando");
-		
+
 		util.Facade.cadastrarModulo(modulo);
 	}
-	
+
 	@Ignore
 	@Test
-	public void testAssociarModuloPerfil(){
-		
+	public void testAssociarModuloPerfil() {
+
 		util.Facade.adicionarModulosParaPerfil(3, 10);
-		
+
 	}
+
 	@Ignore
 	@Test
-	public void testListarAluno(){
+	public void testListarAluno() {
 		List<Aluno> alunos = util.Facade.buscarAlunos();
-		for(Aluno a:alunos){
+		for (Aluno a : alunos) {
 			System.out.println(a.getNome());
 			System.out.println(a.getUsuario().getLogin());
 			System.out.println(a.getUsuario().getNivel());
 		}
 	}
-	
+
 	@Ignore
 	@Test
-	public void testBuscarPerfil(){
+	public void testBuscarPerfil() {
 		Perfil p = new Perfil();
 		p.setNome("Aluno");
 		p.setId(73);
 		List<Modulo> modulos = util.Facade.buscarModulosPorPerfil(1);
-		
-		for(Modulo m: modulos){
+
+		for (Modulo m : modulos) {
 			System.out.println(m.getTitulo());
 		}
 	}
+
 	@Ignore
 	@Test
-	public void testLerEmail(){
-		String []email = util.Facade.lerArquivoEmail();
+	public void testLerEmail() {
+		String[] email = util.Facade.lerArquivoEmail();
 		System.out.println(email[0]);
 		System.out.println(email[1]);
 	}
+
 	
-	@Test
-	public void testConverterStringparaLocalDate(){
-		LocalDate data = util.Facade.converterStringParaLocalDate("2017-11-08");
-		System.out.println("data :"+data.toString());
-		System.out.println("tipo :"+data.getClass());
-		LocalDate hoje = LocalDate.now();
-		if(hoje.getDayOfWeek().name().equals("SUNDAY")){
-			hoje = hoje.plusDays(2);
-		}
-		if(hoje.getDayOfWeek().name().equals("SATURDAY")){
-			hoje = hoje.plusDays(1);
-		}
-		System.out.println(data.getDayOfWeek().name());
-		if(data.plusDays(4).isAfter(LocalDate.now())  ){
-			System.out.println("Fazer Prova");
-		}else{
-			System.out.println("Não fazer prova");
-		}
-	}
-	
+
 }
