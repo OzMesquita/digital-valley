@@ -27,7 +27,7 @@
 									<button type="button" id="btnFormAluno"
 										class="btn btn-primary active">Aluno</button>
 									<button type="button" id="btnFormServidor"
-										class="btn btn-primary">Professor</button>
+										class="btn btn-primary">Servidor</button>
 								</div>
 							</div>
 							<div id="formulario_recuperar_senha_aluno">

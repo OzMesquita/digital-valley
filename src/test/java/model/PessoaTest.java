@@ -1,4 +1,4 @@
-package model;
+ package model;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,14 +28,18 @@ public class PessoaTest {
 		p.setDataNascimento("01011999");
 	}
 	
-	@Ignore
+
 	@Test
 	public void valido(){
 		Pessoa p = new Pessoa();
 		p.setNome("Deyvison");
 		p.setCpf("12345678910");
 		p.setEmail("ramo@gmail.com");
+		String[] data = "01/12/2000".split("/");
+		System.out.println(data.length);
 		p.setDataNascimento("01/12/2000");
+		System.out.println("teste"+p.getDataNascimento());
+		
 	}
 	
 }

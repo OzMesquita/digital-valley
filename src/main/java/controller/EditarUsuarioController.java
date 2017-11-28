@@ -86,6 +86,7 @@ public class EditarUsuarioController extends HttpServlet {
 				pessoaEditada.setId(pessoaDaSessao.getId());
 				pessoaEditada.setNome(pessoaDaSessao.getNome());
 				pessoaEditada.setCpf(pessoaDaSessao.getCpf());
+				System.out.println("Data: "+dados.get("nascimento"));
 				pessoaEditada.setDataNascimento(dados.get("nascimento"));
 				pessoaEditada.setEmail(dados.get("email"));
 				usuarioEditado.setPessoa(pessoaEditada);

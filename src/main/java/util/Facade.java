@@ -377,7 +377,7 @@ public class Facade {
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
 							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
-							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+							+ "\n(Obs.: Link válido até o dia de envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
 					pessoa.getEmail(), "Usuário Controle de Acesso");
 		} else {
