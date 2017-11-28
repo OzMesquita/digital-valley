@@ -259,7 +259,11 @@ public class Facade {
 			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 		}
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
-		preA.preCadastrar(nome, matricula, curso);
+		if(matricula.matches("^[0-9]+$")) {
+			preA.preCadastrar(nome, matricula, curso);
+		}else {
+			throw new Exception("Matricula " + matricula+ " inválida");
+		}
 
 	}
 

@@ -129,6 +129,16 @@ public class FacadeTest {
 		System.out.println(email[0]);
 		System.out.println(email[1]);
 	}
+	
+	@Test
+	public void testdigito() {
+		String matricula = "123s56";
+		if(matricula.matches("^[0-9]+$")) {
+			System.out.println("Só numeros");
+		}else {
+			System.out.println("tem letras");
+		}
+	}
 
 	
 
