@@ -13,9 +13,7 @@ import model.Pessoa;
 import util.Constantes;
 import util.Facade;
 
-/**
- * Servlet implementation class ListarUsuarios
- */
+
 public class ListarUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -33,10 +33,7 @@ public class CadastrarServidor extends HttpServlet {
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 		String cargo = request.getParameter("cargo");
-		session.setAttribute("nomeA", null);
-		session.setAttribute("nomeS", null);
-		session.setAttribute("matricula", null);
-		session.setAttribute("siape", null);
+		
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
@@ -56,6 +53,10 @@ public class CadastrarServidor extends HttpServlet {
 
 				Facade.cadastrarServidor(usuario, servidor);
 				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
+				session.setAttribute("nomeA", null);
+				session.setAttribute("nomeS", null);
+				session.setAttribute("matricula", null);
+				session.setAttribute("siape", null);
 				pagina = "../login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
