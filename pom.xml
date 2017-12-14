@@ -64,9 +64,14 @@
 	<!-- Depedencias -->
 	<dependencies>
 		<dependency>
+			<groupId>com.github.shyiko.dotenv</groupId>
+			<artifactId>dotenv</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
 			<groupId>br.com.n2s</groupId>
 			<artifactId>core.n2s</artifactId>
-			<version>1.2</version>
+			<version>1.5.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
