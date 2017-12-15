@@ -129,7 +129,7 @@ public class FacadeTest {
 		System.out.println(email[0]);
 		System.out.println(email[1]);
 	}
-	
+	@Ignore
 	@Test
 	public void testdigito() {
 		String matricula = "123s56";
@@ -139,6 +139,12 @@ public class FacadeTest {
 			System.out.println("tem letras");
 		}
 	}
+	
+	@Test
+	public void crypter() {
+		System.out.println(Crypter.crypt("deyvison123"));
+	}
+
 
 	
 
