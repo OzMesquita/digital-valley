@@ -70,10 +70,7 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				
-				Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorLogin(rs.getString("login"));
-				System.out.println(pessoa.getUsuario().getSenha()+" = "+senha+" = "+rs.getString("senha"));
-				if (pessoa.getUsuario().getSenha().equals(Crypter.crypt(senha))) {
+				if (rs.getString("senha").equals(Crypter.crypt(senha))) {
 					return true;
 				}
 			}
