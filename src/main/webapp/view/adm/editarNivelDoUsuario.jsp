@@ -15,7 +15,7 @@
 		} else { session.setAttribute("pessoa", p);
 	%>
 
-	<div id="page-wrapper">
+	<div id="page-wrapper header">
 		<div class="container-fluid" style="min-height: 400px">
 			<!-- aqui -->
 

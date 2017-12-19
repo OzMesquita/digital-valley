@@ -18,6 +18,18 @@ header{
 
 }
 
+#conteudoCont{
+	margin-bottom: 100px;
+}
+
+.header{
+	margin-top: 100px;
+}
+
+#infoUsuario{
+	margin-top: 100px;
+}
+
 .dropdown-menu{
     background-color: steelblue;
 }

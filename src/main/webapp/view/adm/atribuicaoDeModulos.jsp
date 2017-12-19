@@ -15,7 +15,7 @@
 	Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
 	String nomePessoa = request.getAttribute("nomePessoa") != null && !"".equals(request.getAttribute("nomePessoa")) ? (String) request.getAttribute("nomePessoa") : "";
 %>
-<div class="panel panel-default">
+<div class="panel panel-default header">
 	<div class="panel-heading">
 		<h3 id="titulo_da_pagina">Atribuir módulos por pessoa</h3>
 	</div>

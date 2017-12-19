@@ -16,7 +16,7 @@
 	Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
 	String url = (String) request.getAttribute("url");
 %>
-<div class="panel panel-default">
+<div class="panel panel-default header">
 	<div class="panel-heading">
 		<h3 id="titulo_da_pagina">Usuários</h3>
 	</div>

@@ -9,7 +9,7 @@
 	session.removeAttribute(Constantes.getSessionMsg());
 %>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8 col-md-offset-2" id="infoUsuario">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 id="titulo_da_pagina">Informações do Usuário</h3>

@@ -1,9 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-default">
+		<div class="panel panel-default header">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Pre Cadastar Servidores</h3>
+				<h3 id="titulo_da_pagina">Pré-Cadastrar Servidores</h3>
 			</div>
 			<div class="panel-body">
 				<div class="panel-body">
