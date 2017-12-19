@@ -18,7 +18,7 @@ public class ProfessorDAOTest {
 	public void salvar() {
 		
 		professor.setCoordenador(false);
-		professor.setId(6);
+		professor.setId(82);
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
 
 		pdao.cadastrar(professor);
@@ -34,13 +34,10 @@ public class ProfessorDAOTest {
 		System.out.println("Nome: " + professor.getNome());
 		System.out.println("CPF: " + professor.getCpf());
 		System.out.println("Siape: " + professor.getSiape());
-		if(professor.isCoordenador()){
-			System.out.println("Coordenador");
-		}
 		
 
 	}
-
+@Ignore
 	@Test
 	public void listar() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
@@ -51,21 +48,20 @@ public class ProfessorDAOTest {
 			System.out.println("Nome: "+ p.getNome());
 			System.out.println("CPF "+ p.getCpf());
 			System.out.println("Siape "+ p.getSiape());
-			if(p.isCoordenador()){
-				System.out.println("Coordenador\n" );
-			}
+
 		}	
 		Assert.assertTrue(professores != null);
 		
 	}
-	@Ignore
+	
 	@Test
-	public void editar() {
-		professor.setCoordenador(false);
-		professor.setId(6);
+	public void buscarPorSiape() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
-
-		pdao.editar(professor);
-
+		Professor p = pdao.buscarPorSiape("4785698");
+		System.out.println("Nome: " + p.getNome());
+		System.out.println("CPF: " + p.getCpf());
+		System.out.println("Siape: " + p.getSiape());
+		
 	}
+
 }
