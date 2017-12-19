@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.Pessoa;
 import model.Usuario;
+import util.Crypter;
 
 public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 
@@ -68,8 +70,7 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				Usuario usuario = new Usuario(rs.getString("login"), rs.getString("senha"));
-				if (usuario.getSenha().equals(senha)) {
+				if (rs.getString("senha").equals(Crypter.crypt(senha))) {
 					return true;
 				}
 			}

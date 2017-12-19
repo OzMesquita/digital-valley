@@ -22,6 +22,7 @@ public class CadastrarAluno extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
+		nome = nome.toUpperCase();
 		String codigo = request.getParameter("codigo");
 		String cpf = request.getParameter("cpf");
 		String aux = cpf.replaceAll("-", "");
@@ -34,7 +35,10 @@ public class CadastrarAluno extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
-
+		session.setAttribute("nomeA", null);
+		session.setAttribute("nomeS", null);
+		session.setAttribute("matricula", null);
+		session.setAttribute("siape", null);
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {

@@ -21,6 +21,7 @@ public class CadastrarServidor extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
+		nome = nome.toUpperCase();
 		String cpf = request.getParameter("cpf");
 		String aux = cpf.replaceAll("-", "");
 		cpf = aux.replaceAll("[.]", "");
@@ -32,7 +33,7 @@ public class CadastrarServidor extends HttpServlet {
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 		String cargo = request.getParameter("cargo");
-
+		
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
@@ -52,6 +53,10 @@ public class CadastrarServidor extends HttpServlet {
 
 				Facade.cadastrarServidor(usuario, servidor);
 				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
+				session.setAttribute("nomeA", null);
+				session.setAttribute("nomeS", null);
+				session.setAttribute("matricula", null);
+				session.setAttribute("siape", null);
 				pagina = "../login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";

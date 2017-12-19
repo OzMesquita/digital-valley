@@ -58,7 +58,7 @@
 								href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Importar
 									Alunos</a></li>
 							<li><a id="importar-servidores"
-								href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Importar
+								href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Pre Cadastrar
 									Servidores</a></li>
 						</ul></li>
 				</ul>

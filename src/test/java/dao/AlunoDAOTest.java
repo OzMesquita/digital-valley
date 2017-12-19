@@ -44,10 +44,11 @@ public class AlunoDAOTest {
 	@Test
 	public void testBuscarPorMatricula(){
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
-		aluno = aDAO.buscarPorMatricula("370179");
+		aluno = aDAO.buscarPorMatricula("123454");
 		Assert.assertTrue(aluno != null);
 		System.out.println("Nome: "+aluno.getNome());
 		System.out.println("Matricula: "+aluno.getMatricula());
+		System.out.println(aluno.getUsuario().getPessoa().getNome());
 	}
 	
 	@Ignore

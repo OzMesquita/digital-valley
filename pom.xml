@@ -34,8 +34,45 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>DESKTOP-4SVL9LL-snapshots</name>
+			<url>http://192.169.1.220:8081/artifactory/br.com.n2s</url>
+
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>central2</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>DESKTOP-4SVL9LL-releases</name>
+			<url>http://192.169.1.220:8081/artifactory/br.com.n2s</url>
+
+		</repository>
+	</repositories>
+
 	<!-- Depedencias -->
 	<dependencies>
+		<dependency>
+			<groupId>com.github.shyiko.dotenv</groupId>
+			<artifactId>dotenv</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.n2s</groupId>
+			<artifactId>core.n2s</artifactId>
+			<version>1.5.3</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>

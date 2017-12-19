@@ -3,9 +3,6 @@
     Created on : 24/05/2017, 16:13:20
     Author     : N2S-PC03
 --%>
-
-
-<%@page import="org.apache.tomcat.util.bcel.Const"%>
 <%@page import="util.Constantes"%>
 <%@page import="controller.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

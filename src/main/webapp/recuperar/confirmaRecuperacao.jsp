@@ -20,7 +20,6 @@ footer {
 </style>
 </head>
 <body>
-
 	<div class="image-container set-full-height "
 		style="background: steelblue; height: 100%;">
 
@@ -53,6 +52,7 @@ footer {
 					<div class="tab-pane active col-md-12" id="aluno-tab">
 						<div class="row">
 							<form action="ConfirmaRecuperacao" class="form-espacamento">
+
 								<div class="form-group">
 									<label for="matricula">Matrícula:</label> <input type="text"
 										id="matricula" name="matricula" maxlength="6"
@@ -80,7 +80,6 @@ footer {
 							</form>
 						</div>
 					</div>
-
 
 					<div class="tab-pane col-md-12" id="servidor-tab">
 						<div class="row">

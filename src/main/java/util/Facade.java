@@ -42,7 +42,7 @@ public class Facade {
 	private Facade() {
 		//
 	}
-
+	
 	public static int executeHTTPRequestToModule(String url, String jsonUser) throws ClientProtocolException, IOException {
 		StringEntity input = new StringEntity(jsonUser);
 		input.setContentType("application/json");
@@ -215,7 +215,7 @@ public class Facade {
 	
 	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
 		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
-		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivelInteger());
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivel().getValorNivel());
 		boolean has = false;
 		for(Modulo m:modulosPerfil){
 			has = false;
@@ -259,7 +259,11 @@ public class Facade {
 			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 		}
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
-		preA.preCadastrar(nome, matricula, curso);
+		if(matricula.matches("^[0-9]+$")) {
+			preA.preCadastrar(nome, matricula, curso);
+		}else {
+			throw new Exception("Matricula " + matricula+ " inválida");
+		}
 
 	}
 
@@ -373,7 +377,7 @@ public class Facade {
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
 							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
-							+ "\n(Obs.: Link válido até 12 horas após o envio deste e-mail)"
+							+ "\n(Obs.: Link válido até o dia de envio deste e-mail)"
 							+ "\n Caso não tenha solicitado, ignore este e-mail.",
 					pessoa.getEmail(), "Usuário Controle de Acesso");
 		} else {
@@ -431,5 +435,19 @@ public class Facade {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		return localDate.format(formatter);
 	}
-	
+	public static LocalDate converterStringParaLocalDate(String data) {
+
+		String[] newDate = data.split("/");
+		String[] dataSql = data.split("-");
+		if (newDate.length == 3) {
+			return LocalDate.of(Integer.valueOf(newDate[2]), Integer.valueOf(newDate[1]), Integer.valueOf(newDate[0]));
+		}
+		if (dataSql.length == 3) {
+			return LocalDate.of(Integer.valueOf(dataSql[0]), Integer.valueOf(dataSql[1]), Integer.valueOf(dataSql[2]));
+		} else {
+			throw new RuntimeException(
+					"Erro: A data de nascimento não está no formato correto, valor informado " + data);
+		}
+
+	}
 }

@@ -6,7 +6,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String mensagem = (String) session.getAttribute("msg");
-	session.removeAttribute("msg");
+	session.removeAttribute(Constantes.getSessionMsg());
 %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
@@ -23,6 +23,7 @@
 					
 				<%} %>
 				<form action="editarUsuario" method="post">
+
 					<div class="row">
 						<div class="col-md-4">
 							<p>
@@ -45,17 +46,15 @@
 											if (usuario.getPessoa() instanceof Aluno) {
 												Aluno aluno = (Aluno) usuario.getPessoa();
 												codigoInterno = aluno.getMatricula();
-											}
-											if (usuario.getPessoa() instanceof Servidor) {
+											} else if (usuario.getPessoa() instanceof Servidor) {
 												Servidor servidor = (Servidor) usuario.getPessoa();
 												codigoInterno = servidor.getSiape();
 
 											}
 										%>
-
 										<label for="codigo_interno">Código Interno</label> <input
-											id="codigo_interno" type="text" class="form-control" disabled
-											value="<%=codigoInterno%>">
+											id="codigo_interno" name="codigo_interno" type="text"
+											class="form-control" disabled value="<%=codigoInterno%>">
 									</div>
 								</div>
 								<div class="col-md-9">
@@ -105,21 +104,22 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="senha">Nova Senha</label> <input type="password"
-									class="form-control" name="senha" id="senha" required>
+									class="form-control" name="senha" id="senha">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="senha_repetida">Confirmar Senha</label> <input
-									type="password" class="form-control" name="senha_repetida" id="senha_repetida"
-									placeholder="Confirmar senha" required>
+									type="password" class="form-control" name="senha_repetida"
+									id="senha_repetida">
 							</div>
 						</div>
+
 					</div>
 					<div class="form-group">
 						<input type="submit"
 							class="btn btn-success text-center form-control" value="Salvar"
-							title="Salvar alterações"> 
+							title="Salvar alterações">
 					</div>
 				</form>
 			</div>

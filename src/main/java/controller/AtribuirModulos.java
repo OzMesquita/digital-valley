@@ -7,16 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import dao.PessoaDAO;
 import model.EnumNivel;
 import util.Constantes;
 
-/**
- * Servlet implementation class AtribuirModulos
- */
+
 public class AtribuirModulos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +31,7 @@ public class AtribuirModulos extends HttpServlet {
 			Integer inicio = fim - Constantes.getNumberOfRowsPerPage();
 			// pegar dados de pessoas
 			String nomePessoa = request.getParameter("nome") != null ? (String) request.getParameter("nome") : "";
-			Integer nivelAluno = EnumNivel.ALUNO.getValorNivel();
+			Integer nivelAluno = EnumNivel.COMUM.getValorNivel();
 			PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();			
 			// enviar dados
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("atribuicaoDeModulos.jsp");

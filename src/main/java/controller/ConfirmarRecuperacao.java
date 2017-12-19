@@ -34,16 +34,13 @@ public class ConfirmarRecuperacao extends HttpServlet {
             String siape = request.getParameter("siape");
             String cpfA = request.getParameter("cpfA");
             String cpfS = request.getParameter("cpfS");
-            String aux = cpfA.replaceAll("-", "");
-    		cpfA = aux.replaceAll("[.]", "");
-            aux = cpfS.replaceAll("-", "");
-    		cpfS = aux.replaceAll("[.]", "");
-    		
-    		
-    		
             if(!matricula.equals("")){
+            	String aux = cpfA.replaceAll("-", "");            
+        		cpfA = aux.replaceAll("[.]", "");
             	usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
             }else if(!siape.equals("")){
+            	String aux2 = cpfS.replaceAll("-", "");
+        		cpfS = aux2.replaceAll("[.]", "");
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
             }else{
             	session.setAttribute(Constantes.getSessionMsg()," CPF não pode ser vazio.");

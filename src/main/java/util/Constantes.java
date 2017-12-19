@@ -1,5 +1,9 @@
 package util;
 
+import java.util.Map;
+
+import com.github.shyiko.dotenv.DotEnv;
+
 public class Constantes {
 
 	private static String APP_URL;
@@ -22,20 +26,21 @@ public class Constantes {
 	}
 
 	static {
-		DATABASE_CONF_DIR = "C:\\n2s\\bd.txt";
-		EMAIL_CONF_DIR = "C:\\n2s\\email.txt";
-		APP_URL = "/Controle_de_Acesso";
-		ADM_URL = APP_URL + "/view/adm";
-		APP_ASSETS_URL = APP_URL + "/assets2";
-		APP_JS_URL = APP_ASSETS_URL + "/js";
-		APP_IMG_URL = APP_ASSETS_URL + "/img";
-		MAX_USER_PROFILE_IMAGE_SIZE_BYTES = 5242880;
-		APP_CSS_URL = APP_ASSETS_URL + "/css";
-		NUMBER_OF_ROWS_PER_PAGE = 20;
-		SESSION_MSG = "msg";
-		MODULES_IMAGES_DIR = "C:\\imagens\\modulo";
-		USER_PROFILE_IMAGES_DIR = "C:\\n2s\\img\\";
-		USER_PROFILE_NONE_IMAGE_DIR =  USER_PROFILE_IMAGES_DIR + "none.png";
+		Map<String, String> dotEnv = DotEnv.load();
+		DATABASE_CONF_DIR = dotEnv.get("DATABASE_CONF_DIR");
+		EMAIL_CONF_DIR = dotEnv.get("EMAIL_CONF_DIR");
+		APP_URL = dotEnv.get("APP_URL");
+		ADM_URL = dotEnv.get("ADM_URL");
+		APP_ASSETS_URL = dotEnv.get("APP_ASSETS_URL");
+		APP_JS_URL = dotEnv.get("APP_JS_URL");
+		APP_IMG_URL = dotEnv.get("APP_IMG_URL");
+		APP_CSS_URL = dotEnv.get("APP_CSS_URL");
+		MAX_USER_PROFILE_IMAGE_SIZE_BYTES = Integer.valueOf(dotEnv.get("MAX_USER_PROFILE_IMAGE_SIZE_BYTES"));
+		NUMBER_OF_ROWS_PER_PAGE = Integer.valueOf(dotEnv.get("NUMBER_OF_ROWS_PER_PAGE"));
+		SESSION_MSG = dotEnv.get("SESSION_MSG");
+		MODULES_IMAGES_DIR = dotEnv.get("MODULES_IMAGES_DIR");
+		USER_PROFILE_IMAGES_DIR = dotEnv.get("USER_PROFILE_IMAGES_DIR");
+		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
 	}
 
 	/**

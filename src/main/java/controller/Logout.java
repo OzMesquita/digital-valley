@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import model.Usuario;
+import util.Constantes;
 import util.Facade;
 
 public class Logout extends HttpServlet {
@@ -22,6 +23,6 @@ public class Logout extends HttpServlet {
 		DAOFactory.criarUsuarioDAO().salvarToken("", user.getPessoa().getId());
 		DAOFactory.criarUsuarioDAO().salvarTokenUsuario("", user.getPessoa().getId());
 		session.invalidate();
-		response.sendRedirect("/Controle_de_Acesso/login.jsp?deslog=1");
+		response.sendRedirect(Constantes.getAppUrl()+"/login.jsp?deslog=1");
 	}
 }
