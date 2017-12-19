@@ -35,7 +35,6 @@ public class Login extends HttpServlet {
 		
 		try {
 			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
-			System.out.println(senha+" - "+Crypter.crypt(senha));
 			if(uDAO.autenticar(login, senha)){
 				Usuario usuario = Facade.buscarPorLogin(login);
 				List<Modulo> modulos = Facade.buscarTodosModulosPorPerfil(usuario.getPessoa());
