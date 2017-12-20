@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
+
+import util.Constantes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,7 +29,7 @@ public class CadastroFiltro implements Filter {
 		if (session.getAttribute("preCadastro") !=null) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?permisaoPreCadastro=1");
+			((HttpServletResponse) response).sendRedirect(Constantes.getAppUrl()+"/login.jsp?permisaoPreCadastro=1");
 		}
 		
 	}

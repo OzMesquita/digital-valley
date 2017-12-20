@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.Aluno;
 import model.Pessoa;
 import model.Servidor;
+import util.Constantes;
 import util.Facade;
 
 
@@ -54,7 +55,7 @@ public class FiltroRecuperacao implements Filter {
 			
 			}
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?recuperacao=1");
+			((HttpServletResponse) response).sendRedirect(Constantes.getAppUrl()+"/login.jsp?recuperacao=1");
 			
 		}
 

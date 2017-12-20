@@ -38,7 +38,7 @@ public class RequisitarModulo extends HttpServlet{
 		userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
 		if(status != 200){
 			session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
-			response.sendRedirect("/Controle_de_Acesso/");
+			response.sendRedirect(Constantes.getAppUrl()+"/");
 		}else{
 			response.sendRedirect(request.getParameter("url")+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
 		}
