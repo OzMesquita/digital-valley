@@ -109,7 +109,7 @@
 															onkeypress="return SomenteNumero(event)"><br>
 														<label for="nome">Nome Completo</label><input type="text"
 															name="nomeS" class="form-control"><br> <a
-															href="<%=Constantes.getAppUrl() %>/login.jsp">Voltar para tela
+															href="<%=Constantes.getAppUrl()+"/login.jsp" %>" >Voltar para tela
 															de login</a> <input id="btn_confirma" type="submit"
 															value="Confirmar" onclick="return validarCampos2()">
 													</div>

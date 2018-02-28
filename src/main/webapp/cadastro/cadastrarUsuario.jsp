@@ -72,7 +72,7 @@
 										<div class="row">
 											<div class="col-sm-8" style="margin-left: 15%;">
 												<div id="alerta" style="color: red; text-align: center;">
-													<small name="small" id="t_alerta"> <%= mensagem%>
+													<small name="small" id="t_alerta"> <%= mensagem%>  <% session.setAttribute(Constantes.getSessionMsg(), null);%>
 													</small>
 												</div>
 												<div class="form-group">
