@@ -20,6 +20,7 @@ public class Constantes {
 	private static String USER_PROFILE_IMAGES_DIR;
 	private static String USER_PROFILE_NONE_IMAGE_DIR;
 	private static String APP_IMG_USER_DIR;
+	private static String PRE_URL;
 	private static Integer MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
 	private Constantes() {
 		//
@@ -41,6 +42,7 @@ public class Constantes {
 		MODULES_IMAGES_DIR = dotEnv.get("MODULES_IMAGES_DIR");
 		USER_PROFILE_IMAGES_DIR = dotEnv.get("USER_PROFILE_IMAGES_DIR");
 		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
+		PRE_URL = dotEnv.get("PRE_URL");
 	}
 
 	/**
@@ -48,6 +50,12 @@ public class Constantes {
 	 */
 	public static String getAppUrl() {
 		return APP_URL;
+	}
+	/**
+	 * @return the appUrl
+	 */
+	public static String getPreUrl() {
+		return PRE_URL;
 	}
 
 	/**

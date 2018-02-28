@@ -11,9 +11,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.bcel.Const;
+
 import model.Aluno;
 import model.Pessoa;
 import model.Servidor;
+import util.Constantes;
 import util.Facade;
 
 
@@ -54,7 +58,7 @@ public class FiltroRecuperacao implements Filter {
 			
 			}
 		} else {
-			((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/login.jsp?recuperacao=1");
+			((HttpServletResponse) response).sendRedirect(Constantes.getAppUrl()+"/login.jsp?recuperacao=1");
 			
 		}
 

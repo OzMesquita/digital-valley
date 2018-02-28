@@ -376,9 +376,9 @@ public class Facade {
 			System.out.println("Email >>"+pessoa.getEmail());
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
-							+ "http://localhost:8080"+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
+							+ "http://"+Constantes.getPreUrl()+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
 							+ "\n(Obs.: Link válido até o dia de envio deste e-mail)"
-							+ "\n Caso não tenha solicitado, ignore este e-mail.",
+							+ "\n Caso não tenha solicitado, ignore este e-mail...",
 					pessoa.getEmail(), "Usuário Controle de Acesso");
 		} else {
 			throw new IllegalArgumentException("Email não pode ser nulo");

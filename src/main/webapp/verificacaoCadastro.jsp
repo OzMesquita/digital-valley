@@ -4,6 +4,7 @@
     Author     : N2S-PC03
 --%>
 
+<%@page import="util.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
@@ -108,7 +109,7 @@
 															onkeypress="return SomenteNumero(event)"><br>
 														<label for="nome">Nome Completo</label><input type="text"
 															name="nomeS" class="form-control"><br> <a
-															href="/Controle_de_Acesso/login.jsp">Voltar para tela
+															href="<%=Constantes.getAppUrl() %>/login.jsp">Voltar para tela
 															de login</a> <input id="btn_confirma" type="submit"
 															value="Confirmar" onclick="return validarCampos2()">
 													</div>
