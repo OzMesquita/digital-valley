@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,9 +10,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.tomcat.util.bcel.Const;
-
 import model.Aluno;
 import model.Pessoa;
 import model.Servidor;
@@ -31,6 +27,7 @@ public class FiltroRecuperacao implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		
 		HttpSession session = (HttpSession) (((HttpServletRequest) request).getSession());
 		
 		
@@ -49,13 +46,12 @@ public class FiltroRecuperacao implements Filter {
 		if (pessoa != null){
 			if(aluno != null){
 				session.setAttribute("matricula", aluno.getMatricula());
+				chain.doFilter(request, response);
 				
 			}
 			if(servidor != null){
 				session.setAttribute("siape", servidor.getSiape());
-			}else{
 				chain.doFilter(request, response);
-			
 			}
 		} else {
 			((HttpServletResponse) response).sendRedirect(Constantes.getAppUrl()+"/login.jsp?recuperacao=1");

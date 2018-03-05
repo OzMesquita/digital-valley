@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Aluno;
 import model.Pessoa;
+import model.Servidor;
 import model.Usuario;
 
 public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
@@ -136,9 +139,9 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	@Override
 	public Pessoa buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		super.open();
-		Pessoa pessoa = new Pessoa();
+		Aluno aluno = new Aluno();
 		Usuario usuario = new Usuario();
-		pessoa.setUsuario(usuario);
+		aluno.setUsuario(usuario);
 
 		String SQL = "SELECT * FROM aluno AS u_a, pessoa_usuario AS u, curso AS c WHERE u_a.id_pessoa_usuario = u.id_pessoa_usuario AND u_a.id_curso = c.id_curso AND u_a.matricula = ? and u.cpf = ?";
 		try {
@@ -150,19 +153,21 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				pessoa.setId(rs.getInt("id_pessoa_usuario"));
-				pessoa.setNome(rs.getString("nome"));
-				pessoa.setCpf(rs.getString("cpf"));
-				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-				pessoa.setEmail(rs.getString("email"));
-				pessoa.setImagem(rs.getString("imagem"));
-				pessoa.getUsuario().setLogin(rs.getString("login"));
-				pessoa.getUsuario().setSenha(rs.getString("senha"));
-				pessoa.getUsuario().setNivel(rs.getInt("nivel"));
-				pessoa.getUsuario().setPessoa(pessoa);
+				aluno.setId(rs.getInt("id_pessoa_usuario"));
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				aluno.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				aluno.setEmail(rs.getString("email"));
+				aluno.setImagem(rs.getString("imagem"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setSemestreIngresso(rs.getString("semestre_ingresso"));
+				aluno.getUsuario().setLogin(rs.getString("login"));
+				aluno.getUsuario().setSenha(rs.getString("senha"));
+				aluno.getUsuario().setNivel(rs.getInt("nivel"));
+				aluno.getUsuario().setPessoa(aluno);
 				ps.close();
 				rs.close();
-				return pessoa;
+				return aluno;
 			}
 			rs.close();
 			ps.close();
@@ -180,9 +185,9 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 	@Override
 	public Usuario buscarPorSiapeAndCPF(String siape, String cpf) {
 		super.open();
-		Pessoa pessoa = new Pessoa();
+		Servidor servidor = new Servidor();
 		Usuario usuario = null;
-		pessoa.setUsuario(usuario);
+		servidor.setUsuario(usuario);
 
 		String SQL = "SELECT * FROM servidor AS s, pessoa_usuario AS u WHERE s.id_pessoa_usuario = u.id_pessoa_usuario AND s.siape = ? and u.cpf = ?";
 		try {
@@ -194,16 +199,18 @@ public class JDBCPessoaDAO extends JDBCDAO implements PessoaDAO {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				usuario = new Usuario();
-				pessoa.setId(rs.getInt("id_pessoa_usuario"));
-				pessoa.setNome(rs.getString("nome"));
-				pessoa.setCpf(rs.getString("cpf"));
-				pessoa.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
-				pessoa.setEmail(rs.getString("email"));
-				pessoa.setImagem(rs.getString("imagem"));
+				servidor.setId(rs.getInt("id_pessoa_usuario"));
+				servidor.setNome(rs.getString("nome"));
+				servidor.setCpf(rs.getString("cpf"));
+				servidor.setDataNascimento(LocalDate.parse(rs.getString("data_nascimento")));
+				servidor.setEmail(rs.getString("email"));
+				servidor.setImagem(rs.getString("imagem"));
+				servidor.setSiape(rs.getString("siape"));
+				servidor.setCargo(rs.getString("cargo"));
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setNivel(rs.getInt("nivel"));
-				usuario.setPessoa(pessoa);
+				usuario.setPessoa(servidor);
 				ps.close();
 				rs.close();
 				return usuario;

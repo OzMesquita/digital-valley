@@ -4,25 +4,23 @@
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	String mensagem = (String) session.getAttribute("msg");
-	session.removeAttribute(Constantes.getSessionMsg());
-%>
+
 <div class="row">
 	<div class="col-md-8 col-md-offset-2" id="infoUsuario">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 id="titulo_da_pagina">Informações do Usuário</h3>
 			</div>
+			
 			<div class="panel-body">
-				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="alert alert-danger" role="alert">
+			<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="<%=session.getAttribute(Constantes.getSessionMsg()).equals("Dados alterados com sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
-				<%} %>
-				<form action="editarUsuario" method="post">
+				<%} %>	
+				<form action="editarUsuario" method="post" enctype="multipart/form-data">
 
 					<div class="row">
 						<div class="col-md-4">

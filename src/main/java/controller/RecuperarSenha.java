@@ -36,11 +36,10 @@ public class RecuperarSenha extends HttpServlet {
     	HttpSession session = request.getSession();
         try{
             String email = request.getParameter("email");
-            System.out.println(email);
+            
             if(email!= null){
             	Pessoa p = Facade.BuscarEmailVinculado(email);
                 if(p != null){
-                	System.out.println("aqui");
                 	Facade.inserirToken(p);
                 	String mensagem = "erro ao enviar email";
                 	try {

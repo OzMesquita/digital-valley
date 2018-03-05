@@ -30,15 +30,17 @@ public class ConfirmarRecuperacao extends HttpServlet {
     	String pagina = "confirmaRecuperacao.jsp?erroRecuperação=1";
     	HttpSession session = request.getSession();
         try{
-            String matricula = request.getParameter("matricula");
-            String siape = request.getParameter("siape");
+        	String matricula = "";
+        	String siape = "";
+            matricula = request.getParameter("matricula");
+            siape = request.getParameter("siape");
             String cpfA = request.getParameter("cpfA");
             String cpfS = request.getParameter("cpfS");
-            if(!matricula.equals("")){
+            if(matricula != null){
             	String aux = cpfA.replaceAll("-", "");            
         		cpfA = aux.replaceAll("[.]", "");
             	usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
-            }else if(!siape.equals("")){
+            }else if(siape != null){
             	String aux2 = cpfS.replaceAll("-", "");
         		cpfS = aux2.replaceAll("[.]", "");
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);

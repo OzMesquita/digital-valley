@@ -55,12 +55,12 @@ public class EditarUsuarioController extends HttpServlet {
 							if (item.getSize() <= Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES()) {
 								imagemPerfil = item;
 							} else {
-								sessionMsg += "Erro: O arquivo selecionado não pode ultrapassar "
+								sessionMsg = "Erro: O arquivo selecionado não pode ultrapassar "
 										+ (Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES() / (1024 * 1024))
 										+ " MB.<br>";
 							}
 						} else {
-							sessionMsg += "Erro: O arquivo selecionado deve ser uma imagem.<br>";
+							sessionMsg = "Erro: O arquivo selecionado deve ser uma imagem.<br>";
 						}
 					}
 				}
@@ -85,7 +85,6 @@ public class EditarUsuarioController extends HttpServlet {
 				pessoaEditada.setId(pessoaDaSessao.getId());
 				pessoaEditada.setNome(pessoaDaSessao.getNome());
 				pessoaEditada.setCpf(pessoaDaSessao.getCpf());
-				System.out.println("Data: "+dados.get("nascimento"));
 				pessoaEditada.setDataNascimento(dados.get("nascimento"));
 				pessoaEditada.setEmail(dados.get("email"));
 				usuarioEditado.setPessoa(pessoaEditada);
@@ -98,7 +97,7 @@ public class EditarUsuarioController extends HttpServlet {
 				} else {
 					usuarioEditado.setSenha(DAOFactory.criarPessoaDAO().buscarPorId(usuarioDaSessao.getPessoa().getId())
 							.getUsuario().getSenha());
-					sessionMsg += "Erro: As senhas estão diferentes.<br>";
+					sessionMsg = "Erro: As senhas estão diferentes.<br>";
 				}
 				// salvar imagem
 				if (imagemPerfil != null) {
@@ -113,13 +112,16 @@ public class EditarUsuarioController extends HttpServlet {
 				Facade.editarPessoa(pessoaEditada, usuarioEditado);
 				// salvar sessao
 				session.setAttribute("usuario", usuarioEditado);
-				System.out.println(((Usuario) session.getAttribute("usuario")).getPessoa().getCpf());
-				sessionMsg += "Dados alterados com sucesso.<br>";
+				if(!sessionMsg.equals("")) {
+					sessionMsg = "Dados alterados com sucesso";
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				sessionMsg += e.getMessage();
 			}
-			session.setAttribute(Constantes.getSessionMsg(), sessionMsg.isEmpty() ? null : sessionMsg);
+			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
+			
 		} else {
 			session.setAttribute(Constantes.getSessionMsg(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
