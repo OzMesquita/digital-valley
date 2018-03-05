@@ -18,7 +18,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import dao.DAOFactory;
 import model.Aluno;
 import model.Pessoa;
 import model.Servidor;
@@ -33,6 +32,7 @@ public class EditarUsuarioController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		String pagina = "editarUsuario.jsp?erroEditar=1";
 		if (ServletFileUpload.isMultipartContent(req)) {
 			String sessionMsg = "";
 			try {
@@ -95,9 +95,9 @@ public class EditarUsuarioController extends HttpServlet {
 				if (!senha.isEmpty() && !senhaRepetida.isEmpty() && senha.equals(senhaRepetida)) {
 					usuarioEditado.setSenha(dados.get(nomeDoCampoSenha));
 				} else {
-					usuarioEditado.setSenha(DAOFactory.criarPessoaDAO().buscarPorId(usuarioDaSessao.getPessoa().getId())
-							.getUsuario().getSenha());
-					sessionMsg = "Erro: As senhas estão diferentes.<br>";
+					//usuarioEditado.setSenha(usuarioDaSessao.getSenha());
+					sessionMsg = "Erro: As senhas estão diferentes ou nula";
+					throw new Exception("");
 				}
 				// salvar imagem
 				if (imagemPerfil != null) {
@@ -113,6 +113,7 @@ public class EditarUsuarioController extends HttpServlet {
 				// salvar sessao
 				session.setAttribute("usuario", usuarioEditado);
 				if(!sessionMsg.equals("")) {
+					pagina = "editarUsuario.jsp?sucessoEditar=1";
 					sessionMsg = "Dados alterados com sucesso";
 				}
 				
@@ -126,7 +127,7 @@ public class EditarUsuarioController extends HttpServlet {
 			session.setAttribute(Constantes.getSessionMsg(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
 		}
-		resp.sendRedirect("editarUsuario");
+		resp.sendRedirect(pagina);
 	}
 
 	@Override

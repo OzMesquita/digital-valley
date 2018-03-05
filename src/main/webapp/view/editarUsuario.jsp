@@ -13,6 +13,8 @@
 			</div>
 			
 			<div class="panel-body">
+			
+			
 			<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
 					<div class="<%=session.getAttribute(Constantes.getSessionMsg()).equals("Dados alterados com sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>

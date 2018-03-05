@@ -24,7 +24,7 @@
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
-				<form method="post" action="adm/cadastrarModulo" name="formCadastro">
+				<form method="post" action="cadastrarModulo" name="formCadastro">
 					<div class="form-group">
 						<label for="titulo">Título</label><input type="text"
 							title="Título" name="titulo" id="titulo" required
