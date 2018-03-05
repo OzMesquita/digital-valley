@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
+		<div class="panel panel-default header">
 			<div class="panel-heading">
 				<h3 id="titulo_da_pagina">Modulos Associados</h3>
 			</div>
