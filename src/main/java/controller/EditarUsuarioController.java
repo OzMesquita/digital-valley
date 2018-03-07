@@ -109,7 +109,7 @@ public class EditarUsuarioController extends HttpServlet {
 					pessoaEditada.setImagem(nomeImagemPerfil);
 				}
 				// salvar dados no banco
-				Facade.editarPessoa(pessoaEditada, usuarioEditado);
+				Facade.editarUsuarioESenha(pessoaEditada, usuarioEditado);
 				// salvar sessao
 				session.setAttribute("usuario", usuarioEditado);
 				if(!sessionMsg.equals("")) {

@@ -32,6 +32,7 @@
 									<div class="form-group">
 										<label>Código</label> <input type="text" class="form-control"
 											disabled value="<%= p.getId()%>">
+											<input type="hidden" name="idUsuario" value="<%=id%>">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -87,6 +88,7 @@
 									<option value="2">Usuário Comum</option>
 									<option value="1">Administrador</option>
 								</select> <input id="save" type="submit" value="Salvar">
+								<input type="hidden" name="idUsuario" value="<%=id%>">
 							</form>
 						</div>
 

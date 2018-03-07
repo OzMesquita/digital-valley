@@ -130,6 +130,13 @@ public class Facade {
 		pessoaDAO.editar(pessoa);		
 		usuarioDAO.editar(usuario);
 	}
+	
+	public static void editarUsuarioESenha(Pessoa pessoa, Usuario usuario) {
+		PessoaDAO pessoaDAO = DAOFactory.criarPessoaDAO();
+		UsuarioDAO usuarioDAO = DAOFactory.criarUsuarioDAO();
+		pessoaDAO.editar(pessoa);		
+		usuarioDAO.editarUsuarioESenha(usuario);
+	}
 
 	public static Usuario buscarPorLogin(String login) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
@@ -274,10 +281,16 @@ public class Facade {
 	}
 
 	public static void preCadastroServidor(String nome, String siape) {
+		if(nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
+			
+		}else{
+			throw new IllegalArgumentException("Erro: O Nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome);
+		}
+		
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Servidor s = sDAO.buscarPorSiape(siape);
-		//System.out.println(s.getNome());
-		if(s == null){
+		
+		if(s == null ){
 			PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{

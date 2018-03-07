@@ -23,6 +23,7 @@ public class ImportarServidorController  extends HttpServlet {
 		HttpSession session = request.getSession();
 		String pagina = "importarServidores.jsp?erroPreCadastro=1";
 		
+		
 		try {
 			
 			Facade.preCadastroServidor(nome, siape);
@@ -30,8 +31,8 @@ public class ImportarServidorController  extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsg(), "Servidor já possui pré cadastro");
-			System.out.println(e.getMessage());
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+			
 		}
 		
 		response.sendRedirect(pagina);

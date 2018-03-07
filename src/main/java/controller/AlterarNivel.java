@@ -18,17 +18,17 @@ public class AlterarNivel extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer nivel= Integer.valueOf(request.getParameter("nivel"));
-		String pagina = Constantes.getAdmUrl()+"/editarNivelDoUsuario.jsp";
+		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+		String pagina = "editarNivelDoUsuario.jsp?idUsuario="+idUsuario;
 		HttpSession session = request.getSession();
 
 		try {
 			
-			Pessoa pessoa = (Pessoa) session.getAttribute("pessoa");
+			Pessoa pessoa = util.Facade.buscarPessoaPorId(idUsuario);
 			Usuario usuario = pessoa.getUsuario();
 			usuario.setNivel(nivel);
 			util.Facade.editarPessoa(pessoa, usuario);
-			pagina = util.Constantes.getAdmUrl()+"/editarNivelDoUsuario.jsp?sucessoEditar=1";
-			
+			pagina = util.Constantes.getAdmUrl()+"/listar_usuarios?sucessoEditar=1&idUsuario="+idUsuario;
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}

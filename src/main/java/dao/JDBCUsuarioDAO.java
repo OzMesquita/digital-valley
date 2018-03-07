@@ -1,11 +1,8 @@
 package dao;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import model.Pessoa;
 import model.Usuario;
 import util.Crypter;
 
@@ -42,6 +39,27 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 	public void editar(Usuario usuario) {
 		super.open();
 		try {
+			String SQL = "UPDATE pessoa_usuario SET login=?, nivel=? WHERE id_pessoa_usuario = ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, usuario.getLogin());
+			ps.setInt(2, usuario.getNivel().getValorNivel());
+			ps.setInt(3, usuario.getPessoa().getId());
+			ps.executeUpdate();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao editar registro de usuario", e);
+		} finally {
+			super.close();
+		}
+
+	}
+
+	@Override
+	public void editarUsuarioESenha(Usuario usuario) {
+		super.open();
+		try {
 			String SQL = "UPDATE pessoa_usuario SET login=?, senha=? WHERE id_pessoa_usuario = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, usuario.getLogin());
@@ -58,7 +76,7 @@ public class JDBCUsuarioDAO extends JDBCDAO implements UsuarioDAO {
 		}
 
 	}
-
+	
 	@Override
 	public boolean autenticar(String login, String senha) {
 		super.open();

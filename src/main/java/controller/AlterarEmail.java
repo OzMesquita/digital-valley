@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Pessoa;
-import model.Usuario;
 import util.Constantes;
 
 public class AlterarEmail extends HttpServlet {
@@ -18,23 +17,20 @@ public class AlterarEmail extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String pagina = "editarNivelDoUsuario.jsp";
+		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+		String pagina = "editarNivelDoUsuario.jsp?idUsuario="+idUsuario;
 		HttpSession session = request.getSession();
 
 		try {
-			Usuario usuario = (Usuario) session.getAttribute("usuario");
-			Pessoa pessoa = usuario.getPessoa();
+
+			Pessoa pessoa = util.Facade.buscarPessoaPorId(idUsuario);
 			pessoa.setEmail(email);
-			util.Facade.editarPessoa(pessoa, usuario);
-			pagina = "telaInicial.jsp?sucessoEditar=1";
+			util.Facade.editarPessoa(pessoa, pessoa.getUsuario());
+			pagina = util.Constantes.getAdmUrl()+"/listar_usuarios?sucessoEditar=1&idUsuario="+idUsuario;
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
-
-		
 		response.sendRedirect(pagina);
-		
-
 	}
 
 }

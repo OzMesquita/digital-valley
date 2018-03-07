@@ -142,6 +142,16 @@
 		<servlet-name>ListarUsuarios</servlet-name>
 		<servlet-class>controller.ListarUsuarios</servlet-class>
 	</servlet>
+	<!-- 25 -->
+	<servlet>
+		<servlet-name>AlterarEmail</servlet-name>
+		<servlet-class>controller.AlterarEmail</servlet-class>
+	</servlet>
+	<!-- 26 -->
+	<servlet>
+		<servlet-name>AlterarNivel</servlet-name>
+		<servlet-class>controller.AlterarNivel</servlet-class>
+	</servlet>
 	
 	<!-- 1 -->
 	<servlet-mapping>
@@ -262,6 +272,16 @@
 	<servlet-mapping>
 		<servlet-name>ListarUsuarios</servlet-name>
 		<url-pattern>/view/adm/listar_usuarios</url-pattern>
+	</servlet-mapping>
+	<!-- 25 -->
+	<servlet-mapping>
+		<servlet-name>AlterarEmail</servlet-name>
+		<url-pattern>/view/adm/AlterarEmail</url-pattern>
+	</servlet-mapping>
+	<!-- 26 -->
+	<servlet-mapping>
+		<servlet-name>AlterarNivel</servlet-name>
+		<url-pattern>/view/adm/AlterarNivel</url-pattern>
 	</servlet-mapping>
 
 	<!-- FILTROS -->
