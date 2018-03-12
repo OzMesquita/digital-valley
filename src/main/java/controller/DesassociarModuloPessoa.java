@@ -22,13 +22,14 @@ public class DesassociarModuloPessoa extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer  pessoaId = Integer.valueOf(request.getParameter("pessoa_id"));
 		Integer  moduloId = Integer.valueOf(request.getParameter("modulo_id"));
+		Integer  perfilId = Integer.valueOf(request.getParameter("perfil_id"));
 		HttpSession session = request.getSession();
 		try{
 		DAOFactory.criarModuloDAO().desassociarUsuarioModulo(pessoaId, moduloId);
 		}catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
-		response.sendRedirect(Constantes.getAdmUrl()+"/pessoa_modulos?pessoa_id="+pessoaId);
+		response.sendRedirect(Constantes.getAdmUrl()+"/pessoa_modulos?pessoa_id="+pessoaId+"&perfil_id="+perfilId);
 	}
 
 }

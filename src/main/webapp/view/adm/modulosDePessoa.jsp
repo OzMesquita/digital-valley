@@ -11,6 +11,24 @@
 	Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
 	List<Modulo> modulosDisponiveis = (List<Modulo>) request.getAttribute("modulosDisponiveis");
 	List<Modulo> modulosAssociados = (List<Modulo>) request.getAttribute("modulosAssociados");
+	List<Modulo> modulosDePerfil = (List<Modulo>) request.getAttribute("modulosDePerfil");
+	boolean has = false;
+	for(Modulo m:modulosDePerfil){
+		has = false;
+		for(Modulo m2: modulosAssociados){
+			if(m2.getId() == m.getId()){
+				has = true;
+			}
+			for(Modulo m3: modulosDisponiveis){
+				if(m3.getId()==m2.getId()){
+					has=true;
+				}
+			}
+		}
+		if(!has){
+			modulosAssociados.add(m);
+		}
+	}
 	String url = Constantes.getAdmUrl();
 %>
 <div class="row">
@@ -45,7 +63,7 @@
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Módulos associados</h3>
+				<h3 id="titulo_da_pagina">Módulos Desassociados</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -68,7 +86,8 @@
 									<form method="POST" action="<%=url%>/associar_modulo_pessoa">
 										<input type="hidden" value="<%=pessoa.getId()%>"
 											name="pessoa_id" /> <input type="hidden"
-											value="<%=modulo.getId()%>" name="modulo_id" /> <input
+											value="<%=modulo.getId()%>" name="modulo_id" /> <input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getNivel().getValorNivel() %>" 
+											name="perfil_id" /> <input
 											type="submit" class="btn btn-success" value="Associar" />
 									</form>
 								</td>
@@ -85,7 +104,7 @@
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Módulos associados</h3>
+				<h3 id="titulo_da_pagina">Módulos Associados</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -110,7 +129,8 @@
 									<form method="POST" action="<%=url%>/desassociar_modulo_pessoa">
 										<input type="hidden" value="<%=pessoa.getId()%>"
 											name="pessoa_id" /> <input type="hidden"
-											value="<%=modulo.getId()%>" name="modulo_id" /> <input
+											value="<%=modulo.getId()%>" name="modulo_id" /><input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getNivel().getValorNivel()%>"
+											name="perfil_id" /> <input
 											type="submit" class="btn btn-danger" value="Desassociar" />
 									</form>
 								</td>
@@ -118,6 +138,7 @@
 							<%
 								}
 							%>
+							
 						</tbody>
 					</table>
 				</div>

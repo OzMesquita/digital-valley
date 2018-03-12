@@ -59,7 +59,7 @@
 						<td><%=pessoa.getEmail()%></td>
 						<td><%=Facade.converterLocalDateParaString(pessoa.getDataNascimento()) %></td>
 						<td><a
-							href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>">Gerenciar
+							href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>&perfil_id=<%=Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getNivel().getValorNivel()%>">Gerenciar
 								módulos</a></td>
 					</tr>
 					<%
