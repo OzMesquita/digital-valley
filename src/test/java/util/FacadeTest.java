@@ -142,7 +142,8 @@ public class FacadeTest {
 	
 	@Test
 	public void crypter() {
-		System.out.println(Crypter.crypt("deyvison123"));
+		System.out.println(Crypter.crypt("123456"));
+		 
 	}
 
 

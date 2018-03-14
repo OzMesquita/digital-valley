@@ -35,7 +35,7 @@ public class ImportacaoController extends HttpServlet {
 				
 				matricula = dados.substring(0,6);
 				nome = dados.substring(6,dados.indexOf("\n"));
-				util.Facade.preCadastrarAluno(nome, matricula, curso);
+				util.Facade.preCadastrarAluno(nome.replaceAll("\\s+$", ""), matricula, curso);
 				aux = dados.replace(matricula, "");
 				dados = aux;
 				aux = dados.replace(nome+"\n", "");

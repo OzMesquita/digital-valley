@@ -18,12 +18,15 @@
 			</div>
 			<div class="panel-body">
 				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="alert alert-danger" role="alert">
+					<div class="<%=((String)session.getAttribute(Constantes.getSessionMsg())).contains("Sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
+				
+				
+				
 				<form method="post" action="cadastrarModulo" name="formCadastro">
 					<div class="form-group">
 						<label for="titulo">Título</label><input type="text"

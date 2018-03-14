@@ -41,12 +41,12 @@ public class CadastrarModulo extends HttpServlet {
 			String aux;
 			for(Perfil p: perfis){
 				aux = request.getParameter(p.getNome());
-				if(aux.equals("ok")){
+				if(aux != null && aux.equals("ok")){
 					util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
 				}
 			}
 			
-			pagina = "cadastarModulo.jsp?sucessoCadastro=1";
+			pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
 			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 			
 		} catch (Exception e) {
