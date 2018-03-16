@@ -281,10 +281,11 @@ public class Facade {
 	}
 
 	public static void preCadastroServidor(String nome, String siape) {
-		if(nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
-			
-		}else{
+		if(!nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
 			throw new IllegalArgumentException("Erro: O Nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome);
+		}
+		if(siape.length() != 7) {
+			throw new IllegalArgumentException("Erro: O Siape deve ter exatamente 7 números, valor informado: " + siape);
 		}
 		
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();

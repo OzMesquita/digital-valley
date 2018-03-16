@@ -17,6 +17,14 @@
 
 					<%
 						}
+					
+						if (request.getParameter("sucessoPrecadastro") != null  && request.getParameter("sucessoPrecadastro").equals("1")) {
+					%>
+					<div class="alert alert-success" role="alert">
+						<%="Sucesso ao cadastrar Servidor"%>
+					</div>
+					<%
+						}
 					%>
 					<form action="importarServidor" method="post">
 						<div class="form-group">

@@ -26,7 +26,7 @@ public class ImportarServidorController  extends HttpServlet {
 		
 		try {
 			
-			Facade.preCadastroServidor(nome, siape);
+			Facade.preCadastroServidor(nome.replaceAll("\\s+$", "").toUpperCase(), siape);
 			pagina = "importarServidores.jsp?sucessoPrecadastro=1";
 			
 			
