@@ -98,15 +98,14 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-
-			modulo.setTitulo(rs.getString("titulo"));
-			modulo.setId(rs.getInt("id_modulo"));
-			modulo.setUrl(rs.getString("url"));
-			modulo.setImagem(rs.getString("imagem"));
-			ps.close();
-			rs.close();
-
+			if(rs.next()) {
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setImagem(rs.getString("imagem"));
+				ps.close();
+				rs.close();
+			}
 			return modulo;
 
 		} catch (SQLException e) {
@@ -154,7 +153,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 		super.open();
 		ArrayList<Modulo> modulos = new ArrayList<Modulo>();
 		try {
-			String SQL = "SELECT * FROM usuario_modulo AS u_m, modulo AS m WHERE u_m.id_usuario = ? and m.id_modulo = u_m.id_modulo";
+			String SQL = "SELECT * FROM usuario_modulo AS u_m, modulo AS m WHERE u_m.id_usuario = ? and m.id_modulo = u_m.id_modulo AND permissao=true;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 
@@ -166,7 +165,6 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-
 				modulos.add(modulo);
 			}
 
@@ -254,15 +252,31 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public void associarUsuarioModulo(int idUsuario, int idModulo) {
 		super.open();
 		try {
-			String SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo) VALUES (?, ?)";
-
+			String SQL = "SELECT permissao FROM usuario_modulo WHERE usuario_modulo.id_usuario=? AND usuario_modulo.id_modulo=?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idUsuario);
 			ps.setInt(2, idModulo);
-
-			ps.executeUpdate();
-			ps.close();
-
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				if(!rs.getBoolean(1)) {
+					SQL = "UPDATE usuario_modulo SET permissao = true WHERE id_usuario = ? AND id_modulo = ?";
+					ps = super.getConnection().prepareStatement(SQL);
+					ps.setInt(1, idUsuario);
+					ps.setInt(2, idModulo);
+					ps.executeUpdate();
+					ps.close();
+				}
+				
+			}
+			else {			
+				SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo, permissao) VALUES (?, ?, true)";
+				PreparedStatement ps1 = super.getConnection().prepareStatement(SQL);
+				ps1.setInt(1, idUsuario);
+				ps1.setInt(2, idModulo);
+	
+				ps1.executeUpdate();
+				ps1.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);
@@ -297,7 +311,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public List<Modulo> listarDisponiveisParaPessoa(Pessoa pessoa) {
 		super.open();
 		try {
-			String SQL = "SELECT * FROM modulo WHERE id_modulo NOT IN (SELECT id_modulo FROM usuario_modulo WHERE usuario_modulo.id_usuario = ?);";
+			String SQL = "SELECT * FROM modulo WHERE id_modulo IN (SELECT id_modulo FROM usuario_modulo WHERE usuario_modulo.id_usuario = ? AND usuario_modulo.permissao=false);";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, pessoa.getId());
 			ResultSet rs = ps.executeQuery();
@@ -338,7 +352,9 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
 				modulo.setImagem(rs.getString("imagem"));
-				modulos.add(modulo);
+				if(rs.getBoolean("permissao")) {
+					modulos.add(modulo);
+				}
 			}
 			ps.close();
 			rs.close();
@@ -356,12 +372,32 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public void desassociarUsuarioModulo(int idUsuario, int idModulo) {
 		super.open();
 		try {
-			String SQL = "DELETE FROM usuario_modulo WHERE id_usuario = ? AND  id_modulo = ?";
+			String SQL = "SELECT permissao FROM usuario_modulo WHERE usuario_modulo.id_usuario=? AND usuario_modulo.id_modulo=?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idUsuario);
 			ps.setInt(2, idModulo);
-			ps.executeUpdate();
-			ps.close();
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getBoolean(1)) {
+					SQL = "UPDATE usuario_modulo SET permissao = false WHERE id_usuario = ? AND id_modulo = ?";
+					ps = super.getConnection().prepareStatement(SQL);
+					ps.setInt(1, idUsuario);
+					ps.setInt(2, idModulo);
+					ps.executeUpdate();
+					ps.close();
+				}
+				
+			}
+			else {
+				SQL = "INSERT INTO usuario_modulo(id_usuario, id_modulo, permissao) VALUES (?, ?, false)";
+				PreparedStatement ps1 = super.getConnection().prepareStatement(SQL);
+				ps1.setInt(1, idUsuario);
+				ps1.setInt(2, idModulo);
+	
+				ps1.executeUpdate();
+				ps1.close();
+				
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao associar módulo em JDBCModuloDAO", e);

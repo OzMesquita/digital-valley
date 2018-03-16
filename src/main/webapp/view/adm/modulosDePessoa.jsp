@@ -11,23 +11,17 @@
 	Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
 	List<Modulo> modulosDisponiveis = (List<Modulo>) request.getAttribute("modulosDisponiveis");
 	List<Modulo> modulosAssociados = (List<Modulo>) request.getAttribute("modulosAssociados");
-	List<Modulo> modulosDePerfil = (List<Modulo>) request.getAttribute("modulosDePerfil");
-	boolean has = false;
-	for(Modulo m:modulosDePerfil){
-		has = false;
-		for(Modulo m2: modulosAssociados){
+	List<Modulo> modulosARemover = new ArrayList<Modulo>();
+	for(Modulo m:modulosAssociados){
+		for(Modulo m2: modulosDisponiveis){
 			if(m2.getId() == m.getId()){
-				has = true;
-			}
-			for(Modulo m3: modulosDisponiveis){
-				if(m3.getId()==m2.getId()){
-					has=true;
-				}
+				modulosARemover.add(m2);
 			}
 		}
-		if(!has){
-			modulosAssociados.add(m);
-		}
+	}
+	
+	for(Modulo m: modulosARemover){
+		modulosDisponiveis.remove(m);
 	}
 	String url = Constantes.getAdmUrl();
 %>

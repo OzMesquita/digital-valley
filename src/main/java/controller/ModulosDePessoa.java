@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
-import model.Perfil;
 import model.Pessoa;
 import util.Constantes;
+import util.Facade;
 
 /**
  * Servlet implementation class ModulosDePessoa
@@ -36,10 +36,8 @@ public class ModulosDePessoa extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("modulosDePessoa.jsp");
 		Integer pessoa_id = Integer.valueOf(request.getParameter("pessoa_id"));
 		Pessoa pessoa = DAOFactory.criarPessoaDAO().buscarPorId(pessoa_id);
-		Perfil perfil = DAOFactory.criarPerfilDAO().buscarPorId(Integer.valueOf(request.getParameter("perfil_id")));
-		request.setAttribute("modulosDePerfil", DAOFactory.criarModuloDAO().getModulosDePerfil(perfil));
-		request.setAttribute("modulosAssociados", DAOFactory.criarModuloDAO().listarAssociadosParaPessoa(pessoa));
-		request.setAttribute("modulosDisponiveis", DAOFactory.criarModuloDAO().listarDisponiveisParaPessoa(pessoa));
+		request.setAttribute("modulosAssociados", Facade.buscarModulosAssociados(pessoa, Integer.valueOf(request.getParameter("perfil_id"))));
+		request.setAttribute("modulosDisponiveis", DAOFactory.criarModuloDAO().listar());
 		request.setAttribute("pessoa", DAOFactory.criarPessoaDAO().buscarPorId(pessoa_id));
 		rd.forward(request, response);
 		}catch (Exception e) {
