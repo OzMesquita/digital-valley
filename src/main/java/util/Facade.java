@@ -464,4 +464,35 @@ public class Facade {
 		}
 
 	}
+	public static List<Modulo> buscarModulosAssociados(Pessoa pessoa, int perfil){
+		ModuloDAO mDao = DAOFactory.criarModuloDAO();
+		List<Modulo> modulosPerfil = mDao.buscarPorPerfil(perfil);
+		List<Modulo> modulosAssociados = mDao.buscar(pessoa);
+		List<Modulo> modulosDesassociados = mDao.listarDisponiveisParaPessoa(pessoa);
+		List<Modulo> modulosFinais = new ArrayList<Modulo>();
+		List<Modulo> modulosARemover = new ArrayList<Modulo>();
+		boolean has;
+		for(Modulo m:modulosPerfil){
+			has = false;
+			for(Modulo m2: modulosAssociados){
+				if(m2.getId() == m.getId()){
+					has = true;
+				}
+			}
+			if(!has){
+				modulosFinais.add(m);
+			}
+		}
+		for(Modulo m:modulosDesassociados){
+			for(Modulo m2: modulosFinais){
+				if(m2.getId() == m.getId()){
+					modulosARemover.add(m2);
+				}
+			}
+		}
+		for(Modulo m:modulosARemover) {
+			modulosFinais.remove(m);
+		}
+		return modulosFinais;
+	}
 }

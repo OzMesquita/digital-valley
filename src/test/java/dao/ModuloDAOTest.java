@@ -49,12 +49,12 @@ public class ModuloDAOTest {
 
 		Assert.assertTrue(md.buscar(modulo.getId()) != null);
 	}
-	@Ignore
+	
 	@Test
 	public void listarPorPessoa() {
 		Pessoa pessoa = new Pessoa();
 		
-		pessoa.setId(5);
+		pessoa.setId(100);
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 		List<Modulo> modulos = md.buscar(pessoa);
 		System.out.println("Listar por pessoa: "+modulos.size());
@@ -83,7 +83,7 @@ public class ModuloDAOTest {
 	@Test
 	public void testAssociarUsuario(){
 		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
-		mDAO.associarUsuarioModulo(6, 4);
+		mDAO.associarUsuarioModulo(73, 5);
 	}
 	
 	@Ignore
@@ -101,7 +101,7 @@ public class ModuloDAOTest {
 		System.out.println(m.getTitulo());
 		Assert.assertTrue(m!= null);
 	}
-	
+	@Ignore
 	@Test
 	public void testListarModuloPorPerfil(){
 		ModuloDAO mDAO = dao.DAOFactory.criarModuloDAO();
@@ -113,6 +113,12 @@ public class ModuloDAOTest {
 		for(Modulo m: modulos){
 			System.out.println(m.getTitulo());
 		}
+	}
+	@Ignore
+	@Test
+	public void testDesassociarUsuario(){
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		mDAO.desassociarUsuarioModulo(73, 13);
 	}
 	
 }
