@@ -54,7 +54,7 @@ public class ModuloDAOTest {
 	public void listarPorPessoa() {
 		Pessoa pessoa = new Pessoa();
 		
-		pessoa.setId(100);
+		pessoa.setId(92);
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 		List<Modulo> modulos = md.buscar(pessoa);
 		System.out.println("Listar por pessoa: "+modulos.size());

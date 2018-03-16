@@ -469,7 +469,7 @@ public class Facade {
 		List<Modulo> modulosPerfil = mDao.buscarPorPerfil(perfil);
 		List<Modulo> modulosAssociados = mDao.buscar(pessoa);
 		List<Modulo> modulosDesassociados = mDao.listarDisponiveisParaPessoa(pessoa);
-		List<Modulo> modulosFinais = new ArrayList<Modulo>();
+		List<Modulo> modulosFinais = mDao.buscar(pessoa);
 		List<Modulo> modulosARemover = new ArrayList<Modulo>();
 		boolean has;
 		for(Modulo m:modulosPerfil){
@@ -480,18 +480,25 @@ public class Facade {
 				}
 			}
 			if(!has){
+				System.out.println("adcionou ao final o "+m.getTitulo()+ " id= "+m.getId());
 				modulosFinais.add(m);
 			}
 		}
+		
 		for(Modulo m:modulosDesassociados){
 			for(Modulo m2: modulosFinais){
 				if(m2.getId() == m.getId()){
+					System.out.println("vai remover o "+m2.getId());
 					modulosARemover.add(m2);
 				}
 			}
 		}
 		for(Modulo m:modulosARemover) {
+			System.out.println("Modulos removidos="+m.getTitulo()+ " id="+m.getId());
 			modulosFinais.remove(m);
+		}
+		for(Modulo m: modulosFinais) {
+			System.out.println("nome do moduloa = "+m.getTitulo()+ " id="+m.getId());
 		}
 		return modulosFinais;
 	}
