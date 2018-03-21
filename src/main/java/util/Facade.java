@@ -480,7 +480,6 @@ public class Facade {
 				}
 			}
 			if(!has){
-				System.out.println("adcionou ao final o "+m.getTitulo()+ " id= "+m.getId());
 				modulosFinais.add(m);
 			}
 		}
@@ -494,12 +493,9 @@ public class Facade {
 			}
 		}
 		for(Modulo m:modulosARemover) {
-			System.out.println("Modulos removidos="+m.getTitulo()+ " id="+m.getId());
 			modulosFinais.remove(m);
 		}
-		for(Modulo m: modulosFinais) {
-			System.out.println("nome do moduloa = "+m.getTitulo()+ " id="+m.getId());
-		}
+		
 		return modulosFinais;
 	}
 }
