@@ -104,7 +104,8 @@
 													</h3>
 												</div>
 												<div id="cadastro">
-													Ainda não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se</a><br>
+													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
+													É da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
 													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu
 														a senha?</a>
 												</div>
