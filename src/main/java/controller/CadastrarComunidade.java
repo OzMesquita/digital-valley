@@ -25,7 +25,6 @@ public class CadastrarComunidade extends HttpServlet {
 		String aux = cpf.replaceAll("-", "");
 		cpf = aux.replaceAll("[.]", "");
 		String email = request.getParameter("email");
-		String codigo = request.getParameter("codigo");
 		String dataNasci = request.getParameter("nascimento");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
@@ -52,7 +51,7 @@ public class CadastrarComunidade extends HttpServlet {
 				session.setAttribute("nomeA", null);
 				session.setAttribute("nomeS", null);
 				
-				pagina = "../login.jsp";
+				pagina = "/login.jsp";
 			}else{
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}

@@ -152,6 +152,11 @@
 		<servlet-name>AlterarNivel</servlet-name>
 		<servlet-class>controller.AlterarNivel</servlet-class>
 	</servlet>
+	<!-- 27 -->
+	<servlet>
+		<servlet-name>CadastroComunidade</servlet-name>
+		<servlet-class>controller.CadastrarComunidade</servlet-class>
+	</servlet>
 	
 	<!-- 1 -->
 	<servlet-mapping>
@@ -282,6 +287,11 @@
 	<servlet-mapping>
 		<servlet-name>AlterarNivel</servlet-name>
 		<url-pattern>/view/adm/AlterarNivel</url-pattern>
+	</servlet-mapping>
+	<!-- 27 -->
+	<servlet-mapping>
+		<servlet-name>CadastroComunidade</servlet-name>
+		<url-pattern>/cadastroComunidade</url-pattern>
 	</servlet-mapping>
 
 	<!-- FILTROS -->
