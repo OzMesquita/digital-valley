@@ -40,7 +40,16 @@ public class Login extends HttpServlet {
 				
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);
-				pagina = "view/telaInicial.jsp";
+				if(session.getAttribute("idModulo") != null) {
+					for (Modulo m:modulos) {
+						if(session.getAttribute("idModulo").equals(m.getId()) ) {
+							if(session.getAttribute("URL")!= null) {					
+								pagina = (String) session.getAttribute("URL");
+							}
+						}
+					}
+				}else {
+				pagina = "view/telaInicial.jsp";}
 				uDAO = DAOFactory.criarUsuarioDAO();
 				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
 			}else{
