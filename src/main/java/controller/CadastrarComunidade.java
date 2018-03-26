@@ -31,7 +31,7 @@ public class CadastrarComunidade extends HttpServlet {
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 		
-		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
+		String pagina = "cadastrarVisitante.jsp?erroCadastro=1";
 		try {
 			if (senha.equals(senha2)) {
 				Pessoa pessoa = new Pessoa();
@@ -51,9 +51,9 @@ public class CadastrarComunidade extends HttpServlet {
 				session.setAttribute("nomeA", null);
 				session.setAttribute("nomeS", null);
 				
-				pagina = "/login.jsp";
+				pagina = "login.jsp";
 			}else{
-				pagina = "cadastrarUsuario.jsp?erroSenha=1";
+				pagina = "cadastrarVisitante.jsp?erroSenha=1";
 			}
 
 		} catch (Exception e) {
