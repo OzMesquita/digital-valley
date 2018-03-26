@@ -39,6 +39,16 @@
 						</div>
 						<div class="col-md-8">
 							<div class="row">
+							<%
+								if((usuario.getPessoa() instanceof Aluno)==false && (usuario.getPessoa() instanceof Servidor)==false){%>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="nome">Nome Completo</label> <input type="text"
+												class="form-control" name="nome" id="nome" disabled
+												value="<%=usuario.getPessoa().getNome()%>">
+											</div>
+										</div>
+								<%}else{%>
 								<div class="col-md-3">
 									<div class="form-group">
 										<%
@@ -64,6 +74,7 @@
 											value="<%=usuario.getPessoa().getNome()%>">
 									</div>
 								</div>
+								<%}%>
 							</div>
 						</div>
 						<div class="row">
