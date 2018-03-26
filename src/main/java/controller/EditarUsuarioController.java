@@ -48,7 +48,6 @@ public class EditarUsuarioController extends HttpServlet {
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
-						System.out.println(item.getFieldName());
 						dados.put(item.getFieldName(), item.getString());
 					} else {
 						if (item.getContentType().startsWith("image/")) {

@@ -46,7 +46,6 @@ public class ImportacaoController extends HttpServlet {
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
-			System.out.println(e.getMessage());
 			
 		}		
 		

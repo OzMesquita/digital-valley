@@ -146,10 +146,8 @@ public class Facade {
 		
 		
 		if(aluno != null){
-			System.out.println("aluno: "+aluno.getUsuario().getPerfil());
 			return aluno.getUsuario();
 		}else if (servidor != null){
-			System.out.println("servidor: "+servidor.getUsuario().getPerfil());
 			return servidor.getUsuario();
 		}
 			
@@ -226,7 +224,6 @@ public class Facade {
 	
 	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
 		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
-		System.out.println("Perfil: "+pessoa.getUsuario().getPerfil());
 		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getPerfil().getValorPerfil());
 		boolean has = false;
 		for(Modulo m:modulosPerfil){
@@ -392,7 +389,6 @@ public class Facade {
 	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
 		if (pessoa != null) {
 			Email e = new Email();
-			System.out.println("Email >>"+pessoa.getEmail());
 			e.sendEmail("Recuperação de Senha!",
 					"Foi constatado que você solicitou a recuperação de senha!\nClique no link para cadastrar uma nova senha "
 							+ "http://"+Constantes.getPreUrl()+Constantes.getAppUrl()+"/recuperar/confirmaRecuperacao.jsp?token="+DAOFactory.criarPessoaDAO().buscarTokenRecuperacao(pessoa)
@@ -492,7 +488,6 @@ public class Facade {
 		for(Modulo m:modulosDesassociados){
 			for(Modulo m2: modulosFinais){
 				if(m2.getId() == m.getId()){
-					System.out.println("vai remover o "+m2.getId());
 					modulosARemover.add(m2);
 				}
 			}
