@@ -153,7 +153,7 @@ public class Facade {
 			return servidor.getUsuario();
 		}
 			
-		return null;
+		return p.getUsuario();
 	}
 
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
