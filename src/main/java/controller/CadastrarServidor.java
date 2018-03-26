@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.EnumCargo;
+import model.EnumPerfil;
 import model.Servidor;
 import model.Usuario;
 import util.Constantes;
@@ -50,6 +51,7 @@ public class CadastrarServidor extends HttpServlet {
 				usuario.setSenha(senha);
 				servidor.setUsuario(usuario);
 				usuario.setPessoa(servidor);
+				usuario.setPerfil(EnumPerfil.SERVIDOR);
 
 				Facade.cadastrarServidor(usuario, servidor);
 				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor "+servidor.getNome());

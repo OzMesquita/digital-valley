@@ -143,9 +143,13 @@ public class Facade {
 		Pessoa p = pDAO.buscarPorLogin(login);
 		Aluno aluno = DAOFactory.criarAlunoDAO().buscar(p.getId());
 		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
+		
+		
 		if(aluno != null){
+			System.out.println("aluno: "+aluno.getUsuario().getPerfil());
 			return aluno.getUsuario();
 		}else if (servidor != null){
+			System.out.println("servidor: "+servidor.getUsuario().getPerfil());
 			return servidor.getUsuario();
 		}
 			
@@ -222,7 +226,8 @@ public class Facade {
 	
 	public static List<Modulo> buscarTodosModulosPorPerfil(Pessoa pessoa){
 		List<Modulo> modulos = Facade.buscarModulosPorPessoas(pessoa);
-		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getNivel().getValorNivel());
+		System.out.println("Perfil: "+pessoa.getUsuario().getPerfil());
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(pessoa.getUsuario().getPerfil().getValorPerfil());
 		boolean has = false;
 		for(Modulo m:modulosPerfil){
 			has = false;

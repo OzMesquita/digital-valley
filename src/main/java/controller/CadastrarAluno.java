@@ -12,6 +12,7 @@ import dao.CursoDAO;
 import dao.DAOFactory;
 import model.Aluno;
 import model.Curso;
+import model.EnumPerfil;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;
@@ -56,6 +57,7 @@ public class CadastrarAluno extends HttpServlet {
 				usuario.setSenha(senha);
 				aluno.setUsuario(usuario);
 				usuario.setPessoa(aluno);
+				usuario.setPerfil(EnumPerfil.ALUNO);
 				
 
 				Facade.cadastrarAluno(usuario, aluno);

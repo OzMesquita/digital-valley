@@ -14,7 +14,6 @@ import dao.UsuarioDAO;
 import model.Modulo;
 import model.Usuario;
 import util.Constantes;
-import util.Crypter;
 import util.Facade;
 
 /**
@@ -37,7 +36,7 @@ public class Login extends HttpServlet {
 			UsuarioDAO uDAO = DAOFactory.criarUsuarioDAO();
 			if(uDAO.autenticar(login, senha)){
 				Usuario usuario = Facade.buscarPorLogin(login);
-				List<Modulo> modulos = Facade.buscarTodosModulosPorPerfil(usuario.getPessoa());
+				List<Modulo> modulos = Facade.buscarModulosAssociados(usuario.getPessoa(),usuario.getPerfil().getValorPerfil());
 				
 				session.setAttribute("usuario", usuario);
 				session.setAttribute("modulos", modulos);

@@ -139,11 +139,22 @@ public class FacadeTest {
 			System.out.println("tem letras");
 		}
 	}
-	
+	@Ignore
 	@Test
 	public void crypter() {
 		System.out.println(Crypter.crypt("123456"));
 		 
+	}
+	
+	@Test
+	public void testBuscarTodosModulos() {
+		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(1);
+		for(Modulo m:modulosPerfil) {
+			System.out.println(m.getId());
+			System.out.println(m.getTitulo());
+			
+		}
+		
 	}
 
 
