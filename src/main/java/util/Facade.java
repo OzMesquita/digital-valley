@@ -349,8 +349,19 @@ public class Facade {
 	}
 
 	public static Pessoa buscarPessoaPorId(int id) {
+		
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
-		return pDAO.buscarPorId(id);
+		Pessoa p = pDAO.buscarPorId(id);
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscar(p.getId());
+		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
+		
+		
+		if(aluno != null){
+			return aluno;
+		}else if (servidor != null){
+			return servidor;
+		}
+		return p;
 	}
 
 	public static List<Pessoa> buscarPessoaPorNome(String nome) {

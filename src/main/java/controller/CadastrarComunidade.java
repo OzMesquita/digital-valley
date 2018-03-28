@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.EnumNivel;
+import model.EnumPerfil;
 import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
@@ -45,11 +47,12 @@ public class CadastrarComunidade extends HttpServlet {
 				usuario.setSenha(senha);
 				pessoa.setUsuario(usuario);
 				usuario.setPessoa(pessoa);
+				usuario.setNivel(EnumNivel.COMUM);
+				usuario.setPerfil(EnumPerfil.VISITANTE);
 
 				Facade.cadastrarPessoa(pessoa, usuario);
 				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Comunidade "+pessoa.getNome());
-				session.setAttribute("nomeA", null);
-				session.setAttribute("nomeS", null);
+
 				
 				pagina = "login.jsp";
 			}else{

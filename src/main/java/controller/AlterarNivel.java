@@ -7,7 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.Aluno;
+import model.EnumNivel;
+import model.EnumPerfil;
 import model.Pessoa;
+import model.Servidor;
 import model.Usuario;
 import util.Constantes;
 
@@ -27,6 +32,19 @@ public class AlterarNivel extends HttpServlet {
 			Pessoa pessoa = util.Facade.buscarPessoaPorId(idUsuario);
 			Usuario usuario = pessoa.getUsuario();
 			usuario.setNivel(nivel);
+			if(nivel == EnumNivel.ADMINISTRADOR.getValorNivel()) {
+				usuario.setPerfil(EnumPerfil.ADMINISTRADOR);
+			}else {
+				if((usuario.getPessoa() instanceof Aluno)==false && (usuario.getPessoa() instanceof Servidor)==false) {
+					usuario.setPerfil(EnumPerfil.VISITANTE);
+				}else if(usuario.getPessoa() instanceof Aluno) {
+					usuario.setPerfil(EnumPerfil.ALUNO);
+				}else {
+					usuario.setPerfil(EnumPerfil.SERVIDOR);
+				}
+			}
+			
+			
 			util.Facade.editarPessoa(pessoa, usuario);
 			pagina = util.Constantes.getAdmUrl()+"/listar_usuarios?sucessoEditar=1&idUsuario="+idUsuario;
 		} catch (Exception e) {
