@@ -53,7 +53,7 @@ public class ListarUsuarios extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("listaDeUsuarios.jsp");
 			request.setAttribute("url", Constantes.getAdmUrl());
 			request.setAttribute("pessoas", pessoas);
-			request.setAttribute("quantidadeDePaginas", quantidadeDePessoas / quantidadePorPagina);
+			request.setAttribute("quantidadeDePaginas", (quantidadeDePessoas+(quantidadePorPagina-1)) / quantidadePorPagina);
 			request.setAttribute("paginaAtual", paginaAtual);
 			request.setAttribute("nome", nomePessoa);
 			request.setAttribute("tipo", tipo);

@@ -38,7 +38,7 @@ public class AtribuirModulos extends HttpServlet {
 			request.setAttribute("url", Constantes.getAdmUrl());
 			request.setAttribute("pessoas", pessoaDAO.buscarPorNomeENivel(nomePessoa, nivelAluno, inicio, fim));
 			request.setAttribute("perfis", DAOFactory.criarPerfilDAO().Listar());
-			request.setAttribute("quantidadeDePaginas", pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelAluno) /  (fim - inicio));
+			request.setAttribute("quantidadeDePaginas", (pessoaDAO.getQuantidadePorNomeENivel(nomePessoa, nivelAluno)+(fim-inicio-1)) /  (fim - inicio));
 			request.setAttribute("paginaAtual", paginaAtual);
 			request.setAttribute("nomePessoa", nomePessoa);
 			requestDispatcher.forward(request, response);
