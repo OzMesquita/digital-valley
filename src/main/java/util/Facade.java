@@ -27,11 +27,14 @@ import dao.PerfilDAO;
 import dao.PessoaDAO;
 import dao.PreCadastroAlunoDAO;
 import dao.PreCadastroServidorDAO;
+import dao.ProfessorDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
 import model.Email;
+import model.EnumCargo;
 import model.Pessoa;
+import model.Professor;
 import model.Servidor;
 import model.Usuario;
 import model.Modulo;
@@ -115,6 +118,13 @@ public class Facade {
 		servidor.setId(p1.getId());
 		ServidorDAO servidorDAO = DAOFactory.criarServidorDAO();
 		servidorDAO.cadastrar(servidor);
+		if(servidor.getCargo().equals(EnumCargo.PROFESSOR)) {
+			ProfessorDAO proDAO = DAOFactory.criarProfessorDAO();
+			Professor p = new Professor(servidor.getNome(),servidor.getCpf(),servidor.getEmail(),servidor.getUsuario(),servidor.getDataNascimento(),servidor.getSiape(),false);
+			p.setId(servidor.getId());
+			proDAO.cadastrar(p);
+			
+		}
 		PreCadastroServidorDAO preDAO = DAOFactory.criarPreCadastroServidor();
 		preDAO.excluirPreCadastro(servidor.getSiape(), servidor.getNome());
 	}

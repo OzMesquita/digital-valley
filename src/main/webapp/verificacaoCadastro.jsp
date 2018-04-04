@@ -94,9 +94,10 @@
 														<label for="matricula">Matricula</label><input
 															type="text" name="matricula" maxlength="6"
 															class="form-control"
-															onkeypress="return SomenteNumero(event)"><br>
-														<label for="nome">Nome Completo</label><input type="text"
-															name="nomeA" class="form-control"><br> <a
+															onkeypress="return SomenteNumero(event)"
+															placeholder="123456"><br>
+														<label for="nome">Nome Completo (Sem acentuação)</label><input type="text"
+															name="nomeA" class="form-control" placeholder="Maria Assuncao da Silva"><br> <a
 															href="login.jsp">Voltar para tela de login</a> <input
 															id="btn_confirma" type="submit" value="Confirmar"
 															onclick="return validarCampos1()">
@@ -106,9 +107,10 @@
 													<div class="row">
 														<label for="siape">Siape</label><input type="text"
 															name="siape" maxlength="7" class="form-control"
-															onkeypress="return SomenteNumero(event)"><br>
-														<label for="nome">Nome Completo</label><input type="text"
-															name="nomeS" class="form-control"><br> <a
+															onkeypress="return SomenteNumero(event)"
+															placeholder="1234567"><br>
+														<label for="nome">Nome Completo (Sem acentuação)</label><input type="text"
+															name="nomeS" class="form-control" placeholder="Maria Assuncao da Silva"><br> <a
 															href="<%=Constantes.getAppUrl()+"/login.jsp" %>" >Voltar para tela
 															de login</a> <input id="btn_confirma" type="submit"
 															value="Confirmar" onclick="return validarCampos2()">

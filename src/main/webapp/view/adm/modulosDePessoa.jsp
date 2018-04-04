@@ -80,7 +80,7 @@
 									<form method="POST" action="<%=url%>/associar_modulo_pessoa">
 										<input type="hidden" value="<%=pessoa.getId()%>"
 											name="pessoa_id" /> <input type="hidden"
-											value="<%=modulo.getId()%>" name="modulo_id" /> <input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getNivel().getValorNivel() %>" 
+											value="<%=modulo.getId()%>" name="modulo_id" /> <input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getPerfil().getValorPerfil() %>" 
 											name="perfil_id" /> <input
 											type="submit" class="btn btn-success" value="Associar" />
 									</form>
@@ -123,7 +123,7 @@
 									<form method="POST" action="<%=url%>/desassociar_modulo_pessoa">
 										<input type="hidden" value="<%=pessoa.getId()%>"
 											name="pessoa_id" /> <input type="hidden"
-											value="<%=modulo.getId()%>" name="modulo_id" /><input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getNivel().getValorNivel()%>"
+											value="<%=modulo.getId()%>" name="modulo_id" /><input type="hidden" value="<%= Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getPerfil().getValorPerfil()%>"
 											name="perfil_id" /> <input
 											type="submit" class="btn btn-danger" value="Desassociar" />
 									</form>

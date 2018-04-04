@@ -15,6 +15,14 @@
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
+				
+				
+				<%if(request.getParameter("sucesso")!= null){ %>
+					<div class="alert alert-success" role="alert">
+  						Pré cadastro dos alunos realizada com sucesso !
+					</div>
+					
+				<%} %>
 				<form action="importarAlunos" method="post">
 					<div class="form-group">
 						<label for="curso">Curso</label> <select required="true"
@@ -30,7 +38,8 @@
 					<div class="form-group">
 						<label for="matriculas">Matriculas</label>
 						<textarea name="matriculas" id="matriculas" required="true"
-							class="form-control"></textarea>
+							class="form-control" placeholder="123456 Nome do Aluno 1
+123457 Nome do Aluno 2"></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit"
