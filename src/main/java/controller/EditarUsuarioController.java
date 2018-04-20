@@ -96,7 +96,7 @@ public class EditarUsuarioController extends HttpServlet {
 				} else {
 					//usuarioEditado.setSenha(usuarioDaSessao.getSenha());
 					sessionMsg = "Erro: As senhas estão diferentes ou nula";
-					throw new Exception("");
+					throw new Exception(sessionMsg);
 				}
 				// salvar imagem
 				if (imagemPerfil != null) {

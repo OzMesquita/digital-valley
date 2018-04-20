@@ -139,13 +139,15 @@ public class FacadeTest {
 			System.out.println("tem letras");
 		}
 	}
-	@Ignore
+	
+	
 	@Test
 	public void crypter() {
-		System.out.println(Crypter.crypt("123456"));
+		System.out.println(Crypter.crypt("marilia123"));
 		 
 	}
 	
+	@Ignore
 	@Test
 	public void testBuscarTodosModulos() {
 		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(1);
@@ -154,6 +156,12 @@ public class FacadeTest {
 			System.out.println(m.getTitulo());
 			
 		}
+		
+	}
+	@Ignore
+	@Test
+	public void testBuscarPorLogin() {
+		Usuario user = Facade.buscarPorLogin("joaoComunidade");
 		
 	}
 
