@@ -62,6 +62,7 @@
 
 											}
 										%>
+										
 										<label for="codigo_interno">Código Interno</label> <input
 											id="codigo_interno" name="codigo_interno" type="text"
 											class="form-control" disabled value="<%=codigoInterno%>">

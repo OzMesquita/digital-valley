@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import dao.DAOFactory;
 import model.Aluno;
+import model.Curso;
 import model.EnumNivel;
 import model.Modulo;
 import model.Perfil;
@@ -140,10 +142,10 @@ public class FacadeTest {
 		}
 	}
 	
-	
+	@Ignore
 	@Test
 	public void crypter() {
-		System.out.println(Crypter.crypt("marilia123"));
+		System.out.println(Crypter.crypt("ramom123"));
 		 
 	}
 	
@@ -158,14 +160,34 @@ public class FacadeTest {
 		}
 		
 	}
+	
 	@Ignore
 	@Test
-	public void testBuscarPorLogin() {
-		Usuario user = Facade.buscarPorLogin("joaoComunidade");
+	public void testAlterarPerfilParaAluno() {
+		Usuario usuario = Facade.buscarPorLogin("laviniamatoso");
+		Curso c = DAOFactory.criarCursoDAO().buscar(4);
+		try {
+			Facade.alterarPerfilParaAluno(usuario.getPessoa(), "375115", "2015.1", c);
+			System.out.println("deu certo");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testAlterarPerfilParaServidor() {
+		Usuario usuario = Facade.buscarPorLogin("reprovamei");
+		
+		try {
+			Facade.alterarPerfilParaServidor(usuario.getPessoa(), "7654322", "Professor");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
 		
 	}
-
-
 	
 
 }

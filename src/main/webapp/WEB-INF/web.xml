@@ -157,6 +157,12 @@
 		<servlet-name>CadastroComunidade</servlet-name>
 		<servlet-class>controller.CadastrarComunidade</servlet-class>
 	</servlet>
+	<!-- 28 -->
+	<servlet>
+		<servlet-name>AlterarPerfil</servlet-name>
+		<servlet-class>controller.AlterarPerfil</servlet-class>
+	</servlet>
+	
 	
 	<!-- 1 -->
 	<servlet-mapping>
@@ -292,6 +298,12 @@
 	<servlet-mapping>
 		<servlet-name>CadastroComunidade</servlet-name>
 		<url-pattern>/cadastroComunidade</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 28 -->
+	<servlet-mapping>
+		<servlet-name>AlterarPerfil</servlet-name>
+		<url-pattern>/view/adm/AlterarPerfil</url-pattern>
 	</servlet-mapping>
 
 	<!-- FILTROS -->

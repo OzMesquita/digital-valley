@@ -31,8 +31,10 @@ import dao.ProfessorDAO;
 import dao.ServidorDAO;
 import dao.UsuarioDAO;
 import model.Aluno;
+import model.Curso;
 import model.Email;
 import model.EnumCargo;
+import model.EnumPerfil;
 import model.Pessoa;
 import model.Professor;
 import model.Servidor;
@@ -155,10 +157,10 @@ public class Facade {
 		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
 		
 		
-		if(aluno != null){
-			return aluno.getUsuario();
-		}else if (servidor != null){
+		if(servidor != null){
 			return servidor.getUsuario();
+		}else if (aluno != null){
+			return aluno.getUsuario();
 		}
 			
 		return p.getUsuario();
@@ -519,4 +521,46 @@ public class Facade {
 		
 		return modulosFinais;
 	}
+	
+	public static void alterarPerfilParaAluno(Pessoa pessoa, String matricula, String semestreIngresso, Curso curso) throws Exception {
+		if(DAOFactory.criarPreCadastroAluno().buscarPreCadastro(matricula, pessoa.getNome())) {
+			Aluno aluno = new Aluno(pessoa.getNome(), pessoa.getCpf(),pessoa.getEmail(),pessoa.getUsuario(), pessoa.getDataNascimento(), matricula, curso, semestreIngresso);
+			aluno.getUsuario().setPerfil(EnumPerfil.ALUNO);
+			aluno.setId(pessoa.getId());
+			DAOFactory.criarUsuarioDAO().editar(aluno.getUsuario());
+			DAOFactory.criarAlunoDAO().cadastrar(aluno);
+			DAOFactory.criarPreCadastroAluno().excluirAlunoPreCadastro(matricula, aluno.getNome());
+			
+		}else {
+			throw new Exception("Aluno "+pessoa.getNome()+" não possui pré-cadastro");
+		}
+		
+	}
+	
+	public static void alterarPerfilParaServidor(Pessoa pessoa, String siape, String cargo) throws Exception {
+		if(DAOFactory.criarPreCadastroServidor().buscarPreCadastro(siape, pessoa.getNome())) {
+			
+			if(EnumCargo.getByString(cargo).equals(EnumCargo.PROFESSOR)) {
+				Professor professor = new Professor(pessoa.getNome(), pessoa.getCpf(), pessoa.getEmail(), pessoa.getUsuario(), pessoa.getDataNascimento(), siape, false);
+				professor.getUsuario().setPerfil(EnumPerfil.SERVIDOR);
+				professor.setId(pessoa.getId());
+				DAOFactory.criarUsuarioDAO().editar(professor.getUsuario());
+				DAOFactory.criarServidorDAO().cadastrar(professor);
+				DAOFactory.criarProfessorDAO().cadastrar(professor);
+				DAOFactory.criarPreCadastroServidor().excluirPreCadastro(siape, professor.getNome());
+			}else {
+				Servidor servidor = new Servidor(pessoa.getNome(), pessoa.getCpf(), pessoa.getEmail(), pessoa.getUsuario(), pessoa.getDataNascimento(), siape, EnumCargo.getByString(cargo));
+				servidor.getUsuario().setPerfil(EnumPerfil.SERVIDOR);
+				DAOFactory.criarUsuarioDAO().editar(servidor.getUsuario());
+				DAOFactory.criarServidorDAO().cadastrar(servidor);
+				DAOFactory.criarPreCadastroServidor().excluirPreCadastro(siape, servidor.getNome());
+			}
+			
+			
+			
+		}else {
+			throw new Exception("Servidor "+pessoa.getNome()+" não possui pré-cadastro");
+		}
+	}
+	
 }
