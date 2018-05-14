@@ -175,6 +175,7 @@ public class FacadeTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testAlterarPerfilParaServidor() {
 		Usuario usuario = Facade.buscarPorLogin("reprovamei");
