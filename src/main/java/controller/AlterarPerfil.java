@@ -28,7 +28,7 @@ public class AlterarPerfil extends HttpServlet {
 		int idPessoa = Integer.valueOf(request.getParameter("pessoa"));
 		int idCurso = Integer.valueOf(request.getParameter("curso"));
 		String matricula = request.getParameter("matricula");
-		String siape = request.getParameter("matricula");
+		String siape = request.getParameter("siape");
 		String cargo = request.getParameter("cargo");
 		String semestreIngresso = request.getParameter("semestreIngresso");
 		

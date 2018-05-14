@@ -1,3 +1,6 @@
+<%@page import="model.EnumCurso"%>
+<%@page import="model.EnumCargo"%>
+<%@page import="model.EnumPerfil"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
@@ -71,6 +74,69 @@
 							<input id="save" type="submit" value="Salvar">
 						</form>
 					</div>
+					
+					<!-- formulario para mudar o perfil -->
+					
+					<div class="content">
+						<form action="AlterarPerfil" name="alterarPerfilForm" method="post">
+							<div class="row">
+								<div class="col-md-6">						
+									<div class="form-group">
+									<input type="hidden" name="pessoa" value="<%=id%>">
+									<label for="select-perfil">Tipo de perfil </label>
+										<select id="select-perfil" name="perfil" onchange="novoPerfilDados()">
+											<option value="0" >Selecione uma opção</option>
+
+												<%
+		                                        EnumPerfil perfil[] = EnumPerfil.values();
+		                                         for(EnumPerfil e:perfil){
+		                                        	 if(p.getUsuario().getPerfil().getValorPerfil() == e.getValorPerfil()){continue;}
+		                                       %>
+											<option value="<%=e.getValorPerfil() %>"><%=e.toString() %></option>
+											<%}%>
+																			
+										</select>
+										<input type="submit" id="save" value="Salvar"/>																			
+									</div>
+								</div>
+							</div>
+							<div class="row">
+																	
+											<div id="hiddenAluno"  style="visibility:hidden;">
+												<label for="matricula">Matricula</label>
+												<input id="matricula" type="text" name="matricula"><br>
+												<label id="semestre">Semestre de Ingresso</label>
+												<input type="text" name="semestreIngresso" maxlength="6" placeholder="Ex.: 2017.1">
+												<select id="select-curso" name="curso">
+													<option value="0" selected="selected" disabled="disabled">Selecione uma opção</option>
+														<%
+															EnumCurso curso[] = EnumCurso.values();
+															for(EnumCurso c:curso){
+														%>	
+													<option value="<% c.getValorCurso();%>" > <% c.toString(); %> </option>
+														<%	
+															} 
+														%>
+												</select>	
+											</div>
+								
+								
+											<div id="hiddenServidor"  style="visibility:hidden;">
+												<label for="matricula">SIAPE</label>
+												<input id="matricula" type="text" name="siape"><br>
+												<label for="cargo">Cargo</label> 
+												<select class="form-control" id="cargo" name="cargo" >
+												<option disabled="disabled" selected="selected" value="0">Selecione um cargo</option>
+												<% 	EnumCargo cargos [] = EnumCargo.values();
+			                                      	for(EnumCargo e: cargos){  %>
+													<option value="<%=e.getCargo() %>"><%=e.getCargo() %></option>	<%   }    %>
+												</select>
+											</div>										
+									
+							</div>							
+						</form>
+					</div>
+					
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -105,4 +171,21 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    function novoPerfilDados(){
+	var option = document.getElementById("select-perfil");
+        if(option.options[option.selectedIndex].text == "ADMINISTRADOR" || option.options[option.selectedIndex].text == "VISITANTE"){
+            document.getElementById("hiddenAluno").style.visibility ="hidden";
+            document.getElementById("hiddenServidor").style.visibility ="hidden";
+        }
+        if(option.options[option.selectedIndex].text == "ALUNO"){
+            document.getElementById("hiddenAluno").style.visibility ="visible";
+            document.getElementById("hiddenServidor").style.visibility ="hidden";
+        }
+        if(option.options[option.selectedIndex].text == "SERVIDOR"){
+        	 document.getElementById("hiddenServidor").style.visibility ="visible";
+        	 document.getElementById("hiddenAluno").style.visibility ="hidden";
+        }
+    }
+</script>
 
