@@ -190,5 +190,11 @@ public class FacadeTest {
 		
 	}
 	
+	@Test
+	public void testIdCurso() {
+		Curso c = DAOFactory.criarCursoDAO().buscar(2);
+		System.out.println(c.getNome());
+		System.out.println(c.getId());
+	}
 
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import model.Curso;
+import model.EnumNivel;
 import model.EnumPerfil;
 import model.Pessoa;
 import util.Constantes;
@@ -20,20 +21,17 @@ public class AlterarPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "editarNivelDoUsuario.jsp?erroEditarPerfil=1";
-		HttpSession session = request.getSession();
-		try {
+		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+		String pagina = "editarNivelDoUsuario.jsp?idUsuario="+idUsuario+"&erroEditarPerfil=1";
 		
 		int perfilNovo = Integer.valueOf(request.getParameter("perfil"));
-		int idPessoa = Integer.valueOf(request.getParameter("pessoa"));
-		int idCurso = Integer.valueOf(request.getParameter("curso"));
-		String matricula = request.getParameter("matricula");
-		String siape = request.getParameter("siape");
-		String cargo = request.getParameter("cargo");
-		String semestreIngresso = request.getParameter("semestreIngresso");
 		
-		Pessoa pessoa = Facade.buscarPessoaPorId(idPessoa);
-		Curso curso = DAOFactory.criarCursoDAO().buscar(idCurso);
+
+		HttpSession session = request.getSession();
+		try {
+
+		
+		Pessoa pessoa = Facade.buscarPessoaPorId(idUsuario);
 		
 		
 		switch(perfilNovo) {
@@ -41,6 +39,7 @@ public class AlterarPerfil extends HttpServlet {
 				// para Administrador
 				if(!pessoa.getUsuario().getPerfil().equals(EnumPerfil.ADMINISTRADOR)) {
 					pessoa.getUsuario().setPerfil(EnumPerfil.ADMINISTRADOR);
+					pessoa.getUsuario().setNivel(EnumNivel.ADMINISTRADOR);
 					DAOFactory.criarUsuarioDAO().editar(pessoa.getUsuario());
 					
 				}else {
@@ -52,6 +51,10 @@ public class AlterarPerfil extends HttpServlet {
 				
 			case 2:
 				// para aluno
+				int idCurso = Integer.valueOf(request.getParameter("curso"));
+				Curso curso = DAOFactory.criarCursoDAO().buscar(idCurso);
+				String matricula = request.getParameter("matricula");
+				String semestreIngresso = request.getParameter("semestreIngresso");
 				if(!pessoa.getUsuario().getPerfil().equals(EnumPerfil.ALUNO)) {
 					Facade.alterarPerfilParaAluno(pessoa,matricula,semestreIngresso, curso);
 					
@@ -62,6 +65,8 @@ public class AlterarPerfil extends HttpServlet {
 				break;
 				
 			case 3:
+				String siape = request.getParameter("siape");
+				String cargo = request.getParameter("cargo");
 				// para servidor
 				if(!pessoa.getUsuario().getPerfil().equals(EnumPerfil.SERVIDOR)) {
 					Facade.alterarPerfilParaServidor(pessoa, siape, cargo);
@@ -86,7 +91,7 @@ public class AlterarPerfil extends HttpServlet {
 				break;
 		
 		}
-		pagina = "editarNivelDoUsuario.jsp?sucessoEditarPerfil=1";
+		pagina = "editarNivelDoUsuario.jsp?idUsuario="+idUsuario+"&sucessoEditarPerfil=1";
 		
 		
 

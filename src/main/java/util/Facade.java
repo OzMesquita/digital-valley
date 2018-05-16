@@ -524,13 +524,26 @@ public class Facade {
 	
 	public static void alterarPerfilParaAluno(Pessoa pessoa, String matricula, String semestreIngresso, Curso curso) throws Exception {
 		if(DAOFactory.criarPreCadastroAluno().buscarPreCadastro(matricula, pessoa.getNome())) {
-			Aluno aluno = new Aluno(pessoa.getNome(), pessoa.getCpf(),pessoa.getEmail(),pessoa.getUsuario(), pessoa.getDataNascimento(), matricula, curso, semestreIngresso);
+			Curso c = DAOFactory.criarCursoDAO().buscar(DAOFactory.criarPreCadastroAluno().buscarCursoPreCadastrado(matricula, pessoa.getNome()));
+			if(c.getId() == curso.getId()) {
+			Aluno aluno = new Aluno();
+			aluno.setNome(pessoa.getNome());
+			aluno.setMatricula(matricula);
+			aluno.setCpf(pessoa.getCpf());
+			aluno.setEmail(pessoa.getEmail());
+			aluno.setUsuario(pessoa.getUsuario());
+			aluno.setDataNascimento(pessoa.getDataNascimento());
+			aluno.setCurso(curso);
+			aluno.setSemestreIngresso(semestreIngresso);
 			aluno.getUsuario().setPerfil(EnumPerfil.ALUNO);
 			aluno.setId(pessoa.getId());
-			DAOFactory.criarUsuarioDAO().editar(aluno.getUsuario());
-			DAOFactory.criarAlunoDAO().cadastrar(aluno);
-			DAOFactory.criarPreCadastroAluno().excluirAlunoPreCadastro(matricula, aluno.getNome());
 			
+			DAOFactory.criarAlunoDAO().cadastrar(aluno);
+			DAOFactory.criarPreCadastroAluno().excluirAlunoPreCadastro(matricula, pessoa.getNome());
+			DAOFactory.criarUsuarioDAO().editar(aluno.getUsuario());
+			}else {
+				throw new Exception("Aluno(a) possui pré cadastro no curso: "+c.getNome()+" , Curso informado: "+curso.getNome());
+			}
 		}else {
 			throw new Exception("Aluno "+pessoa.getNome()+" não possui pré-cadastro");
 		}
@@ -541,19 +554,35 @@ public class Facade {
 		if(DAOFactory.criarPreCadastroServidor().buscarPreCadastro(siape, pessoa.getNome())) {
 			
 			if(EnumCargo.getByString(cargo).equals(EnumCargo.PROFESSOR)) {
-				Professor professor = new Professor(pessoa.getNome(), pessoa.getCpf(), pessoa.getEmail(), pessoa.getUsuario(), pessoa.getDataNascimento(), siape, false);
+				Professor professor = new Professor();
+				professor.setNome(pessoa.getNome());
+				professor.setCpf(pessoa.getCpf());
+				professor.setEmail(pessoa.getEmail());
+				professor.setUsuario(pessoa.getUsuario());
+				professor.setDataNascimento(pessoa.getDataNascimento());
+				professor.setSiape(siape);
+				professor.setCoordenador(false);
 				professor.getUsuario().setPerfil(EnumPerfil.SERVIDOR);
 				professor.setId(pessoa.getId());
-				DAOFactory.criarUsuarioDAO().editar(professor.getUsuario());
+				professor.setCargo(EnumCargo.PROFESSOR);
 				DAOFactory.criarServidorDAO().cadastrar(professor);
 				DAOFactory.criarProfessorDAO().cadastrar(professor);
 				DAOFactory.criarPreCadastroServidor().excluirPreCadastro(siape, professor.getNome());
+				DAOFactory.criarUsuarioDAO().editar(professor.getUsuario());
 			}else {
-				Servidor servidor = new Servidor(pessoa.getNome(), pessoa.getCpf(), pessoa.getEmail(), pessoa.getUsuario(), pessoa.getDataNascimento(), siape, EnumCargo.getByString(cargo));
+				Servidor servidor = new Servidor();
 				servidor.getUsuario().setPerfil(EnumPerfil.SERVIDOR);
-				DAOFactory.criarUsuarioDAO().editar(servidor.getUsuario());
+				servidor.setId(pessoa.getId());
+				servidor.setNome(pessoa.getNome());
+				servidor.setCpf(pessoa.getCpf());
+				servidor.setEmail(pessoa.getEmail());
+				servidor.setUsuario(pessoa.getUsuario());
+				servidor.setDataNascimento(pessoa.getDataNascimento());
+				servidor.setSiape(siape);
+				servidor.setCargo(EnumCargo.getByString(cargo));
 				DAOFactory.criarServidorDAO().cadastrar(servidor);
 				DAOFactory.criarPreCadastroServidor().excluirPreCadastro(siape, servidor.getNome());
+				DAOFactory.criarUsuarioDAO().editar(servidor.getUsuario());
 			}
 			
 			

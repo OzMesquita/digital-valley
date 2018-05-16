@@ -75,10 +75,12 @@ public class EditarUsuarioController extends HttpServlet {
 					Aluno aluno = new Aluno();
 					aluno.setMatricula(((Aluno) pessoaDaSessao).getMatricula());
 					pessoaEditada = aluno;
-				} else {
+				}else if (pessoaDaSessao instanceof Servidor){
 					Servidor servidor = new Servidor();
 					servidor.setSiape(((Servidor) pessoaDaSessao).getSiape());
 					pessoaEditada = servidor;
+				}else {
+					pessoaEditada = pessoaDaSessao;
 				}
 				Usuario usuarioEditado = new Usuario();
 				pessoaEditada.setId(pessoaDaSessao.getId());
