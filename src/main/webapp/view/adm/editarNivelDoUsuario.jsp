@@ -26,7 +26,9 @@
 						<h4 class="title">Perfil do Usuário</h4>
 						<hr style="border: 1px solid lightgray">
 					</div>
-					<div class="content">
+					
+					<div class="content" >
+					
 						<form action="AlterarEmail" method="post">
 							<div class="row">
 								<div class="col-md-6">
@@ -82,7 +84,9 @@
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
-					<div class="content">
+					<hr style="border: 2px solid lightgray">
+					<h4 class="title" style="text-align: center;">Tipo do perfil do Usuário</h4>
+					<div class="content" >
 					
 					<%if(request.getParameter("sucessoEditarPerfil")!= null){ %>
 					<div class="alert alert-success" role="alert">
@@ -100,7 +104,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									
-										<input type="hidden" name="pessoa" value="<%=id%>"> <label
+										<input type="hidden" name="pessoa"  value="<%=id%>"> <label
 											for="select-perfil">Tipo de perfil </label> <select
 											id="select-perfil" name="perfil" onchange="novoPerfilDados()">
 											
@@ -125,7 +129,7 @@
 							</div>
 							<div class="row">
 
-								<div id="hiddenAluno" style="visibility: hidden;">
+								<div class="border-box" id="hiddenAluno" style="visibility: hidden;">
 									<label for="matricula">Matricula</label> <input id="matricula"
 										type="text" name="matricula"><br> <label
 										for="semestreDeIngresso">Semestre de Ingresso</label> <input
@@ -171,8 +175,9 @@
 			<div class="col-md-3">
 				<div class="card card-user">
 
-					<div class="content">
+					<div class="content" >
 						<div class="author">
+							
 							<form id="nivelUsuario" action="AlterarNivel" method="post">
 								<div class="header">
 									<label>Nivel do Usuário</label>
@@ -185,6 +190,7 @@
 								</select> <input id="save" type="submit" value="Salvar"> <input
 									type="hidden" name="idUsuario" value="<%=id%>">
 							</form>
+							
 						</div>
 
 						<br>
@@ -211,9 +217,9 @@
 
 <script type="text/javascript">
 	function novoPerfilDados() {
-		var option = document.getElementById("select-perfil");
+		var option = document.getElementById("select-perfil");			
 		if (option.options[option.selectedIndex].text == "ADMINISTRADOR"
-				|| option.options[option.selectedIndex].text == "VISITANTE") {
+				|| option.options[option.selectedIndex].text == "VISITANTE" || option.options[option.selectedIndex].text == "Selecione uma opção" ) {
 			document.getElementById("hiddenAluno").style.visibility = "hidden";
 			document.getElementById("hiddenServidor").style.visibility = "hidden";
 		}

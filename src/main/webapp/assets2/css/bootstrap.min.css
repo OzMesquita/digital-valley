@@ -7149,7 +7149,7 @@ button.close {
 }
 
 .pull-right {
-	float: right !important
+	float: right !important; 
 }
 
 .pull-left {

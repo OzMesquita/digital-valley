@@ -103,17 +103,20 @@
 														<small>UFC - Campus Russas</small>
 													</h3>
 												</div>
-												<div id="cadastro">
-													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
-													É da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
-													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu
-														a senha?</a>
-												</div>
-
-												<div class="pull-right">
+												<!--  essa div era só class pull-right -->
+												<div class="pull-right" id="divbtnsalvar">
 													<input id="btnsalvar" type='submit' value='Entrar'
 														onclick="return validarLogin()" />
 												</div>
+												<!-- Essa div id cadastro era acima da div do botao -->
+												<div id="cadastro" class="pull-left">
+													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
+													É membro da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
+													<a href="recuperSenha.jsp" id="recSenha" style="margin-left: 10%">Esqueceu
+														a senha?</a>
+												</div>
+
+												
 											</div>
 										</div>
 									</div>
@@ -170,7 +173,16 @@
 		}
 	}
 </script>
-
+<script>
+window.onload = function() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        console.log('Dispositivo Movel');
+        $("#cadastro").removeAttr("id");
+        $("#recSenha").removeAttr("style");
+        
+    }
+}
+</script>
 
 
 
