@@ -60,7 +60,7 @@
 				<div class="col-sm-8 col-sm-offset-2">
 					<div class="wizard-container">
 						<div class="card wizard-card" data-color="orange"
-							id="wizardProfile" style="height: 20px;">
+							id="wizardProfile" >
 
 							<!--  formulario -->
 							<form action="login" method="post" name="formLogin">

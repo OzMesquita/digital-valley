@@ -206,6 +206,7 @@ h1 .subtitle {
 
 .wizard-card {
 	min-height: max-content;
+	min-width: max-content;
 	background-color: #FFFFFF;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
