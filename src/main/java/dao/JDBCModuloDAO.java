@@ -112,7 +112,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de modulo, Erro: " + e.getMessage());
 		} finally {
-			super.open();
+			super.close();
 		}
 
 	}
