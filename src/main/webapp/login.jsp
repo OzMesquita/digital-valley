@@ -109,7 +109,13 @@
 														onclick="return validarLogin()" />
 												</div>
 												<!-- Essa div id cadastro era acima da div do botao -->
-												<div id="cadastro" class="pull-left">
+												<div id="cadastro" class="pull-left hidden-xs hidden-sm">
+													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
+													É membro da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
+													<a href="recuperSenha.jsp" id="recSenha" style="margin-left: 10%">Esqueceu
+														a senha?</a>
+												</div>
+												<div id="cadastro" class="pull-right visible-xs visible-sm">
 													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
 													É membro da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
 													<a href="recuperSenha.jsp" id="recSenha" style="margin-left: 10%">Esqueceu
