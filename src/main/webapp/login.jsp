@@ -104,12 +104,13 @@
 													</h3>
 												</div>
 												<!--  essa div era só class pull-right -->
+																								
 												<div class="pull-right" id="divbtnsalvar">
 													<input id="btnsalvar" type='submit' value='Entrar'
 														onclick="return validarLogin()" />
 												</div>
 												<!-- Essa div id cadastro era acima da div do botao -->
-												<div id="cadastro" class="pull-left">
+												<div id="cadastro" 	class="col-sm-4 pull-left">
 													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
 													É membro da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
 													<a href="recuperSenha.jsp" id="recSenha" style="margin-left: 10%">Esqueceu

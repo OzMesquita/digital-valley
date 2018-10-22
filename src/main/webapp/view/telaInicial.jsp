@@ -14,7 +14,7 @@
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
-				<div class="col-md-12">
+				<div >
 					
 						<div class="header">
 							<h4 class="title" style="text-align: center;">Módulos do
