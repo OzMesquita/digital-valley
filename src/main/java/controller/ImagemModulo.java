@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Constantes;
 import util.Facade;
 
 /**
@@ -26,12 +27,13 @@ public class ImagemModulo extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			// Get the absolute path of the image
-			String filename = Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_usuario")));
+			String filename = Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
 			if (mime == null) {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			} else {
+				System.out.println(filename);
 				File file = new File(filename);
 				FileInputStream in = new FileInputStream(file);
 				// copiar conteudo

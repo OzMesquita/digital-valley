@@ -1,19 +1,21 @@
 <%-- 
-    Document   : RecuperarSenha
-    Created on : 17/07/2017, 10:44:23
+    Document   : login
+    Created on : 24/05/2017, 16:13:20
     Author     : N2S-PC03
 --%>
-
+<%@page import="util.Constantes"%>
+<%@page import="controller.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="pt">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
 	href="assets2/img/apple-icon.png">
 <link rel="icon" type="image/png" href="assets2/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Tela de recuperação</title>
+<title>Tela de login</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -24,92 +26,89 @@
 <link
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
 	rel="stylesheet">
-
 <!-- CSS Files -->
-<link href="assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="assets2/css/demo.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
 <!--meu css -->
-<link rel="stylesheet" href="assets2/css/newcss.css" type="text/css" />
+<link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
 
 <style>
-#btn_confirma {
-	width: 150px;
-	height: 35px;
-	background: steelblue;
-	color: white;
-	float: right;
-}
-
-#faixa_topo {
-	height: 10%;
-	color: white;
-	background: steelblue;
-	text-align: center;
-	text-transform: uppercase;
-}
-
-#texto_faixa {
-	margin-top: 1.2%;
-}
 </style>
+
 </head>
 <body>
-	<% String mensagem = (String)session.getAttribute("msg");
-    	if(mensagem == null){
-    		mensagem = "";
-    	}
-    %>
-	<div class="image-container set-full-height"
-		style="background: steelblue;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2">
-					<div class="wizard-container">
-						<div class="card wizard-card" data-color="orange"
-							id="wizardProfile" style="height: 20px;">
-							<div class="wizard-header">
-								<h3>
-									<b>Recuperação de Senha</b><br> <small>Nós
-										mandaremos um <b>e-mail</b> com um link para você redefinir
-										sua senha.
-									</small>
-								</h3>
-							</div>
-							<ul id="faixa_topo">
-								<li id="texto_faixa">digite seu email</li>
-							</ul>
-							<div class="erroMsg">
-								<small><%= mensagem %>
-									<%session.setAttribute("msg", null);%></small>
-							</div>
-							<div class="row">
-								<div class="col-sm-6" style="margin-left: 25%;">
-									<div class="form-group">
-										<div class="tab-content">
-											<form method="post" action="RecuperarSenha"
-												name="formVerifica">
-												<label for="email">E-mail</label><input type="text"
-													title="Preencha este campo" name="email"
-													class="form-control" placeholder="exemplo@email.com"><br>
-												<a href="login.jsp">Voltar para tela de login</a> <input
-													id="btn_confirma" type="submit" value="Confirmar">
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
+	<%
+		String mensagem = null;
+		if (session.getAttribute(Constantes.getSessionMsg()) == null) {
+			mensagem = null;
+		} else {
+			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
+
+		}
+		if(session.getAttribute("usuario")!=null){
+			response.sendRedirect("view/telaInicial.jsp");
+		}
+	%>
+
+
+    <div class="container-fluid container-full-height container-full-width">
+      <div class="row row-full-height">
+        <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
+            <div class="topics">
+            	<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="assets2/img/n2s-logo.png" class="n2s_logo" /></a>
+	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+            </div>
+            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>
+        </div>
+        <div class="col-sm-6 col-md-4 col-full-height login-form">
+          <div>	
+          		<p class="text-center">
+          			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
+          		</p>
+                <form class="form-horizontal" role="form" action="RecuperarSenha" method="post" name="formLogin">
+                	<%
+                		if (mensagem != null && !mensagem.isEmpty()) {
+                	%>
+                	<div class="alert alert-danger">
+						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
 					</div>
-				</div>
-			</div>
-			<div class="footer" style="margin-top: 0% !important">
-				<div class="container">₢ Todos os direitos reservados | N2S</div>
-			</div>
-		</div>
-	</div>
+					<%
+                		}
+					%>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Digite o seu e-mail, ex.: meuemail@mail.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <button type="submit" class="btn btn-outline-success form-control">
+                                Enviar</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-1">
+                        <p class="text-center" >Ou você pode</p>
+                        <div class="form-group">
+	                            <a  href="login.jsp" class="btn btn-outline-dark form-control">
+	                                Entrar</a>
+	                    </div>
+                    </div>
+                </form>
+                
+                    
+            </div>            
+        </div>
+      </div>
+    </div>
+
+	
 </body>
+
 <!--   Core JS Files   -->
 <script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
@@ -121,4 +120,25 @@
 
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="assets2/js/jquery.validate.min.js"></script>
+
+
+<script type="text/javascript">
+	function validarLogin() {
+		if (document.formLogin.login.value === ""
+				&& document.formLogin.senha.value === "") {
+			alert("Login e Senha Inválidos");
+			return false;
+		} else if (document.formLogin.login.value === "") {
+			alert("Campo Login Inválido");
+			return false;
+		} else if (document.formLogin.senha.value === "") {
+			alert("Campo Senha Inválido");
+			return false;
+		}
+	}
+</script>
+
+
+
+
 </html>

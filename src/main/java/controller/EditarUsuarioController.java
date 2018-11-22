@@ -24,8 +24,6 @@ import model.Servidor;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;
-
-@MultipartConfig
 public class EditarUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,85 +31,19 @@ public class EditarUsuarioController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String pagina = "editarUsuario.jsp?erroEditar=1";
-		if (ServletFileUpload.isMultipartContent(req)) {
 			String sessionMsg = "";
 			try {
-				// pegar dados do formulário
-				DiskFileItemFactory factory = new DiskFileItemFactory(Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES(),
-						(File) this.getServletConfig().getServletContext()
-								.getAttribute("javax.servlet.context.tempdir"));
-				ServletFileUpload upload = new ServletFileUpload(factory);
-				List<FileItem> items = upload.parseRequest(req);
-				Map<String, String> dados = new HashMap<String, String>();
-				FileItem imagemPerfil = null;
-				Iterator<FileItem> iter = items.iterator();
-				while (iter.hasNext()) {
-					FileItem item = iter.next();
-					if (item.isFormField()) {
-						dados.put(item.getFieldName(), item.getString());
-					} else {
-						if (item.getContentType().startsWith("image/")) {
-							if (item.getSize() <= Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES()) {
-								imagemPerfil = item;
-							} else {
-								sessionMsg = "Erro: O arquivo selecionado não pode ultrapassar "
-										+ (Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES() / (1024 * 1024))
-										+ " MB.<br>";
-							}
-						} else {
-							sessionMsg = "Erro: O arquivo selecionado deve ser uma imagem.<br>";
-						}
-					}
-				}
-				String nomeDoCampoSenha = "senha";
-				String nomeDoCampocSenha = "senha_repetida";
-				String senha = dados.get(nomeDoCampoSenha).trim();
-				String senhaRepetida = dados.get(nomeDoCampocSenha).trim();
+
 				// configurar objetos
 				Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
 				Pessoa pessoaDaSessao = usuarioDaSessao.getPessoa();
-				Pessoa pessoaEditada;
-				if (pessoaDaSessao instanceof Aluno) {
-					Aluno aluno = new Aluno();
-					aluno.setMatricula(((Aluno) pessoaDaSessao).getMatricula());
-					pessoaEditada = aluno;
-				} else {
-					Servidor servidor = new Servidor();
-					servidor.setSiape(((Servidor) pessoaDaSessao).getSiape());
-					pessoaEditada = servidor;
-				}
-				Usuario usuarioEditado = new Usuario();
-				pessoaEditada.setId(pessoaDaSessao.getId());
-				pessoaEditada.setNome(pessoaDaSessao.getNome());
-				pessoaEditada.setCpf(pessoaDaSessao.getCpf());
-				pessoaEditada.setDataNascimento(dados.get("nascimento"));
-				pessoaEditada.setEmail(dados.get("email"));
-				usuarioEditado.setPessoa(pessoaEditada);
-				usuarioEditado.setNivel(usuarioDaSessao.getNivel());
-				usuarioEditado.setToken(usuarioDaSessao.getToken());
-				usuarioEditado.setTokenUsuario(usuarioDaSessao.getTokenUsuario());
-				usuarioEditado.setLogin(dados.get("login"));
-				if (!senha.isEmpty() && !senhaRepetida.isEmpty() && senha.equals(senhaRepetida)) {
-					usuarioEditado.setSenha(dados.get(nomeDoCampoSenha));
-				} else {
-					//usuarioEditado.setSenha(usuarioDaSessao.getSenha());
-					sessionMsg = "Erro: As senhas estão diferentes ou nula";
-					throw new Exception("");
-				}
-				// salvar imagem
-				if (imagemPerfil != null) {
-					String nomeImagemPerfil = pessoaDaSessao.getId() + "-" + imagemPerfil.getName();
-					if (pessoaDaSessao.getImagem() != null) {
-						new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + pessoaDaSessao.getImagem()).delete();
-					}
-					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
-					pessoaEditada.setImagem(nomeImagemPerfil);
-				}
-				// salvar dados no banco
-				Facade.editarUsuarioESenha(pessoaEditada, usuarioEditado);
+				usuarioDaSessao.getPessoa().setDataNascimento(req.getParameter("nascimento"));
+				usuarioDaSessao.getPessoa().setEmail(req.getParameter("email"));
+				usuarioDaSessao.setLogin(req.getParameter("login"));
+				Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
 				// salvar sessao
-				session.setAttribute("usuario", usuarioEditado);
-				if(!sessionMsg.equals("")) {
+				session.setAttribute("usuario", usuarioDaSessao);
+				if(sessionMsg.isEmpty()) {
 					pagina = "editarUsuario.jsp?sucessoEditar=1";
 					sessionMsg = "Dados alterados com sucesso";
 				}
@@ -122,10 +54,6 @@ public class EditarUsuarioController extends HttpServlet {
 			}
 			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 			
-		} else {
-			session.setAttribute(Constantes.getSessionMsg(),
-					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
-		}
 		resp.sendRedirect(pagina);
 	}
 

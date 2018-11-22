@@ -13,6 +13,7 @@ import model.EnumPerfil;
 import model.Servidor;
 import model.Usuario;
 import util.Constantes;
+import util.Crypter;
 import util.Facade;
 
 public class CadastrarServidor extends HttpServlet {
@@ -48,7 +49,7 @@ public class CadastrarServidor extends HttpServlet {
 				servidor.setDataNascimento(dataNasci);
 				servidor.setCargo(EnumCargo.getByString(cargo));
 				usuario.setLogin(login);
-				usuario.setSenha(senha);
+				usuario.setSenha(Crypter.crypt(senha));
 				servidor.setUsuario(usuario);
 				usuario.setPessoa(servidor);
 				usuario.setPerfil(EnumPerfil.SERVIDOR);

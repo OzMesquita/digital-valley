@@ -12,6 +12,13 @@
 	List<Modulo> modulos = (List<Modulo>) request.getAttribute("modulos");
 	Perfil perfil = (Perfil) request.getAttribute("perfil");
 %>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Associar módulos de perfil</h1>
+          <p class="lead text-muted">Associe módulos ao perfil de <%=perfil.getNome() %>.</p>
+        </div>
+      </section>
+<div class="container">
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default header">
@@ -71,8 +78,8 @@
 								for (Modulo modulo : modulosDoPerfil) {
 							%>
 							<tr>
-								<td><%=modulo.getTitulo()%></td>
-								<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
+								<td col="10"><%=modulo.getTitulo()%></td>
+								<td col="10"><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
 										alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
 								<td>
 									<form method="POST" action="<%=url%>/desassociar_modulo_perfil">
@@ -92,4 +99,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

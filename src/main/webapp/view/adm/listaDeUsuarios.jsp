@@ -16,47 +16,38 @@
 	Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
 	String url = (String) request.getAttribute("url");
 %>
-<div class="panel panel-default header">
-	<div class="panel-heading">
-		<h3 id="titulo_da_pagina">Usuários</h3>
-	</div>
-	<div class="panel-body">
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Lista de Usuários</h1>
+          <p class="lead text-muted">Aqui estão listados todos os usuários dos sistema.</p>
+        </div>
+      </section>
+<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<form action="<%=Constantes.getAdmUrl()%>/listar_usuarios"
+			<form class="form-inline" action="<%=Constantes.getAdmUrl()%>/listar_usuarios"
 					method="get">
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<label for="nome">Nome: </label> <input id="nome" type="text"
-									name="nome" class="form-control" placeholder="Nome"
-									value="<%=nome %>" />
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<input class="form-control btn btn-success" type="submit"
-									value="Buscar" title="Buscar" id="botao_buscar" />
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<label for="tipo">Tipo: </label> <select id="tipo" name="tipo"
+			  <div class="form-group mb-2">
+			    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Nome:">
+			  </div>
+			  <div class="form-group mx-sm-3 mb-2">
+			    <label for="inputPassword2" class="sr-only">Password</label>
+			    <input type="text" name="nome" class="form-control" id="inputPassword2" placeholder="Digite um nome" value="<%=nome %>">
+			  </div>
+			  <div class="form-group mx-sm-3 mb-2">
+			   <select id="tipo" name="tipo"
 									class="form-control">
-									<option value="todos"
-										<%="todos".equals(tipo) ? "selected" : ""%>>
-											Todos</option>
-									<option value="alunos"
-										<%="alunos".equals(tipo) ? "selected" : ""%>>Alunos</option>
-									<option value="servidores"
-										<%="servidores".equals(tipo) ? "selected" : ""%>>
-											Servidores</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</form>
+					<option value="todos"
+						<%="todos".equals(tipo) ? "selected" : ""%>>
+							Todos</option>
+					<option value="alunos"
+						<%="alunos".equals(tipo) ? "selected" : ""%>>Alunos</option>
+					<option value="servidores"
+						<%="servidores".equals(tipo) ? "selected" : ""%>>
+							Servidores</option>
+				</select>
 			</div>
+			  <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+			</form>
 		</div>
 		<div class="table-responsive">
 			<table
@@ -85,14 +76,14 @@
 			</table>
 		</div>
 		<div class="text-center">
-			<ul class="pagination">
+			<div class="btn-group" role="group" aria-label="Basic example">
 				<%
 					if (quantidadeDePaginas > 1) {
 						if (paginaAtual > 1) {
 				%>
-				<li><a
-					href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual - 1)%>">
-						<< </a></li>
+				<a
+					href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual - 1)%>" class="btn btn-secondary">
+						<< </a>
 				<%
 					}
 						for (int i = 1; i <= quantidadeDePaginas; i++) {
@@ -100,13 +91,13 @@
 
 				<%
 					if (i == paginaAtual) {
-				%><li class="active"><a
-					href="<%=url%>/listar_usuarios?pagina=<%=i%>"><%=i%></a></li>
+				%><a
+					href="<%=url%>/listar_usuarios?pagina=<%=i%>" class="btn btn-secondary"><%=i%></a>
 				<%
 					} else {
 				%>
-				<li><a href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=i%>"><%=i%></a>
-				</li>
+				<a href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=i%>" class="btn btn-secondary"><%=i%></a>
+				
 				<%
 					}
 				%>
@@ -114,13 +105,12 @@
 					}
 						if (paginaAtual < quantidadeDePaginas) {
 				%>
-				<li><a
-					href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual + 1)%>">>></a></li>
+				<a
+					href="<%=url%>/listar_usuarios?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual + 1)%>" class="btn btn-secondary">>></a>
 				<%
 					}
 					}
 				%>
-			</ul>
+			</div>
 		</div>
 	</div>
-</div>

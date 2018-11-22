@@ -21,26 +21,33 @@ public class RequisitarModulo extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-		Usuario userObjectToJSON = Facade.buscarPorLogin(user.getLogin());
-		userObjectToJSON.setToken(DAOFactory.criarUsuarioDAO().buscarToken(user.getPessoa().getId()));
-		HttpSession session = request.getSession();
-		userObjectToJSON.getPessoa().setUsuario(null);
-		userObjectToJSON.setSenha("******");
-		String url = request.getParameter("url");
-		String [] urlPath = url.split("/");
-		url = urlPath[0]+"//"+urlPath[2]+"/"+urlPath[3]+"/autentica";
-		Gson gson = new Gson();
-		String json = gson.toJson(userObjectToJSON);
-		int status = Facade.executeHTTPRequestToModule(url, json);
-		Usuario userToken = Facade.buscarPorLogin(user.getLogin());
-		userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
-		if(status != 200){
-			session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
-			response.sendRedirect(Constantes.getAppUrl()+"/");
-		}else{
-			response.sendRedirect(request.getParameter("url")+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+			Usuario userObjectToJSON = Facade.buscarPorLogin(user.getLogin());
+			userObjectToJSON.setToken(DAOFactory.criarUsuarioDAO().buscarToken(user.getPessoa().getId()));
+			HttpSession session = request.getSession();
+			userObjectToJSON.getPessoa().setUsuario(null);
+			userObjectToJSON.setSenha("******");
+			String url = request.getParameter("url");
+			String [] urlPath = url.split("/");
+			url = urlPath[0]+"//"+urlPath[2]+"/"+urlPath[3]+"/autentica";
+			System.out.println("Entrou URL");
+			Gson gson = new Gson();
+			String json = gson.toJson(userObjectToJSON);
+			int status = Facade.executeHTTPRequestToModule(url, json);
+			System.out.println(url);
+			System.out.println(status);
+			Usuario userToken = Facade.buscarPorLogin(user.getLogin());
+			userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
+			if(status != 200){
+				session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
+				response.sendRedirect(Constantes.getAppUrl()+"/");
+			}else{
+				response.sendRedirect(request.getParameter("url")+"?id="+userToken.getPessoa().getId()+"&token="+userToken.getTokenUsuario());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

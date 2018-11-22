@@ -2,7 +2,6 @@
 <%@page import="model.Pessoa"%>
 <%@page import="util.Facade"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="cbp-spmenu-push">
 	<%
 
         int id = Integer.parseInt(request.getParameter("idUsuario"));
@@ -14,18 +13,19 @@
                     session.setAttribute("msg", "Nenhum usuário selecionado.");
 		} else { session.setAttribute("pessoa", p);
 	%>
-
-	<div id="page-wrapper header">
-		<div class="container-fluid" style="min-height: 400px">
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Editar perfil do usuário</h1>
+          <p class="lead text-muted">Realize a edição do perfil do usuário <%= p.getNome()%>.</p>
+        </div>
+      </section>
+		<div class="container" style="min-height: 400px">
 			<!-- aqui -->
-
+			<div class="row">
 			<div class="col-md-8">
 				<div class="card">
-					<div class="header" style="text-align: center;">
-						<h4 class="title">Perfil do Usuário</h4>
-						<hr style="border: 1px solid lightgray">
-					</div>
-					<div class="content">
+						  <h5 class="card-header">Editar Perfil</h5>
+						  <div class="card-body">
 						<form action="AlterarEmail" method="post">
 							<div class="row">
 								<div class="col-md-6">
@@ -68,41 +68,37 @@
 								</div>
 							</div>
 							<div class="clearfix"></div>
-							<input id="save" type="submit" value="Salvar">
+							<button id="save" type="submit" value="Salvar" class="btn btn-primary form-control">Salvar</button>
 						</form>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="card card-user">
-
-					<div class="content">
-						<div class="author">
+				<div class="card">
+						  <h5 class="card-header">Editar Nível</h5>
+						  <div class="card-body">
 							<form id="nivelUsuario" action="AlterarNivel" method="post">
-								<div class="header">
-									<label>Nivel do Usuário</label>
-								</div>
+							<div class="form-group">
 								<select class="form-control" name="nivel" required>
 									<option disabled="disable" selected="true">
 										<%=p.getUsuario().getNivel() %></option>
 									<option value="2">Usuário Comum</option>
 									<option value="1">Administrador</option>
-								</select> <input id="save" type="submit" value="Salvar">
+								</select>
+								</div>
+								<button id="save" type="submit" class="btn btn-primary form-control" value="Salvar">Salvar</button>
 								<input type="hidden" name="idUsuario" value="<%=id%>">
 							</form>
-						</div>
 
 						<br>
 
 					</div>
-					<hr>
 				</div>
 			</div>
 <%} %>
 
-
+		</div>
 			<!-- aqui -->
 		</div>
-	</div>
-</div>
+
 

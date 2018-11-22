@@ -4,84 +4,79 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css"
-	href="<%=Constantes.getAppCssUrl()%>/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=Constantes.getAppCssUrl()%>/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Righteous"
 	rel="stylesheet">
+	<link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/style.css" type="text/css" />
 <title>Guardião</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-default" id="menu">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" id="brand"
-					href="<%=Constantes.getAppUrl()%>/view/telaInicial.jsp">Guardião</a>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<%
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="<%=Constantes.getAppUrl()%>/view/telaInicial.jsp">Guardião</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<%=Constantes.getAppUrl()%>/view/telaInicial.jsp">Início <span class="sr-only">(current)</span></a>
+      </li>
+      <%
 					Usuario usuario = (Usuario) session.getAttribute("usuario");
 					
 					if ( usuario != null && usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
-				%>
-				<ul class="nav navbar-nav" id="menu-left">
-					<li class="dropdown"><a href="#" id="link-modulos"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Módulos</a>
-						<ul class="dropdown-menu">
-							<li><a id="atribuir-modulos"
-								href="<%=Constantes.getAdmUrl()%>/atribuir_modulos">Atribuir
-									Módulos</a></li>
-							<li><a id="cadastrar-modulo"
-								href="<%=Constantes.getAdmUrl()%>/cadastrarModulo.jsp">Cadastrar
-									Módulos</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" id="link-usuarios"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Usuários</a>
-						<ul class="dropdown-menu">
-							<li><a id="listar-usuarios"
-								href="<%=Constantes.getAdmUrl()%>/listar_usuarios">Listar
-									Usuários</a></li>
-							<li><a id="importar-alunos"
-								href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Pre Cadastrar
-									Alunos</a></li>
-							<li><a id="importar-servidores"
-								href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Pre Cadastrar
-									Servidores</a></li>
-						</ul></li>
-				</ul>
-				<%
+		%>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Módulos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/atribuir_modulos">Atribuir Módulos</a>
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/cadastrarModulo.jsp">Cadastrar Módulos</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Usuários
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/listar_usuarios">Listar
+									Usuários</a>
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Pré Cadastrar
+									Alunos</a>
+          
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Pre Cadastrar
+									Servidores</a>
+								
+        </div>
+      </li>
+      <%
 					}
 				%>
-				<ul class="nav navbar-nav navbar-right">
-					<li><img
+    </ul>
+     <div class="my-2 my-lg-0 dropdown" style="margin-right:5%;">
+        <span class="nav-link dropdown-toggle"  style="cursor:pointer; color:#fff;"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img
 						src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
-						id="img-perfil"></li>
-					<li class="dropdown"><a id="perfil" href="#"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Perfil<span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a id="ver-perfil"
-								href="<%=Constantes.getAppUrl()%>/view/editarUsuario">Ver
-									Perfil</a></li>
-							<li><a id="sair" href="<%=Constantes.getAppUrl()%>/logout">Sair</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
-	</header>
-	<div class="container">
+						id="img-perfil" style="width:30px; height:30px; border-radius:50%;">
+        </span>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%=Constantes.getAppUrl()%>/view/editarUsuario">Ver
+									Perfil</a>
+          <a class="dropdown-item" href="<%=Constantes.getAppUrl()%>/logout">Sair</a>
+        </div>
+      </div>
+
+  </div>
+</nav>
+	
+	
+	
+	
+	
+	
+		</header>

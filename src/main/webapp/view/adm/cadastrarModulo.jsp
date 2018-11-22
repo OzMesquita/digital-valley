@@ -10,38 +10,59 @@
 		mensagem = "";
 	}
 %>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-default header">
-			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Cadastro de Módulo</h3>
-			</div>
-			<div class="panel-body">
-				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="<%=((String)session.getAttribute(Constantes.getSessionMsg())).contains("Sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Cadastrar Módulos</h1>
+          <p class="lead text-muted">Cadastre módulos no sistema.</p>
+        </div>
+      </section>
+<div class="container">
+  				<div class="row">
+  					
+					<div class="col-md-12">
+  					<div class="card">
+						  <h5 class="card-header">Cadastrar Módulo</h5>
+						  <div class="card-body">
+							<form action="cadastrarModulo" name="formCadastro" enctype="multipart/form-data" method="post">
+							
+						<div class="row">
+						<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="<%=session.getAttribute(Constantes.getSessionMsg()).equals("Dados alterados com sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
-				<%} %>
-				
-				
-				
-				<form method="post" action="cadastrarModulo" name="formCadastro">
-					<div class="form-group">
-						<label for="titulo">Título</label><input type="text"
-							title="Título" name="titulo" id="titulo" required
-							class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="url">URL</label><input type="text" title="URL"
-							name="url" id="url" required class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="imagem">Imagem</label><input type="file"
-							class="btn btn-info" id="imagem" name="imagem">
-					</div>
-					<div class="form-group">
+					<%} %>	
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="titulo">Título</label> <input type="text" id="titulo" placeholder="Digite um título para o módulo"
+										name="titulo" class="form-control"  required
+									>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="url">URL</label> <input type="text" id="url" placeholder="Digite uma URL para o módulo"
+										name="url" class="form-control" required
+									>
+								</div>
+							</div>
+							<div class="col-md-12">
+							<div class="form-group">
+							    <label for="exampleFormControlTextarea1">Descrição</label>
+							    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descricao" placeholder="Digite uma descrição para o módulo" required></textarea>
+							  </div>
+							 </div>
+							 <div class="col-md-12">
+							<div class="form-group" style="width:100%">
+							<label for="imagem">Logo Módulo</label>
+									<label class="btn btn-outline-dark btn-file" style="width:100%">
+									    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input type="file" name="imagem" id="imagem" style="display: none;">
+									</label>
+							</div>
+							</div>
+							 <div class="col-md-12">
+							<div class="form-group">
 						<label>Perfil de Acesso</label>
 						<p>
 							<input type="checkbox" id="perfil_todos_checkbox" name="todos"><strong>Todos</strong>
@@ -58,20 +79,43 @@
 							}
 						%>
 					</div>
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							<div class="form-group">
-								<input class="form-control btn btn-success" type="submit"
-									value="Salvar">
-							</div>
+					</div>
+						<div class="col-md-12">
+						<div class="form-group">
+						<input type="submit"
+							class="btn btn-primary text-center form-control" value="Salvar"
+							title="Salvar alterações">
+					</div>
+					</div>
 						</div>
 					</div>
+					
 				</form>
+  </div>
+  </div>
+  
+ 	
+				
+  
+  
+  				</div>
 			</div>
-		</div>
-	</div>
-</div>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript"
 	src="<%=Constantes.getAppJsUrl()%>/marcarCheckBoxDePerfis.js"></script>
+	
+		<script>
+		$(function () {
+			$('#image-input').change(function () {
+				var file = $(this).val();
+				if (file == "") {
+					$("#text-btn-input-image").html("Selecionar Nova Imagem");
+					$(".btn-submit-image").hide();
+				} else {
+					$("#text-btn-input-image").html("Imagem Selecionada");
+					$(".btn-submit-image").show();
+				}
+			});
+		});
+	</script>

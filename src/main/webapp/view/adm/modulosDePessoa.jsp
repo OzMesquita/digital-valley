@@ -25,34 +25,13 @@
 	}
 	String url = Constantes.getAdmUrl();
 %>
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-default header">
-			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Dados do usuário</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-8">
-						<p>
-							<strong>Nome: </strong><%=pessoa.getNome()%></p>
-						<p>
-							<strong>E-mail: </strong><%=pessoa.getEmail()%></p>
-						<p>
-							<strong>Data: </strong><%=Facade.converterLocalDateParaString(pessoa.getDataNascimento())%></p>
-						<p>
-							<strong>CPF: </strong><%=pessoa.getCpf()%></p>
-					</div>
-					<div class="col-md-4">
-						<img alt="<%=pessoa.getNome()%>"
-							src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=pessoa.getId()%>"
-							class="img_pessoa">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Associar módulos de pessoa</h1>
+          <p class="lead text-muted">Associe módulos ao usuário <%=pessoa.getNome()%> de CPF <%=pessoa.getCpf()%>.</p>
+        </div>
+      </section>
+<div class="container">
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
@@ -75,7 +54,7 @@
 							<tr>
 								<td><%=modulo.getTitulo()%></td>
 								<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
-										alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+										alt="<%=modulo.getTitulo()%>" style="width:50px; height:50px;" src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=modulo.getId()%>"></a></td>
 								<td>
 									<form method="POST" action="<%=url%>/associar_modulo_pessoa">
 										<input type="hidden" value="<%=pessoa.getId()%>"
@@ -117,7 +96,7 @@
 								<td><%=modulo.getTitulo()%></td>
 								<td><a href="<%=modulo.getUrl()%>"> <img
 										id="img_modulo" alt="<%=modulo.getTitulo()%>"
-										src="<%=modulo.getImagem()%>">
+										style="width:50px; height:50px;" src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=modulo.getId()%>">
 								</a></td>
 								<td>
 									<form method="POST" action="<%=url%>/desassociar_modulo_pessoa">
@@ -139,4 +118,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

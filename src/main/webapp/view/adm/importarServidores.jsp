@@ -1,12 +1,16 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Importar Servidores</h1>
+          <p class="lead text-muted">Realize a importação de vários servidores ao mesmo tempo.</p>
+        </div>
+      </section>
+<div class="container">
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-default header">
-			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Pré-Cadastrar Servidores</h3>
-			</div>
-			<div class="panel-body">
-				<div class="panel-body">
+<div class="col-md-12">
+  					<div class="card">
+						  <h5 class="card-header">Importar Servidores</h5>
+						  <div class="card-body">
 					<%
 						if (session.getAttribute(Constantes.getSessionMsg()) != null) {
 					%>
@@ -37,7 +41,7 @@
 						</div>
 						<div class="form-group">
 							<input type="submit"
-								class="btn btn-success form-control text-center"
+								class="btn btn-primary form-control text-center"
 								value="Importar" title="Importar matriculas">
 						</div>
 					</form>

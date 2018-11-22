@@ -1,17 +1,13 @@
-</div>
+
 <%@page import="util.Constantes"%>
-<footer>
-	<div id="logos">
-		<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img
-			id="logo-n2s" src="<%=Constantes.getAppImgUrl()%>/n2s-logo.png"
-			alt="N2S"></a> <a href="http://www.campusrussas.ufc.br" id="ufc"
-			target="_blank"><img id="logo-ufc"
-			src="<%=Constantes.getAppImgUrl()%>/brasao-ufc.png" alt="UFC"></a>
-	</div>
-</footer>
+<nav class="navbar navbar-dark bg-dark" style="position:fixed; bottom: 0px; width:100%;">
+    <a class="navbar-brand" href="#">Guardião</a>
+    <p style="color:#fff; float:right;" class="align-right">© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+</nav>
 </body>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
-<script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	var perfil = $("#perfil, #link-usuarios,#link-modulos");
 	perfil.on("click", function(event) {

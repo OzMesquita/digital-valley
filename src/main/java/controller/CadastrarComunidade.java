@@ -13,6 +13,7 @@ import model.EnumPerfil;
 import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
+import util.Crypter;
 import util.Facade;
 
 public class CadastrarComunidade extends HttpServlet {
@@ -44,7 +45,7 @@ public class CadastrarComunidade extends HttpServlet {
 				pessoa.setEmail(email);
 				pessoa.setDataNascimento(dataNasci);
 				usuario.setLogin(login);
-				usuario.setSenha(senha);
+				usuario.setSenha(Crypter.crypt(senha));
 				pessoa.setUsuario(usuario);
 				usuario.setPessoa(pessoa);
 				usuario.setNivel(EnumNivel.COMUM);

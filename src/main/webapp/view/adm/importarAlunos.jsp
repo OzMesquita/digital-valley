@@ -1,13 +1,17 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Importar Alunos</h1>
+          <p class="lead text-muted">Realize a importação de vários alunos ao mesmo tempo.</p>
+        </div>
+      </section>
+<div class="container">
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-default header">
-			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Importação de Matriculas</h3>
-			</div>
-			
-			
-			<div class="panel-body">
+<div class="col-md-12">
+  					<div class="card">
+						  <h5 class="card-header">Importar Alunos</h5>
+						  <div class="card-body">
+
 				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
 					<div class="alert alert-danger" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
@@ -25,7 +29,7 @@
 				<%} %>
 				<form action="importarAlunos" method="post">
 					<div class="form-group">
-						<label for="curso">Curso</label> <select required="true"
+						<label for="curso">Curso</label> <select required="required"
 							class="form-control" name="curso" id="curso">
 							<option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
 							<option value="1"> Ciência da Computação</option>
@@ -37,18 +41,19 @@
 					</div>
 					<div class="form-group">
 						<label for="matriculas">Matriculas</label>
-						<textarea name="matriculas" id="matriculas" required="true"
+						<textarea name="matriculas" id="matriculas" required="required"
 							class="form-control" placeholder="123456 Nome do Aluno 1
 123457 Nome do Aluno 2"></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit"
-							class="text-center btn btn-success form-control"
+							class="text-center btn btn-primary form-control"
 							value="Importar" title="Importar arquivo">
 					</div>
 				</form>
 				
 			</div>
-		</div>
-	</div>
-</div>
+			  </div>
+  </div>
+  </div>
+			</div>

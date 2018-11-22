@@ -27,19 +27,22 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
 	rel="stylesheet">
 <!-- CSS Files -->
-<link href="<%=Constantes.getAppCssUrl()%>/bootstrap.min.css" rel="stylesheet" />
-<link href="<%=Constantes.getAppCssUrl()%>//gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="<%=Constantes.getAppCssUrl()%>//demo.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
 <!--meu css -->
 <link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
+
+<style>
+</style>
+
 </head>
 <body>
 
 	<%
-		String mensagem;
+		String mensagem = null;
 		if (session.getAttribute(Constantes.getSessionMsg()) == null) {
-			mensagem = "";
+			mensagem = null;
 		} else {
 			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
 
@@ -49,96 +52,72 @@
 		}
 	%>
 
-	
 
-
-	<div class="image-container set-full-height"
-		style="background: steelblue;">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-sm-8 col-sm-offset-2">
-					<div class="wizard-container">
-						<div class="card wizard-card" data-color="orange"
-							id="wizardProfile" style="height: 20px;">
-
-							<!--  formulario -->
-							<form action="login" method="post" name="formLogin">
-								<div class="wizard-header">
-									<h3>
-										SISTEMA CONTROLE DE ACESSO <br>
-									</h3>
-								</div>
-								<div class="wizard-navigation">
-									<ul>
-										<li><a href="#about" data-toggle="tab">LOGIN</a></li>
-									</ul>
-								</div>
-								<div class="erroMsg">
-									<small><%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%></small>
-								</div>
-								<div class="tab-content">
-									<div class="tab-pane" id="about">
-										<div class="row">
-											<div class="col-sm-4 col-sm-offset-1">
-												<div class="picture-container">
-													<div class="picture">
-														<img src="assets2/img/ufc_logo.png" class="picture-src"
-															id="wizardPicturePreview" title="UFC - Campus Russas" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="form-group">
-													<label>Login </label> <input name="login" type="text"
-														class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Senha </label> <input name="senha" type="password"
-														class="form-control">
-												</div>
-
-												<div id="c_russas">
-													<h3>
-														<small>UFC - Campus Russas</small>
-													</h3>
-												</div>
-												<div id="cadastro">
-													É servidor ou aluno e não tem cadastro? <a href="verificacaoCadastro.jsp">Cadastre-se aqui</a><br>
-													É da comunidade e não tem cadastro? <a href="cadastrarVisitante.jsp">Cadastre-se aqui</a><br>
-													<a href="recuperSenha.jsp" style="margin-left: 10%">Esqueceu
-														a senha?</a>
-												</div>
-
-												<div class="pull-right">
-													<input id="btnsalvar" type='submit' value='Entrar'
-														onclick="return validarLogin()" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-							
-						</div>
-
-
-
+    <div class="container-fluid container-full-height container-full-width">
+      <div class="row row-full-height">
+        <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
+            <div class="topics">
+            	<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="assets2/img/n2s-logo.png" class="n2s_logo" /></a>
+	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+            </div>
+            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>
+        </div>
+        <div class="col-sm-6 col-md-4 col-full-height login-form">
+          <div>	
+          		<p class="text-center">
+          			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
+          		</p>
+                <form class="form-horizontal" role="form" action="login" method="post" name="formLogin">
+                	<%
+                		if (mensagem != null && !mensagem.isEmpty()) {
+                	%>
+                	<div class="alert alert-danger">
+						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
 					</div>
-				</div>
+					<%
+                		}
+					%>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Digite o seu Login" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <input type="password" name="senha" class="form-control" id="inputPassword3" placeholder="Digite sua senha" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-1">
+                        <p><a href="recuperSenha.jsp" class="text-center" >Esqueceu a senha?</a></p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <button type="submit" class="btn btn-outline-success form-control">
+                                Entrar</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-1">
+                        <p class="text-center" >Não possui cadastro?</p>
+                        <div class="form-group">
+	                            <a  href="verificacaoCadastro.jsp" class="btn btn-outline-dark form-control">
+	                                Cadastro Servidor ou Aluno</a>
+	                    </div>
+	                    <div class="form-group">
+	                            <a  href="cadastrarVisitante.jsp" class="btn btn-outline-primary form-control">
+	                                Cadastro comunidade</a>
+	                    </div>
+                    </div>
+                </form>
+                
+                    
+            </div>            
+        </div>
+      </div>
+    </div>
 
-
-			</div>
-			<!-- row  -->
-
-		</div>
-		<!-- container -->
-
-
-		<div class="footer">
-			<div class="container">₢ Todos os direitos reservados | N2S</div>
-		</div>
-	</div>
 	
 </body>
 

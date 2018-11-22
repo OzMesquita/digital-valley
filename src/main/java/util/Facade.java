@@ -48,6 +48,8 @@ public class Facade {
 	
 	public static int executeHTTPRequestToModule(String url, String jsonUser) throws ClientProtocolException, IOException {
 		StringEntity input = new StringEntity(jsonUser);
+		System.out.println(url);
+		System.out.println(jsonUser);
 		input.setContentType("application/json");
 		HttpPost postRequest = new HttpPost(url);
 		HttpClient httpClient = HttpClientBuilder.create().build();
@@ -455,7 +457,7 @@ public class Facade {
 	}
 
 	public static String getDiretorioImagemModulo(int id) {		
-		return Constantes.getMODULES_IMAGES_DIR()+File.separator+DAOFactory.criarModuloDAO().buscar(id).getImagem();
+		return DAOFactory.criarModuloDAO().buscar(id).getImagem();
 	}
 
 	public static Integer getQuantidadeServidoresPorNome(String nome) {

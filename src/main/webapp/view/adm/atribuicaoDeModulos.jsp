@@ -15,15 +15,27 @@
 	Integer paginaAtual = (Integer) request.getAttribute("paginaAtual");
 	String nomePessoa = request.getAttribute("nomePessoa") != null && !"".equals(request.getAttribute("nomePessoa")) ? (String) request.getAttribute("nomePessoa") : "";
 %>
-<div class="panel panel-default header">
-	<div class="panel-heading">
-		<h3 id="titulo_da_pagina">Atribuir módulos por pessoa</h3>
-	</div>
-	<div class="panel-body">
-		<form action="<%=Constantes.getAdmUrl() + "/atribuir_modulos"%>"
-			method="GET">
-
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Atribuir Módulos</h1>
+          <p class="lead text-muted">Atribua módulos para os usuários.</p>
+        </div>
+      </section>
+<div class="container">
 			<div class="row">
+			<form action="<%=Constantes.getAdmUrl() + "/atribuir_modulos"%>"
+			method="GET" class="form-inline">
+				  <div class="form-group mb-2">
+				    <label for="staticEmail2" class="sr-only">Buscar por nome:</label>
+				    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Buscar por nome:">
+				  </div>
+				  <div class="form-group mx-sm-3 mb-2">
+				    <label for="inputPassword2" class="sr-only">Busca</label>
+				    <input type="text" class="form-control" id="inputPassword2" name="nome" placeholder="Digite um nome">
+				  </div>
+				  <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+				</form>
+				<!-- 
 				<div class="col-md-4 col-md-offset-3">
 					<div class="form-group">
 						<label for="nome">Nome: </label> <input type="text" id="nome"
@@ -36,9 +48,8 @@
 						<input type="submit" class="form-control btn btn-primary"
 							id="botao_buscar" value="Buscar" />
 					</div>
-				</div>
+				</div> -->
 			</div>
-		</form>
 		<div class="table-responsive">
 			<table
 				class="table table-striped table-bordered table-hover table-condensed">
@@ -69,14 +80,15 @@
 			</table>
 		</div>
 		<div class="text-center">
-			<ul class="pagination text-center">			
+		<div class="btn-group" role="group" aria-label="Basic example">
+				
 				<%
 					if (quantidadeDePaginas > 1) {
 						if (paginaAtual > 1) {
 				%>
-				<li><a
+				<a
 					href="<%=url%>/atribuir_modulos?pagina=<%=(paginaAtual - 1)%>">
-						<< </a></li>
+						 </a>
 				<%
 					}
 						for (int i = 1; i <= quantidadeDePaginas; i++) {
@@ -84,30 +96,26 @@
 
 				<%
 					if (i == paginaAtual) {
-				%><li class="active"><a
-					href="<%=url%>/atribuir_modulos?pagina=<%=i%>"><%=i%></a></li>
+				%><a
+					href="<%=url%>/atribuir_modulos?pagina=<%=i%>" class="btn btn-secondary active"><%=i%></a><!-- active -->
 				<%
 					} else {
-				%>
-				<li><a href="<%=url%>/atribuir_modulos?pagina=<%=i%>"><%=i%></a>
-				</li>
+				%><a href="<%=url%>/atribuir_modulos?pagina=<%=i%>" class="btn btn-secondary"><%=i%></a>
 				<%
 					}
 				%>
 				<%
 					}
 						if (paginaAtual < quantidadeDePaginas) {
-				%>
-				<li><a
-					href="<%=url%>/atribuir_modulos?nome=<%=nomePessoa %>&pagina=<%=(paginaAtual + 1)%>">>></a></li>
+				%><a
+					href="<%=url%>/atribuir_modulos?nome=<%=nomePessoa %>&pagina=<%=(paginaAtual + 1)%>" class="btn btn-secondary">>></a>
 				<%
 					}
 					}
 				%>
-			</ul>
+			</div>
 		</div>
-	</div>
-</div>
+	
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="panel panel-default">
@@ -141,4 +149,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

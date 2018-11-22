@@ -15,6 +15,7 @@ import model.Curso;
 import model.EnumPerfil;
 import model.Usuario;
 import util.Constantes;
+import util.Crypter;
 import util.Facade;
 
 public class CadastrarAluno extends HttpServlet {
@@ -54,7 +55,7 @@ public class CadastrarAluno extends HttpServlet {
 				aluno.setDataNascimento(dataNasci);
 				usuario.setLogin(login);
 				usuario.setPessoa(aluno);			
-				usuario.setSenha(senha);
+				usuario.setSenha(Crypter.crypt(senha));
 				aluno.setUsuario(usuario);
 				usuario.setPessoa(aluno);
 				usuario.setPerfil(EnumPerfil.ALUNO);

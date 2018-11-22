@@ -1,27 +1,23 @@
 <%-- 
-    Document   : CadastroUsuario
-    Created on : 02/06/2017, 15:28:14
+    Document   : login
+    Created on : 24/05/2017, 16:13:20
     Author     : N2S-PC03
 --%>
-
 <%@page import="util.Constantes"%>
 <%@page import="model.EnumCargo"%>
 <%@page import="model.EnumCurso"%>
-<%@page import="util.Constantes" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page import="controller.Login"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="pt">
 <head>
-
-<meta http-equiv="Content-Language" content="pt-br">
+<meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
 	href="assets2/img/apple-icon.png">
 <link rel="icon" type="image/png" href="assets2/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-<title>Tela de cadastro</title>
+<title>Tela de login</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -32,57 +28,68 @@
 <link
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
 	rel="stylesheet">
-
 <!-- CSS Files -->
-<link href="../assets2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../assets2/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets2/css/demo.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
 <!--meu css -->
-<link rel="stylesheet" href="../assets2/css/newcss.css" type="text/css" />
+<link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
+
+<style>
+</style>
+
 </head>
 <body>
 
-	<% String mensagem  = (String) session.getAttribute("msg");
-        if(mensagem == null){ 
-            mensagem = "";
-        }
-    %>
+	<%
+		String mensagem = null;
+		if (session.getAttribute(Constantes.getSessionMsg()) == null) {
+			mensagem = null;
+		} else {
+			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
 
-	<div class="image-container set-full-height"
-		style="background: steelblue;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2">
-					<div class="wizard-container">
-						<div class="card wizard-card" data-color="orange"
-							id="wizardProfile" style="height: auto;">
-							<form
-								action="<%= session.getAttribute("nomeA") != null ? "cadastroAluno" : "cadastroServidor" %>"
-								method="post" name="formCadastro">
-								<div class="wizard-header">
-									<h3>
-										<b>Sistema Controle de Acesso</b> <br> <small>Preencha
-											seus dados</small>
-									</h3>
-								</div>
-								
-								<div class="tab-content">
-									<div class="">
-										<div class="row">
-											<div class="col-sm-8" style="margin-left: 15%;">
-												<div id="alerta" style="color: red; text-align: center;">
-													<small name="small" id="t_alerta"> <%= mensagem%>  <% session.setAttribute(Constantes.getSessionMsg(), null);%>
-													</small>
-												</div>
-												<div class="form-group">
+		}
+		if(session.getAttribute("usuario")!=null){
+			response.sendRedirect("view/telaInicial.jsp");
+		}
+	%>
+
+
+    <div class="container-fluid container-full-height container-full-width">
+      <div class="row row-full-height">
+        <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
+            <div class="topics">
+           		<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="../assets2/img/n2s-logo.png" class="n2s_logo" /></a>
+	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+            </div>
+            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>
+        </div>
+        <div class="col-sm-6 col-md-4 col-full-height login-form" style="overflow-y:auto;">
+          <div>	
+          		<p class="text-center">
+          			<img src="../assets2/img/brasao_ufc.png" class="brasao_ufc" />
+          		</p>
+                <form class="form-horizontal" role="form" action="cadastroComunidade" method="post" name="formCadastro">
+                	<%
+                		if (mensagem != null && !mensagem.isEmpty()) {
+                	%>
+                	<div class="alert alert-danger">
+						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
+					</div>
+					<%
+                		}
+					%>
+                    <div class="form-group">
 													<label>Nome Completo </label> <input name="nome"
 														type="text" class="form-control"
 														value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("nomeA") : session.getAttribute("nomeS") %>"
 														readonly="true">
 												</div>
 												<div class="form-group">
-													<label>C�digo Interno </label> <input name="codigo"
+													<label>Código Interno </label> <input name="codigo"
 														type="text" class="form-control"
 														value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("matricula") : session.getAttribute("siape") %>"
 														readonly="true">
@@ -148,7 +155,7 @@
 													<label>Login </label> <input name="login"
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required
-														placeholder="Nome de usu�rio">
+														placeholder="Nome de usuário">
 												</div>
 												<div class="form-group">
 													<label>Senha </label> <input name="senha"
@@ -162,59 +169,67 @@
 														placeholder="Digite a senha novamente"
 														onchange="validaSenha()">
 												</div>
-												<div id="c_russas">
-													<h3 style="margin-left: 50%;">
-														<small><a href="../login.jsp">Voltar para
-																tela de login</a></small>
-													</h3>
-												</div>
-												<div class="pull-right">
-													<input id="btnsalvar" type='submit' value='Salvar' />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer">
-			<div class="container">₢ Todos os direitos reservados | N2S</div>
-		</div>
-	</div>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-offset-1">
+                            <button type="submit" class="btn btn-outline-success form-control">
+                                Cadastrar-se</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-1">
+                        <p class="text-center" >Ou você pode</p>
+                        <div class="form-group">
+	                            <a  href="../verificacaoCadastro.jsp" class="btn btn-outline-dark form-control">
+	                                Cadastrar Servidor ou Aluno</a>
+	                    </div>
+	                    <div class="form-group">
+	                            <a  href="../login.jsp" class="btn btn-outline-primary form-control">
+	                                Entrar</a>
+	                    </div>
+                    </div>
+                </form>
+                
+                    
+            </div>            
+        </div>
+      </div>
+    </div>
+
+	
 </body>
 
-<script>
-            function validaSenha(){
-               var senha = document.formCadastro.senha.value;
-               var csenha = document.formCadastro.confirmaSenha.value;
-               var n = senha.localeCompare(csenha);
-                    if(n === 0){
-                        sessionStorage.setItem('msg',' ');
-                        var a = document.formCadastro.getElementById('t_alerta').removedNode();
-                        a.remove();
-                        return true;
-                    }else{
-                        var a = document.getElementById('alerta');
-                        sessionStorage.setItem('msg','Senhas não são iguais');
-                        a.innerHTML = '<small>'+sessionStorage.getItem('msg')+'</small>';
-                        return false;
-                    }
-            }
-        </script>
-
-
-
-<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"
+<!--   Core JS Files   -->
+<script src="assets2/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="assets2/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets2/js/jquery.bootstrap.wizard.js"
 	type="text/javascript"></script>
-	<!--   Core JS Files   -->
-<script src="../assets2/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Plugin for the Wizard -->
+<script src="assets2/js/gsdk-bootstrap-wizard.js"></script>
+
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="assets2/js/jquery.validate.min.js"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"
 	type="text/javascript"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/validacao.js"
 	type="text/javascript"></script>
+
+<script type="text/javascript">
+	function validarLogin() {
+		if (document.formLogin.login.value === ""
+				&& document.formLogin.senha.value === "") {
+			alert("Login e Senha Inválidos");
+			return false;
+		} else if (document.formLogin.login.value === "") {
+			alert("Campo Login Inválido");
+			return false;
+		} else if (document.formLogin.senha.value === "") {
+			alert("Campo Senha Inválido");
+			return false;
+		}
+	}
+</script>
+
+
+
+
 </html>
