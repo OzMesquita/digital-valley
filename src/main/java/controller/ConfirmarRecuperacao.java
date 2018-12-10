@@ -55,7 +55,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
 		}  
         if (usuario != null){
         	session.setAttribute("usuario",usuario);
-        	pagina = util.Constantes.getAppUrl()+"/view/editarUsuario.jsp";
+        	pagina = util.Constantes.getAppUrl()+"/recuperarSenha.jsp";
         }else{
         	session.setAttribute("usuario", null);
         	session.setAttribute(Constantes.getSessionMsg(), "Código interno e/ou cpf inválido");

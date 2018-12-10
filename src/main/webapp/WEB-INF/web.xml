@@ -292,4 +292,12 @@
     <servlet-name>RemoveImagemPerfilUsuario</servlet-name>
     <url-pattern>/removeImagemPerfilUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AlterarSenha</servlet-name>
+    <servlet-class>controller.AlterarSenha</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlterarSenha</servlet-name>
+    <url-pattern>/alterarSenha</url-pattern>
+  </servlet-mapping>
 </web-app>
