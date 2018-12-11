@@ -14,7 +14,7 @@
 <div class="container">
   				<div class="row">
   					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="<%=session.getAttribute(Constantes.getSessionMsg()).equals("Dados alterados com sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
+					<div class="<%=(request.getParameter("sucessoEditar") != null && request.getParameter("sucessoEditar").equals("1")) ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
@@ -55,7 +55,7 @@
 									</div>
 								</div>
 								<div class="col-md-9">
-									<div class="form-group">
+									<div class="form-group">	
 										<label for="nome">Nome Completo</label> <input type="text"
 											class="form-control" name="nome" id="nome" disabled
 											value="<%=usuario.getPessoa().getNome()%>">
@@ -118,7 +118,7 @@
 									src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
 									id="img-edicao-perfil" style="width:200px; height:200px; border-radius:50%">
 							</p>
-							<form action="/Controle_de_Acesso/removeImagemPerfilUsuario" method="post">
+							<form action="<%=Constantes.getAppUrl()%>/removeImagemPerfilUsuario" method="post">
 							
 							</form>
 							<div class="modal fade" id="removeImagemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,7 +135,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-							        <form action="/Controle_de_Acesso/removeImagemPerfilUsuario" method="post">
+							        <form action="<%=Constantes.getAppUrl()%>/removeImagemPerfilUsuario" method="post">
 										<button type="submit" class="btn btn-primary">Sim</button>
 									</form>
 							      </div>
@@ -147,7 +147,7 @@
 									class="btn btn-outline-danger text-center form-control"
 									title="Remover Imagem">Remover Imagem</button>
 							</div>
-				<form action="/Controle_de_Acesso/alterarImagemPerfilUsuario" method="post" enctype="multipart/form-data">
+				<form action="<%=Constantes.getAppUrl()%>/alterarImagemPerfilUsuario" method="post" enctype="multipart/form-data">
 							<div class="form-group" style="width:100%">
 									<label class="btn btn-outline-dark btn-file" style="width:100%">
 									    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input accept="image/*" type="file" name="image-perfil" id="image-input" style="display: none;">
@@ -171,7 +171,7 @@
   <div class="card">
   <h5 class="card-header">Senha</h5>
   <div class="card-body">
-    <form action="/Controle_de_Acesso/alterarSenhaUsuario" method="post">
+    <form action="<%=Constantes.getAppUrl()%>/alterarSenhaUsuario" method="post">
 					<div class="row">
 					<div class="col-md-12">
 							<div class="form-group">

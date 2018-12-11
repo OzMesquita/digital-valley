@@ -300,4 +300,14 @@
     <servlet-name>AlterarSenha</servlet-name>
     <url-pattern>/alterarSenha</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConfirmaRecuperacaoController</display-name>
+    <servlet-name>ConfirmaRecuperacaoController</servlet-name>
+    <servlet-class>controller.ConfirmaRecuperacaoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmaRecuperacaoController</servlet-name>
+    <url-pattern>/ConfirmaRecuperacao</url-pattern>
+  </servlet-mapping>
 </web-app>

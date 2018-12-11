@@ -30,7 +30,7 @@ public class EditarUsuarioController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String pagina = "editarUsuario.jsp?erroEditar=1";
+		String pagina = "editarUsuario.jsp?sucessoEditar=0";
 			String sessionMsg = "";
 			try {
 

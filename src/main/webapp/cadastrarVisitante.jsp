@@ -58,12 +58,9 @@
         <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
             <div class="topics">
            		<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="assets2/img/n2s-logo.png" class="n2s_logo" /></a>
-	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+	            <h3>Maximizando potenciais, desenvolvendo soluções.</h3>
             </div>
-            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
-			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
-			</nav>
+            
         </div>
         <div class="col-sm-6 col-md-4 col-full-height login-form">
           <div>	
@@ -133,7 +130,10 @@
 	                    </div>
                     </div>
                 </form>
-                
+                <nav class="navbar navbar-light" style="width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>
                     
             </div>            
         </div>

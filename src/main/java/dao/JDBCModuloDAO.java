@@ -23,14 +23,14 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public void cadastrar(Modulo modulo) {
 		super.open();
 		try {
-			String SQL = "INSERT INTO modulo (titulo, url, imagem) VALUES" + "(?,?,?)";
+			String SQL = "INSERT INTO modulo (titulo, url, imagem, descricao) VALUES" + "(?,?,?,?)";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
 			ps.setString(1, modulo.getTitulo());
 			ps.setString(2, modulo.getUrl());
 			ps.setString(3, modulo.getImagem());
-
+			ps.setString(4, modulo.getDescricao());
 			ps.executeUpdate();
 			ps.close();
 
@@ -46,12 +46,13 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public void editar(Modulo modulo) {
 		super.open();
 		try {
-			String SQL = "UPDATE modulo SET titulo=?, url=?, imagem=? WHERE id_modulo = ?";
+			String SQL = "UPDATE modulo SET titulo=?, url=?, imagem=?, descricao=? WHERE id_modulo = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, modulo.getTitulo());
 			ps.setString(2, modulo.getUrl());
 			ps.setString(3, modulo.getImagem());
-			ps.setInt(4, modulo.getId());
+			ps.setString(4, modulo.getDescricao());
+			ps.setInt(5, modulo.getId());
 
 			ps.executeUpdate();
 			ps.close();
@@ -102,6 +103,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				ps.close();
 				rs.close();
@@ -134,6 +136,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				ps.close();
 				rs.close();
@@ -164,6 +167,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
 			}
@@ -199,6 +203,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 
 				modulos.add(modulo);
@@ -232,6 +237,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
 
@@ -321,6 +327,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
 			}
@@ -420,6 +427,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
 			}
@@ -449,6 +457,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
 				modulo.setImagem(rs.getString("imagem"));
 				modulos.add(modulo);
 			}

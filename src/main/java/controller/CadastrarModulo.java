@@ -33,7 +33,7 @@ public class CadastrarModulo extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String pagina = "cadastrarModulo.jsp?erroEditar=1";
+		String pagina = "cadastrarModulo.jsp?sucessoCadastro=0";
 		if (ServletFileUpload.isMultipartContent(req)) {
 			String sessionMsg = "";
 			List<Perfil> perfis = Facade.ListarPeril();

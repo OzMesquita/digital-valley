@@ -45,7 +45,7 @@ public class AlterarSenhaUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String pagina = "view/editarUsuario.jsp?erroEditar=1";
+		String pagina = "view/editarUsuario.jsp?sucessoEditar=0";
 			String sessionMsg = "";
 			try {
 				
@@ -64,7 +64,7 @@ public class AlterarSenhaUsuario extends HttpServlet {
 				}   else if (!senhaNova.equalsIgnoreCase(senhaRepetida)) {
 					sessionMsg = "Erro: Campo cofirmar senha não bate com nova senha!";
 				} else {
-					usuarioDaSessao.setSenha(senhaRepetida);
+					usuarioDaSessao.setSenha(Crypter.crypt(senhaRepetida));
 					Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
 					session.setAttribute("usuario", usuarioDaSessao);
 				}

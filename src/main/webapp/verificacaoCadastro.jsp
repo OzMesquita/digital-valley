@@ -54,12 +54,9 @@
         <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
             <div class="topics">
             	<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="assets2/img/n2s-logo.png" class="n2s_logo" /></a>
-	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+	            <h3>Maximizando potenciais, desenvolvendo soluções.</h3>
             </div>
-            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
-			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
-			</nav>
+            
         </div>
         <div class="col-sm-6 col-md-4 col-full-height login-form">
           <div>	
@@ -67,9 +64,15 @@
           			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
           		</p>
                 <form class="form-horizontal" role="form" action="verificacao" name="formVerifica" method="post">
-                	<div class="erroMsg">
-						<small><%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%></small>
+                	<%
+                		if (mensagem != null && !mensagem.isEmpty()) {
+                	%>
+                	<div class="alert alert-danger">
+						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
 					</div>
+					<%
+                		}
+					%>
 					<div class="btn-group col-sm-12 col-sm-offset-1" role="group" aria-label="Menu aluno e servidor">
 					  <button type="button" class="btn btn-outline-primary form-control active menu-tab-verificao" data-form-type="aluno">
                                 Aluno</button>
@@ -120,7 +123,10 @@
                     </div>
                 </form>
                 
-                    
+                  <nav class="navbar navbar-light" style="width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>  
             </div>            
         </div>
       </div>

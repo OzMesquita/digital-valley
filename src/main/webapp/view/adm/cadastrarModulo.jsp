@@ -27,12 +27,12 @@
 							
 						<div class="row">
 						<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="<%=session.getAttribute(Constantes.getSessionMsg()).equals("Dados alterados com sucesso") ? "alert alert-success": "alert alert-danger" %>" role="alert">
+					<div class="<%=(request.getParameter("sucessoEditar") != null && request.getParameter("sucessoEditar").equals("1")) ? "alert alert-success": "alert alert-danger" %>" role="alert">
   						<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
-					<%} %>	
+					<%} %>		
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="titulo">Título</label> <input type="text" id="titulo" placeholder="Digite um título para o módulo"

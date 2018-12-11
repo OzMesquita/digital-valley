@@ -29,7 +29,7 @@
 <!-- CSS Files -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>/sign.css" rel="stylesheet" />
 <!--meu css -->
 <link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
 
@@ -58,12 +58,9 @@
         <div class="hidden-xs col-sm-6 col-md-8 col-full-height login-main-content" style="position:relative;">
             <div class="topics">
             	<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank"><img src="assets2/img/n2s-logo.png" class="n2s_logo" /></a>
-	            <h3>"Maximizando potenciais, desenvolvendo soluções".</h3>
+	            <h3>Maximizando potenciais, desenvolvendo soluções.</h3>
             </div>
-            <nav class="navbar navbar-light" style="position:absolute; left:0px; bottom: 0px; width:100%;">
-			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
-			</nav>
+            
         </div>
         <div class="col-sm-6 col-md-4 col-full-height login-form">
           <div>	
@@ -112,7 +109,10 @@
                     </div>
                 </form>
                 
-                    
+                <nav class="navbar navbar-light" style="width:100%;">
+			    Guardião
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			</nav>    
             </div>            
         </div>
       </div>

@@ -14,6 +14,7 @@ import dao.UsuarioDAO;
 import model.Modulo;
 import model.Usuario;
 import util.Constantes;
+import util.Crypter;
 import util.Facade;
 
 /**
@@ -49,7 +50,8 @@ public class Login extends HttpServlet {
 						}
 					}
 				}else {
-				pagina = "view/telaInicial.jsp";}
+					pagina = "view/telaInicial.jsp";
+				}
 				uDAO = DAOFactory.criarUsuarioDAO();
 				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
 			}else{
@@ -58,9 +60,9 @@ public class Login extends HttpServlet {
 			
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
-			
-			
+
 		}
 			response.sendRedirect(pagina);
 	}

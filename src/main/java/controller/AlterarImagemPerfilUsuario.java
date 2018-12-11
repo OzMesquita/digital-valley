@@ -53,7 +53,7 @@ public class AlterarImagemPerfilUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String pagina = "view/editarUsuario.jsp?erroEditar=1";
+		String pagina = "view/editarUsuario.jsp?sucessoEditar=0";
 		if (ServletFileUpload.isMultipartContent(request)) {
 			String sessionMsg = "";
 			try {
