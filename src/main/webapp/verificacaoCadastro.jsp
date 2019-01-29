@@ -83,12 +83,12 @@
 					<div id="form-aluno">
 	                    <div class="form-group">
 	                        <div class="col-sm-12 col-sm-offset-1">
-	                            <input type="number" name="matricula" class="form-control" id="inputEmail3" placeholder="Mátricula, ex.: 333333">
+	                            <input type="number" name="matricula" class="form-control" id="inputEmail3" placeholder="Matrícula, ex.: 333333">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <div class="col-sm-12 col-sm-offset-1">
-	                            <input type="text" name="nomeA" class="form-control" id="inputPassword3" placeholder="Nome Completo, ex.: João Paulo Silva">
+	                            <input type="text" name="nomeA" class="form-control" id="inputPassword3" placeholder="Nome Completo sem acentos, ex.: Joao Paulo Silva">
 	                        </div>
 	                    </div>
 					</div>
