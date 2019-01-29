@@ -79,7 +79,7 @@
 					%>
                     <div class="form-group">
                         <div class="col-sm-12 col-sm-offset-1">
-                            <input type="text" name="nome" class="form-control" id="inputEmail3" placeholder="Nome completo" required>
+                            <input type="text" name="nome" class="form-control" id="inputEmail3" placeholder="Nome completo sem acentos, ex.: Joao Paulo Silva" required>
                         </div>
                     </div>
                     <div class="form-group">
