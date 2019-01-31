@@ -83,7 +83,7 @@
 					<div id="form-aluno">
 	                    <div class="form-group">
 	                        <div class="col-sm-12 col-sm-offset-1">
-	                            <input type="number" name="matricula" class="form-control" id="inputEmail3" placeholder="Mátricula, ex.: 333333">
+	                            <input type="number" name="matricula" class="form-control" id="inputEmail3" placeholder="Matrícula, ex.: 333333">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
