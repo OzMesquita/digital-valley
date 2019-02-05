@@ -100,18 +100,18 @@
                         <p class="text-center" >Não possui cadastro?</p>
                         <div class="form-group">
 	                            <a  href="verificacaoCadastro.jsp" class="btn btn-outline-dark form-control">
-	                                Cadastro Servidor ou Aluno</a>
+	                                Cadastro Servidor ou Aluno UFC-Russas</a>
 	                    </div>
 	                    <div class="form-group">
 	                            <a  href="cadastrarVisitante.jsp" class="btn btn-outline-primary form-control">
-	                                Cadastro comunidade</a>
+	                                Clique aqui se não é Servidor ou Aluno!</a>
 	                    </div>
                     </div>
                 </form>
                 
                 <nav class="navbar navbar-light" style="width:100%;">
 			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2019.</p>
 			</nav>    
             </div>            
         </div>
