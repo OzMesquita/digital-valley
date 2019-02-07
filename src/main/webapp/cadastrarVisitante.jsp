@@ -133,6 +133,7 @@
                 <nav class="navbar navbar-light" style="width:100%;">
 			    Guardião
 			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			    <p><a href="mailto:n2s@ufc.br?subject=Ajuda no Guardião" id="n2smail" target="_blank" title="">Precisa de ajuda?</a></p>
 			</nav>
                     
             </div>            
