@@ -13,10 +13,17 @@
  <div class="album py-5 bg-light">
 	<div class="container" align="center">
 		<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-sucess" role="alert">
 			<%=session.getAttribute(Constantes.getSessionMsg()) %>
 		</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
+		<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+		<div class="alert alert-danger" role="alert">
+			<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+		</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
 					
 				<%} %>
 ​

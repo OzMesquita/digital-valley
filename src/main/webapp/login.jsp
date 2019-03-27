@@ -41,13 +41,7 @@
 <body>
 
 	<%
-		String mensagem = null;
-		if (session.getAttribute(Constantes.getSessionMsg()) == null) {
-			mensagem = null;
-		} else {
-			mensagem = (String) session.getAttribute(Constantes.getSessionMsg());
-
-		}
+		
 		if(session.getAttribute("usuario")!=null){
 			response.sendRedirect("view/telaInicial.jsp");
 		}
@@ -69,15 +63,19 @@
           			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
           		</p>
                 <form class="form-horizontal" role="form" action="login" method="post" name="formLogin">
-                	<%
-                		if (mensagem != null && !mensagem.isEmpty()) {
-                	%>
-                	<div class="alert alert-danger">
-						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
+                	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+						<div class="alert alert-sucess" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
-					<%
-                		}
-					%>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					<%} %>
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+						<div class="alert alert-danger" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+				</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
+					
+				<%} %>
                     <div class="form-group">
                         <div class="col-sm-12 col-sm-offset-1">
                             <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Digite o seu E-mail" required>

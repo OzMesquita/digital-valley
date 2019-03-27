@@ -64,15 +64,20 @@
           			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
           		</p>
                 <form class="form-horizontal" role="form" action="verificacao" name="formVerifica" method="post">
-                	<%
-                		if (mensagem != null && !mensagem.isEmpty()) {
-                	%>
-                	<div class="alert alert-danger">
-						<%=mensagem%> <% session.setAttribute(Constantes.getSessionMsg(), null);%>
-					</div>
-					<%
-                		}
-					%>
+                	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+		<div class="alert alert-sucess" role="alert">
+			<%=session.getAttribute(Constantes.getSessionMsg()) %>
+		</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
+		<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+		<div class="alert alert-danger" role="alert">
+			<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+		</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
+					
+				<%} %>
 					<div class="btn-group col-sm-12 col-sm-offset-1" role="group" aria-label="Menu aluno e servidor">
 					  <button type="button" class="btn btn-outline-primary form-control active menu-tab-verificao" data-form-type="aluno">
                                 Aluno</button>
