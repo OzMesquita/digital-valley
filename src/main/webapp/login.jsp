@@ -102,10 +102,10 @@
 	                            <a  href="verificacaoCadastro.jsp" class="btn btn-outline-dark form-control">
 	                                Cadastro Servidor ou Aluno UFC-Russas</a>
 	                    </div>
-	                    <div class="form-group">
+	                    <!-- <div class="form-group">
 	                            <a  href="cadastrarVisitante.jsp" class="btn btn-outline-primary form-control">
 	                                Clique aqui se não é Servidor ou Aluno!</a>
-	                    </div>
+	                    </div> -->
                     </div>
                 </form>
                 
