@@ -69,7 +69,7 @@
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					<%} %>
-					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<%if(session.getAttribute(Constantes.getSessionMsgError()) != null){ %>
 						<div class="alert alert-danger" role="alert">
 					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
 				</div>
