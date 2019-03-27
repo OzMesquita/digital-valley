@@ -69,14 +69,14 @@ public class CadastrarAluno extends HttpServlet {
 				session.setAttribute("siape", null);
 				pagina = "../login.jsp";
 			}else{
-                session.setAttribute(Constantes.getSessionMsg(), "senhas não conferem.");
+                session.setAttribute(Constantes.getSessionMsgError(), "senhas não conferem.");
 				pagina="cadastrarUsuario.jsp?erroSenha=1";
 			}
 
 			
 		} catch (Exception e) {
 		
-			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());
 		}
 		response.sendRedirect(pagina);
 	}

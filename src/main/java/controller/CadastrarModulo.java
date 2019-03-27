@@ -95,7 +95,7 @@ public class CadastrarModulo extends HttpServlet {
 			
 		} else {
 			System.out.println("Oi 12");
-			session.setAttribute(Constantes.getSessionMsg(),
+			session.setAttribute(Constantes.getSessionMsgError(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
 		}
 		resp.sendRedirect(pagina);

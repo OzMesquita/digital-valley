@@ -67,13 +67,13 @@ public class VerificarCadastro extends HttpServlet {
 					session.setAttribute("siape", siape);
 
 				} else if(session.getAttribute("")==null){
-						session.setAttribute(Constantes.getSessionMsg(), "Pre cadastro não identificado");
+						session.setAttribute(Constantes.getSessionMsgError(), "Pre cadastro não identificado");
 						throw new Exception("Pre cadastro não identificado");
 					}
 				}
 
 		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());
 		}
 
 		response.sendRedirect(pagina);

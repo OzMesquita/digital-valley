@@ -45,20 +45,20 @@ public class ConfirmarRecuperacao extends HttpServlet {
         		cpfS = aux2.replaceAll("[.]", "");
             	usuario = Facade.buscarPorSiapeAndCPF(siape, cpfS);
             }else{
-            	session.setAttribute(Constantes.getSessionMsg()," CPF não pode ser vazio.");
+            	session.setAttribute(Constantes.getSessionMsgError()," CPF não pode ser vazio.");
             	usuario = null;
             }
           
            
         }catch (Exception e) {
-        	session.setAttribute(Constantes.getSessionMsg(), "Falha ao buscar a conta");
+        	session.setAttribute(Constantes.getSessionMsgError(), "Falha ao buscar a conta");
 		}  
         if (usuario != null){
         	session.setAttribute("usuario",usuario);
         	pagina = util.Constantes.getAppUrl()+"/recuperarSenha.jsp";
         }else{
         	session.setAttribute("usuario", null);
-        	session.setAttribute(Constantes.getSessionMsg(), "Código interno e/ou cpf inválido");
+        	session.setAttribute(Constantes.getSessionMsgError(), "Código interno e/ou cpf inválido");
         	pagina = util.Constantes.getAppUrl()+"/login.jsp";
         }
         

@@ -112,7 +112,7 @@ public class AlterarImagemPerfilUsuario extends HttpServlet {
 			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 			
 		} else {
-			session.setAttribute(Constantes.getSessionMsg(),
+			session.setAttribute(Constantes.getSessionMsgError(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
 		}
 		response.sendRedirect(pagina);

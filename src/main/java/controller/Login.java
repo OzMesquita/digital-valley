@@ -55,13 +55,13 @@ public class Login extends HttpServlet {
 				uDAO = DAOFactory.criarUsuarioDAO();
 				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
 			}else{
-				session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
+				session.setAttribute(Constantes.getSessionMsgError(),"Usuários e/ou senha inválidos");
 			}
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.setAttribute(Constantes.getSessionMsg(),"Usuários e/ou senha inválidos");
+			session.setAttribute(Constantes.getSessionMsgError(),"Usuários e/ou senha inválidos");
 
 		}
 			response.sendRedirect(pagina);
