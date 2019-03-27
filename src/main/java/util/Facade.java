@@ -165,6 +165,22 @@ public class Facade {
 			
 		return p.getUsuario();
 	}
+	
+	public static Usuario buscarPorEmail(String email) {
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p = pDAO.buscarPorEmail(email);
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscar(p.getId());
+		Servidor servidor = DAOFactory.criarServidorDAO().buscar(p.getId());
+		
+		
+		if(aluno != null){
+			return aluno.getUsuario();
+		}else if (servidor != null){
+			return servidor.getUsuario();
+		}
+			
+		return p.getUsuario();
+	}
 
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();

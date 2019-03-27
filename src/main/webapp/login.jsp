@@ -79,7 +79,7 @@
 					%>
                     <div class="form-group">
                         <div class="col-sm-12 col-sm-offset-1">
-                            <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Digite o seu Login" required>
+                            <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Digite o seu E-mail" required>
                         </div>
                     </div>
                     <div class="form-group">
