@@ -62,7 +62,7 @@ public class CadastrarAluno extends HttpServlet {
 				
 
 				Facade.cadastrarAluno(usuario, aluno);
-				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Aluno "+aluno.getNome());
+				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadastrar Aluno "+aluno.getNome());
 				session.setAttribute("nomeA", null);
 				session.setAttribute("nomeS", null);
 				session.setAttribute("matricula", null);
