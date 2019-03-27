@@ -145,7 +145,7 @@
 													<label>E-mail </label> <input name="email" id="email"
 														title="Preencha este campo corretamente" type="email"
 														class="form-control" required
-														placeholder="Examplo@gmail.com">
+														placeholder="Exemplo@gmail.com">
 												</div>
 												<div class="form-group">
 													<label>Login </label> <input name="login"

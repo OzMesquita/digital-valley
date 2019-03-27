@@ -1,8 +1,9 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="util.Constantes"%>
 <nav class="navbar navbar-dark bg-dark" style="position:fixed; bottom: 0px; width:100%;">
     <a class="navbar-brand" href="#">Guardião</a>
-    <p style="color:#fff; float:right;" class="align-right">© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+    <p style="color:#fff; float:right;" class="align-right">© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getDayOfYear()%>.</p>
 </nav>
 </body>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>

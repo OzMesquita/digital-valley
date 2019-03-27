@@ -22,6 +22,7 @@ public class Constantes {
 	private static String APP_IMG_USER_DIR;
 	private static String PRE_URL;
 	private static Integer MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
+	private static String SESSION_MSG_ERROR;
 	private Constantes() {
 		//
 	}
@@ -43,6 +44,7 @@ public class Constantes {
 		USER_PROFILE_IMAGES_DIR = dotEnv.get("USER_PROFILE_IMAGES_DIR");
 		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
 		PRE_URL = dotEnv.get("PRE_URL");
+		SESSION_MSG_ERROR = dotEnv.get("SESSION_MSG_ERROR");
 	}
 
 	/**
@@ -106,6 +108,13 @@ public class Constantes {
 	public static String getSessionMsg() {
 		return SESSION_MSG;
 	}
+	/**
+	 * @return the sessionMsgError
+	 */
+	public static String getSessionMsgError() {
+		return SESSION_MSG_ERROR;
+	}
+
 
 	/**
 	 * @return the databaseConfDir
