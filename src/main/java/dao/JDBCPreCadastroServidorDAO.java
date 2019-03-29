@@ -23,7 +23,7 @@ public class JDBCPreCadastroServidorDAO extends JDBCDAO implements PreCadastroSe
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
-			ps.setString(2, nome.toUpperCase());
+			ps.setString(2, nome);
 
 			ps.execute();
 			ps.close();
@@ -41,11 +41,11 @@ public class JDBCPreCadastroServidorDAO extends JDBCDAO implements PreCadastroSe
 	public boolean buscarPreCadastro(String siape, String nome){
 		super.open();
 		try {
-			String SQL = "SELECT * FROM pre_cadastro_servidor WHERE siape = ? AND nome=? ";
+			String SQL = "SELECT * FROM pre_cadastro_servidor WHERE siape = ? AND UPPER(nome) LIKE UPPER(?)";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, siape);
-			ps.setString(2, nome.toUpperCase());
+			ps.setString(2, "%"+nome+"%");
 
 			ResultSet rs = ps.executeQuery();
 
