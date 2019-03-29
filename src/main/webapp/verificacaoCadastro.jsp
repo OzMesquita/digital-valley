@@ -39,14 +39,12 @@
 </head>
 <body>
 
-	<% String mensagem = (String) session.getAttribute("msg");
+	<% 
 		session.setAttribute("nomeA", null);
 		session.setAttribute("nomeS", null);
 		session.setAttribute("matricula", null);
 		session.setAttribute("siape", null);
-    if(mensagem == null){
-		mensagem ="";
-	}%>
+    %>
 
 
     <div class="container-fluid container-full-height container-full-width">
