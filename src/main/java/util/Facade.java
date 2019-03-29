@@ -181,6 +181,16 @@ public class Facade {
 			
 		return p.getUsuario();
 	}
+	public static boolean verificarCPF(String CPF) {
+		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
+		Pessoa p = pDAO.buscarPorCpf(CPF);
+		if (p==null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
 
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();

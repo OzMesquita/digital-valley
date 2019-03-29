@@ -33,13 +33,17 @@ public class CadastrarAluno extends HttpServlet {
 		String dataNasci = request.getParameter("nascimento");
 		String valorCurso = request.getParameter("curso");
 		String semestreDeIngresso = request.getParameter("semestreDeIngresso");
-		String login = request.getParameter("login");
+		String login = " "; /*request.getParameter("login");*/
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 		
 		String pagina = "cadastrarUsuario.jsp?erroCadastro=1";
 		try {
+			if (Facade.verificarCPF(cpf)) {
+				pagina = "cadastrarUsuario.jsp?erroSenha=1";
+				session.setAttribute(Constantes.getSessionMsgError(), "Usuário já cadastrado.");
+			}
 			if (senha.equals(senha2)) {
 				Aluno aluno = new Aluno();
 				Usuario usuario = new Usuario();

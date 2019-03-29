@@ -29,13 +29,17 @@ public class CadastrarComunidade extends HttpServlet {
 		cpf = aux.replaceAll("[.]", "");
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
-		String login = request.getParameter("login");
+		String login = " "; /*request.getParameter("login");*/
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
 		
 		String pagina = "cadastrarVisitante.jsp?erroCadastro=1";
 		try {
+			if (Facade.verificarCPF(cpf)) {
+				pagina = "cadastrarUsuario.jsp?erroSenha=1";
+				session.setAttribute(Constantes.getSessionMsgError(), "Usuário já cadastrado.");
+			}
 			if (senha.equals(senha2)) {
 				Pessoa pessoa = new Pessoa();
 				Usuario usuario = new Usuario();

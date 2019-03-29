@@ -99,7 +99,7 @@
                         <p class="text-center" >Não possui cadastro?</p>
                         <div class="form-group">
 	                            <a  href="verificacaoCadastro.jsp" class="btn btn-outline-dark form-control">
-	                                Cadastro Servidor ou Aluno UFC-Russas</a>
+	                                Cadastro Servidor ou Aluno</a>
 	                    </div>
 	                    <!-- <div class="form-group">
 	                            <a  href="cadastrarVisitante.jsp" class="btn btn-outline-primary form-control">
