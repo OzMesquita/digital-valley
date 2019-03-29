@@ -80,7 +80,7 @@
                     <div class="form-group">
 													<label>Nome Completo </label> <input name="nome"
 														type="text" class="form-control"
-														value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("nomeA") : session.getAttribute("nomeS") %>"
+														value="<%= session.getAttribute("nomeA") != null ? session.getAttribute("nomeA").toString().toUpperCase() : session.getAttribute("nomeS").toString().toUpperCase() %>"
 														readonly="true">
 												</div>
 												<div class="form-group">
