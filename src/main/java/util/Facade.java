@@ -191,7 +191,6 @@ public class Facade {
 		}
 	}
 	
-
 	public static Usuario buscarPorMatriculaAndCPF(String matricula, String cpf) {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		return pDAO.buscarPorMatriculaAndCPF(matricula, cpf).getUsuario();
@@ -301,15 +300,13 @@ public class Facade {
 
 	public static void preCadastrarAluno(String nome, String matricula, int curso) throws Exception {
 		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
-		
-		if(aluno != null){
-			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
-		}
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		if(matricula.matches("^[0-9]+$")) {
-			preA.preCadastrar(nome, matricula, curso);
-		}else {
 			throw new Exception("Matricula " + matricula+ " inválida");
+		}else if(aluno != null && !(preA.buscarPreCadastro(matricula, nome)) ){
+			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
+		}else {
+			preA.preCadastrar(nome, matricula, curso);
 		}
 
 	}
@@ -330,9 +327,9 @@ public class Facade {
 		
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Servidor s = sDAO.buscarPorSiape(siape);
-		
-		if(s == null ){
-			PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
+		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
+		if(s == null && !(pDAO.buscarPreCadastro(siape, nome))){
+			
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
 			throw new IllegalArgumentException("Servidor já cadastrado no sistema");
