@@ -146,12 +146,12 @@
 														class="form-control" required
 														placeholder="Exemplo@gmail.com">
 												</div>
-												<div class="form-group">
+												<!-- <div class="form-group">
 													<label>Login </label> <input name="login"
 														title="Preencha este campo corretamente" type="text"
 														class="form-control" required
 														placeholder="Nome de usuário">
-												</div>
+												</div> -->
 												<div class="form-group">
 													<label>Senha </label> <input name="senha"
 														title="Preencha este campo corretamente" type="password"

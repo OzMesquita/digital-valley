@@ -121,10 +121,10 @@
 	                            <a  href="login.jsp" class="btn btn-outline-dark form-control">
 	                                Entrar</a>
 	                    </div>
-	                    <div class="form-group">
+	                    <!-- <div class="form-group">
 	                            <a  href="cadastrarVisitante.jsp" class="btn btn-outline-primary form-control">
 	                                Cadastro comunidade</a>
-	                    </div>
+	                    </div> -->
                     </div>
                 </form>
                 

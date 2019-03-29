@@ -95,11 +95,11 @@
                             <input type="text" name="email" class="form-control"  id="inputEmail3" placeholder="Digite seu E-mail" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="col-sm-12 col-sm-offset-1">
                             <input type="text" name="login" class="form-control"  id="inputEmail3" placeholder="Digite seu login para acesso" required>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="col-sm-12 col-sm-offset-1">
                             <input type="password" name="senha" class="form-control" id="inputPassword3" placeholder="Digite sua senha" required>

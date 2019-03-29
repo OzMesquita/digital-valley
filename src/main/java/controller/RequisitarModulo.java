@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import dao.DAOFactory;
+import dao.PessoaDAO;
+import model.Pessoa;
 import model.Usuario;
 import util.Constantes;
 import util.Facade;
@@ -24,7 +26,7 @@ public class RequisitarModulo extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			Usuario userObjectToJSON = Facade.buscarPorLogin(user.getLogin());
+			Usuario userObjectToJSON = Facade.buscarPorEmail(user.getPessoa().getEmail());
 			userObjectToJSON.setToken(DAOFactory.criarUsuarioDAO().buscarToken(user.getPessoa().getId()));
 			HttpSession session = request.getSession();
 			userObjectToJSON.getPessoa().setUsuario(null);
@@ -38,7 +40,7 @@ public class RequisitarModulo extends HttpServlet{
 			int status = Facade.executeHTTPRequestToModule(url, json);
 			System.out.println(url);
 			System.out.println(status);
-			Usuario userToken = Facade.buscarPorLogin(user.getLogin());
+			Usuario userToken = Facade.buscarPorEmail(user.getPessoa().getEmail());
 			userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
 			if(status != 200){
 				session.setAttribute(Constantes.getSessionMsg(), "Acesso negado!");
