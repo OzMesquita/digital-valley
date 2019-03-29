@@ -19,7 +19,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
-			ps.setString(2, nome);
+			ps.setString(2, nome.toUpperCase());
 			ps.setInt(3, curso);
 
 			ps.execute();
@@ -42,7 +42,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
-			ps.setString(2, nome);
+			ps.setString(2, nome.toUpperCase());
 			ps.setInt(3, curso);
 
 			ps.execute();
@@ -62,11 +62,11 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 	public boolean buscarPreCadastro(String matricula, String nome){
 		super.open();
 		try {
-			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
+			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ? AND nome=?";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
-			ps.setString(2, "%"+nome+"%");
+			ps.setString(2, nome.toUpperCase());
 
 			ResultSet rs = ps.executeQuery();
 
@@ -95,11 +95,11 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 	public int buscarCursoPreCadastrado (String matricula, String nome){
 		super.open();
 		try {
-			String SQL = "SELECT id_curso FROM pre_cadastro_aluno WHERE matricula = ? AND UPPER(nome) LIKE UPPER(?)";
+			String SQL = "SELECT id_curso FROM pre_cadastro_aluno WHERE matricula = ? AND nome=?";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
-			ps.setString(2, "%"+nome+"%");
+			ps.setString(2, nome);
 
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
