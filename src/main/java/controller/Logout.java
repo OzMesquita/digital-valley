@@ -20,8 +20,10 @@ public class Logout extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Usuario user = (Usuario) session.getAttribute("usuario");
-		DAOFactory.criarUsuarioDAO().salvarToken("", user.getPessoa().getId());
-		DAOFactory.criarUsuarioDAO().salvarTokenUsuario("", user.getPessoa().getId());
+		if (user != null) {
+			DAOFactory.criarUsuarioDAO().salvarToken("", user.getPessoa().getId());
+			DAOFactory.criarUsuarioDAO().salvarTokenUsuario("", user.getPessoa().getId());
+		}
 		session.invalidate();
 		response.sendRedirect(Constantes.getAppUrl()+"/login.jsp?deslog=1");
 	}
