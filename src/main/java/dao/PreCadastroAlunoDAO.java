@@ -12,4 +12,6 @@ public interface PreCadastroAlunoDAO {
 	
 	public void excluirAlunoPreCadastro(String matricula, String nome);
 	
+	public boolean buscarPreCadastro(String matricula);
+	
 }

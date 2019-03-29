@@ -57,7 +57,39 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 		
 	}
 	
+	
+	@Override
+	public boolean buscarPreCadastro(String matricula){
+		super.open();
+		try {
+			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ?";
 
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, matricula);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				
+				rs.close();
+				ps.close();
+				
+				return true;
+				
+			}else{
+				rs.close();
+				ps.close();
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Aluno(a) não pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
+		}finally {
+			super.close();
+		}
+	}
 	@Override
 	public boolean buscarPreCadastro(String matricula, String nome){
 		super.open();

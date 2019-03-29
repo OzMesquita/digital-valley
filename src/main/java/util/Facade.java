@@ -288,6 +288,11 @@ public class Facade {
 		return mDAO.buscar(id);
 	}
 
+	public static boolean verificacaoAluno(String matricula) {
+		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		return preA.buscarPreCadastro(matricula);
+	}
+	
 	public static boolean verificacaoAluno(String matricula, String nome) {
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		return preA.buscarPreCadastro(matricula, nome);
@@ -296,6 +301,11 @@ public class Facade {
 	public static boolean verificacaoServidor(String siape, String nome) {
 		PreCadastroServidorDAO preServDAO = DAOFactory.criarPreCadastroServidor();
 		return preServDAO.buscarPreCadastro(siape, nome);
+	}
+	
+	public static boolean verificacaoServidor(String siape) {
+		PreCadastroServidorDAO preServDAO = DAOFactory.criarPreCadastroServidor();
+		return preServDAO.buscarPreCadastro(siape);
 	}
 
 	public static void preCadastrarAluno(String nome, String matricula, int curso) throws Exception {

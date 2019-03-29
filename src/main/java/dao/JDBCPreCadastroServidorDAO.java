@@ -70,6 +70,38 @@ public class JDBCPreCadastroServidorDAO extends JDBCDAO implements PreCadastroSe
 			super.close();
 		}
 	}
+	@Override
+	public boolean buscarPreCadastro(String siape){
+		super.open();
+		try {
+			String SQL = "SELECT * FROM pre_cadastro_servidor WHERE siape = ?";
+
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, siape);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				
+				rs.close();
+				ps.close();
+				
+				return true;
+				
+			}else{
+				rs.close();
+				ps.close();
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao buscar registro do servidor", e);
+		}finally {
+			super.close();
+		}
+	}
 
 	@Override
 	public void excluirPreCadastro(String siape, String nome) {

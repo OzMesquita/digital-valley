@@ -8,5 +8,7 @@ public interface PreCadastroServidorDAO {
 	
 	public void excluirPreCadastro(String siape, String nome);
 	
+	public boolean buscarPreCadastro(String siape);
+	
 
 }
