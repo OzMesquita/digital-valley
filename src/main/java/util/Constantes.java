@@ -23,6 +23,7 @@ public class Constantes {
 	private static String PRE_URL;
 	private static Integer MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
 	private static String SESSION_MSG_ERROR;
+	private static String GUARDIAO_VERSION;
 	private Constantes() {
 		//
 	}
@@ -45,6 +46,7 @@ public class Constantes {
 		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
 		PRE_URL = dotEnv.get("PRE_URL");
 		SESSION_MSG_ERROR = dotEnv.get("SESSION_MSG_ERROR");
+		GUARDIAO_VERSION = dotEnv.get("GUARDIAO_VERSION");
 	}
 
 	/**
@@ -195,6 +197,18 @@ public class Constantes {
 	 */
 	public static void setMAX_USER_PROFILE_IMAGE_SIZE_BYTES(Integer mAX_USER_PROFILE_IMAGE_SIZE_BYTES) {
 		MAX_USER_PROFILE_IMAGE_SIZE_BYTES = mAX_USER_PROFILE_IMAGE_SIZE_BYTES;
+	}
+	/**
+	 * @return the gUARDIAO_VERSION
+	 */
+	public static String getGUARDIAO_VERSION() {
+		return GUARDIAO_VERSION;
+	}
+	/**
+	 * @param gUARDIAO_VERSION the gUARDIAO_VERSION to set
+	 */
+	public static void setGUARDIAO_VERSION(String gUARDIAO_VERSION) {
+		GUARDIAO_VERSION = gUARDIAO_VERSION;
 	}
 	
 }
