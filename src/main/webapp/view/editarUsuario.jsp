@@ -87,13 +87,13 @@
 										value="<%=usuario.getPessoa().getEmail()%>">
 								</div>
 							</div>
-							<div class="col-md-12">
+							<%-- <div class="col-md-12">
 							<div class="form-group">
 								<label for="login">Login</label> <input type="text"
 									class="form-control" name="login" id="login" required
 									value="<%=usuario.getLogin()%>">
 							</div>
-						</div>
+						</div> --%>
 						<div class="col-md-12">
 						<div class="form-group">
 						<input type="submit"

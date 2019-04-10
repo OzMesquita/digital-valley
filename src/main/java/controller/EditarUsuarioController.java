@@ -39,7 +39,7 @@ public class EditarUsuarioController extends HttpServlet {
 				Pessoa pessoaDaSessao = usuarioDaSessao.getPessoa();
 				usuarioDaSessao.getPessoa().setDataNascimento(req.getParameter("nascimento"));
 				usuarioDaSessao.getPessoa().setEmail(req.getParameter("email"));
-				usuarioDaSessao.setLogin(req.getParameter("login"));
+				//usuarioDaSessao.setLogin(req.getParameter("login"));
 				Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
 				// salvar sessao
 				session.setAttribute("usuario", usuarioDaSessao);
