@@ -11,25 +11,19 @@
   					<div class="card">
 						  <h5 class="card-header">Importar Servidores</h5>
 						  <div class="card-body">
-					<%
-						if (session.getAttribute(Constantes.getSessionMsg()) != null) {
-					%>
-					<div class="alert alert-danger" role="alert">
-						<%=session.getAttribute(Constantes.getSessionMsg())%>
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+						<div class="alert alert-sucess" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
-					<%session.setAttribute(Constantes.getSessionMsg(), null);%>
-
-					<%
-						}
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					<%} %>
+					<%if(session.getAttribute(Constantes.getSessionMsgError()) != null){ %>
+						<div class="alert alert-danger" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+				</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
 					
-						if (request.getParameter("sucessoPrecadastro") != null  && request.getParameter("sucessoPrecadastro").equals("1")) {
-					%>
-					<div class="alert alert-success" role="alert">
-						<%="Sucesso ao cadastrar Servidor"%>
-					</div>
-					<%
-						}
-					%>
+				<%} %>
 					<form action="importarServidor" method="post">
 						<div class="form-group">
 							<label for="nome">Nome Completo </label> <input required="true"

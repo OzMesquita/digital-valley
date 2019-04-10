@@ -11,22 +11,20 @@
   					<div class="card">
 						  <h5 class="card-header">Importar Alunos</h5>
 						  <div class="card-body">
-
-				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="alert alert-danger" role="alert">
-  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+						<div class="alert alert-sucess" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					<%} %>
+					<%if(session.getAttribute(Constantes.getSessionMsgError()) != null){ %>
+						<div class="alert alert-danger" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+				</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
 					
 				<%} %>
 				
-				
-				<%if(request.getParameter("sucesso")!= null){ %>
-					<div class="alert alert-success" role="alert">
-  						Pré cadastro dos alunos realizada com sucesso !
-					</div>
-					
-				<%} %>
 				<form action="importarAlunos" method="post">
 					<div class="form-group">
 						<label for="curso">Curso</label> <select required="required"
