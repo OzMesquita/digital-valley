@@ -54,7 +54,7 @@ public class RecuperarSenha extends HttpServlet {
                     request.getSession().setAttribute("pessoa", p);
                     
                 }else{
-                	request.getSession().setAttribute("msg", "Este e-mail não está vinculado a uma conta ativa.");
+                	request.getSession().setAttribute(Constantes.getSessionMsgError(), "Este e-mail não está vinculado a uma conta ativa.");
                     throw new IllegalArgumentException("Este e-mail não está vinculado a uma conta ativa.");
                 }
               
@@ -62,7 +62,7 @@ public class RecuperarSenha extends HttpServlet {
                 throw new IllegalArgumentException("E-mail não pode ser vazio.");
             }
         }catch (Exception e) {
-        	session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+        	session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());
 		}
         response.sendRedirect("recuperSenha.jsp");
         
