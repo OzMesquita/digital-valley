@@ -12,7 +12,7 @@
 						  <h5 class="card-header">Importar Servidores</h5>
 						  <div class="card-body">
 					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-						<div class="alert alert-sucess" role="alert">
+						<div class="alert alert-success" role="alert">
 					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
