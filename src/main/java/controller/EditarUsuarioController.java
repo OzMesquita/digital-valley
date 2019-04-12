@@ -46,13 +46,14 @@ public class EditarUsuarioController extends HttpServlet {
 				if(sessionMsg.isEmpty()) {
 					pagina = "editarUsuario.jsp?sucessoEditar=1";
 					sessionMsg = "Dados alterados com sucesso";
+					session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 				sessionMsg += e.getMessage();
 			}
-			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
+			session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 			
 		resp.sendRedirect(pagina);
 	}
