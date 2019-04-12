@@ -55,6 +55,9 @@
 							 </div>
 							 <div class="col-md-12">
 							<div class="form-group" style="width:100%">
+							<div id="imagemLogo" >
+								<img id="smallTemplate" src="<%=Constantes.getMODULES_IMAGES_DIR()%>/no_img" alt="Logo do módulo" width="300" height="300" />
+							</div>
 							<label for="imagem">Logo Módulo</label>
 									<label class="btn btn-outline-dark btn-file" style="width:100%">
 									    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input type="file" name="imagem" id="imagem" style="display: none;">
@@ -118,4 +121,22 @@
 				}
 			});
 		});
+	</script>
+	
+	<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#smallTemplate').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imagem").change(function(){
+        readURL(this);
+    });
 	</script>
