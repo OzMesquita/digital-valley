@@ -52,8 +52,9 @@ public class EditarUsuarioController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				sessionMsg += e.getMessage();
+				session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 			}
-			session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
+			
 			
 		resp.sendRedirect(pagina);
 	}

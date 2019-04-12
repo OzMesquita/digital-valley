@@ -64,7 +64,7 @@
           		</p>
                 <form class="form-horizontal" role="form" action="login" method="post" name="formLogin">
                 	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="alert alert-success" role="alert">
+					<div class="alert alert-success" role="alert">	
 					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
