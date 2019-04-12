@@ -30,7 +30,7 @@ public class CadastrarServidor extends HttpServlet {
 		String email = request.getParameter("email");
 		String codigo = request.getParameter("codigo");
 		String dataNasci = request.getParameter("nascimento");
-		String login = " "; /*request.getParameter("login");*/
+		String login = "    "; /*request.getParameter("login");*/
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
