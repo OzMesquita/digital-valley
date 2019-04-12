@@ -33,7 +33,7 @@ public class CadastrarAluno extends HttpServlet {
 		String dataNasci = request.getParameter("nascimento");
 		String valorCurso = request.getParameter("curso");
 		String semestreDeIngresso = request.getParameter("semestreDeIngresso");
-		String login = " "; /*request.getParameter("login");*/
+		String login = "    "; /*request.getParameter("login");*/
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
