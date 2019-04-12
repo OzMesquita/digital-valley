@@ -29,7 +29,7 @@ public class CadastrarComunidade extends HttpServlet {
 		cpf = aux.replaceAll("[.]", "");
 		String email = request.getParameter("email");
 		String dataNasci = request.getParameter("nascimento");
-		String login = " "; /*request.getParameter("login");*/
+		String login = "    "; /*request.getParameter("login");*/
 		String senha = request.getParameter("senha");
 		String senha2 = request.getParameter("senha2");
 		HttpSession session = request.getSession();
