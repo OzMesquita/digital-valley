@@ -88,9 +88,11 @@ public class CadastrarModulo extends HttpServlet {
 			} catch (NullPointerException e) {
 				sessionMsg += e.getMessage()+"null";
 				e.printStackTrace();
+				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
 			} catch (Exception e) {
+				sessionMsg += e.getMessage()+"null";
 				e.printStackTrace();
-				sessionMsg += e.getMessage();
+				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg += e.getMessage());
 			}
 			
 		} else {

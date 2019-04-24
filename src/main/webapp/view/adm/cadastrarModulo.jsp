@@ -4,12 +4,7 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="model.Modulo"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	String mensagem = (String) session.getAttribute("msg");
-	if (mensagem == null) {
-		mensagem = "";
-	}
-%>
+
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Cadastrar Módulos</h1>
@@ -26,13 +21,7 @@
 							<form action="cadastrarModulo" name="formCadastro" enctype="multipart/form-data" method="post">
 							
 						<div class="row">
-						<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-					<div class="<%=(request.getParameter("sucessoEditar") != null && request.getParameter("sucessoEditar").equals("1")) ? "alert alert-success": "alert alert-danger" %>" role="alert">
-  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
-					</div>
-					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
-					
-					<%} %>
+
 					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
 					<div class="alert alert-success" role="alert">	
 					<%=session.getAttribute(Constantes.getSessionMsg()) %>
