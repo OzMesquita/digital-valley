@@ -32,7 +32,20 @@
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
-					<%} %>		
+					<%} %>
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-success" role="alert">	
+					<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					<%} %>
+					<%if(session.getAttribute(Constantes.getSessionMsgError()) != null){ %>
+						<div class="alert alert-danger" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
+				</div>
+					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
+					
+				<%} %>		
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="titulo">Título</label> <input type="text" id="titulo" placeholder="Digite um título para o módulo"
