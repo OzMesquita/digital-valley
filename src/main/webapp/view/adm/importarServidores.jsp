@@ -31,7 +31,7 @@
 						</div>
 						<div class="form-group">
 							<label for="siape">Siape </label><input required="true"
-								name="siape" id="siape" type="text" class="form-control">
+								name="siape" id="siape" minlength="7" type="text" class="form-control">
 						</div>
 						<div class="form-group">
 							<input type="submit"
