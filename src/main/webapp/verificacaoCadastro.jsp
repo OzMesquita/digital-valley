@@ -61,7 +61,7 @@
           		<p class="text-center">
           			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
           		</p>
-                <form class="form-horizontal" role="form" action="verificacao" name="formVerifica" method="post">
+                <form class="form-horizontal" id="formVerifica" role="form" action="verificacao" name="formVerifica" method="post">
                 	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
 		<div class="alert alert-sucess" role="alert">
 			<%=session.getAttribute(Constantes.getSessionMsg()) %>
@@ -161,14 +161,21 @@
 			$('.menu-tab-verificao').removeClass('active');
 			$this.addClass('active');
 			if (formType == 'aluno') {
+				limparForm();
 				$('#form-servidor').hide();
 				$('#form-aluno').show();
+				
 			} else {
+				limparForm();
 				$('#form-servidor').show();
 				$('#form-aluno').hide();
+				
 			}
 		});
 	});
+	function limparForm(){
+		document.getElementById("formVerifica").reset();
+	}
 	function validarLogin() {
 		if (document.formLogin.login.value === ""
 				&& document.formLogin.senha.value === "") {
