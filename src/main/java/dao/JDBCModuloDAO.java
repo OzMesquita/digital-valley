@@ -124,7 +124,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 		super.open();
 		Modulo modulo = new Modulo();
 
-		String SQL = "SELECT id_modulo, titulo, url, imagem FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
+		String SQL = "SELECT id_modulo, titulo, url, imagem, descricao FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
 		try {
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
