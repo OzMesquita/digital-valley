@@ -328,7 +328,7 @@ public class Facade {
 	}
 
 	public static void preCadastroServidor(String nome, String siape) {
-		try {
+		
 		if(!nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
 			throw new IllegalArgumentException("Erro: O Nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome);
 		}
@@ -344,10 +344,7 @@ public class Facade {
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
 			throw new IllegalArgumentException("Servidor já cadastrado no sistema");
-		}
-		}catch (Exception e) {
-			
-		}			
+		}										
 		
 	}
 
