@@ -43,7 +43,7 @@ public class ImportacaoController extends HttpServlet {
 				
 			}
 			pagina = "importarAlunos.jsp?sucesso=1";
-			session.setAttribute(Constantes.getSessionMsg(), "Pré cadastro dos alunos realizada com sucesso !");
+			session.setAttribute(Constantes.getSessionMsg(), "Pré cadastro dos alunos realizada com sucesso!");
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());	

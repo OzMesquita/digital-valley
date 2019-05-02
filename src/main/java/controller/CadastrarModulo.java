@@ -61,7 +61,7 @@ public class CadastrarModulo extends HttpServlet {
 										+ " MB.<br>";
 							}
 						} else {
-							sessionMsg = "Erro: O arquivo selecionado deve ser uma imagem.<br>";
+							sessionMsg = "Erro: Não foi selecionada uma imagem para a logo.";
 						}
 					}
 				}
@@ -95,11 +95,9 @@ public class CadastrarModulo extends HttpServlet {
 					session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 				}
 			} catch (NullPointerException e) {
-				sessionMsg += e.getMessage();
 				e.printStackTrace();
 				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
 			} catch (Exception e) {
-				sessionMsg += e.getMessage();
 				e.printStackTrace();
 				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
 			}
