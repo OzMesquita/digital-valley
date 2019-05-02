@@ -86,13 +86,13 @@ public class CadastrarModulo extends HttpServlet {
 				pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
 				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 			} catch (NullPointerException e) {
-				sessionMsg += e.getMessage()+"null";
+				sessionMsg += e.getMessage();
 				e.printStackTrace();
 				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
 			} catch (Exception e) {
-				sessionMsg += e.getMessage()+"null";
+				sessionMsg += e.getMessage();
 				e.printStackTrace();
-				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg += e.getMessage());
+				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
 			}
 			
 		} else {
