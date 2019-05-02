@@ -38,7 +38,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="matriculas">Matriculas</label>
+						<label for="matriculas">Matrículas</label>
 						<textarea name="matriculas" id="matriculas" required="required"
 							class="form-control" placeholder="123456 Nome do Aluno 1
 123457 Nome do Aluno 2"></textarea>

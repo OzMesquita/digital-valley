@@ -117,7 +117,7 @@
   
   <div class="col-md-3">
   <div class="card">
-						    <h5 class="card-header">Avatar</h5>
+						    <h5 class="card-header">Foto de Perfil</h5>
 						  <div class="card-body">
 						    <p>
 								<img

@@ -23,7 +23,7 @@
 	<div class="col-md-6">
 		<div class="panel panel-default header">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Modulos Desassociados</h3>
+				<h3 id="titulo_da_pagina">Módulos Desassociados</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -62,7 +62,7 @@
 	<div class="col-md-6">
 		<div class="panel panel-default header">
 			<div class="panel-heading">
-				<h3 id="titulo_da_pagina">Modulos Associados</h3>
+				<h3 id="titulo_da_pagina">Módulos Associados</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">

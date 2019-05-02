@@ -75,7 +75,7 @@ public class CadastrarModulo extends HttpServlet {
 				
 				if(Facade.buscarPorNome(modulo.getTitulo()).getTitulo().equals(modulo.getTitulo())) {
 					pagina = "cadastrarModulo.jsp?erroCadastrar=1";
-					session.setAttribute(Constantes.getSessionMsgError(), "Modulo já cadastrado");
+					session.setAttribute(Constantes.getSessionMsgError(), "Módulo já cadastrado");
 					
 				}else {				
 					Facade.cadastrarModulo(modulo);

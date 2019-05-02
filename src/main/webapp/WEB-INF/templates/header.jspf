@@ -49,7 +49,7 @@
           <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Pré Cadastrar
 									Alunos</a>
           
-          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Pre Cadastrar
+          <a class="dropdown-item" href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Pré Cadastrar
 									Servidores</a>
 								
         </div>
