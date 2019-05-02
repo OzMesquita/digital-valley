@@ -78,7 +78,7 @@
 						%>
 						<p>
 							<input type="checkbox" class="perfil_checkbox"
-								name="<%=p.getNome()%>" value="ok"><%=p.getNome()%>
+								name="perfil_checkbox" value="<%=p.getNome()%>"><%=p.getNome()%>
 						</p>
 						<%
 							}
