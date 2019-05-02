@@ -131,7 +131,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, matricula);
-			ps.setString(2, nome);
+			ps.setString(2, nome.toUpperCase());
 
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
