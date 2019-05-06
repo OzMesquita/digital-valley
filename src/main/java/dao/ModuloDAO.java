@@ -18,6 +18,8 @@ public interface ModuloDAO {
 	
 	public Modulo buscarPorNome(String nome);
 	
+	public List<Modulo> buscarPorNome(String nome, int inicio, int fim);
+	
 	public List<Modulo> buscar(Pessoa pessoa);
 	
 	public List<Modulo> buscarPorPerfil(int perfil);

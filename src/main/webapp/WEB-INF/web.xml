@@ -122,6 +122,14 @@
     <servlet-name>CadastroComunidade</servlet-name>
     <servlet-class>controller.CadastrarComunidade</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ListarModulos</servlet-name>
+  	<servlet-class>controller.ListarModulos</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditarModulo</servlet-name>
+  	<servlet-class>controller.EditarModulo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -229,6 +237,14 @@
   <servlet-mapping>
     <servlet-name>CadastroComunidade</servlet-name>
     <url-pattern>/cadastroComunidade</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ListarModulos</servlet-name>
+  	<url-pattern>/view/adm/listar_modulos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditarModulo</servlet-name>
+  	<url-pattern>/view/adm/editar_modulo</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>Autentica</filter-name>

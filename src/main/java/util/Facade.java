@@ -441,6 +441,10 @@ public class Facade {
 		return mDAO.buscarPorNome(nome);
 
 	}
+	public static List<Modulo> buscarPorNome(String nome, int inicio, int fim) {
+		ModuloDAO mDAO = DAOFactory.criarModuloDAO();
+		return mDAO.buscarPorNome(nome, inicio, fim);
+	}
 
 	public static void EnviarEmailRecuperacaoDeSenha(Pessoa pessoa) {
 		if (pessoa != null) {
@@ -554,4 +558,18 @@ public class Facade {
 		
 		return modulosFinais;
 	}
+	
+	public static int getQuantidadeModulo() {
+		return buscarTodosModulos().size();		
+	}
+	public static int getQuantidadeModulo(String nomeModulo, int inicio, int fim) {
+		ModuloDAO mDao = DAOFactory.criarModuloDAO();
+		mDao.buscarPorNome(nomeModulo, inicio, fim);
+		return buscarTodosModulos().size();		
+	}
+	public static void editarModulo(Modulo m) {
+		ModuloDAO mDao = DAOFactory.criarModuloDAO();
+		mDao.editar(m);
+	}
+	
 }

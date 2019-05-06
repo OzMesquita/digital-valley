@@ -490,5 +490,36 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 			super.close();
 		}
 	}
+	
+	@Override
+	public List<Modulo> buscarPorNome(String nome, int inicio, int fim) {
+		super.open();
+		try {
+			String sql = "SELECT * FROM modulo WHERE UPPER(nome) LIKE UPPER(?) ORDER BY nome ASC LIMIT ? OFFSET ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(sql);
+			ps.setString(1, nome);
+			ps.setInt(2, inicio);
+			ps.setInt(3, fim);
+			ResultSet rs = ps.executeQuery();
+			List<Modulo> modulos = new ArrayList<Modulo>();
+			while (rs.next()) {
+				Modulo modulo = new Modulo();
+				modulo.setId(rs.getInt("id_modulo"));
+				modulo.setTitulo(rs.getString("titulo"));
+				modulo.setUrl(rs.getString("url"));
+				modulo.setDescricao(rs.getString("descricao"));
+				modulo.setImagem(rs.getString("imagem"));
+				modulos.add(modulo);
+			}
+			ps.close();
+			rs.close();
+			return modulos;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar modulos por nome: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
 
 }
