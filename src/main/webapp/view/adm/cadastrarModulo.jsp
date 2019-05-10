@@ -58,7 +58,8 @@
 							 <div class="col-md-12">
 							<div class="form-group" style="width:100%">
 							<div id="imagemLogo" >
-								<img id="smallTemplate" src="<%=Constantes.getMODULES_IMAGES_DIR()%>/no_img" alt="Logo do módulo" width="300" height="300" />
+								<img class="card-img-top"id="smallTemplate" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 150px; width: 150px; display: block;" src="<%=Constantes.getAppImgUrl()%>/i2.png" data-holder-rendered="true">
+								<!-- <img id="smallTemplate" src="../../assets2/img/no_img.jpg" alt="Logo do módulo" width="300" height="300" /> -->
 							</div>
 							<label for="imagem">Logo Módulo</label>
 									<label class="btn btn-outline-dark btn-file" style="width:100%">
@@ -78,7 +79,7 @@
 						%>
 						<p>
 							<input type="checkbox" class="perfil_checkbox"
-								name="perfil_checkbox" value="<%=p.getNome()%>"><%=p.getNome()%>
+								name="<%=p.getNome()%>" value="<%=p.getNome()%>"><%=p.getNome()%>
 						</p>
 						<%
 							}
