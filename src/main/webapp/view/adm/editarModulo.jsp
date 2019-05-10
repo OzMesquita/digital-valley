@@ -30,13 +30,13 @@
 									<div class="form-group">
 										<label>Código</label> <input type="text" class="form-control"
 											disabled value="<%= m.getId()%>">
-											<input type="hidden" name="idUsuario" value="<%=id%>">
+											<input type="hidden" name="idModulo" value="<%=id%>">
 									</div>
 								</div>
 								<div class="col-md-9">
 									<div class="form-group">
-										<label>Titulo</label> <input type="text" id="cpf"
-											class="form-control" value="<%= m.getTitulo()%>">
+										<label>Titulo</label> <input type="text" 
+											disabled class="form-control" value="<%= m.getTitulo()%>">
 									</div>
 								</div>
 							</div>
@@ -45,7 +45,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Descrição</label> <input type="text"
-											class="form-control" value="<%= m.getDescricao()%>">
+											class="form-control" name="descricao" value="<%= m.getDescricao()%>">
 									</div>
 								</div>
 								</div>
@@ -53,7 +53,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>URL</label> <input type="text"
-											class="form-control" value="<%= m.getUrl()%>">
+											class="form-control" name="url" value="<%= m.getUrl()%>">
 									</div>
 								</div>
 							</div>
@@ -66,7 +66,7 @@
 				<div class="card">
 						  <h5 class="card-header">Apagar Módulo</h5>
 						  <div class="card-body">
-							<form id="nivelUsuario" action="excluir_Modulo" method="post">
+							<form id="nivelUsuario" action="excluir_modulo" method="post">
 								<button id="Apagar" type="submit" class="btn btn-danger form-control" value="Apagar">Apagar Modulo</button>
 								<input type="hidden" name="idModulo" value="<%=m.getId()%>">
 							</form>

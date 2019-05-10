@@ -130,6 +130,10 @@
   	<servlet-name>EditarModulo</servlet-name>
   	<servlet-class>controller.EditarModulo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ExcluirModulo</servlet-name>
+  	<servlet-class>controller.ExcluirModulo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -244,7 +248,11 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>EditarModulo</servlet-name>
-  	<url-pattern>/view/adm/editar_modulo</url-pattern>
+  	<url-pattern>/view/adm/EditarModulo</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+  	<servlet-name>ExcluirModulo</servlet-name>
+  	<url-pattern>/view/adm/excluir_modulo</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>Autentica</filter-name>
