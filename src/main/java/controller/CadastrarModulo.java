@@ -18,7 +18,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-
+import dao.DAOFactory;
+import dao.PerfilDAO;
 import model.Modulo;
 import model.Perfil;
 import model.Usuario;
@@ -73,33 +74,32 @@ public class CadastrarModulo extends HttpServlet {
 				imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
 				modulo.setImagem(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil);
 				
-				if(Facade.buscarPorNome(modulo.getTitulo()).getTitulo().equals(modulo.getTitulo())) {
-					pagina = "cadastrarModulo.jsp?erroCadastrar=1";
-					session.setAttribute(Constantes.getSessionMsgError(), "Módulo já cadastrado");
-					
-				}else {				
-					Facade.cadastrarModulo(modulo);
-					
-					modulo = Facade.buscarPorNome(modulo.getTitulo());
-					//Verificar essa atribuição de modulos
-					String aux[]=req.getParameterValues("perfil_checkbox");
-					for(int i=0;i<aux.length;i++){
-						for(Perfil p: perfis){
-						if(aux != null && aux[i].equals(p.getNome())){
-							util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
+				Modulo mTeste = Facade.buscarPorNome(modulo.getTitulo());
+					if(mTeste != null && mTeste.getTitulo().equals(modulo.getTitulo())) {
+						pagina = "cadastrarModulo.jsp?erroCadastrar=1";
+						session.setAttribute(Constantes.getSessionMsgError(), "Módulo já cadastrado");
+						
+					}else {				
+						Facade.cadastrarModulo(modulo);
+						
+						modulo = Facade.buscarPorNome(modulo.getTitulo());
+						//Verificar essa atribuição de modulos
+						
+						for(Perfil p : perfis){
+							if(dados.get(p.getNome()) != null) {	
+								util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
+							}
 						}
-						}
+						//Verificar o bloco acima
+						pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
+						session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 					}
-					//Verificar o bloco acima
-					pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
-					session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
-				}
 			} catch (NullPointerException e) {
 				e.printStackTrace();
-				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
+				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg + "\n"+e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
-				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg);
+				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg + "\n"+e.getMessage());
 			}
 			
 		} else {

@@ -122,7 +122,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	@Override
 	public Modulo buscarPorNome(String nome) {
 		super.open();
-		Modulo modulo = new Modulo();
+		Modulo modulo = null;
 
 		String SQL = "SELECT id_modulo, titulo, url, imagem, descricao FROM public.modulo WHERE UPPER(titulo) like UPPER(?) ";
 		try {
@@ -133,6 +133,7 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				modulo = new Modulo();
 				modulo.setTitulo(rs.getString("titulo"));
 				modulo.setId(rs.getInt("id_modulo"));
 				modulo.setUrl(rs.getString("url"));
