@@ -312,7 +312,7 @@ public class Facade {
 		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		if(!matricula.matches("^[0-9]+$")) {
-			throw new Exception("Matricula " + matricula+ " inválida");
+			throw new Exception("Matrícula " + matricula+ " inválida");
 		}else if(aluno != null && !(preA.buscarPreCadastro(matricula, nome)) ){
 			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 		}else {
@@ -320,7 +320,7 @@ public class Facade {
 		}
 
 	}
-
+	//Este método está em desuso
 	public static void preCadastrarAluno(String nome, String matricula, int curso, String semestreDeIngresso) {
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		preA.preCadastrar(nome, matricula, curso, semestreDeIngresso);
@@ -330,10 +330,10 @@ public class Facade {
 	public static void preCadastroServidor(String nome, String siape) {
 		
 		if(!nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
-			throw new IllegalArgumentException("Erro: O Nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome);
+			throw new IllegalArgumentException("Erro: O nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome+"!");
 		}
 		if(siape.length() != 7 && !siape.matches("^[0-9]+$")) {
-			throw new IllegalArgumentException("Erro: O Siape deve ter exatamente 7 números, valor informado: " + siape);
+			throw new IllegalArgumentException("Erro: O SIAPE deve ter exatamente 7 números, valor informado: " + siape+"!");
 		}
 		
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
@@ -343,7 +343,7 @@ public class Facade {
 			
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
-			throw new IllegalArgumentException("Servidor já cadastrado no sistema");
+			throw new IllegalArgumentException("Servidor já cadastrado no sistema!");
 		}										
 		
 	}
