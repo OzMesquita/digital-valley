@@ -134,6 +134,10 @@
   	<servlet-name>ExcluirModulo</servlet-name>
   	<servlet-class>controller.ExcluirModulo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AlterarLogo</servlet-name>
+  	<servlet-class>controller.AlterarLogoModulo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -253,6 +257,10 @@
     <servlet-mapping>
   	<servlet-name>ExcluirModulo</servlet-name>
   	<url-pattern>/view/adm/excluir_modulo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	  	<servlet-name>AlterarLogo</servlet-name>
+  	  	<url-pattern>/view/adm/alterarLogo</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>Autentica</filter-name>
