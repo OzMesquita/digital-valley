@@ -555,4 +555,30 @@ public class Facade {
 		
 		return modulosFinais;
 	}
+	
+	public static boolean validarPreCadastroAluno(String dados) {
+		boolean estado = true;
+		String aux, matricula, nome;
+	       while(!dados.equals("")){
+	    	   aux = dados.substring(0,dados.indexOf("\n"));
+	    	   if (aux.length() <= 6) {
+	    		   estado = false;
+	    		   break;}
+	                matricula = dados.substring(0,6);
+	               if (matricula.matches("[0-9]+")){
+	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
+	                   if(nome.matches("[A-Z]+$") ){
+	                	aux += "\n";   
+	                	dados = dados.replace(aux, "");
+	                   }else {
+	                	   estado = false;
+	                	   break;
+	                   }
+	               }else{
+	                   estado = false;
+	                   break;
+	               }
+				}
+	     return estado;
+	}	
 }

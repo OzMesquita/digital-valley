@@ -145,7 +145,7 @@ public class FacadeTest {
 		System.out.println(Crypter.crypt("123456"));
 		 
 	}
-	
+	@Ignore
 	@Test
 	public void testBuscarTodosModulos() {
 		List<Modulo> modulosPerfil = Facade.buscarModulosPorPerfil(1);
@@ -156,8 +156,33 @@ public class FacadeTest {
 		}
 		
 	}
-
-
-	
+	@Test
+	public void testValidarPreCadastroAluno() {
+		String dados = "375107 Fernando\n"
+				+ "375108 \n";
+		boolean estado = true;
+		String aux, matricula, nome;
+	       while(!dados.equals("")){
+	    	   aux = dados.substring(0,dados.indexOf("\n"));
+	    	   if (aux.length() <= 6) {
+	    		   estado = false;
+	    		   break;}
+	                matricula = dados.substring(0,6);
+	               if (matricula.matches("[0-9]+")){
+	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
+	                   if(nome.matches("[A-Z]+$") ){
+	                	aux += "\n";   
+	                	dados = dados.replace(aux, "");
+	                   }else {
+	                	   estado = false;
+	                	   break;
+	                   }
+	               }else{
+	                   estado = false;
+	                   break;
+	               }
+				}
+	     System.out.println(estado);
+	}	
 
 }
