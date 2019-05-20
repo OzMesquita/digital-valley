@@ -28,9 +28,12 @@ public class ImportacaoController extends HttpServlet {
 		String aux;
 		String pagina;
 		pagina = "importarAlunos.jsp?erro=1";
+		
 		HttpSession session = request.getSession();
 		try {
-
+			if (curso==0) {
+				throw new RuntimeException("Curso não selecionado!");
+			}
 			while(dados.length() >=6){
 				
 				matricula = dados.substring(0,6);

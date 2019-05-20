@@ -339,11 +339,12 @@ public class Facade {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Servidor s = sDAO.buscarPorSiape(siape);
 		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
-		if(s == null && !(pDAO.buscarPreCadastro(siape, nome))){
-			
+		if( pDAO.buscarPreCadastro(siape, nome) ){
+			throw new IllegalArgumentException("Servidor já possui pré-cadastro no sistema!");
+		}else if(s != null){		
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
-			throw new IllegalArgumentException("Servidor já cadastrado no sistema!");
+			throw new IllegalArgumentException("Servidor já possui cadastro no sistema!");
 		}										
 		
 	}
