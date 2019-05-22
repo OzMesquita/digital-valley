@@ -62,7 +62,8 @@ public class CadastrarModulo extends HttpServlet {
 										+ " MB.<br>";
 							}
 						} else {
-							sessionMsg = "Erro: Não foi selecionada uma imagem para a logo.";
+							//Ao inves de notificar que não houve envio de imagem o sistema apenas define uma imagem padrão
+							//sessionMsg = "Erro: Não foi selecionada uma imagem para a logo.";
 						}
 					}
 				}
@@ -70,9 +71,15 @@ public class CadastrarModulo extends HttpServlet {
 				modulo.setTitulo(dados.get("titulo"));
 				modulo.setUrl(dados.get("url"));
 				modulo.setDescricao(dados.get("descricao"));
-				String nomeImagemPerfil = "modulo_logo_"+System.currentTimeMillis()+ "_" + imagemPerfil.getName();
-				imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
-				modulo.setImagem(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil);
+				String nomeImagemPerfil;
+				if (imagemPerfil !=null) {
+					nomeImagemPerfil = "modulo_logo_"+System.currentTimeMillis()+ "_" + imagemPerfil.getName();
+					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
+					modulo.setImagem(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil);
+				}else {
+					modulo.setImagem(Constantes.getAppImgUrl()+"/i2.png");
+				}
+				
 				
 				Modulo mTeste = Facade.buscarPorNome(modulo.getTitulo());
 					if(mTeste != null && mTeste.getTitulo().equals(modulo.getTitulo())) {

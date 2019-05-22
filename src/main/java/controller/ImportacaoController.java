@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import util.Constantes;
+import util.Facade;
 
 @MultipartConfig
 public class ImportacaoController extends HttpServlet {
@@ -28,20 +29,25 @@ public class ImportacaoController extends HttpServlet {
 		String aux;
 		String pagina;
 		pagina = "importarAlunos.jsp?erro=1";
+		
 		HttpSession session = request.getSession();
 		try {
-
-			while(dados.length() >=6){
-				
-				matricula = dados.substring(0,6);
-				nome = dados.substring(6,dados.indexOf("\n"));
-				util.Facade.preCadastrarAluno(nome.replaceAll("\\s+$", "").toUpperCase(), matricula, curso);
-				aux = dados.replace(matricula, "");
-				dados = aux;
-				aux = dados.replace(nome+"\n", "");
-				dados = aux;
-				
+			if (curso==0) {
+				throw new RuntimeException("Curso não selecionado!");
 			}
+			if (util.Facade.validarPreCadastroAluno(dados)) {
+				while(dados.length() >=6){
+					matricula = dados.substring(0,6);
+					nome = dados.substring(6,dados.indexOf("\n"));
+					util.Facade.preCadastrarAluno(nome.replaceAll("\\s+$", "").toUpperCase(), matricula, curso);
+					aux = dados.replace(matricula, "");
+					dados = aux;
+					aux = dados.replace(nome+"\n", "");
+					dados = aux;
+				}
+			}else {
+				throw new Exception("Os dados informados não são válidos.\n Por favor verifique as informações e tente novamente!");
+			}	
 			pagina = "importarAlunos.jsp?sucesso=1";
 			session.setAttribute(Constantes.getSessionMsg(), "Pré cadastro dos alunos realizada com sucesso!");
 			

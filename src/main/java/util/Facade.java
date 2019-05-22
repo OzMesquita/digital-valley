@@ -339,11 +339,12 @@ public class Facade {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Servidor s = sDAO.buscarPorSiape(siape);
 		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
-		if(s == null && !(pDAO.buscarPreCadastro(siape, nome))){
-			
+		if( pDAO.buscarPreCadastro(siape, nome) ){
+			throw new IllegalArgumentException("Servidor já possui pré-cadastro no sistema!");
+		}else if(s != null){		
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
-			throw new IllegalArgumentException("Servidor já cadastrado no sistema!");
+			throw new IllegalArgumentException("Servidor já possui cadastro no sistema!");
 		}										
 		
 	}
@@ -572,5 +573,29 @@ public class Facade {
 		mDao.editar(m);
 	}
 	
-	
+	public static boolean validarPreCadastroAluno(String dados) {
+		boolean estado = true;
+		String aux, matricula, nome;
+	       while(!dados.equals("")){
+	    	   aux = dados.substring(0,dados.indexOf("\n"));
+	    	   if (aux.length() <= 6) {
+	    		   estado = false;
+	    		   break;}
+	                matricula = dados.substring(0,6);
+	               if (matricula.matches("[0-9]+")){
+	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
+	                   if(nome.matches("[A-Z]+$") ){
+	                	aux += "\n";   
+	                	dados = dados.replace(aux, "");
+	                   }else {
+	                	   estado = false;
+	                	   break;
+	                   }
+	               }else{
+	                   estado = false;
+	                   break;
+	               }
+				}
+	     return estado;
+	}	
 }

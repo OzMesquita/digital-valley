@@ -63,7 +63,7 @@
 							</div>
 							<label for="imagem">Logo Módulo</label>
 									<label class="btn btn-outline-dark btn-file" style="width:100%">
-									    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input type="file" name="imagem" id="imagem" required="required" style="display: none;">
+									    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input type="file" name="imagem" id="imagem" style="display: none;">
 									</label>
 							</div>
 							</div>

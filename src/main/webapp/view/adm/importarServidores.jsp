@@ -2,7 +2,7 @@
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Importar Servidores</h1>
-          <p class="lead text-muted">Realize a importação de vários servidores ao mesmo tempo.</p>
+          <p class="lead text-muted">Realize a importação de um(a) servidor(a) para o Guardião.</p>
         </div>
       </section>
 <div class="container">
