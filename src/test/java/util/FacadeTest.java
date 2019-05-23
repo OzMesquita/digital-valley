@@ -158,8 +158,7 @@ public class FacadeTest {
 	}
 	@Test
 	public void testValidarPreCadastroAluno() {
-		String dados = "375107 Fernando\n"
-				+ "375108 \n";
+		String dados = "111222 aluno versao atual\n";
 		boolean estado = true;
 		String aux, matricula, nome;
 	       while(!dados.equals("")){
@@ -169,8 +168,8 @@ public class FacadeTest {
 	    		   break;}
 	                matricula = dados.substring(0,6);
 	               if (matricula.matches("[0-9]+")){
-	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
-	                   if(nome.matches("[A-Z]+$") ){
+	                   nome = dados.substring(6,dados.indexOf("\n")).trim().toUpperCase();
+	                   if(util.TesteRegex.testar(nome)){
 	                	aux += "\n";   
 	                	dados = dados.replace(aux, "");
 	                   }else {
