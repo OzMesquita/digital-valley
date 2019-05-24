@@ -313,10 +313,10 @@ public class Facade {
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
 		if(!matricula.matches("^[0-9]+$")) {
 			throw new Exception("Matrícula " + matricula+ " inválida");
-		}else if(aluno != null && !(preA.buscarPreCadastro(matricula, nome)) ){
-			throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
-		}else {
-			preA.preCadastrar(nome, matricula, curso);
+		}else if(aluno != null || (preA.buscarPreCadastro(matricula))){
+				throw new IllegalArgumentException("Aluno(a) " + nome + " já possui cadastro");
+			}else {
+				preA.preCadastrar(nome, matricula, curso);
 		}
 
 	}
@@ -341,7 +341,7 @@ public class Facade {
 		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
 		if( pDAO.buscarPreCadastro(siape, nome) ){
 			throw new IllegalArgumentException("Servidor já possui pré-cadastro no sistema!");
-		}else if(s != null){		
+		}else if(s == null){		
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
 			throw new IllegalArgumentException("Servidor já possui cadastro no sistema!");
@@ -584,7 +584,7 @@ public class Facade {
 	                matricula = dados.substring(0,6);
 	               if (matricula.matches("[0-9]+")){
 	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
-	                   if(nome.matches("[A-Z]+$") ){
+	                   if( util.TesteRegex.testar(nome)){
 	                	aux += "\n";   
 	                	dados = dados.replace(aux, "");
 	                   }else {

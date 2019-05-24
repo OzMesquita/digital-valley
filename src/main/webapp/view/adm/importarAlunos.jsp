@@ -22,8 +22,7 @@
 					<%=session.getAttribute(Constantes.getSessionMsgError()) %>
 				</div>
 					<%session.setAttribute(Constantes.getSessionMsgError(), null); %>
-					
-				<%} %>
+					<%} %>
 				
 				<form action="importarAlunos" method="post">
 					<div class="form-group">
@@ -55,3 +54,4 @@
   </div>
   </div>
 			</div>
+			
