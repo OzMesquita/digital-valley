@@ -33,7 +33,7 @@ public class AlterarSenha extends HttpServlet {
 				}  else if (!senhaNova.equalsIgnoreCase(senhaRepetida)) {
 					sessionMsg = "Erro: Campo cofirmar senha não bate com nova senha!";
 				} else {
-					usuarioDaSessao.setSenha(senhaRepetida);
+					usuarioDaSessao.setSenha(Crypter.crypt(senhaRepetida));
 					Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
 					session.setAttribute("usuario", null);
 				}
