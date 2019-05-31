@@ -39,7 +39,7 @@ public class AlterarSenha extends HttpServlet {
 				}
 
 				if(sessionMsg.isEmpty()) {
-					pagina =Constantes.getPreUrl()+Constantes.getAppUrl();
+					pagina =Constantes.getAppUrl();
 					sessionMsg = "Senha alterada com sucesso!";
 				}
 				

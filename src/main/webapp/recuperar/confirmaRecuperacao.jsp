@@ -62,7 +62,7 @@
           		<p class="text-center">
           			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
           		</p>
-                <form class="form-horizontal" role="form" action="/recuperar/ConfirmaRecuperacao" name="formVerifica" method="post">
+                <form class="form-horizontal" role="form" action="<%=Constantes.getAppUrl()%>/recuperar/ConfirmaRecuperacao" name="formVerifica" method="post">
                 	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
 		<div class="alert alert-sucess" role="alert">
 			<%=session.getAttribute(Constantes.getSessionMsg()) %>
