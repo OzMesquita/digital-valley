@@ -14,4 +14,6 @@ public interface PreCadastroAlunoDAO {
 	
 	public boolean buscarPreCadastro(String matricula);
 	
+	public String buscarNomePreCadastro(String matricula);
+	
 }
