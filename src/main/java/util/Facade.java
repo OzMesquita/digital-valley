@@ -195,6 +195,14 @@ public class Facade {
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
 		return pDAO.buscarPorMatriculaAndCPF(matricula, cpf).getUsuario();
 	}
+	public static Aluno buscarPorMatricula(String matricula) {
+		AlunoDAO pDAO = DAOFactory.criarAlunoDAO();
+		return pDAO.buscarPorMatricula(matricula);
+	}
+	public static String buscarPreCadastroPorMatricula(String matricula) {
+		PreCadastroAlunoDAO pdao = DAOFactory.criarPreCadastroAluno();
+		return pdao.buscarNomePreCadastro(matricula);
+	}
 	public static Usuario buscarPorSiapeAndCPF(String siape, String cpf){
 		PessoaDAO pDao = DAOFactory.criarPessoaDAO();
 		return pDao.buscarPorSiapeAndCPF(siape, cpf);
