@@ -36,7 +36,7 @@ public class ConfirmarRecuperacao extends HttpServlet {
             siape = request.getParameter("siape");
             String cpfA = request.getParameter("cpfA");
             String cpfS = request.getParameter("cpfS");
-            if(matricula != null){
+            if(matricula != "" ){
             	String aux = cpfA.replaceAll("-", "");            
         		cpfA = aux.replaceAll("[.]", "");
             	usuario = Facade.buscarPorMatriculaAndCPF(matricula,cpfA);
