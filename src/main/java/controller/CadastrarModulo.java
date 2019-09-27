@@ -52,9 +52,11 @@ public class CadastrarModulo extends HttpServlet {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
 						dados.put(item.getFieldName(), item.getString());
-					} else {				
+					} else {
 						if (item.getContentType().startsWith("image/")) {
-							if (item.getSize() <= Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES()) {
+							if (item.getSize() <= Constantes.getMAX_USER_PROFILE_IMAGE_SIZE_BYTES()) {// mudei de <=
+																										// para > para
+																										// teste(Matheus)
 								imagemPerfil = item;
 							} else {
 								sessionMsg = "Erro: O arquivo selecionado não pode ultrapassar "
@@ -62,8 +64,10 @@ public class CadastrarModulo extends HttpServlet {
 										+ " MB.<br>";
 							}
 						} else {
-							//Ao inves de notificar que não houve envio de imagem o sistema apenas define uma imagem padrão
-							//sessionMsg = "Erro: Não foi selecionada uma imagem para a logo.";
+							// Ao inves de notificar que não houve envio de imagem o sistema apenas define
+							// uma imagem padrão
+							// sessionMsg = "Erro: Não foi selecionada uma imagem para a logo.";
+							sessionMsg = "Erro: Imagem inválida, então selecionamos uma padrão.";
 						}
 					}
 				}
@@ -72,49 +76,56 @@ public class CadastrarModulo extends HttpServlet {
 				modulo.setUrl(dados.get("url"));
 				modulo.setDescricao(dados.get("descricao"));
 				String nomeImagemPerfil;
-				if (imagemPerfil !=null) {
-					nomeImagemPerfil = "modulo_logo_"+System.currentTimeMillis()+ "_" + imagemPerfil.getName();
+				//System.out.println("Chegou aqui\n");
+				if (imagemPerfil != null){
+					String nome = imagemPerfil.getName();
+					String ext[] = new String[2];
+					//System.out.println(imagemPerfil.getName());
+					ext = nome.split("[.]");
+					//System.out.println(ext[1]);
+					//System.out.println(ext[0]);
+					nomeImagemPerfil = "modulo_logo_" + System.currentTimeMillis() + "." + ext[1];
 					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
 					modulo.setImagem(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil);
-				}else {
-					modulo.setImagem(Constantes.getAppImgUrl()+"/i2.png");
+				} else {
+					modulo.setImagem(Constantes.getAppImgUrl() + "/i2.png");
 				}
-				
-				
+
 				Modulo mTeste = Facade.buscarPorNome(modulo.getTitulo());
-					if(mTeste != null && mTeste.getTitulo().equals(modulo.getTitulo())) {
-						pagina = "cadastrarModulo.jsp?erroCadastrar=1";
-						session.setAttribute(Constantes.getSessionMsgError(), "Módulo já cadastrado");
-						
-					}else {				
-						Facade.cadastrarModulo(modulo);
-						
-						modulo = Facade.buscarPorNome(modulo.getTitulo());
-						//Verificar essa atribuição de modulos
-						
-						for(Perfil p : perfis){
-							if(dados.get(p.getNome()) != null) {	
-								util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
-							}
+				if (mTeste != null && mTeste.getTitulo().equals(modulo.getTitulo())) {
+					pagina = "cadastrarModulo.jsp?erroCadastrar=1";
+					session.setAttribute(Constantes.getSessionMsgError(), "Módulo já cadastrado");
+
+				} else {
+					Facade.cadastrarModulo(modulo);
+
+					modulo = Facade.buscarPorNome(modulo.getTitulo());
+					// Verificar essa atribuição de modulos
+
+					for (Perfil p : perfis) {
+						if (dados.get(p.getNome()) != null) {
+							util.Facade.adicionarModulosParaPerfil(p.getId(), modulo.getId());
 						}
-						//Verificar o bloco acima
-						pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
-						session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar Modulo "+modulo.getTitulo());
 					}
+					// Verificar o bloco acima
+					pagina = "cadastrarModulo.jsp?sucessoCadastro=1";
+					session.setAttribute(Constantes.getSessionMsg(),
+							"Sucesso ao cadastrar Modulo " + modulo.getTitulo());
+				}
 			} catch (NullPointerException e) {
 				e.printStackTrace();
-				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg + "\n"+e.getMessage());
+				session.setAttribute(Constantes.getSessionMsgError(), sessionMsg + "\n" + e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
-				session.setAttribute(Constantes.getSessionMsgError(),sessionMsg + "\n"+e.getMessage());
+				session.setAttribute(Constantes.getSessionMsgError(), sessionMsg + "\n" + e.getMessage());
 			}
-			
+
 		} else {
 			System.out.println("Oi 12");
 			session.setAttribute(Constantes.getSessionMsgError(),
 					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
 		}
 		resp.sendRedirect(pagina);
-	}	
+	}
 
 }

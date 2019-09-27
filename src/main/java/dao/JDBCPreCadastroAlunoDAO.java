@@ -85,7 +85,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Aluno(a) não pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
+			throw new RuntimeException("Aluno(a) não está pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
 		}finally {
 			super.close();
 		}
@@ -195,7 +195,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Aluno(a) não pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
+			throw new RuntimeException("Aluno(a) não está pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
 		}finally {
 			super.close();
 		}
