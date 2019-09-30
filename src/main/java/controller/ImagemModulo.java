@@ -27,7 +27,7 @@ public class ImagemModulo extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			// Get the absolute path of the image
-			String filename = Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
+			String filename = Constantes.getUSER_PROFILE_IMAGES_DIR()+Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
 			if (mime == null) {

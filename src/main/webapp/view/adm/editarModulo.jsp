@@ -83,7 +83,9 @@
 							<form id="alterarFoto" action="alterarLogo" method="post">
 							<div class="form-group" style="width:100%">
 								<div id="imagemLogo" >
-									<img class="card-img-top" id="smallTemplate" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 150px; width: 150px; display: block;" src="../<%=m.getImagem()%>">
+									<img class="card-img-top" id="smallTemplate" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 150px; width: 150px; display: block;" 
+									src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=m.getId()%>" >
+									<%--<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=m.getId()%> --%>
 									<%-- <img id="smallTemplate" src="<%=Constantes.getMODULES_IMAGES_DIR()%>/no_img" alt="Logo do módulo" width="80%" height="200" /> --%>
 								</div>
 								<label for="imagem">Logo Módulo</label>

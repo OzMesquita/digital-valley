@@ -34,7 +34,7 @@
     %>
       <div class="col-md-3" style="margin-top: 0px;">
        <div class="card mb-3 shadow-sm" align="center">
-        <a href="<%=Constantes.getAppUrl()%>/requisitarModulo?url=<%=m.getUrl() %>"> <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 150px; width: 150px; display: block;" src="<%=m.getImagem()%>" data-holder-rendered="true"></a>
+        <a href="<%=Constantes.getAppUrl()%>/requisitarModulo?url=<%=m.getUrl() %>"> <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 150px; width: 150px; display: block;" src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=m.getId()%>" data-holder-rendered="true"></a>
         <div class="card-body">
          <p class="card-text"><p><h4><%=m.getTitulo()%></h4></p><%=(m.getDescricao() != null) ? m.getDescricao() : "Sem descrição" %></p>
          <div class="d-flex justify-content-between align-items-center">
