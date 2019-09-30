@@ -85,7 +85,7 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Aluno(a) não pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
+			throw new RuntimeException("Aluno(a) não está pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
 		}finally {
 			super.close();
 		}
@@ -163,6 +163,39 @@ public class JDBCPreCadastroAlunoDAO extends JDBCDAO implements PreCadastroAluno
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao buscar registro de aluno", e);
+		}finally {
+			super.close();
+		}
+	}
+
+	@Override
+	public String buscarNomePreCadastro(String matricula) {
+		super.open();
+		try {
+			String SQL = "SELECT * FROM pre_cadastro_aluno WHERE matricula = ?";
+
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, matricula);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				String r = rs.getString("nome");
+				rs.close();
+				ps.close();
+				
+				return r;
+				
+			}else{
+				rs.close();
+				ps.close();
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Aluno(a) não está pré-cadastrado, favor verificar junto ao N2S e a secretária.", e);
 		}finally {
 			super.close();
 		}

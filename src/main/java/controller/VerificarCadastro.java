@@ -33,32 +33,42 @@ public class VerificarCadastro extends HttpServlet {
 			if (!matricula.equals("")) {
 				/*Alteração para determinar tipo de erro gerado para o usuario*/
 				Aluno a = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
-				if( !(Facade.verificacaoAluno(matricula)) && a==null) {
+				if( !(Facade.verificacaoAluno(matricula)) && a==null) {//torquei == por != e da problema
 					throw new Exception("Matricula não encontrada. Por favor entre em contato contato com N2S");
-				}else if( Facade.verificacaoAluno(matricula)==false && Facade.verificacaoAluno(matricula, nomeA)==true) {
+				}
+				  else if( Facade.verificacaoAluno(matricula)==false && Facade.verificacaoAluno(matricula, nomeA)==true) {
 					throw new Exception("Nome não identificado. Por favor verificar.");
 				}
 				/*Fim das alterações*/
-				if (Facade.verificacaoAluno(matricula, nomeA)) {
-					AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
+				/*//alterei para testar se esse if é relevante.(Matheus)
+				 * if (!Facade.verificacaoAluno(matricula, nomeA) ||
+				 * Facade.verificacaoAluno(matricula, nomeA) ) {
+				 */
+					AlunoDAO aDAO = DAOFactory.criarAlunoDAO(); 
 					Aluno aluno = aDAO.buscarPorMatricula(matricula);
-					if (aluno != null) {
+					//Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula); //teste
+					//Aluno aluno = a; // teste
+					
+					if (aluno != null) { //troquei o == por != (Matheus)
 
 						throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
 
-					} else {
+					} else if(Facade.verificacaoAluno(matricula, nomeA)==true) {
 						pagina = "cadastro/cadastrarUsuario.jsp";
 						session.setAttribute("preCadastro", "ok");
 						session.setAttribute("nomeA", nomeA);
 						session.setAttribute("matricula", matricula);
 						session.setAttribute("curso", util.Facade.buscarCursoPreCadastrado(matricula, nomeA));
+					} else {//Se chegou nessa parte, significa que a matricula foi identificada.
+						throw new Exception("Nome não identificado, verifique se digitou conforme recomendado");
 					}
-				}
+				//}
 				
-				if (session.getAttribute("matricula") == null) {
-
-					throw new Exception("Pre cadastro de aluno não identificado");
-				}
+				/*
+				 * if (session.getAttribute("matricula") == null) {
+				 * 
+				 * throw new Exception("Pré-cadastro de aluno não identificado"); }
+				 */
 
 			} else if (!siape.equals("")) {
 				/*Alteração para determinar tipo de erro gerado para o usuario*/

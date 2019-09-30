@@ -3,6 +3,7 @@
     Created on : 24/05/2017, 16:13:20
     Author     : N2S-PC03
 --%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="util.Constantes"%>
 <%@page import="controller.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -128,7 +129,7 @@
                 
                   <nav class="navbar navbar-light" style="width:100%;">
 			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2018.</p>
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
 			</nav>  
             </div>            
         </div>

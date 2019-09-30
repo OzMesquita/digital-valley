@@ -342,4 +342,22 @@
     <servlet-name>ConfirmaRecuperacaoController</servlet-name>
     <url-pattern>/ConfirmaRecuperacao</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Service</display-name>
+    <servlet-name>Service</servlet-name>
+    <servlet-class>controller.Service</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Service</servlet-name>
+    <url-pattern>/Service</url-pattern>
+  </servlet-mapping>
+  <servlet>
+	<servlet-name>servico</servlet-name>
+	<servlet-class>controller.Service</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>servico</servlet-name>
+	<url-pattern>/api/Service</url-pattern>
+</servlet-mapping>
 </web-app>

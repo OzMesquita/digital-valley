@@ -3,6 +3,7 @@
     Created on : 24/05/2017, 16:13:20
     Author     : N2S-PC03
 --%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="util.Constantes"%>
 <%@page import="controller.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -63,7 +64,7 @@
           		</p>
                 <form class="form-horizontal" role="form" action="RecuperarSenha" method="post" name="formLogin">
                 	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-						<div class="alert alert-sucess" role="alert">
+						<div class="alert alert-success" role="alert">
 					<%=session.getAttribute(Constantes.getSessionMsg()) %>
 					</div>
 					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
@@ -97,7 +98,7 @@
                 
                     <nav class="navbar navbar-light" style="width:100%;">
 			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, 2019.</p>
+			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
 			    <p><a href="mailto:n2s@ufc.br?subject=Ajuda no Guardião" id="n2smail" target="_blank" title="">Precisa de ajuda?</a></p>
 			</nav>
             </div>            
