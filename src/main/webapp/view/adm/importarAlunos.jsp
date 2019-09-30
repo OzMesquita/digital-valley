@@ -26,9 +26,9 @@
 				
 				<form action="importarAlunos" method="post">
 					<div class="form-group">
-						<label for="curso">Curso</label> <select required="required"
-							class="form-control" name="curso" id="curso">
-							<option disabled="disabled" selected="selected" value="0">Selecione um curso</option>
+						<label for="curso">Curso</label> 
+						<select required="required" class="form-control" name="curso" id="curso">
+							<option value="">Selecione um curso</option>
 							<option value="1"> Ciência da Computação</option>
 							<option value="2"> Engenharia Civil</option>
 							<option value="3"> Engenharia de Produção</option>

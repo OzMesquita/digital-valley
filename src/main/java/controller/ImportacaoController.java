@@ -49,7 +49,7 @@ public class ImportacaoController extends HttpServlet {
 				throw new Exception("Os dados informados não são válidos.\n Por favor verifique as informações e tente novamente!");
 			}	
 			pagina = "importarAlunos.jsp?sucesso=1";
-			session.setAttribute(Constantes.getSessionMsg(), "Pré cadastro dos alunos realizada com sucesso!");
+			session.setAttribute(Constantes.getSessionMsg(), "Pré cadastro do(s) aluno(s) realizado com sucesso!");
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());	
