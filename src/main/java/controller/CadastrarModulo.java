@@ -77,11 +77,11 @@ public class CadastrarModulo extends HttpServlet {
 				modulo.setDescricao(dados.get("descricao"));
 				String nomeImagemPerfil;
 				if (imagemPerfil !=null) {
-					nomeImagemPerfil = "/logo_"+System.currentTimeMillis()+ ".png";
+					nomeImagemPerfil = "logo_"+System.currentTimeMillis()+ ".png";
 					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR()+ nomeImagemPerfil));
 					modulo.setImagem(nomeImagemPerfil);
 				}else {
-					modulo.setImagem("/i2.png");
+					modulo.setImagem("i2.png");
 				}
 
 				Modulo mTeste = Facade.buscarPorNome(modulo.getTitulo());
