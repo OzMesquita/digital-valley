@@ -573,8 +573,8 @@ public class Facade {
 	}
 	public static int getQuantidadeModulo(String nomeModulo, int inicio, int fim) {
 		ModuloDAO mDao = DAOFactory.criarModuloDAO();
-		mDao.buscarPorNome(nomeModulo, inicio, fim);
-		return buscarTodosModulos().size();		
+		return mDao.buscarPorNome(nomeModulo, inicio, fim).size();
+		//return buscarTodosModulos().size();		
 	}
 	public static void editarModulo(Modulo m) {
 		ModuloDAO mDao = DAOFactory.criarModuloDAO();
