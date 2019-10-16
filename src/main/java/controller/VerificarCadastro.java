@@ -51,7 +51,8 @@ public class VerificarCadastro extends HttpServlet {
 					
 					if (aluno != null) { //troquei o == por != (Matheus)
 
-						throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
+						//throw new Exception("Aluno(a) " + aluno.getNome() + " já possui cadastro");
+						throw new Exception("Aluno(a) de matricula " + aluno.getMatricula() + " já possui cadastro");
 
 					} else if(Facade.verificacaoAluno(matricula, nomeA)==true) {
 						pagina = "cadastro/cadastrarUsuario.jsp";
