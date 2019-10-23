@@ -28,10 +28,10 @@ public class ImportarServidorController  extends HttpServlet {
 			
 			Facade.preCadastroServidor(nome.replaceAll("\\s+$", "").toUpperCase(), siape);
 			pagina = "importarServidores.jsp?sucessoPrecadastro=1";
-			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar servidor!");
+			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar servidor(a)!");
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsgError(), "Erro ao cadastrar servidor! \n"+e.getMessage());
+			session.setAttribute(Constantes.getSessionMsgError(), "Erro ao cadastrar servidor(a)! \n"+e.getMessage());
 			
 		}
 		
