@@ -347,8 +347,8 @@ public class Facade {
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();
 		Servidor s = sDAO.buscarPorSiape(siape);
 		PreCadastroServidorDAO pDAO = DAOFactory.criarPreCadastroServidor();
-		if( pDAO.buscarPreCadastro(siape, nome) ){
-			throw new IllegalArgumentException("Servidor já possui pré-cadastro no sistema!");
+		if( pDAO.buscarPreCadastro(siape) ){ // tirar a string nome para usar o metodo. Antes: pDAO.buscarPreCadastro(siape, nome)
+			throw new IllegalArgumentException("SIAPE já está sendo utilizado!"); // Antes: "Servidor já possui pré-cadastro no sistema!"
 		}else if(s == null){		
 			pDAO.preCadastrarServidor(siape, nome);
 		}else{
