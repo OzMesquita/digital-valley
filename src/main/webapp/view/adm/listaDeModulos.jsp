@@ -79,35 +79,133 @@
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<%
 						if (quantidadeDePaginas > 1) {
-							if (paginaAtual > 1) {
-					%>
-								<a
-									href="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual - 1)%>" class="btn btn-secondary">
-								 << </a>
+							
+					%>	
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<li class="page-item <%if (paginaAtual <= 1) {%>disabled<%}%>">
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%if(paginaAtual <=1){%>0<%}else{out.print(paginaAtual-1);}%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%if (paginaAtual <= 1) {%>0<%}else{out.print(paginaAtual-1);}%>">
+											Anterior
+										</button>
+									</form>
+								</li>
+								<%
+								if(paginaAtual > 4 && (quantidadeDePaginas-paginaAtual) < 1)
+								{
+								%>
+								<li>
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual-4);%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual-4);%>"> 
+											<%out.print(paginaAtual-4);%>
+										</button>
+									</form>
+								</li>
+								<%
+								}
+								if(paginaAtual > 3 && (quantidadeDePaginas-paginaAtual) < 2)
+								{
+								%>
+								<li>
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual-3);%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual-3);%>"> 
+											<%out.print(paginaAtual-3);%>
+										</button>
+									</form>
+								</li>
+								<%
+								}
+								if(paginaAtual > 2)
+								{
+								%>
+								<li>
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual-2);%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual-2);%>"> 
+											<%out.print(paginaAtual-2);%>
+										</button>
+									</form>
+								</li>
+								<%
+								}
+								if(paginaAtual>1)
+								{
+								%>
+								<li>
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual-1);%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual-1);%>"> 
+											<%out.print(paginaAtual-1);%>
+										</button>
+									</form>
+								</li>
+								<%
+								}
+								%>
+								<li class="page-item disabled">
+							
+							    	<span class="page-link"><%out.print(paginaAtual);%></span>
+
+			   					 </li>
+						
+								<%
+								if((quantidadeDePaginas-paginaAtual) > 0 ){%>	
+									<li>
+										<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual+1);%>" id="formPag">
+											<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual+1);%>"> 
+												<%out.print(paginaAtual+1);%>
+											</button>
+										</form>
+								</li>
+								<%
+								}
+								
+								if((quantidadeDePaginas-paginaAtual) > 1)
+								
+								{%>	
+									<li>
+										<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual+2);%>" id="formPag">
+											<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual+2);%>"> 
+												<%out.print(paginaAtual+2);%>
+											</button>
+										</form>
+									</li>
+								<%}
+								
+								if((quantidadeDePaginas-paginaAtual) > 2 && paginaAtual < 3)
+									
+								{%>	
+									<li>
+										<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual+3);%>" id="formPag">
+											<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual+3);%>"> 
+												<%out.print(paginaAtual+3);%>
+											</button>
+										</form>
+									</li>
+								<%}
+								
+							if((quantidadeDePaginas-paginaAtual) > 3 && paginaAtual < 2)
+									
+								{%>	
+									<li>
+										<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%out.print(paginaAtual+4);%>" id="formPag">
+											<button class="page-link" type="submit" name="pagina" value="<%out.print(paginaAtual+4);%>"> 
+												<%out.print(paginaAtual+4);%>
+											</button>
+										</form>
+									</li>
+								<%}
+								
+								%>
+								<li class="page-item <%if (paginaAtual >= quantidadeDePaginas) {%>disabled<%}%>">
+									<form method="get" action="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%if(paginaAtual >= quantidadeDePaginas){%>1<%}else{out.print(paginaAtual+1);}%>" id="formPag">
+										<button class="page-link" type="submit" name="pagina" value="<%if (paginaAtual >= quantidadeDePaginas) {%>1<%} else {out.print(paginaAtual+1);}%>">
+											Próximo
+										</button>
+									</form>
+								</li>
+							</ul>
+						</nav> 						
 					<%
-							}
-								for (int i = 1; i <= quantidadeDePaginas; i++) {
-					%>
-	
-					<%
-									if (i == paginaAtual) {
-					%>
-										<a href="<%=url%>/listar_modulos?pagina=<%=i%>" class="btn btn-secondary"><%=i%></a>
-					<%
-									} else {
-					%>
-										<a href="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=i%>" class="btn btn-secondary"><%=i%></a>
-					<%
-									}
-					%>
-					<%
-							}
-							if (paginaAtual < quantidadeDePaginas) {
-					%>
-								<a href="<%=url%>/listar_modulos?nome=<%=nome %>&tipo=<%=tipo %>&pagina=<%=(paginaAtual + 1)%>" class="btn btn-secondary">>></a>
-					<%
-							}
-						}
+					}
 					%>
 				</div>
 			</div>
