@@ -140,8 +140,9 @@
 							       Você realmente deseja remover sua imagem de perfil?
 							      </div>
 							      <div class="modal-footer">
+							      	<form action="<%=Constantes.getAppUrl()%>/removeImagemPerfilUsuario" method="post">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-							        <form action="<%=Constantes.getAppUrl()%>/removeImagemPerfilUsuario" method="post">
+<%-- 							        <form action="<%=Constantes.getAppUrl()%>/removeImagemPerfilUsuario" method="post"> --%>
 										<button type="submit" class="btn btn-primary">Sim</button>
 									</form>
 							      </div>
