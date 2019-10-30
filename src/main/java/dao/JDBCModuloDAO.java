@@ -496,11 +496,11 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 	public List<Modulo> buscarPorNome(String nome, int inicio, int fim) {
 		super.open();
 		try {
-			String sql = "SELECT * FROM modulo WHERE UPPER(titulo) LIKE UPPER(?) ORDER BY titulo ASC LIMIT ? OFFSET ?";
+			String sql = "SELECT * FROM modulo WHERE UPPER(nome) LIKE UPPER(?) ORDER BY nome ASC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(sql);
-			ps.setString(1, '%'+nome+'%');
-			ps.setInt(2, fim-inicio);
-			ps.setInt(3, inicio);
+			ps.setString(1, nome);
+			ps.setInt(2, inicio);
+			ps.setInt(3, fim);
 			ResultSet rs = ps.executeQuery();
 			List<Modulo> modulos = new ArrayList<Modulo>();
 			while (rs.next()) {

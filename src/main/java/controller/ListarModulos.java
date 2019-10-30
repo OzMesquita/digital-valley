@@ -36,12 +36,14 @@ public class ListarModulos extends HttpServlet {
 			// pegar dados de pessoas
 			String nomeModulo = request.getParameter("nome") != null ? (String) request.getParameter("nome") : "";
 			
-			List<Modulo> modulos = Facade.buscarPorNome(nomeModulo, inicio, fim);
+			List<Modulo> modulos = null;
 			
 			if (nomeModulo.equals("")) {
 				quantidadeDeModulos = Facade.getQuantidadeModulo();
-			}else {		
-				quantidadeDeModulos = Facade.getQuantidadeModulo(nomeModulo, inicio, fim);
+				modulos = Facade.buscarTodosModulos();
+			}else {
+				quantidadeDeModulos=Facade.getQuantidadeModulo(nomeModulo,inicio,fim);
+				modulos = Facade.buscarPorNome(nomeModulo, inicio, fim);
 			}				
 				
 			// enviar dados
