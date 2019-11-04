@@ -42,7 +42,7 @@ public class CadastrarServidor extends HttpServlet {
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 				session.setAttribute(Constantes.getSessionMsgError(), "Usuário já cadastrado.");
 			}
-			if (senha.equals(senha2)) {
+			if (senha.equals(senha2) && !Facade.verificarCPF(cpf)) {// mudei coloquei !Facade.verificarCPF(cpf)
 				Servidor servidor = new Servidor();
 				Usuario usuario = new Usuario();
 				
@@ -59,7 +59,7 @@ public class CadastrarServidor extends HttpServlet {
 				usuario.setPerfil(EnumPerfil.SERVIDOR);
 
 				Facade.cadastrarServidor(usuario, servidor);
-				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor "+servidor.getNome());
+				session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao Cadadastrar Servidor(a) "+servidor.getNome());
 				session.setAttribute("nomeA", null);
 				session.setAttribute("nomeS", null);
 				session.setAttribute("matricula", null);
