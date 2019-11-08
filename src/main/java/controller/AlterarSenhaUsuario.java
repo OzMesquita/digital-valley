@@ -55,14 +55,19 @@ public class AlterarSenhaUsuario extends HttpServlet {
 				Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
 				if (senhaAntiga == null || senhaAntiga.isEmpty()) {
 					sessionMsg = "Erro: Digite sua senha atual!";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				} else if (senhaNova == null || senhaNova.isEmpty()) {
 					sessionMsg = "Erro: Digite sua nova senha!";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				} else if (senhaRepetida == null || senhaRepetida.isEmpty()) {
 					sessionMsg = "Erro: Digite sua nova senha novamente!";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				}  else if (!usuarioDaSessao.getSenha().equals((Crypter.crypt(senhaAntiga)))) {
 					sessionMsg = "Erro: Senha atual incorreta!";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				}   else if (!senhaNova.equalsIgnoreCase(senhaRepetida)) {
 					sessionMsg = "Erro: Campo cofirmar senha não bate com nova senha!";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				} else {
 					usuarioDaSessao.setSenha(Crypter.crypt(senhaRepetida));
 					Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
@@ -72,13 +77,13 @@ public class AlterarSenhaUsuario extends HttpServlet {
 				if(sessionMsg.isEmpty()) {
 					pagina = "view/editarUsuario.jsp?sucessoEditar=1";
 					sessionMsg = "Senha alterada com sucesso!";
+					session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 				sessionMsg += e.getMessage();
 			}
-			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 			response.sendRedirect(pagina);
 	}	
 

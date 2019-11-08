@@ -338,7 +338,7 @@ public class Facade {
 	public static void preCadastroServidor(String nome, String siape) {
 		
 		if(!nome.matches("^[aA-zZ]+(( [aA-zZ]+)+)?$")) {
-			throw new IllegalArgumentException("Erro: O nome não poder ser nulo e deve possuir pelo menos 1 caracterese não ter números, valor informado: " + nome+"!");
+			throw new IllegalArgumentException("Erro: O nome não poder ser nulo, não deve possuir caracteres especiais (ç,´,~) e não pode ter números!");
 		}
 		if(siape.length() != 7 && !siape.matches("^[0-9]+$")) {
 			throw new IllegalArgumentException("Erro: O SIAPE deve ter exatamente 7 números, valor informado: " + siape+"!");
