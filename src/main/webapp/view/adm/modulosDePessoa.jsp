@@ -28,7 +28,7 @@
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Associar módulos de pessoa</h1>
-          <p class="lead text-muted">Associe módulos ao usuário <%=pessoa.getNome()%> de CPF <%=pessoa.getCpf()%>.</p>
+          <p class="lead text-muted">Associe módulos ao usuário <strong><%=pessoa.getNome()%></strong> de CPF <strong><%=pessoa.getCpf()%></strong>.</p>
         </div>
       </section>
 <div class="container">
