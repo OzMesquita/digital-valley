@@ -113,7 +113,7 @@
 	
 		<script>
 		$(function () {
-			$('#image-input').change(function () {
+			$('#imagem').change(function () {
 				var file = $(this).val();
 				if (file == "") {
 					$("#text-btn-input-image").html("Selecionar Nova Imagem");
