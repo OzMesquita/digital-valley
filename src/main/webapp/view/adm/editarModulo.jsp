@@ -21,7 +21,7 @@
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Editar Módulo</h1>
-          <p class="lead text-muted">Realize a edição do módulo  <%= m.getTitulo()%>.</p>
+          <p class="lead text-muted">Realize a edição do módulo <strong><%= m.getTitulo()%></strong>.</p>
         </div>
       </section>
 		<div class="container" style="min-height: 400px">
