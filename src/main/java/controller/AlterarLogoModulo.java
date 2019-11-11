@@ -79,7 +79,7 @@ public class AlterarLogoModulo extends HttpServlet {
 				
 				if(sessionMsg.isEmpty()) {
 					pagina = "editarModulo.jsp?sucessoEditar=1";
-					//sessionMsg = "Logo de módulo alterada com sucesso!";
+					sessionMsg = "Logo de módulo alterada com sucesso!";
 					session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 				}
 				

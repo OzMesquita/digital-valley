@@ -111,7 +111,7 @@
 										<label class="btn btn-outline-dark btn-file" style="width:100%">
 										    <span id="text-btn-input-image">Selecionar Nova Imagem</span> <input type="file" name="imagem" id="imagem" style="display: none;">
 										</label>
-								<button id="Apagar" type="submit" class="btn btn-primary form-control" value="EditarLogo">Editar logo do módulo</button>	
+								<button id="Editar" type="submit" class="btn btn-primary form-control" value="EditarLogo" disabled="disabled">Editar logo do módulo</button>	
 							</div>
 							</form>
 
@@ -137,10 +137,10 @@
 				var file = $(this).val();
 				if (file == "") {
 					$("#text-btn-input-image").html("Selecionar Nova Imagem");
-					$(".btn-submit-image").hide();
+					$('#Editar')[0].disabled=true;
 				} else {
 					$("#text-btn-input-image").html("Imagem Selecionada");
-					$(".btn-submit-image").show();
+					$('#Editar')[0].disabled=false;
 				}
 			});
 		});
