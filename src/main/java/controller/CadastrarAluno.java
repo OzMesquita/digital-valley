@@ -42,7 +42,7 @@ public class CadastrarAluno extends HttpServlet {
 		try {
 			if (Facade.verificarCPF(cpf)) {
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
-				session.setAttribute(Constantes.getSessionMsgError(), "Usuário já cadastrado.");
+				session.setAttribute(Constantes.getSessionMsgError(), "CPF já cadastrado.");
 			}else if (senha.equals(senha2)) {
 				Aluno aluno = new Aluno();
 				Usuario usuario = new Usuario();
