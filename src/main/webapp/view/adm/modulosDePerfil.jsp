@@ -15,7 +15,7 @@
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Associar módulos de perfil</h1>
-          <p class="lead text-muted">Associe módulos ao perfil de <%=perfil.getNome() %>.</p>
+          <p class="lead text-muted">Associe módulos ao perfil de <strong><%=perfil.getNome()%></strong>.</p>
         </div>
       </section>
 <div class="container">
@@ -40,7 +40,7 @@
 							<tr>
 								<td><%=modulo.getTitulo()%></td>
 								<td><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
-										alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+										alt="<%=modulo.getTitulo()%>" style="height: 50px; width: 50px; display: block;" src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=modulo.getId()%>"></a></td>
 								<td>
 									<form method="POST" action="<%=url%>/associar_modulo_perfil">
 										<input type="hidden" value="<%=perfil.getId()%>"
@@ -80,7 +80,7 @@
 							<tr>
 								<td col="10"><%=modulo.getTitulo()%></td>
 								<td col="10"><a href="<%=modulo.getUrl()%>"><img id="img_modulo"
-										alt="<%=modulo.getTitulo()%>" src="<%=modulo.getImagem()%>"></a></td>
+										alt="<%=modulo.getTitulo()%>" style="height: 50px; width: 50px; display: block;" src="<%=Constantes.getAppUrl()%>/view/imagem_modulo?id_modulo=<%=modulo.getId()%>"></a></td>
 								<td>
 									<form method="POST" action="<%=url%>/desassociar_modulo_perfil">
 										<input type="hidden" value="<%=perfil.getId()%>"

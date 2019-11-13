@@ -64,34 +64,34 @@ public class AlterarLogoModulo extends HttpServlet {
 						}
 					}
 				}
-				
-		
 				// salvar imagem
 				if (logoModulo != null) {
-					int id = Integer.parseInt(dados.get("idModulo"));
-						Modulo modulo = Facade.buscarModulosPorId(id);
-						String nomeImagemPerfil = "modulo_logo_"+System.currentTimeMillis()+ "_" + logoModulo.getName();
-						logoModulo.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil));
-						modulo.setImagem(Constantes.getUSER_PROFILE_IMAGES_DIR() + nomeImagemPerfil);
-						Facade.editarModulo(modulo);
+					int id = Integer.parseInt(session.getAttribute("idModulo").toString());						
+					Modulo modulo = Facade.buscarModulosPorId(id);
+					String nomeImagemPerfil = "logo_"+System.currentTimeMillis()+ ".png";
+					logoModulo.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR()+ nomeImagemPerfil));
+					modulo.setImagem(nomeImagemPerfil);
+					Facade.editarModulo(modulo);
 				} else {
 					sessionMsg = "Erro: O arquivo selecionado deve ser uma imagem.<br>";
+					session.setAttribute(Constantes.getSessionMsgError(), sessionMsg);
 				}
 				
 				if(sessionMsg.isEmpty()) {
-					pagina = "view/editarModulo.jsp?sucessoEditar=1";
+					pagina = "editarModulo.jsp?sucessoEditar=1";
 					sessionMsg = "Logo de módulo alterada com sucesso!";
+					session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
 				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 				session.setAttribute(Constantes.getSessionMsgError(), sessionMsg + "\n" + e.getMessage());
 			}
-			session.setAttribute(Constantes.getSessionMsg(), sessionMsg);
+			
 			
 		} else {
 			session.setAttribute(Constantes.getSessionMsgError(),
-					"Erro: O formulário não estar com enctype=\"multipart/form-data\".");
+					"Erro: O formulário não está com enctype=\"multipart/form-data\".");
 		}
 		response.sendRedirect(pagina);
 	}

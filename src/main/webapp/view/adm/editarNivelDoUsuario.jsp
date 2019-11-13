@@ -16,7 +16,7 @@
 <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Editar perfil do usuário</h1>
-          <p class="lead text-muted">Realize a edição do perfil do usuário <%= p.getNome()%>.</p>
+          <p class="lead text-muted">Realize a edição do perfil do usuário <strong><%= p.getNome()%></strong>.</p>
         </div>
       </section>
 		<div class="container" style="min-height: 400px">
