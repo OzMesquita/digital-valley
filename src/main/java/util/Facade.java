@@ -319,10 +319,11 @@ public class Facade {
 	public static void preCadastrarAluno(String nome, String matricula, int curso) throws Exception {
 		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
 		PreCadastroAlunoDAO preA = DAOFactory.criarPreCadastroAluno();
+		
 		if(!matricula.matches("^[0-9]+$")) {
 			throw new Exception("Matrícula " + matricula+ " inválida");
 		}else if(aluno != null || (preA.buscarPreCadastro(matricula))){
-				throw new IllegalArgumentException("Aluno(a) " + nome + " já possui cadastro");
+				throw new IllegalArgumentException("Matrícula já cadastrada!");
 			}else {
 				preA.preCadastrar(nome, matricula, curso);
 		}
