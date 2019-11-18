@@ -40,7 +40,7 @@ public class CadastrarServidor extends HttpServlet {
 		try {
 			if (Facade.verificarCPF(cpf)) {
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
-				session.setAttribute(Constantes.getSessionMsgError(), "Usuário já cadastrado.");
+				session.setAttribute(Constantes.getSessionMsgError(), "CPF já cadastrado.");
 			}
 			if (senha.equals(senha2) && !Facade.verificarCPF(cpf)) {// mudei coloquei !Facade.verificarCPF(cpf)
 				Servidor servidor = new Servidor();
@@ -65,7 +65,7 @@ public class CadastrarServidor extends HttpServlet {
 				session.setAttribute("matricula", null);
 				session.setAttribute("siape", null);
 				pagina = "../login.jsp";
-			}else{
+			}else if(!senha.equals(senha2)){
 				session.setAttribute(Constantes.getSessionMsgError(), "Erro: senhas não conferem.");
 				pagina = "cadastrarUsuario.jsp?erroSenha=1";
 			}
