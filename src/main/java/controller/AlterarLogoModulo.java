@@ -69,6 +69,9 @@ public class AlterarLogoModulo extends HttpServlet {
 					int id = Integer.parseInt(session.getAttribute("idModulo").toString());						
 					Modulo modulo = Facade.buscarModulosPorId(id);
 					String nomeImagemPerfil = "logo_"+System.currentTimeMillis()+ ".png";
+					if (modulo.getImagem() != null) {
+						new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + modulo.getImagem()).delete();
+					}
 					logoModulo.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR()+ nomeImagemPerfil));
 					modulo.setImagem(nomeImagemPerfil);
 					Facade.editarModulo(modulo);
