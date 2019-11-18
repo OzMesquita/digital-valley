@@ -99,7 +99,7 @@
 					<div id="form-servidor" style="display:none;">
 	                    <div class="form-group">
 	                        <div class="col-sm-12 col-sm-offset-1">
-	                            <input type="number" name="siape" class="form-control" id="inputEmail3" placeholder="Siape ex.: 333333" >
+	                            <input type="number" name="siape" class="form-control" id="inputEmail3" placeholder="Siape ex.: 3333333" >
 	                        </div>
 	                    </div>
 	                    <div class="form-group">

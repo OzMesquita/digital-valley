@@ -31,7 +31,7 @@ public class ImportarServidorController  extends HttpServlet {
 			session.setAttribute(Constantes.getSessionMsg(), "Sucesso ao cadastrar servidor(a)!");
 			
 		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsgError(), "Erro ao cadastrar servidor(a)! \n"+e.getMessage());
+			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());
 			
 		}
 		
