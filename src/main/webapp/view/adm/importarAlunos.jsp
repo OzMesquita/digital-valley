@@ -1,3 +1,16 @@
+	<%@page import="javax.swing.text.Document"%>
+<%
+	int numeroCurso=0;
+	String matriculas ="";
+	if(session.getAttribute("matriculas") != null && session.getAttribute("curso")!= null){ 
+		numeroCurso = Integer.valueOf(session.getAttribute("curso").toString());
+		matriculas = session.getAttribute("matriculas").toString();
+		session.removeAttribute("matriculas");
+		session.removeAttribute("curso");
+		
+	}%>
+
+
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <section class="jumbotron text-center">
         <div class="container">
@@ -28,19 +41,19 @@
 					<div class="form-group">
 						<label for="curso">Curso</label> 
 						<select required="required" class="form-control" name="curso" id="curso">
-							<option value="">Selecione um curso</option>
-							<option value="1"> Ciência da Computação</option>
-							<option value="2"> Engenharia Civil</option>
-							<option value="3"> Engenharia de Produção</option>
-							<option value="4"> Engenharia de Software</option>
-							<option value="5"> Engenharia Mecânica</option>
+							<option value=""> Selecione um curso</option>
+							<option value="1" <%if(numeroCurso == 1){%>selected="selected"<%}%>> Ciência da Computação</option>
+							<option value="2" <%if(numeroCurso == 2){%>selected="selected"<%}%>> Engenharia Civil</option>
+							<option value="3" <%if(numeroCurso == 3){%>selected="selected"<%}%>> Engenharia de Produção</option>
+							<option value="4" <%if(numeroCurso == 4){%>selected="selected"<%}%>> Engenharia de Software</option>
+							<option value="5" <%if(numeroCurso == 5){%>selected="selected"<%}%>> Engenharia Mecânica</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="matriculas">Matrículas e Nomes</label>
 						<textarea name="matriculas" id="matriculas" required="required"
 							class="form-control" placeholder="123456 Nome do Aluno 1
-123457 Nome do Aluno 2"></textarea>
+123457 Nome do Aluno 2"><%if(matriculas != ""){out.print(matriculas);}%></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit"

@@ -31,6 +31,7 @@ public class ImportacaoController extends HttpServlet {
 		pagina = "importarAlunos.jsp?erro=1";
 		
 		HttpSession session = request.getSession();
+		
 		try {
 			if (curso==0) {
 				throw new RuntimeException("Curso não selecionado!");
@@ -53,6 +54,8 @@ public class ImportacaoController extends HttpServlet {
 			
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsgError(), e.getMessage());	
+			session.setAttribute("matriculas",request.getParameter("matriculas"));
+			session.setAttribute("curso",curso);
 		}		
 		
 		response.sendRedirect(pagina);

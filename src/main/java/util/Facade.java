@@ -581,29 +581,32 @@ public class Facade {
 		mDao.editar(m);
 	}
 	
-	public static boolean validarPreCadastroAluno(String dados) {
+	public static boolean validarPreCadastroAluno(String dados) throws Exception {
 		boolean estado = true;
 		String aux, matricula, nome;
+		int linha = 0;
 	       while(!dados.equals("")){
+	    	   linha++;
 	    	   aux = dados.substring(0,dados.indexOf("\n"));
-	    	   if (aux.length() <= 6) {
+	    	   if (aux.trim().length() <= 6) {
 	    		   estado = false;
-	    		   break;}
-	                matricula = dados.substring(0,6);
-	               if (matricula.matches("[0-9]+")){
+	    		   throw new Exception("Matrícula ou nome não informado na linha "+linha+". Valor informado: "+aux+".");
+	    	   }
+	            matricula = dados.substring(0,6);
+	            if (matricula.matches("[0-9]+")){
 	                   nome = dados.substring(6,dados.indexOf("\n")).toUpperCase().trim();
 	                   if( util.TesteRegex.testar(nome)){
 	                	aux += "\n";   
 	                	dados = dados.replace(aux, "");
 	                   }else {
 	                	   estado = false;
-	                	   break;
+	                	   throw new Exception("Erro: nome inválido na linha "+linha+". O nome não poder ser nulo, deve estar COMPLETO, não deve possuir caracteres especiais (ç,´,~) e não pode ter números. Valor informado: "+nome);               
 	                   }
-	               }else{
+	            }else{
 	                   estado = false;
-	                   break;
-	               }
-				}
+	                   throw new Exception("Erro: matrícula inválida na linha "+linha+". Valor informado: "+matricula+".");
+	            }
+	       }
 	     return estado;
 	}	
 }
