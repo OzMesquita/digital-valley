@@ -89,7 +89,7 @@ public class AlterarImagemPerfilUsuario extends HttpServlet {
 		
 				// salvar imagem
 				if (imagemPerfil != null) {
-					String nomeImagemPerfil = pessoaDaSessao.getId() + "-" + imagemPerfil.getName();
+					String nomeImagemPerfil =  "usuario_"+System.currentTimeMillis()+ ".png";//pessoaDaSessao.getId() + "-" + imagemPerfil.getName();
 					if (pessoaDaSessao.getImagem() != null) {
 						new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + pessoaDaSessao.getImagem()).delete();
 					}

@@ -118,7 +118,7 @@
   <div class="col-md-3">
   <div class="card">
 						    <h5 class="card-header">Foto de Perfil</h5>
-						  <div class="card-body">
+						  <div id="imagem" class="card-body">
 						    <p>
 								<img
 									src="<%=Constantes.getAppUrl()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
@@ -231,4 +231,22 @@
 				}
 			});
 		});
+	</script>
+
+	<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#img-edicao-perfil').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#image-input").change(function(){
+        readURL(this);
+    });
 	</script>
