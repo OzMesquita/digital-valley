@@ -53,7 +53,18 @@ public class Login extends HttpServlet {
 					pagina = "view/telaInicial.jsp";
 				}
 				uDAO = DAOFactory.criarUsuarioDAO();
-				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());				
+				uDAO.salvarToken(Facade.buildToken(), usuario.getPessoa().getId());
+				
+				/* **********************************************************
+				 *  Não se sabe qual a função desse segundo token, mas no   *
+				 *  primeiro acesso ele é null e causa erro ao abrir um     *
+				 *  módulo. Quando faz logout, o token é setado como "" e   *
+				 *  assim funciona no acesso seguinte. Por isso o if abaixo *
+				 *  existe.													*
+				 *  *********************************************************/
+				if(usuario.getTokenUsuario() == null) {
+					uDAO.salvarTokenUsuario("", usuario.getPessoa().getId());		
+				}	
 			}else{
 				session.setAttribute(Constantes.getSessionMsgError(),"Usuários e/ou senha inválidos");
 			}
