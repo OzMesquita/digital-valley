@@ -81,7 +81,7 @@ public class CadastrarModulo extends HttpServlet {
 					imagemPerfil.write(new File(Constantes.getUSER_PROFILE_IMAGES_DIR()+ nomeImagemPerfil));
 					modulo.setImagem(nomeImagemPerfil);
 				}else {
-					modulo.setImagem("i2.png");
+					modulo.setImagem("");
 				}
 
 				Modulo mTeste = Facade.buscarPorNome(modulo.getTitulo());

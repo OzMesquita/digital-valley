@@ -26,14 +26,19 @@ public class ImagemModulo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			// get the name of the image
+			String nameImage = Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
+			if (nameImage.contentEquals("")) {
+				nameImage = "\\i2.png";
+			}
 			// Get the absolute path of the image
-			String filename = Constantes.getUSER_PROFILE_IMAGES_DIR()+Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
+			String filename = Constantes.getUSER_PROFILE_IMAGES_DIR()+nameImage;
+			System.out.println(filename);
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
 			if (mime == null) {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			} else {
-				System.out.println(filename);
 				File file = new File(filename);
 				FileInputStream in = new FileInputStream(file);
 				// copiar conteudo

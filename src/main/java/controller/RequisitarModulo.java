@@ -34,12 +34,11 @@ public class RequisitarModulo extends HttpServlet{
 			String url = request.getParameter("url");
 			String [] urlPath = url.split("/");
 			url = urlPath[0]+"//"+urlPath[2]+"/"+urlPath[3]+"/autentica";
-			System.out.println("Entrou URL");
+			
 			Gson gson = new Gson();
 			String json = gson.toJson(userObjectToJSON);
 			int status = Facade.executeHTTPRequestToModule(url, json);
-			System.out.println(url);
-			System.out.println(status);
+	
 			Usuario userToken = Facade.buscarPorEmail(user.getPessoa().getEmail());
 			userToken.setTokenUsuario(DAOFactory.criarUsuarioDAO().buscarTokenTemp(user.getPessoa().getId()));
 			if(status != 200){
