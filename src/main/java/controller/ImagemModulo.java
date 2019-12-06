@@ -29,11 +29,11 @@ public class ImagemModulo extends HttpServlet {
 			// get the name of the image
 			String nameImage = Facade.getDiretorioImagemModulo(Integer.valueOf(request.getParameter("id_modulo")));
 			if (nameImage.contentEquals("")) {
-				nameImage = "\\i2.png";
+				nameImage = "i2.png";
 			}
 			// Get the absolute path of the image
 			String filename = Constantes.getUSER_PROFILE_IMAGES_DIR()+nameImage;
-			System.out.println(filename);
+
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
 			if (mime == null) {
