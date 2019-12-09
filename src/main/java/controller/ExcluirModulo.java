@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,9 @@ public class ExcluirModulo extends HttpServlet {
 		try {
 			Modulo modulo = util.Facade.buscarModulosPorId(idModulo);
 			DAOFactory.criarModuloDAO().remover(modulo.getId());
+			if (modulo.getImagem() != null && !modulo.getImagem().contentEquals("") ) {
+				new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + modulo.getImagem()).delete();
+			}
 			pagina = util.Constantes.getAdmUrl()+"/listar_modulos?sucessoRemover=1&idModulo="+idModulo;
 			session.setAttribute(Constantes.getSessionMsg(), "Módulo removido com sucesso!");
 		} catch (Exception e) {
