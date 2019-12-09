@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +46,8 @@ public class RemoveImagemPerfilUsuario extends HttpServlet {
 
 				// configurar objetos
 				Usuario usuarioDaSessao = (Usuario) session.getAttribute("usuario");
+				if(usuarioDaSessao.getPessoa().getImagem() != null)
+					new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + usuarioDaSessao.getPessoa().getImagem()).delete();
 				usuarioDaSessao.getPessoa().setImagem(null);;				
 				Facade.editarUsuarioESenha(usuarioDaSessao.getPessoa(), usuarioDaSessao);
 				// salvar sessao
