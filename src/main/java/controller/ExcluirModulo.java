@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import dao.DAOFactory;
 import model.Modulo;
+import model.Perfil;
 import util.Constantes;
 
 public class ExcluirModulo extends HttpServlet {
@@ -25,6 +28,10 @@ public class ExcluirModulo extends HttpServlet {
 
 		try {
 			Modulo modulo = util.Facade.buscarModulosPorId(idModulo);
+			List<Perfil> perfis = DAOFactory.criarModuloDAO().getPerfisAssociados(idModulo);
+			for(Perfil perfil : perfis) {
+				DAOFactory.criarModuloDAO().desassociarPerfilModulo(perfil.getId(), modulo.getId());
+			}	
 			DAOFactory.criarModuloDAO().remover(modulo.getId());
 			if (modulo.getImagem() != null && !modulo.getImagem().contentEquals("") ) {
 				new File(Constantes.getUSER_PROFILE_IMAGES_DIR() + modulo.getImagem()).delete();

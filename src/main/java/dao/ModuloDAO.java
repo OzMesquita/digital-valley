@@ -37,6 +37,8 @@ public interface ModuloDAO {
 	public void associarPerfilModulo (int idPerfil, int idModulo);
 	
 	public void desassociarPerfilModulo (int idPerfil, int idModulo);
+	
+	public List<Perfil> getPerfisAssociados(int idModulo);
 
 	public List<Modulo> getModulosDePerfil(Perfil perfil);
 	

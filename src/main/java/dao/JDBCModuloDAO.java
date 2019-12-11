@@ -413,6 +413,32 @@ public class JDBCModuloDAO extends JDBCDAO implements ModuloDAO {
 			super.close();
 		}
 	}
+	@Override 
+	public List<Perfil> getPerfisAssociados(int idModulo){
+		super.open();
+		try {
+			String SQL = "SELECT pm.id_perfil, p.nome FROM perfil_modulo as pm INNER JOIN perfil as p ON pm.id_perfil = p.id WHERE pm.id_modulo = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, idModulo);
+			ResultSet rs = ps.executeQuery();
+			List<Perfil> perfis = new ArrayList<Perfil>();
+			while (rs.next()) {
+				Perfil perfil = new Perfil();
+				perfil.setId(Integer.parseInt(rs.getString("id_perfil")));
+				perfil.setNome(rs.getString("nome"));
+				perfis.add(perfil);
+			}
+			ps.close();
+			rs.close();
+			return perfis;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(
+					"Falha ao buscar perfis associados ao módulo. Erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
+	}
 
 	@Override
 	public List<Modulo> getModulosDePerfil(Perfil perfil) {
