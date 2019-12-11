@@ -24,6 +24,7 @@ public class ListarUsuarios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			
 			// paginacao de pessoas
 			Integer paginaAtual = request.getParameter("pagina") != null
 					? Integer.valueOf(request.getParameter("pagina"))
@@ -60,6 +61,7 @@ public class ListarUsuarios extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} catch (Exception e) {
 			request.getSession().setAttribute(Constantes.getSessionMsg(), e.getMessage());
+			response.sendRedirect("../telaInicial.jsp");
 		}
 	}
 
