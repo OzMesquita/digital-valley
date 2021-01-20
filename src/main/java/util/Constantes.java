@@ -24,6 +24,13 @@ public class Constantes {
 	private static Integer MAX_USER_PROFILE_IMAGE_SIZE_BYTES;
 	private static String SESSION_MSG_ERROR;
 	private static String GUARDIAO_VERSION;
+	
+	/**
+	 * Classe de constrantes da aplicação
+	 * São carregadas de arquivo .env localizado na 
+	 * pasta /digital-valley/src/main/resources
+	 * 
+	 */
 	private Constantes() {
 		//
 	}

@@ -11,6 +11,9 @@
                 
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="digital-valley-core-1.6.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/digital-valley-core/digital-valley-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
                 		
         
         <property name="context-root" value="Controle_de_Acesso"/>

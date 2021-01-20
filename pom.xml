@@ -34,7 +34,7 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
+	<!--<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>DESKTOP-4SVL9LL-snapshots</name>
@@ -42,6 +42,7 @@
 
 		</snapshotRepository>
 	</distributionManagement>
+	-->
 
 	<repositories>
 		<repository>
@@ -53,15 +54,17 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
+		<!-- <repository>
 			<id>central</id>
 			<name>DESKTOP-4SVL9LL-releases</name>
 			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
 
 		</repository>
+		 -->
 	</repositories>
 
 	<!-- Depedencias -->
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.github.shyiko.dotenv</groupId>
@@ -70,8 +73,8 @@
 		</dependency>
 		<dependency>
 			<groupId>br.com.n2s</groupId>
-			<artifactId>core.n2s</artifactId>
-			<version>1.6.1</version>
+			<artifactId>digital-valley-core</artifactId>
+			<version>1.6.1-SNAPSHOT</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>

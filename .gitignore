@@ -3,3 +3,5 @@
 .classpath
 .project
 /src/main/resources/.env
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.jdt.core.prefs
