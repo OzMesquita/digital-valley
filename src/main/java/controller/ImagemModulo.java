@@ -32,7 +32,7 @@ public class ImagemModulo extends HttpServlet {
 				nameImage = "i2.png";
 			}
 			// Get the absolute path of the image
-			String filename = Constantes.getUSER_PROFILE_IMAGES_DIR()+nameImage;
+			String filename = Constantes.getMODULES_IMAGES_DIR()+nameImage;
 
 			// retrieve mimeType dynamically
 			String mime = request.getServletContext().getMimeType(filename);
