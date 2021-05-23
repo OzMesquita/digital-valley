@@ -29,6 +29,7 @@ public class PessoaDAOTest {
 		pd.cadastrar(pessoa);
 
 	}
+	
 	@Ignore
 	@Test
 	public void editar() {
@@ -50,6 +51,7 @@ public class PessoaDAOTest {
 		pdao.remover(pessoa.getId());
 
 	}
+	
 	@Ignore
 	@Test
 	public void buscar() {
@@ -78,7 +80,7 @@ public class PessoaDAOTest {
 
 	}
 
-	
+	@Ignore
 	@Test
 	public void listar() {
 		PessoaDAO pd = DAOFactory.criarPessoaDAO();
@@ -103,6 +105,7 @@ public class PessoaDAOTest {
 		Assert.assertTrue(pessoas != null);
 	}
 	
+	@Ignore
 	@Test
 	public void testInserirToken(){
 		Pessoa p = new Pessoa();
@@ -113,6 +116,7 @@ public class PessoaDAOTest {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void testBuscarToken(){
 		PessoaDAO pDAO = DAOFactory.criarPessoaDAO();
@@ -124,6 +128,4 @@ public class PessoaDAOTest {
 		
 	}
 	
-	
-
 }

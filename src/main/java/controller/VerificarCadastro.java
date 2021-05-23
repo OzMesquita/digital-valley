@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.StringUtils;
+
 import dao.AlunoDAO;
 import dao.DAOFactory;
 import dao.ServidorDAO;
@@ -16,6 +18,10 @@ import model.Servidor;
 import util.Constantes;
 import util.Facade;
 
+/**
+ * Verifica cadastro no guardião
+ *
+ */
 public class VerificarCadastro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,15 +32,35 @@ public class VerificarCadastro extends HttpServlet {
 		String siape = request.getParameter("siape");
 		String nomeA = request.getParameter("nomeA");
 		String nomeS = request.getParameter("nomeS");
+		String inserindoAluno = request.getParameter("inserindoAluno");
 		String pagina = "verificacaoCadastro.jsp?erroVerificacao=1";
 		HttpSession session = request.getSession();
 
 		try {
+			
+			StringBuffer msgError = new StringBuffer();
+		
+			if (inserindoAluno.equals("aluno")) {
+				if (matricula.isEmpty() || nomeA.isEmpty()) {
+					msgError.append("Campos matricula e nome são requeridos");
+				}
+
+			} else if(inserindoAluno.equals("servidor")) {
+				if (siape.isEmpty() ||nomeS.isEmpty()) {
+					msgError.append("Campos SIAPE e nome são requeridos");
+				}
+
+			}
+			
+			if(!msgError.toString().isEmpty()) {
+				throw new Exception(msgError.toString());
+			}
+			
 			if (!matricula.equals("")) {
 				/*Alteração para determinar tipo de erro gerado para o usuario*/
 				Aluno a = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
 				if( !(Facade.verificacaoAluno(matricula)) && a==null) {//torquei == por != e da problema
-					throw new Exception("Matricula não encontrada. Por favor entre em contato com N2S!");
+					throw new Exception("Matricula não encontrada. Entre em contato com N2S pelo email n2s@ufc.br!");
 				}
 				  else if( Facade.verificacaoAluno(matricula)==false && Facade.verificacaoAluno(matricula, nomeA)==true) {
 					throw new Exception("Nome não identificado. Por favor verificar.");
@@ -75,7 +101,7 @@ public class VerificarCadastro extends HttpServlet {
 				/*Alteração para determinar tipo de erro gerado para o usuario*/
 				Servidor s = DAOFactory.criarServidorDAO().buscarPorSiape(siape);
 				if( !(Facade.verificacaoServidor(siape)) && s == null) {
-					throw new Exception("Siape não encontrada. Por favor entre em contato com N2S!");
+					throw new Exception("Siape não encontrado. Entre em contato com N2S pelo email n2s@ufc.br!");
 				}else if( Facade.verificacaoServidor(siape)==false && Facade.verificacaoServidor(siape, nomeS)==true) {
 					throw new Exception("Nome não identificado. Por favor verificar.");
 				}				
@@ -106,5 +132,5 @@ public class VerificarCadastro extends HttpServlet {
 		response.sendRedirect(pagina);
 
 	}
-
+	
 }

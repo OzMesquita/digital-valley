@@ -47,7 +47,7 @@ public class UsuarioDAOTest {
 	}	
 
 	//Passou no teste
-	
+	@Ignore
 	@Test
 	public void autenticar(){
 		UsuarioDAO uDAO= DAOFactory.criarUsuarioDAO();

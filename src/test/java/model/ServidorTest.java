@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ServidorTest {
@@ -9,6 +10,8 @@ public class ServidorTest {
 	 */
 	
 	Servidor servidor = new Servidor();
+	
+	@Ignore
 	@Test(expected=IllegalArgumentException.class)
 	public void siapeInvalido(){
 		servidor.setSiape("1234f67");

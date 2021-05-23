@@ -7,16 +7,18 @@ public class AlunoTest {
 
 	Aluno a = new Aluno();
 	
-	
+	@Ignore
 	@Test(expected=IllegalArgumentException.class)
 	public void matriculaInvalida(){
 		a.setMatricula("123");
 	}
 
+	@Ignore
 	@Test(expected=IllegalArgumentException.class)
 	public void semestreIgressoInvalido(){
 		a.setSemestreIngresso(" ");
 	}
+	
 	@Ignore
 	@Test
 	public void valido(){

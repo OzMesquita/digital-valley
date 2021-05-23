@@ -40,7 +40,7 @@ public class AlunoDAOTest {
 
 	}
 	
-
+	@Ignore
 	@Test
 	public void testBuscarPorMatricula(){
 		AlunoDAO aDAO = DAOFactory.criarAlunoDAO();
@@ -65,6 +65,7 @@ public class AlunoDAOTest {
 		}
 		Assert.assertTrue(alunos != null);
 	}
+	
 	@Ignore
 	@Test
 	public void editar() {

@@ -30,7 +30,7 @@
 <!-- CSS Files -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>/sign.css" rel="stylesheet" />
 <!--meu css -->
 <link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
 
@@ -97,8 +97,7 @@
                 </form>
                 
                     <nav class="navbar navbar-light" style="width:100%;">
-			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
+			    <p>Guardião ©<a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
 			    <p><a href="mailto:n2s@ufc.br?subject=Ajuda no Guardião" id="n2smail" target="_blank" title="">Precisa de ajuda?</a></p>
 			</nav>
             </div>            

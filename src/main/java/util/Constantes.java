@@ -36,7 +36,10 @@ public class Constantes {
 	}
 
 	static {
+		try {
+		
 		Map<String, String> dotEnv = DotEnv.load();
+		
 		DATABASE_CONF_DIR = dotEnv.get("DATABASE_CONF_DIR");
 		EMAIL_CONF_DIR = dotEnv.get("EMAIL_CONF_DIR");
 		APP_URL = dotEnv.get("APP_URL");
@@ -54,6 +57,10 @@ public class Constantes {
 		PRE_URL = dotEnv.get("PRE_URL");
 		SESSION_MSG_ERROR = dotEnv.get("SESSION_MSG_ERROR");
 		GUARDIAO_VERSION = dotEnv.get("GUARDIAO_VERSION");
+		
+		}catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+		}
 	}
 
 	/**
@@ -216,6 +223,18 @@ public class Constantes {
 	 */
 	public static void setGUARDIAO_VERSION(String gUARDIAO_VERSION) {
 		GUARDIAO_VERSION = gUARDIAO_VERSION;
+	}
+	
+	/**
+	 * Print system env properties used to debug .env file content 
+	 */
+	public static void printEnv() {
+
+		Map<String, String> env = System.getenv();
+		for (String envName : env.keySet()) {
+			System.out.format("%s=%s%n", envName, env.get(envName));
+		}
+
 	}
 	
 }

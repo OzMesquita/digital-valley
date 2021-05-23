@@ -12,6 +12,7 @@ public class PerfilDAOTest {
 	
 	private Perfil perfil = new Perfil();
 	private PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
+	
 	@Ignore
 	@Test
 	public void testCadastrar(){
@@ -20,6 +21,7 @@ public class PerfilDAOTest {
 		pDAO.cadastrar(perfil);
 		
 	}
+	
 	@Ignore
 	@Test
 	public void testBuscarPorID(){
@@ -66,6 +68,4 @@ public class PerfilDAOTest {
 		
 	}
 	
-	
-
 }

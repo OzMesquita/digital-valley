@@ -23,6 +23,7 @@ public class ProfessorDAOTest {
 
 		pdao.cadastrar(professor);
 	}
+	
 	@Ignore
 	@Test
 	public void buscar() {
@@ -37,7 +38,8 @@ public class ProfessorDAOTest {
 		
 
 	}
-@Ignore
+	
+	@Ignore
 	@Test
 	public void listar() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();
@@ -54,6 +56,7 @@ public class ProfessorDAOTest {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void buscarPorSiape() {
 		ProfessorDAO pdao = DAOFactory.criarProfessorDAO();

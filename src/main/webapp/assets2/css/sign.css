@@ -1,4 +1,4 @@
-	/*
+/*
  * Base structure
  */
 
@@ -63,6 +63,6 @@ html, body {
 
 .login-form .brasao_ufc {
 	width: 350px;
-	height:108px;
+	height:90px;
 	margin-top:20px;
 }

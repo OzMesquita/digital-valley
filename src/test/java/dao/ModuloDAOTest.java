@@ -13,6 +13,7 @@ import org.junit.Test;
 public class ModuloDAOTest {
 
 	private Modulo modulo = new Modulo();
+	
 	@Ignore
 	@Test
 	public void salvar() {
@@ -23,6 +24,7 @@ public class ModuloDAOTest {
 
 		md.cadastrar(modulo);
 	}
+	
 	@Ignore
 	@Test
 	public void editar() {
@@ -34,6 +36,7 @@ public class ModuloDAOTest {
 
 		md.editar(modulo);
 	}
+	
 	@Ignore
 	@Test
 	public void remover() {
@@ -41,6 +44,7 @@ public class ModuloDAOTest {
 		ModuloDAO md = DAOFactory.criarModuloDAO();
 		md.remover(modulo.getId());
 	}
+
 	@Ignore
 	@Test
 	public void buscar() {
@@ -50,6 +54,7 @@ public class ModuloDAOTest {
 		Assert.assertTrue(md.buscar(modulo.getId()) != null);
 	}
 	
+	@Ignore
 	@Test
 	public void listarPorPessoa() {
 		Pessoa pessoa = new Pessoa();

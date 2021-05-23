@@ -129,6 +129,7 @@ public class FacadeTest {
 		System.out.println(email[0]);
 		System.out.println(email[1]);
 	}
+	
 	@Ignore
 	@Test
 	public void testdigito() {
@@ -139,12 +140,14 @@ public class FacadeTest {
 			System.out.println("tem letras");
 		}
 	}
+	
 	@Ignore
 	@Test
 	public void crypter() {
 		System.out.println(Crypter.crypt("123456"));
 		 
 	}
+	
 	@Ignore
 	@Test
 	public void testBuscarTodosModulos() {
@@ -156,6 +159,8 @@ public class FacadeTest {
 		}
 		
 	}
+
+	@Ignore
 	@Test
 	public void testValidarPreCadastroAluno() {
 		String dados = "111222 aluno versao atual\n";

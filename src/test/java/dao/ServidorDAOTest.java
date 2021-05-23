@@ -39,6 +39,7 @@ public class ServidorDAOTest {
 		Assert.assertTrue(servidores != null);
 
 	}
+	
 	@Ignore
 	@Test
 	public void testBuscarPorSiape(){
@@ -47,6 +48,7 @@ public class ServidorDAOTest {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void testBuscarToken(){
 		ServidorDAO sDAO = DAOFactory.criarServidorDAO();

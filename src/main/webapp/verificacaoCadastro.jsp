@@ -30,7 +30,7 @@
 <!-- CSS Files -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="<%=Constantes.getAppCssUrl()%>//sign.css" rel="stylesheet" />
+<link href="<%=Constantes.getAppCssUrl()%>/sign.css" rel="stylesheet" />
 <!--meu css -->
 <link rel="stylesheet" href="<%=Constantes.getAppCssUrl()%>/newcss.css" type="text/css" />
 
@@ -45,6 +45,7 @@
 		session.setAttribute("nomeS", null);
 		session.setAttribute("matricula", null);
 		session.setAttribute("siape", null);
+		
     %>
 
 
@@ -59,15 +60,15 @@
         </div>
         <div class="col-sm-6 col-md-4 col-full-height login-form">
           <div>	
-          		<p class="text-center">
-          			<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
-          		</p>
-                <form class="form-horizontal" id="formVerifica" role="form" action="verificacao" name="formVerifica" method="post">
-                	<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
-		<div class="alert alert-sucess" role="alert">
-			<%=session.getAttribute(Constantes.getSessionMsg()) %>
-		</div>
-					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+          	<p class="text-center">
+          		<img src="assets2/img/brasao_ufc.png" class="brasao_ufc" />
+          	</p>
+            <form class="form-horizontal" id="formVerifica" role="form" action="verificacao" name="formVerifica" method="post">
+            <%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+				<div class="alert alert-sucess" role="alert">
+				<%=session.getAttribute(Constantes.getSessionMsg()) %>
+			</div>
+				<%session.setAttribute(Constantes.getSessionMsg(), null); %>
 					
 				<%} %>
 		<%if(session.getAttribute(Constantes.getSessionMsgError()) != null){ %>
@@ -84,8 +85,12 @@
                                 Servidor</button>
 					</div>
 					<div class="margin-top-div" style="margin-top:20px;"></div>
+					
+					<input type="hidden" id="inserindoAluno" name="inserindoAluno">
+					
 					<div id="form-aluno">
-	                    <div class="form-group">
+						
+					    <div class="form-group">
 	                        <div class="col-sm-12 col-sm-offset-1">
 	                            <input type="number" name="matricula" class="form-control" id="inputEmail3" placeholder="Matrícula, ex.: 333333">
 	                        </div>
@@ -127,10 +132,10 @@
                     </div>
                 </form>
                 
-                  <nav class="navbar navbar-light" style="width:100%;">
-			    Guardião
-			    <p>© <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
-			</nav>  
+	            <nav class="navbar navbar-light" style="width:100%;">
+				    <p>Guardião © <a href="http://n2s.russas.ufc.br" id="n2s" target="_blank">Núcleo de Soluções em Software (N2S)</a>, <%=LocalDate.now().getYear()%>.</p>
+				    <p><a href="mailto:n2s@ufc.br?subject=Ajuda no Guardião" id="n2smail" target="_blank" title="">Precisa de ajuda?</a></p>
+				</nav>  
             </div>            
         </div>
       </div>
@@ -156,6 +161,9 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
+		
+		$('#inserindoAluno').val('aluno');
+		
 		$('.menu-tab-verificao').click(function () {
 			var $this = $(this);
 			var formType = $this.attr('data-form-type');
@@ -166,10 +174,14 @@
 				$('#form-servidor').hide();
 				$('#form-aluno').show();
 				
+				$('#inserindoAluno').val('aluno');
+				
 			} else {
 				limparForm();
 				$('#form-servidor').show();
 				$('#form-aluno').hide();
+				
+				$('#inserindoAluno').val('servidor');
 				
 			}
 		});
