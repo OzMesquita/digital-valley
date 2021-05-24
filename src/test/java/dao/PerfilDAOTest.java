@@ -58,6 +58,7 @@ public class PerfilDAOTest {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void testBucarPorNome(){
 		PerfilDAO pDAO = DAOFactory.criarPerfilDAO();
