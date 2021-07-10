@@ -57,7 +57,8 @@
 					<th>Nome</th>
 					<th>CPF</th>
 					<th>E-mail</th>
-					<th>Data Nascimento</th>
+					<th>Nível</th>
+					<th>Dt. Nasc.</th>
 					<th>Opções</th>
 				</thead>
 				<tbody>
@@ -68,6 +69,7 @@
 						<td><%=pessoa.getNome()%></td>
 						<td><%=pessoa.getCpf()%></td>
 						<td><%=pessoa.getEmail()%></td>
+						<td><%=pessoa.getUsuario().getNivel().getLabel()%></td>
 						<td><%=Facade.converterLocalDateParaString(pessoa.getDataNascimento()) %></td>
 						<td><a
 							href="<%=url%>/pessoa_modulos?pessoa_id=<%=pessoa.getId()%>&perfil_id=<%=Facade.buscarPessoaPorId(pessoa.getId()).getUsuario().getPerfil().getValorPerfil()%>">Gerenciar
