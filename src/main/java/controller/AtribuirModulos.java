@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOFactory;
 import dao.PessoaDAO;
-import model.EnumNivel;
 import util.Constantes;
 
 
